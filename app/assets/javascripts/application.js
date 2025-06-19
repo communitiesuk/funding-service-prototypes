@@ -29,6 +29,19 @@ function hideRevealedText() {
     }
 }
 
+function setTogglePhaseBannerText(el) {
+    if (localStorage.getItem('prototype-hide-phase-banner') === 'true') {
+        el.textContent = 'Show phase banner';
+    } else {
+        el.textContent = 'Hide phase banner';
+    }
+}
+
+function togglePhaseBanner() {
+    const phaseBanner = document.querySelector('.govuk-phase-banner');
+    phaseBanner.classList.toggle('govuk-visually-hidden');
+}
+
 window.GOVUKPrototypeKit.documentReady(() => {
   // Add JavaScript here
     "use strict";
@@ -54,4 +67,24 @@ window.GOVUKPrototypeKit.documentReady(() => {
         revealHiddenText();
     };
     setToggleVisuallyHiddenText(toggleVisuallyHiddenElement);
+
+    const togglePhaseBannerElement = document.querySelector('[data-module="prototype-toggle-phase-banner"]');
+    togglePhaseBannerElement.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        let revealed = localStorage.getItem('prototype-hide-phase-banner');
+        if (revealed === 'false' || revealed === null) {
+            localStorage.setItem('prototype-hide-phase-banner', 'true');
+        } else {
+            localStorage.setItem('prototype-hide-phase-banner', 'false');
+        }
+        togglePhaseBanner();
+        setTogglePhaseBannerText(togglePhaseBannerElement);
+    });
+
+    // Hide phase banner on page load if we're in hidden-mode. Allows this to last across page loads/sessions.
+    if (localStorage.getItem('prototype-hide-phase-banner') === 'true') {
+        togglePhaseBanner();
+    }
+    setTogglePhaseBannerText(togglePhaseBannerElement);
 })
