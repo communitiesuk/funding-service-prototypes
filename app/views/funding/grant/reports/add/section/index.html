@@ -1,9 +1,8 @@
 {% extends "layouts/grantManagement.html" %}
-
 {% set navID = 'grantReports' %}
-{% set showBackLink = false %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/" %}
 {% set showBackApplicationsLink = false %}
-
 {% set pageSize = "l" %}
 {% set pageHeading = "What is the name of this section?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
@@ -13,49 +12,35 @@
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-
-        <!-- <p>The section name will be used as the heading. You'll be able to add tasks and questions to this section.</p>
- 
-        <p>The section name will be used as the heading. You'll be able to group questions into tasks in a list.
- </p> -->
- <p>The name will be used as the heading for a group of tasks.</p>
- <!-- Next, you'll be able to add tasks that contain questions and order the tasks in this section. -->
-        <!-- <p class="govuk-body" >You’ll be able to add tasks and questions to this section.</p>  -->
-        <p>For example, the section heading might be 'Issues and risks' and the task might be 'Risks'.</p>
-        <form method="post" action="/funding/grant/reports/add/section/another" >        
-
+        <p class="govuk-body">The name will be used as the heading for a group of tasks.</p>
+        <p class="govuk-body">For example, the section heading might be 'Issues and risks' and the task might be 'Risks'.</p>
+        
+        <form method="post" action="/funding/grant/reports/add/section/another">
             {{ govukInput({
                 label: {
                     text: pageHeading,
                     classes: "govuk-visually-hidden",
                     isPageHeading: false
                 },
-                
                 classes: "govuk-!-width-two-thirds",
                 id: "sectionName",
                 name: "sectionName",
-                value: data['sectionName']
+                attributes: {
+                    "spellcheck": "false"
+                }
             }) }}
-
-            {{ govukButton({
-                text: "Continue"
-            }) }}
-
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+                <a class="govuk-link" href="/funding/grant/reports/">Cancel</a>
+            </div>
         </form>
-
     </div>
 </div>
-
 {% endblock %}
-
-
-
-<!-- hint: {
-                    text: "For example, 'Organisational details' or 'Risk'"
-                }, -->

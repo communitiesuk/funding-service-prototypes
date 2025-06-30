@@ -1,0 +1,38 @@
+            
+            
+            
+<h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-9">Live reports</h2>         
+<p class="govuk-body">This shows all the monitoring reports for {{ data.grantName or "GRANT NAME" }}. </p>   
+{{ govukSummaryList({    
+    card: { 
+        title: { text: data['reportName'] },
+        classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
+        actions: {
+            items: [
+                { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: " report" }                
+            ]
+        } 
+    },
+    rows: [
+        { key: { text: "Created" }, value: { text: "3 June 2025" } },
+        { key: { text: "Created by" }, value: { text: "brian.coult@communities.gov.uk" } },
+        { key: { text: "Sections" }, value: { html: '<a href="/funding/grant/reports/sections" class="govuk-link govuk-link--no-visited-state">View sections</a>' } }
+    ]
+}) }}
+
+{{ govukSummaryList({    
+    card: { 
+        title: { text: data['reportName'] },
+        classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
+        actions: {
+            items: [
+                { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: " report" }                
+            ]
+        } 
+    },
+    rows: [
+        { key: { text: "Created" }, value: { text: "3 June 2025" } },
+        { key: { text: "Created by" }, value: { text: "brian.coult@communities.gov.uk" } },
+        { key: { text: "Sections" }, value: { html: '<a href="/funding/grant/reports/sections" class="govuk-link govuk-link--no-visited-state">View sections</a>' } }
+    ]
+}) }} 

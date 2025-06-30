@@ -12,165 +12,141 @@
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
-
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
+                
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-
-                    {% if not data['formReport'] %} 
-                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started. </p>        
+                
+                {% if not data.reports or data.reports.length == 0 %}                                    
+                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
+                    <p class="govuk-body"><a href="#">See an example of a monitoring report form</a> and a description of the component parts of a form.</p>
+                {% else %}
+                    <p class="govuk-body"><a href="#">See an example of a monitoring report form</a> and a description of the component parts of a form.</p>
+                {% endif %}                
+        
+                <form method="post" action="/funding/grant/reports/add/">
+                    {% set buttonText = "Add a monitoring report" %}
+                    {% if data.reports and data.reports.length > 0 %}
+                        {% set buttonText = "Add another monitoring report" %}
                     {% endif %}
-                    
-                    <!-- Show this when a report doesnt exists -->
-                    <!-- <p><a href="#">See an example of a monitoring report form</a> and a description of the component parts of a form.</p> -->
+                    {{ govukButton({
+                        text: buttonText,
+                        classes: "govuk-!-margin-top-5"
+                    }) }}
+                </form>
             </div>
         </div>
-        <!-- Have we set up a form, so we know to show the list -->
-        {% if data['formReport'] == "yes" %}       
-        
-        
-
-        <div class="govuk-summary-card govuk-!-margin-top-3 govuk-!-margin-bottom-7">
-            <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">{{ data['reportName'] or "Name of form" }}</h2>
-                <ul class="govuk-summary-card__actions">
-                    <li class="govuk-summary-card__action">
-                        <a class="govuk-link" href="#">Preview<span class="govuk-visually-hidden"> report</span></a>
-                    </li>
-                    <li class="govuk-summary-card__action">
-                        <a class="govuk-link" href="#">Change name<span class="govuk-visually-hidden"> of report</span></a>
-                    </li>
-                    <li class="govuk-summary-card__action">
-                        <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> report</span></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="govuk-summary-card__content">
-                <dl class="govuk-summary-list">
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">Created by</dt>
-                        <dd class="govuk-summary-list__value"><a href="#">brian.coult@communities.gov.uk</a> on 3 June 2025</dd>
-                        <dd class="govuk-summary-list__actions">
-                            <!-- <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> age (Lead tenant)</span></a> -->
-                        </dd>
-                    </div>
-                    <!-- <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">Last updated by</dt>
-                        <dd class="govuk-summary-list__value"><a href="#">kate.harries@communities.gov.uk</a> on {{ "today" | govukDate }} </dd>
-                        
-                    
-                        
-                    </div> -->
-                    <div class="govuk-summary-list__row">
-                        <dt class="govuk-summary-list__key">Sections</dt>
-                        <dd class="govuk-summary-list__value">
-                            
-                                <a href="/funding/grant/reports/add/section/" class="govuk-link govuk-link--no-visited-state">Add sections</a>
-                            <!-- {% if data['formReport'] == "yes" %}
-                                <a href="/funding/grant/reports/overview" class="govuk-link govuk-link--no-visited-state">10 sections</a>
-                            {% else %}                             -->
-                                <!-- {% endif %} -->
-                        </dd>
-                        <dd class="govuk-summary-list__actions">
-                            <!-- <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> working situation (Lead tenant)</span></a> -->
-                        </dd>
-                    </div>
-                </dl>
-            </div>
-        </div>
-
-            <!-- {{ govukSummaryList({
+    
+        {% if data.reports and data.reports.length > 0 %}
+      
+            {% for report in data.reports %}
+                {% if report.sections %}
+                    {% set sectionCount = report.sections.length %}
+                {% else %}
+                    {% set sectionCount = 0 %}
+                {% endif %}
                 
-                card: { 
-                    title: { text: data['reportName'] or "Name of form"  },
-                    classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
-                    actions: {
-                        items: [
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: "this monitoring report" },
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Change", visuallyHiddenText: "the name of this monitoring report" },
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Delete", visuallyHiddenText: "this monitoring report" }                 
-                        ]
-                    } 
-                },
-                rows: [
-                    { key: { text: "Created by" }, value: { html: '3 June 2025 | <a href="#">brian.coult@communities.gov.uk</a> ' } },
-                    { key: { text: "Last updated" }, value: { html: '18 June 2025 | <a href="#">kate.harries@communities.gov.uk</a> ' } },                                        
-                    { key: { text: "Sections" }, value: { html: '<a href="/funding/grant/reports/add/section/" class="govuk-link govuk-link--no-visited-state">Add sections</a> to start creating your report' } }
-                ]
-            }) }} -->
-            
-            <!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-1">Live reports</h2>         
-            <p class="govuk-body">This shows all the monitoring reports for {{ data.grantName or "NAME of GRANT" }}. </p>   
-            {{ govukSummaryList({
-                
-                card: { 
-                    title: { text: data['reportName'] },
-                    classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
-                    actions: {
-                        items: [
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: "this monitoring report" }                            
-                            
-                        ]
-                    } 
-                },
-                rows: [
-                    { key: { text: "Created" }, value: { text: "3 June 2025" } },
-                    { key: { text: "Created by" }, value: { text: "brian.coult@communities.gov.uk" } },
-                    { key: { text: "Sections" }, value: { html: '<a href="/funding/grant/reports/sections" class="govuk-link govuk-link--no-visited-state">View sections</a>' } }
-                ]
-            }) }}
-
-            {{ govukSummaryList({
-                
-                card: { 
-                    title: { text: data['reportName'] },
-                    classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
-                    actions: {
-                        items: [
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: "this monitoring report" }
-                            
-                                           
-                        ]
-                    } 
-                },
-                rows: [
-                    { key: { text: "Created" }, value: { text: "3 June 2025" } },
-                    { key: { text: "Created by" }, value: { text: "brian.coult@communities.gov.uk" } },
-                    { key: { text: "Sections" }, value: { html: '<a href="/funding/grant/reports/sections" class="govuk-link govuk-link--no-visited-state">View sections</a>' } }
-                ]
-            }) }} 
-
-        {% endif %} -->
-
-
-        <form method="post" action="/funding/grant/reports/add/" >
-            {% if data['formReport'] == "yes" %}
-                {{ govukButton({
-                    text: "Add a monitoring report",
-                    classes: "govuk-!-margin-top-5"
+                {% if sectionCount == 0 %}
+ {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to start creating your report' %}
+ {% set sectionsRow = {
+ key: { text: "Sections" },
+ value: { html: sectionsText }
+ } %}
+ {% elif sectionCount == 1 %}
+ {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' section</a>' %}
+ {% set sectionsList = '<ul class="govuk-list">' %}
+ {% for section in report.sections %}
+ {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+ {% endfor %}
+ {% set sectionsList = sectionsList + '</ul>' %}
+ {% set sectionsRow = {
+ key: { text: "Sections" },
+ value: { html: sectionsText + '<br>' + sectionsList },
+ actions: {
+ items: [
+ { href: "/funding/grant/reports/add/section/?reportId=" + report.id,
+ classes: "govuk-link govuk-link--no-visited-state",
+ text: "Add another section",
+ visuallyHiddenText: "to report"
+ }
+ ]
+ }
+ } %}
+ {% else %}
+ {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' sections</a>' %}
+ {% set sectionsList = '<ul class="govuk-list">' %}
+ {% for section in report.sections %}
+ {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+ {% endfor %}
+ {% set sectionsList = sectionsList + '</ul>' %}
+ {% set sectionsRow = {
+ key: { text: "Sections" },
+ value: { html: sectionsText + '<br>' + sectionsList },
+ actions: {
+ items: [
+ {
+ href: "/funding/grant/reports/add/section/?reportId=" + report.id,
+ classes: "govuk-link govuk-link--no-visited-state",
+ text: "Add another section",
+ visuallyHiddenText: "to report"
+ }
+ ]
+ }
+ } %}
+ {% endif %}
+ 
+                {{ govukSummaryList({
+                    card: {
+                        title: { text: report.reportName or "Form name" },
+                        classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
+                        actions: {
+                            items: [
+                                {
+                                    href: "#",
+                                    classes: "govuk-link govuk-link--no-visited-state",
+                                    text: "Preview",
+                                    visuallyHiddenText: "report"
+                                },
+                                {
+                                    href: "#",
+                                    classes: "govuk-link govuk-link--no-visited-state",
+                                    text: "Change name",
+                                    visuallyHiddenText: "of report"
+                                },
+                                {
+                                    href: "/funding/grant/reports/delete/" + report.id,
+                                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive",
+                                    text: "Delete",
+                                    visuallyHiddenText: "report"
+                                }
+                            ]
+                        }
+                    },
+                    rows: [
+                        {
+                            key: { text: "Created by" },
+                            value: { html: '<a href="#">' + report.createdBy + '</a> on ' + report.createdDate }
+                        },
+                        {
+                            key: { text: "Last updated" },
+                            value: { html: '<a href="#">' + report.updatedBy + '</a> on ' + report.lastUpdated }
+                        },
+                        sectionsRow
+                    ]
                 }) }}
-            {% else %}
-                {{ govukButton({
-                    text: "Add a monitoring report",
-                    classes: "govuk-!-margin-top-5"
-                }) }}
-            {% endif %}
-        </form>
+                
+               
+                
+            {% endfor %}
+
+        {% endif %}
+    
+        {% if data['liveReports'] == "yes" %}
+            {% include "/includes/reports/live.html" %}
+        {% endif %}
 
     </div>
 </div>
-
-<!-- {{ govukTable({
-    captionClasses: "govuk-table__caption--m",
-    head: [ { text: "Name", classes: "govuk-!-width-one-quarter" }, { text: "Created by" }, { text: "Date", classes: "govuk-!-width-one-quarter" } ],
-    rows: [
-        [ { html: data['addReport-Name'] }, { text: "brian.coult@communities.gov.uk" }, { text: "3 June 2025"} ]                
-
-    ]
-}) }}  -->
-
 {% endblock %}

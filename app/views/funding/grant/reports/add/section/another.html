@@ -1,46 +1,37 @@
 {% extends "layouts/grantManagement.html" %}
-
 {% set navID = 'grantReports' %}
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
-
 {% set pageSize = "xl" %}
 {% set pageHeading = "Do you want to add another section?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
-
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
-
 {% block content %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-        
-        <form method="post" action="/funding/grant/reports/sections?sectionSetup=yes" >           
-
-            
+        <form method="post" action="/funding/grant/reports/sections?sectionSetup=yes">
             {{ govukRadios({
                 name: "anotherSection",
                 classes: "govuk-radios--inline",
                 fieldset: {
-                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-fieldset__legend govuk-visually-hidden" }
+                    legend: { 
+                        text: pageHeading, 
+                        isPageHeading: false, 
+                        classes: "govuk-fieldset__legend govuk-visually-hidden" 
+                    }
                 },
                 items: [
-                    { value: "yes~/funding/grant/reports/add/section/", text: "Yes" },
-                    { value: "no", text: "No" }                    
+                    { value: "yes", text: "Yes" },
+                    { value: "no", text: "No" }
                 ]
-            }) }}   
-
+            }) }}
             {{ govukButton({
                 text: "Continue"
             }) }}
-
         </form>
-
     </div>
 </div>
-
 {% endblock %}
