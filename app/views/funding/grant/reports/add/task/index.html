@@ -1,31 +1,25 @@
 {% extends "layouts/grantManagement.html" %}
-
 {% set navID = 'grantReports' %}
-{% set showBackLink = false %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
-
 {% set pageSize = "l" %}
 {% set pageHeading = "What is the name of this task?" %}
-<!-- {% set pageSection = '' + data['addReport-Name'] + '' %} -->
- {% set pageSection = 'Issues and risks' %}
- {% set pageHiddentext = "yes" %}
+{% set pageSection = '' + data['sectionName'] + '' %}
+{% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
-
-        <p class="govuk-body">This is the name of a group of questions. </p>
-        <!-- Next, you'll be able to add 1 or more questions to this task.  -->
-        <p class="govuk-body">For example, the task might be 'Risks' and a question might be 'What is the risk status?'.</p>
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-        <form method="post" action="/funding/grant/reports/tasks?taskSetup=yes" >        
-
+        <p class="govuk-body">Enter the name of the task you want to add to this section.</p>
+        <p class="govuk-body">For example, if the section is 'Issues and risks', the task might be 'Current risks to the project' or 'Risk mitigation strategies'.</p>
+        
+        <form method="post" action="/funding/grant/reports/add/task/another">
             {{ govukInput({
                 label: {
                     text: pageHeading,
@@ -35,25 +29,19 @@
                 classes: "govuk-!-width-two-thirds",
                 id: "taskName",
                 name: "taskName",
-                value: data['taskName']
+                attributes: {
+                    "spellcheck": "false"
+                },
+                value: data.taskName
             }) }}
-
-            {{ govukButton({
-                text: "Continue"
-            }) }}
-
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+                <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
+            </div>
         </form>
-
-
-
     </div>
 </div>
-
 {% endblock %}
-
-
-<!--
-{ text: "Assess applications", href: "#" },
-                { text: "Recipients", href: "#" },
-                { text: "Payments", href: "#" },
-                { text: "Reports", href: "#" } -->

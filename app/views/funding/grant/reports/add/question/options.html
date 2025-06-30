@@ -1,12 +1,13 @@
 {% extends "layouts/grantManagement.html" %}
 
 {% set navID = 'grantReports' %}
-{% set showBackLink = false %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Question options" %}
-{% set pageSection = 'Risks' %}
+{% set pageHeading = "What is the question?" %}
+{% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -19,19 +20,32 @@
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-
-        <p>This will give the user all the options to complete the format of the question.</p>
-        <p>Design to follow.</p>
+        <p class="govuk-body">Enter the question text that users will see.</p>
+        <p class="govuk-body">For example: "What are the main risks to your project?" or "When did this issue first occur?"</p>
 
         <form method="post" action="/funding/grant/reports/add/question/another" >           
 
-            
-            
-
-            {{ govukButton({
-                text: "Continue"
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "questionName",
+                name: "questionName",
+                attributes: {
+                    "spellcheck": "false"
+                },
+                value: data.questionName
             }) }}
-
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+                <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
+            </div>
         </form>
 
     </div>

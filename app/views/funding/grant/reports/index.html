@@ -14,6 +14,14 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+        
+        {# Template-based breadcrumbs for reports page #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({ text: "Reports" }), breadcrumbItems) %}
+        
+        {# Reports page only shows breadcrumbs if there are multiple levels (which there aren't) #}
+        {# So breadcrumbs won't show on reports page - this is correct #}
+        
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 
@@ -49,7 +57,7 @@
                 {% endif %}
                 
                 {% if sectionCount == 0 %}
- {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to start creating your report' %}
+ {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to create your report' %}
  {% set sectionsRow = {
  key: { text: "Sections" },
  value: { html: sectionsText }
@@ -66,10 +74,10 @@
  value: { html: sectionsText + '<br>' + sectionsList },
  actions: {
  items: [
- { href: "/funding/grant/reports/add/section/?reportId=" + report.id,
+ { href: "/funding/grant/reports/sections?reportId=" + report.id,
  classes: "govuk-link govuk-link--no-visited-state",
- text: "Add another section",
- visuallyHiddenText: "to report"
+ text: "Manage sections",
+ visuallyHiddenText: "for this report"
  }
  ]
  }
@@ -87,10 +95,10 @@
  actions: {
  items: [
  {
- href: "/funding/grant/reports/add/section/?reportId=" + report.id,
+ href: "/funding/grant/reports/sections?reportId=" + report.id,
  classes: "govuk-link govuk-link--no-visited-state",
- text: "Add another section",
- visuallyHiddenText: "to report"
+ text: "Manage sections",
+ visuallyHiddenText: "for this report"
  }
  ]
  }

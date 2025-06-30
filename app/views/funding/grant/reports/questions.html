@@ -6,8 +6,7 @@
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "Questions" %}
-<!-- {% set pageSection = '' + data['addReport-Name'] + '' %} -->
- {% set pageSection = 'Risks' %}
+{% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -15,57 +14,145 @@
 
 {% block content %}
 
-
-
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-full">
-
-
-		<div class="govuk-grid-row">
-			<div class="govuk-grid-column-two-thirds">
-
-		
-
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-
+    <div class="govuk-grid-column-full">
         
+        {# Template-based breadcrumbs for questions page #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({ 
+            text: "Reports", 
+            href: "/funding/grant/reports/" 
+        }), breadcrumbItems) %}
 
-		</div>
-		</div>
+        {% if data.reportName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({ 
+                text: data.reportName,
+                href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
+            }), breadcrumbItems) %}
+        {% endif %}
 
-		{% if data['questionSetup'] == "yes" %}    
-    
-        	{{ govukSummaryList({
-				rows: [
-					{ key: { html: '<a href="#"> What is the category for this risk </a>', classes: "govuk-!-font-weight-regular" },      
-					actions: {
-						classes: "govuk-!-width-two-thirds",
-						items: [          
-							{ href: "#", text: "Move up", visuallyHiddenText: "name" },
-							{ href: "#", text: "Move down", visuallyHiddenText: "name" },
-							{ href: "#", text: "Delete", visuallyHiddenText: "name" }
-						] }      
-					}
-				]
-			}) }}
+        {% set breadcrumbItems = (breadcrumbItems.push({ 
+            text: "Sections and tasks",
+            href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
+        }), breadcrumbItems) %}
 
-    	{% endif %}
+        {% if data.taskName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({ 
+                text: data.taskName 
+            }), breadcrumbItems) %}
+        {% endif %}
 
+        {{ govukBreadcrumbs({
+            items: breadcrumbItems,
+            classes: "govuk-!-margin-bottom-6"
+        }) }}
+        {# Show question delete confirmation banner if questionDeleteConfirm parameter is present #}
+        {% if data.questionDeleteConfirm %}
+            {% set deleteQuestionName = data.deleteQuestionName or 'this question' %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete "{{ deleteQuestionName }}"?
+                </p>
+                <p class="govuk-body">
+                    <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ data.deleteQuestionId }}?reportId={{ data.currentReportId }}&sectionId={{ data.currentSectionId }}&taskId={{ data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
+                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ data.currentReportId }}&sectionId={{ data.currentSectionId }}&taskId={{ data.currentTaskId }}&cancel=true">Cancel</a>
+                </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important"
+            }) }}
+        {% endif %}
+        
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+            </div>
+        </div>
 
-        <form method="post" action="/funding/grant/reports/add/question/" >
-  			{% if data['questionSetup'] == "yes" %}
-                {{ govukButton({
-                    text: "Add another question",
-                    classes: "govuk-button--secondar govuk-!-margin-top-5"
-                }) }}
-            {% else %}
-                {{ govukButton({
-                    text: "Add a question",
-                    classes: "govuk-!-margin-top-5"
-                }) }}
-            {% endif %}
-		</form>
-
+        {% if data.currentQuestions and data.currentQuestions.length > 0 %}
+            {% set questionCount = data.currentQuestions.length %}
+            
+            {# Build the questions summary list rows #}
+            {% set questionRows = [] %}
+            
+            {# Add individual question rows #}
+            {% for question in data.currentQuestions %}
+                {% set questionRow = {
+                    key: {
+                        text: question.questionName,
+                        classes: "govuk-!-font-weight-regular"
+                    },
+                    value: {
+                        text: question.questionType
+                    },
+                    actions: {
+                        classes: "govuk-!-width-one-third",
+                        items: [
+                            { 
+                                href: "/funding/grant/reports/questions/move-up/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
+                                text: "Move up", 
+                                visuallyHiddenText: question.questionName,
+                                classes: "govuk-link govuk-link--no-visited-state"
+                            },
+                            { 
+                                href: "/funding/grant/reports/questions/move-down/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
+                                text: "Move down", 
+                                visuallyHiddenText: question.questionName,
+                                classes: "govuk-link govuk-link--no-visited-state"
+                            },
+                            {
+                                href: "/funding/grant/reports/questions/?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId + "&questionDeleteConfirm=true&deleteQuestionId=" + question.id + "&deleteQuestionName=" + question.questionName,
+                                text: "Delete",
+                                visuallyHiddenText: question.questionName,
+                                classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+                            }
+                        ]
+                    }
+                } %}
+                {% set questionRows = (questionRows.push(questionRow), questionRows) %}
+            {% endfor %}
+            
+            {# Add "Add another question" row at the end #}
+            {% set addQuestionRow = {
+                key: { 
+                    html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another question</a>',
+                    classes: "govuk-!-font-weight-regular"
+                },
+                value: { 
+                    html: ""
+                }
+            } %}
+            {% set questionRows = (questionRows.push(addQuestionRow), questionRows) %}
+            
+            {{ govukSummaryList({
+                card: {
+                    title: { text: data.taskName },
+                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
+                },
+                rows: questionRows
+            }) }}
+        {% else %}
+            {# No questions exist yet #}
+            {% set noQuestionsRow = {
+                key: { 
+                    html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions to this task</a>',
+                    classes: "govuk-!-font-weight-regular"
+                },
+                value: { 
+                    html: ""
+                }
+            } %}
+            
+            {{ govukSummaryList({
+                card: {
+                    title: { text: data.taskName },
+                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
+                },
+                rows: [noQuestionsRow]
+            }) }}
+        {% endif %}
 
     </div>
 </div>
