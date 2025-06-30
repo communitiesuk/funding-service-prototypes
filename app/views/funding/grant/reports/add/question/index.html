@@ -1,12 +1,13 @@
 {% extends "layouts/grantManagement.html" %}
 
 {% set navID = 'grantReports' %}
-{% set showBackLink = false %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "What type of question do you need?" %}
-{% set pageSection = 'Risks' %}
+{% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -28,33 +29,31 @@
                 },
                 items: [
                     { value: "Text", text: "Text", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Allow users to enter free text responses"
                     } },                    
                     { value: "dateInput", text: "Date input", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Users can enter a specific date"
                     } },
                     { value: "Selection from a list of options", text: "Selection from a list of options", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Radio buttons or checkboxes for multiple choice"
                     } },
                     { value: "Number", text: "Number", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Numeric input with validation"
                     } },
                     { value: "Email address", text: "Email address", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Email input with validation"
                     } },
                     { value: "Phone number", text: "Phone number", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Phone number input with validation"
                     } },
-                    
                     { value: "Address", text: "Address", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Full address input fields"
                     } },
                     { value: "File upload", text: "File upload", hint: {
-                        text: "You’ll have a user ID if you’ve registered for Self Assessment or filed a tax return online before"
+                        text: "Allow users to upload documents"
                     } }
-                    
-                    
-                ]
+                ],
+                value: data.questionType
             }) }}     
 
             {{ govukButton({

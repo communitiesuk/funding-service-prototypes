@@ -1,10 +1,9 @@
 {% extends "layouts/grantManagement.html" %}
 {% set navID = 'grantReports' %}
-{% set showBackLink = true %}
-{% set backLinkHref = "/funding/grant/reports" %}
+{% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "xl" %}
-{% set pageHeading = "Sections" %}
+{% set pageHeading = "Sections and tasks" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -12,6 +11,26 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+        
+        {# Template-based breadcrumbs - build directly in template #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({ 
+            text: "Reports", 
+            href: "/funding/grant/reports/" 
+        }), breadcrumbItems) %}
+
+        {% if data.reportName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({ 
+                text: data.reportName 
+            }), breadcrumbItems) %}
+        {% endif %}
+
+        {% if breadcrumbItems.length > 1 %}
+            {{ govukBreadcrumbs({
+                items: breadcrumbItems,
+                classes: "govuk-!-margin-bottom-6"
+            }) }}
+        {% endif %}
         {# Show delete confirmation banner if deleteConfirm parameter is present #}
         {% if data.deleteConfirm %}
             {% set deleteSectionName = data.deleteSectionName or 'this section' %}
@@ -30,48 +49,151 @@
                 titleText: "Important"
             }) }}
         {% endif %}
+        
+        {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
+        {% if data.taskDeleteConfirm %}
+            {% set deleteTaskName = data.deleteTaskName or 'this task' %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete "{{ deleteTaskName }}"?
+                </p>
+                <p class="govuk-body">
+                    <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ data.deleteTaskId }}?reportId={{ data.currentReportId }}&sectionId={{ data.deleteTaskSectionId }}&confirm=yes">Yes, delete this task</a>
+                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}&cancel=true">Cancel</a>
+                </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important"
+            }) }}
+        {% endif %}
+        
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
             </div>
         </div>
 
-
-
         {% if data.currentSections and data.currentSections.length > 0 %}
-            {% set sectionRows = [] %}
             {% for section in data.currentSections %}
-                {% set sectionRow = {
-                    key: {
-                        html: section.sectionName,
-                        classes: "govuk-!-font-weight-regular"
-                    },
-                    value: {
-                        html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to this section'
-                    },
-                    actions: {
-                        classes: "govuk-!-width-one-third",
-                        items: [
-                            { href: "#", text: "Move up", visuallyHiddenText: section.sectionName },
-                            { href: "#", text: "Move down", visuallyHiddenText: section.sectionName },
-                            {
-                                href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&deleteConfirm=true&deleteSectionId=" + section.id + "&deleteSectionName=" + section.sectionName,
-                                text: "Delete",
-                                visuallyHiddenText: section.sectionName,
-                                classes: "govuk-link--destructive"
+                {% set sectionTasks = section.tasks or [] %}
+                {% set taskCount = sectionTasks.length %}
+                
+                {# Build the section summary list rows #}
+                {% set sectionRows = [] %}
+                
+                {# Tasks rows - each task gets its own row #}
+                {% if taskCount == 0 %}
+                    {% set tasksRow = {
+                        key: { 
+                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add tasks to this section</a>',
+                            classes: "govuk-!-font-weight-regular"
+                        },
+                        value: { html: "" }
+                    } %}
+                    {% set sectionRows = (sectionRows.push(tasksRow), sectionRows) %}
+                {% else %}
+                    {# Add individual task rows #}
+                    {% for task in sectionTasks %}
+                        {% set taskQuestions = task.questions or [] %}
+                        {% set questionCount = taskQuestions.length %}
+                        
+                        {% if questionCount == 0 %}
+                            {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
+                            {% set taskLinkHref = '' %}
+                        {% else %}
+                            {% set taskLinkText = 'Manage task' %}
+                            {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + data.currentReportId %}
+                        {% endif %}
+                        
+                        {% if questionCount == 0 %}
+                            {% set valueContent = taskLinkText %}
+                        {% else %}
+                            {% set valueContent = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + taskLinkText + '</a>' %}
+                        {% endif %}
+                        
+                        {% set taskRow = {
+                            key: {
+                                text: task.taskName,
+                                classes: "govuk-!-font-weight-regular"
+                            },
+                            value: {
+                                html: valueContent
+                            },
+                            actions: {
+                                classes: "govuk-!-width-one-third",
+                                items: [
+                                    { 
+                                        href: "/funding/grant/reports/tasks/move-up/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
+                                        text: "Move up", 
+                                        visuallyHiddenText: task.taskName,
+                                        classes: "govuk-link govuk-link--no-visited-state"
+                                    },
+                                    { 
+                                        href: "/funding/grant/reports/tasks/move-down/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
+                                        text: "Move down", 
+                                        visuallyHiddenText: task.taskName,
+                                        classes: "govuk-link govuk-link--no-visited-state"
+                                    },
+                                    {
+                                        href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&taskDeleteConfirm=true&deleteTaskId=" + task.id + "&deleteTaskSectionId=" + section.id + "&deleteTaskName=" + task.taskName,
+                                        text: "Delete",
+                                        visuallyHiddenText: task.taskName,
+                                        classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+                                    }
+                                ]
                             }
-                        ]
-                    }
-                } %}
-                {% set sectionRows = (sectionRows.push(sectionRow), sectionRows) %}
+                        } %}
+                        {% set sectionRows = (sectionRows.push(taskRow), sectionRows) %}
+                    {% endfor %}
+                    
+                    {# Add "Add another task" row at the end #}
+                    {% set addTaskRow = {
+                        key: { 
+                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
+                            classes: "govuk-!-font-weight-regular"
+                        },
+                        value: { 
+                            html: ""
+                        }
+                    } %}
+                    {% set sectionRows = (sectionRows.push(addTaskRow), sectionRows) %}
+                {% endif %}
+                
+                {{ govukSummaryList({
+                    card: {
+                        title: { text: section.sectionName },
+                        classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
+                        actions: {
+                            items: [
+                                {
+                                    href: "/funding/grant/reports/sections/move-up/" + section.id + "?reportId=" + data.currentReportId,
+                                    text: "Move up",
+                                    visuallyHiddenText: section.sectionName,
+                                    classes: "govuk-link govuk-link--no-visited-state"
+                                },
+                                {
+                                    href: "/funding/grant/reports/sections/move-down/" + section.id + "?reportId=" + data.currentReportId,
+                                    text: "Move down",
+                                    visuallyHiddenText: section.sectionName,
+                                    classes: "govuk-link govuk-link--no-visited-state"
+                                },
+                                {
+                                    href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&deleteConfirm=true&deleteSectionId=" + section.id + "&deleteSectionName=" + section.sectionName,
+                                    text: "Delete",
+                                    visuallyHiddenText: section.sectionName,
+                                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+                                }
+                            ]
+                        }
+                    },
+                    rows: sectionRows
+                }) }}
             {% endfor %}
-            {{ govukSummaryList({
-                rows: sectionRows
-            }) }}
         {% else %}
             <p class="govuk-body">There are no sections in this report yet.</p>
         {% endif %}
-        
         
         <form method="get" action="/funding/grant/reports/add/section/">
             <input type="hidden" name="reportId" value="{{ data.currentReportId }}">
@@ -79,7 +201,7 @@
             {% if data.currentSections and data.currentSections.length > 0 %}
                 {{ govukButton({
                     text: "Add another section",
-                    classes: " govuk-!-margin-top-5"
+                    classes: "govuk-!-margin-top-5"
                 }) }}
             {% else %}
                 {{ govukButton({
