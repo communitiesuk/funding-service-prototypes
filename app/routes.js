@@ -11,7 +11,6 @@ router.use(radioButtonRedirect)
 // Add your routes here
 
 // Logging session data 
- 
 router.use((req, res, next) => { 
     const log = { 
     method: req.method, 
@@ -23,7 +22,7 @@ router.use((req, res, next) => {
     next() 
 })
 
-// GET SPRINT NAME - useful for relative templates
+// get sprint name ( not really using)
 router.use('/', (req, res, next) => {
     res.locals.currentURL = req.originalUrl; //current screen
     res.locals.prevURL = req.get('Referrer'); // previous screen
@@ -34,12 +33,12 @@ router.use('/', (req, res, next) => {
 
 
   router.post('/funding/grant/reports/', function (req, res) {
-  // Initialize reports array if it doesn't exist
+  // Create reports array if it doesn't already exist
   if (!req.session.data.reports) {
     req.session.data.reports = []
   }
   
-  // Create new report object
+  // New report object in array
   const newReport = {
     id: Date.now().toString(), // unique ID
     reportName: req.body.reportName,
@@ -60,13 +59,13 @@ router.use('/', (req, res, next) => {
   // Add to reports array
   req.session.data.reports.push(newReport)
   
-  // Set flag to show we have reports
+  // Set to show we have reports
   req.session.data.setupReport = 'yes'
   
   res.redirect('/funding/grant/reports/?setupReport=yes')
 })
 
-// Route to delete a report
+// Deleting a report
 router.get('/funding/grant/reports/delete/:id', function (req, res) {
   const reportId = req.params.id
   if (req.session.data.reports) {
@@ -82,12 +81,7 @@ router.get('/funding/grant/reports/delete/:id', function (req, res) {
   res.redirect('/funding/grant/reports/')
 })
 
-
-
-
-// In your routes file
-
-// GET route for add section page - captures which report from URL parameter
+// Adding a section - captures which report from URL parameter
 router.get('/funding/grant/reports/add/section/', function (req, res) {
     // Get report ID from URL parameter and store in session
     const reportId = req.query.reportId || req.session.data.currentReportId
@@ -105,7 +99,7 @@ router.get('/funding/grant/reports/add/section/', function (req, res) {
     res.render('funding/grant/reports/add/section/index')
 })
 
-// POST route to add section to the current report
+// Add section to the current report
 router.post('/funding/grant/reports/add/section/another', function (req, res) {
     const reportId = req.session.data.currentReportId
     const sectionName = req.body.sectionName
@@ -116,13 +110,13 @@ router.post('/funding/grant/reports/add/section/another', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
     
-    // Find the report we're adding the section to
+    // Finds the report we're adding the section to
     const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
     if (reportIndex === -1) {
         return res.redirect('/funding/grant/reports/')
     }
     
-    // Initialize sections array for this report if it doesn't exist
+    // Create sections array for this report if it doesn't already exist
     if (!req.session.data.reports[reportIndex].sections) {
         req.session.data.reports[reportIndex].sections = []
     }
@@ -164,7 +158,7 @@ router.post('/funding/grant/reports/add/section/another', function (req, res) {
     })
 })
 
-// You'll also need to modify your existing "Add sections" link to set currentReportId
+// Modify existing "Add sections" link to set currentReportId
 router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
     // Set which report we're adding sections to
     req.session.data.currentReportId = req.params.reportId
@@ -173,7 +167,7 @@ router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
     res.redirect('/funding/grant/reports/add/section/')
 })
 
-// GET route for sections page (modified to handle delete confirmation and force data refresh)
+// Sections page (handles delete confirmation and force data refresh)
 router.get('/funding/grant/reports/sections', function (req, res) {
     const reportId = req.query.reportId || req.session.data.currentReportId
     
@@ -196,14 +190,14 @@ router.get('/funding/grant/reports/sections', function (req, res) {
     req.session.data.reportName = currentReport.reportName
     req.session.data.currentSections = currentReport.sections ? [...currentReport.sections] : []
     
-    // Handle cancel parameter - redirect to clear URL
+    // Cancel parameter - redirect to clear URL
     if (req.query.cancel === 'true') {
         // Clear confirmation data
         delete req.session.data.deleteConfirm
         delete req.session.data.deleteSectionId
         delete req.session.data.deleteSectionName
         
-        // Force session save and redirect to clean URL
+        // Save session and redirect to clean URL
         req.session.save(function(err) {
             if (err) {
                 console.log('Session save error:', err)
@@ -213,7 +207,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return
     }
     
-    // Handle delete confirmation parameters
+    // Delete confirmation parameters
     if (req.query.deleteConfirm === 'true') {
         req.session.data.deleteConfirm = true
         req.session.data.deleteSectionId = req.query.deleteSectionId
@@ -225,7 +219,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         delete req.session.data.deleteSectionName
     }
     
-    // Force session save before rendering
+    // Save session before rendering
     req.session.save(function(err) {
         if (err) {
             console.log('Session save error:', err)
@@ -234,7 +228,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
     })
 })
 
-// GET route for actually deleting a section (modified for inline confirmation)
+// Deleting a section
 router.get('/funding/grant/reports/sections/delete/:sectionId', function (req, res) {
     const sectionId = req.params.sectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
@@ -282,11 +276,5 @@ router.get('/funding/grant/reports/sections/delete/:sectionId', function (req, r
     }
 })
 
-// Remove or comment out the old POST route for deleting sections since we're not using it anymore
-/*
-router.post('/funding/grant/reports/sections/delete', function (req, res) {
-    // This route is no longer needed with inline confirmation
-})
-*/
 
 module.exports = router
