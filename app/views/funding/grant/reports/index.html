@@ -29,9 +29,9 @@
                 
                 {% if not data.reports or data.reports.length == 0 %}                                    
                     <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
-                    <p class="govuk-body"><a href="#">See an example of a monitoring report form</a> and a description of the component parts of a form.</p>
+                    <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
                 {% else %}
-                    <p class="govuk-body"><a href="#">See an example of a monitoring report form</a> and a description of the component parts of a form.</p>
+                    <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
                 {% endif %}                
         
                 <form method="post" action="/funding/grant/reports/add/">
