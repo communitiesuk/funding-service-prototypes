@@ -4,7 +4,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Tasks" %}
 <!-- {% set pageSection = '' + data['addReport-Name'] + '' %} -->
  {% set pageSection = 'Issues and risks' %}
@@ -29,21 +29,21 @@
 		</div>
 		</div>
 
-		{% if data['taskSetup'] == "yes" %}    
-<!--     
+		{% if data['taskSetup'] == "yes" %}
+<!--
         	{{ govukSummaryList({
 				rows: [
-					{ key: { html: 'Risks', classes: "govuk-!-font-weight-regular" },  
+					{ key: { html: 'Risks', classes: "govuk-!-font-weight-regular" },
 					value: {
         html: '<a href="/funding/grant/reports/add/question/" class="govuk-link govuk-link--no-visited-state ">Add questions</a> to this task'
-      },    
+      },
 					actions: {
 						classes: "govuk-!-width-one-third",
-						items: [          
+						items: [
 							{ href: "#", text: "Move up", visuallyHiddenText: "name" },
 							{ href: "#", text: "Move down", visuallyHiddenText: "name" },
 							{ href: "#", text: "Delete", visuallyHiddenText: "name" }
-						] }      
+						] }
 					}
 				]
 			}) }} -->
@@ -52,17 +52,17 @@
 
 			{{ govukSummaryList({
 				rows: [
-					{ key: { html: 'Risks', classes: "govuk-!-font-weight-regular" },  
+					{ key: { html: 'Risks', classes: "govuk-!-font-weight-regular" },
 					value: {
         html: '<a href="/funding/grant/reports/questions" class="govuk-link govuk-link--no-visited-state ">1 question</a>'
-      },    
+      },
 					actions: {
 						classes: "govuk-!-width-one-third",
-						items: [          
+						items: [
 							{ href: "#", text: "Move up", visuallyHiddenText: "name" },
 							{ href: "#", text: "Move down", visuallyHiddenText: "name" },
 							{ href: "#", text: "Delete", visuallyHiddenText: "name" }
-						] }      
+						] }
 					}
 				]
 			}) }}

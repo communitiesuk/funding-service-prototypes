@@ -4,7 +4,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Do you want to add another question to this task?" %}
 {% set pageSection = 'Risk' %}
 {% set pageHiddentext = "yes" %}
@@ -20,9 +20,9 @@
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
 
-        <form method="post" action="/funding/grant/reports/tasks?questionSetup=yes" >           
+        <form method="post" action="/funding/grant/reports/tasks?questionSetup=yes" >
 
-            
+
             {{ govukRadios({
                 name: "questionType",
                 classes: "govuk-radios--inline",
@@ -31,9 +31,9 @@
                 },
                 items: [
                     { value: "yes~/funding/grant/reports/add/question/", text: "Yes" },
-                    { value: "no", text: "No" }                    
+                    { value: "no", text: "No" }
                 ]
-            }) }}   
+            }) }}
 
             {{ govukButton({
                 text: "Continue"

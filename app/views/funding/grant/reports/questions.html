@@ -4,7 +4,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Questions" %}
 {% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -16,29 +16,29 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        
+
         {# Template-based breadcrumbs for questions page #}
         {% set breadcrumbItems = [] %}
-        {% set breadcrumbItems = (breadcrumbItems.push({ 
-            text: "Reports", 
-            href: "/funding/grant/reports/" 
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Reports",
+            href: "/funding/grant/reports/"
         }), breadcrumbItems) %}
 
         {% if data.reportName %}
-            {% set breadcrumbItems = (breadcrumbItems.push({ 
+            {% set breadcrumbItems = (breadcrumbItems.push({
                 text: data.reportName,
                 href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
             }), breadcrumbItems) %}
         {% endif %}
 
-        {% set breadcrumbItems = (breadcrumbItems.push({ 
+        {% set breadcrumbItems = (breadcrumbItems.push({
             text: "Sections and tasks",
             href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
         }), breadcrumbItems) %}
 
         {% if data.taskName %}
-            {% set breadcrumbItems = (breadcrumbItems.push({ 
-                text: data.taskName 
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: data.taskName
             }), breadcrumbItems) %}
         {% endif %}
 
@@ -64,7 +64,7 @@
                 titleText: "Important"
             }) }}
         {% endif %}
-        
+
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
@@ -73,10 +73,10 @@
 
         {% if data.currentQuestions and data.currentQuestions.length > 0 %}
             {% set questionCount = data.currentQuestions.length %}
-            
+
             {# Build the questions summary list rows #}
             {% set questionRows = [] %}
-            
+
             {# Add individual question rows #}
             {% for question in data.currentQuestions %}
                 {% set questionRow = {
@@ -90,15 +90,15 @@
                     actions: {
                         classes: "govuk-!-width-one-third",
                         items: [
-                            { 
+                            {
                                 href: "/funding/grant/reports/questions/move-up/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
-                                text: "Move up", 
+                                text: "Move up",
                                 visuallyHiddenText: question.questionName,
                                 classes: "govuk-link govuk-link--no-visited-state"
                             },
-                            { 
+                            {
                                 href: "/funding/grant/reports/questions/move-down/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
-                                text: "Move down", 
+                                text: "Move down",
                                 visuallyHiddenText: question.questionName,
                                 classes: "govuk-link govuk-link--no-visited-state"
                             },
@@ -113,19 +113,19 @@
                 } %}
                 {% set questionRows = (questionRows.push(questionRow), questionRows) %}
             {% endfor %}
-            
+
             {# Add "Add another question" row at the end #}
             {% set addQuestionRow = {
-                key: { 
+                key: {
                     html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another question</a>',
                     classes: "govuk-!-font-weight-regular"
                 },
-                value: { 
+                value: {
                     html: ""
                 }
             } %}
             {% set questionRows = (questionRows.push(addQuestionRow), questionRows) %}
-            
+
             {{ govukSummaryList({
                 card: {
                     title: { text: data.taskName },
@@ -136,15 +136,15 @@
         {% else %}
             {# No questions exist yet #}
             {% set noQuestionsRow = {
-                key: { 
+                key: {
                     html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions to this task</a>',
                     classes: "govuk-!-font-weight-regular"
                 },
-                value: { 
+                value: {
                     html: ""
                 }
             } %}
-            
+
             {{ govukSummaryList({
                 card: {
                     title: { text: data.taskName },

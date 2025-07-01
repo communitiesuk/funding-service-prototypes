@@ -4,7 +4,7 @@
 {% set showBackLink = true %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "What’s their email address?" %}
 {% set pageSection = "Add grant team member" %}
 
@@ -15,7 +15,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                 
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
         <form method="post" action="/funding/grant/users/?notification=userAdded" >
 

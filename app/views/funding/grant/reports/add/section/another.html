@@ -2,7 +2,7 @@
 {% set navID = 'grantReports' %}
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Do you want to add another section?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -17,10 +17,10 @@
                 name: "anotherSection",
                 classes: "govuk-radios--inline",
                 fieldset: {
-                    legend: { 
-                        text: pageHeading, 
-                        isPageHeading: false, 
-                        classes: "govuk-fieldset__legend govuk-visually-hidden" 
+                    legend: {
+                        text: pageHeading,
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
                     }
                 },
                 items: [

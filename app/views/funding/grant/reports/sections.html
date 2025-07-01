@@ -2,7 +2,7 @@
 {% set navID = 'grantReports' %}
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Sections and tasks" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -11,17 +11,17 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        
+
         {# Template-based breadcrumbs - build directly in template #}
         {% set breadcrumbItems = [] %}
-        {% set breadcrumbItems = (breadcrumbItems.push({ 
-            text: "Reports", 
-            href: "/funding/grant/reports/" 
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Reports",
+            href: "/funding/grant/reports/"
         }), breadcrumbItems) %}
 
         {% if data.reportName %}
-            {% set breadcrumbItems = (breadcrumbItems.push({ 
-                text: data.reportName 
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: data.reportName
             }), breadcrumbItems) %}
         {% endif %}
 
@@ -49,7 +49,7 @@
                 titleText: "Important"
             }) }}
         {% endif %}
-        
+
         {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
         {% if data.taskDeleteConfirm %}
             {% set deleteTaskName = data.deleteTaskName or 'this task' %}
@@ -68,7 +68,7 @@
                 titleText: "Important"
             }) }}
         {% endif %}
-        
+
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
@@ -79,14 +79,14 @@
             {% for section in data.currentSections %}
                 {% set sectionTasks = section.tasks or [] %}
                 {% set taskCount = sectionTasks.length %}
-                
+
                 {# Build the section summary list rows #}
                 {% set sectionRows = [] %}
-                
+
                 {# Tasks rows - each task gets its own row #}
                 {% if taskCount == 0 %}
                     {% set tasksRow = {
-                        key: { 
+                        key: {
                             html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add tasks to this section</a>',
                             classes: "govuk-!-font-weight-regular"
                         },
@@ -98,7 +98,7 @@
                     {% for task in sectionTasks %}
                         {% set taskQuestions = task.questions or [] %}
                         {% set questionCount = taskQuestions.length %}
-                        
+
                         {% if questionCount == 0 %}
                             {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
                             {% set taskLinkHref = '' %}
@@ -106,13 +106,13 @@
                             {% set taskLinkText = 'Manage task' %}
                             {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + data.currentReportId %}
                         {% endif %}
-                        
+
                         {% if questionCount == 0 %}
                             {% set valueContent = taskLinkText %}
                         {% else %}
                             {% set valueContent = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + taskLinkText + '</a>' %}
                         {% endif %}
-                        
+
                         {% set taskRow = {
                             key: {
                                 text: task.taskName,
@@ -124,15 +124,15 @@
                             actions: {
                                 classes: "govuk-!-width-one-third",
                                 items: [
-                                    { 
+                                    {
                                         href: "/funding/grant/reports/tasks/move-up/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
-                                        text: "Move up", 
+                                        text: "Move up",
                                         visuallyHiddenText: task.taskName,
                                         classes: "govuk-link govuk-link--no-visited-state"
                                     },
-                                    { 
+                                    {
                                         href: "/funding/grant/reports/tasks/move-down/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
-                                        text: "Move down", 
+                                        text: "Move down",
                                         visuallyHiddenText: task.taskName,
                                         classes: "govuk-link govuk-link--no-visited-state"
                                     },
@@ -147,20 +147,20 @@
                         } %}
                         {% set sectionRows = (sectionRows.push(taskRow), sectionRows) %}
                     {% endfor %}
-                    
+
                     {# Add "Add another task" row at the end #}
                     {% set addTaskRow = {
-                        key: { 
+                        key: {
                             html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
                             classes: "govuk-!-font-weight-regular"
                         },
-                        value: { 
+                        value: {
                             html: ""
                         }
                     } %}
                     {% set sectionRows = (sectionRows.push(addTaskRow), sectionRows) %}
                 {% endif %}
-                
+
                 {{ govukSummaryList({
                     card: {
                         title: { text: section.sectionName },
@@ -194,7 +194,7 @@
         {% else %}
             <p class="govuk-body">There are no sections in this report yet.</p>
         {% endif %}
-        
+
         <form method="get" action="/funding/grant/reports/add/section/">
             <input type="hidden" name="reportId" value="{{ data.currentReportId }}">
             <input type="hidden" name="returnTo" value="sections">

@@ -5,7 +5,7 @@
 {% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "What is the question?" %}
 {% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -19,11 +19,11 @@
     <div class="govuk-grid-column-two-thirds">
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-        
+
         <p class="govuk-body">Enter the question text that grant recipients will see on their monitoring report.</p>
         <p class="govuk-body">For example, 'What are the main risks to your programme?' or 'What are you doing to mitigate the risk?'</p>
 
-        <form method="post" action="/funding/grant/reports/add/question/another" >           
+        <form method="post" action="/funding/grant/reports/add/question/another" >
 
             {{ govukInput({
                 label: {
@@ -39,7 +39,7 @@
                 },
                 value: data.questionName
             }) }}
-            
+
             <div class="govuk-button-group">
                 {{ govukButton({
                     text: "Continue"

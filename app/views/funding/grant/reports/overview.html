@@ -4,7 +4,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Sections" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -22,33 +22,33 @@
 
             {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-        
-            
+
+
 
         </div>
         </div>
 
 
         {{ govukSummaryList({
-            card: { 
+            card: {
                     title: { text: data['reportName'] },
                     classes: "govuk-!-margin-top-3 govuk-!-margin-bottom-7",
                     actions: {
                         items: [
-                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: "this monitoring report" }                            
-                            
+                            { href: "#", classes:" govuk-link govuk-link--no-visited-state", text: "Preview", visuallyHiddenText: "this monitoring report" }
+
                         ]
-                    } 
+                    }
                 },
             rows: [
-                { key: { html: 'Issues and risks', classes: "govuk-!-font-weight-regular" },  
-                
+                { key: { html: 'Issues and risks', classes: "govuk-!-font-weight-regular" },
+
       value: {
         html: '<a href="/funding/grant/reports/add/task/" class="govuk-link govuk-link--no-visited-state ">Add tasks</a> to this section'
       },
                 actions: {
                     classes: "govuk-!-width-one-third",
-                    items: [          
+                    items: [
                         { href: "#", text: "Move up", visuallyHiddenText: "name" },
                         { href: "#", text: "Move down", visuallyHiddenText: "name" },
                         { href: "#", text: "Delete", visuallyHiddenText: "this section" }
@@ -57,7 +57,7 @@
             ]
         }) }}
 
-        
+
         <form method="post" action="/funding/grant/reports/add/section/" >
             {% if data['sectionSetup'] == "yes" %}
                 {{ govukButton({
@@ -80,19 +80,19 @@
 
 
 <!-- ,
-                { key: { html: '<a href="/funding/grant/reports/tasks">Company information</a>', classes: "govuk-!-font-weight-regular" },      
+                { key: { html: '<a href="/funding/grant/reports/tasks">Company information</a>', classes: "govuk-!-font-weight-regular" },
                 actions: {
                     classes: "govuk-!-width-two-thirds",
-                    items: [          
+                    items: [
                         { href: "#", text: "Move up", visuallyHiddenText: "name" },
                         { href: "#", text: "Move down", visuallyHiddenText: "name" }
-                    ] }      
+                    ] }
                 },
-                { key: { html: 'Finance', classes: "govuk-!-font-weight-regular" },      
+                { key: { html: 'Finance', classes: "govuk-!-font-weight-regular" },
                 actions: {
                     classes: "govuk-!-width-two-thirds",
-                    items: [          
+                    items: [
                         { href: "#", text: "Move up", visuallyHiddenText: "name" },
                         { href: "#", text: "Move down", visuallyHiddenText: "name" }
-                    ] }      
+                    ] }
                 } -->

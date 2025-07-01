@@ -5,7 +5,7 @@
 {% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "What type of question do you need?" %}
 {% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
@@ -19,8 +19,8 @@
     <div class="govuk-grid-column-two-thirds">
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-        
-        <form method="post" action="/funding/grant/reports/add/question/options" >        
+
+        <form method="post" action="/funding/grant/reports/add/question/options" >
 
             {{ govukRadios({
                 name: "questionType",
@@ -30,7 +30,7 @@
                 items: [
                     { value: "Text", text: "Text", hint: {
                         text: "Free text responses of a single line or longer text with a word limit"
-                    } },                    
+                    } },
                     { value: "dateInput", text: "Date input", hint: {
                         text: "Date input consisting of 3 fields - day, month and year"
                     } },
@@ -54,7 +54,7 @@
                     } }
                 ],
                 value: data.questionType
-            }) }}     
+            }) }}
 
             {{ govukButton({
                 text: "Continue"

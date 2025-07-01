@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Check your answers" %}
 {% if data['status'] == "view" %}
 	{% set pageSection = "Grant set up" %}
@@ -41,12 +41,12 @@
 			<div class="govuk-summary-list__row">
 				<dt class="govuk-summary-list__key">Main contact</dt>
 				<dd class="govuk-summary-list__value">{{ data['grant-primaryContactName'] or "Hugo Furst" }}
-					<br>{{ data['grant-primaryContactEmail'] or "hugo.furst@communities.gov.uk" }}				
+					<br>{{ data['grant-primaryContactEmail'] or "hugo.furst@communities.gov.uk" }}
 				</dd>
 				<dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/add/primary-contact-details?change=yes">Change<span class="govuk-visually-hidden"> main contact</span></a></dd>
 			</div>
 		</dl>
-			
+
 		<div class="govuk-grid-row">
 			<div class="govuk-grid-column-two-thirds">
 

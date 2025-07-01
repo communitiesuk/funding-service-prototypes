@@ -4,7 +4,7 @@
 {% set showBackApplicationsLink = false %}
 
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = "Check your answers" %}
 {% set pageSection = "Set up the grant" %}
 {% set pageHidden = "" %}
@@ -28,15 +28,15 @@
 					{% else %}
 						Not known
 					{% endif %}
-				</dd>		
-				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/ggis-number?change=yes">Change<span class="govuk-visually-hidden"> GGIS number</span></a></dd>		
-			</div>			
+				</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/ggis-number?change=yes">Change<span class="govuk-visually-hidden"> GGIS number</span></a></dd>
+			</div>
 
 			<div class="govuk-summary-list__row">
 				<dt class="govuk-summary-list__key">Grant name</dt>
 				<dd class="govuk-summary-list__value">{{ data['grantName'] }}</dd>
 				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/name?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
-			</div>			
+			</div>
 
 			<div class="govuk-summary-list__row">
 				<dt class="govuk-summary-list__key">Main purpose</dt>
