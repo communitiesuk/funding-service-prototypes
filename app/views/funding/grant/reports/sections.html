@@ -36,7 +36,7 @@
             {% set deleteSectionName = data.deleteSectionName or 'this section' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteSectionName }}"?
+                    Are you sure you want to delete '{{ deleteSectionName }}'?
                 </p>
                 <p class="govuk-body">
                     <a class="govuk-notification-banner__link" href="/funding/grant/reports/sections/delete/{{ data.deleteSectionId }}?reportId={{ data.currentReportId }}&confirm=yes">Yes, delete this section</a>
@@ -55,7 +55,7 @@
             {% set deleteTaskName = data.deleteTaskName or 'this task' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteTaskName }}"?
+                    Are you sure you want to delete '{{ deleteTaskName }}'?
                 </p>
                 <p class="govuk-body">
                     <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ data.deleteTaskId }}?reportId={{ data.currentReportId }}&sectionId={{ data.deleteTaskSectionId }}&confirm=yes">Yes, delete this task</a>
