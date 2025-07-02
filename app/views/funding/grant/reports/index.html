@@ -58,7 +58,6 @@
 
                 {% if sectionCount == 0 %}
                     {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to create your report' %}
-
                     {% set sectionsRow = {
                         key: { text: "Sections" },
                         value: { html: sectionsText }
@@ -66,42 +65,52 @@
 
                 {% elif sectionCount == 1 %}
                     {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' section</a>' %}
+                    
+                    {# Build sections list differently to avoid parsing issues #}
                     {% set sectionsList = '<ul class="govuk-list">' %}
-                        {% for section in report.sections %}
-                            {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
-                        {% endfor %}
+                    {% for section in report.sections %}
+                        {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+                    {% endfor %}
                     {% set sectionsList = sectionsList + '</ul>' %}
+                    
                     {% set sectionsRow = {
                         key: { text: "Sections" },
                         value: { html: sectionsText + '<br>' + sectionsList },
                         actions: {
                             items: [
-                                { href: "/funding/grant/reports/sections?reportId=" + report.id,
-                                classes: "govuk-link govuk-link--no-visited-state",
-                                text: "Manage sections",
-                                visuallyHiddenText: "for this report"
-                            }
-                        ]
+                                { 
+                                    href: "/funding/grant/reports/sections?reportId=" + report.id,
+                                    classes: "govuk-link govuk-link--no-visited-state",
+                                    text: "Manage sections",
+                                    visuallyHiddenText: "for this report"
+                                }
+                            ]
+                        }
                     } %}
 
                 {% else %}
                     {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' sections</a>' %}
+                    
+                    {# Build sections list differently to avoid parsing issues #}
                     {% set sectionsList = '<ul class="govuk-list">' %}
-                        {% for section in report.sections %}
-                            {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
-                        {% endfor %}
+                    {% for section in report.sections %}
+                        {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+                    {% endfor %}
                     {% set sectionsList = sectionsList + '</ul>' %}
+                    
                     {% set sectionsRow = {
                         key: { text: "Sections" },
                         value: { html: sectionsText + '<br>' + sectionsList },
                         actions: {
                             items: [
-                                { href: "/funding/grant/reports/sections?reportId=" + report.id,
-                                classes: "govuk-link govuk-link--no-visited-state",
-                                text: "Manage sections",
-                                visuallyHiddenText: "for this report"
-                            }
-                        ]
+                                { 
+                                    href: "/funding/grant/reports/sections?reportId=" + report.id,
+                                    classes: "govuk-link govuk-link--no-visited-state",
+                                    text: "Manage sections",
+                                    visuallyHiddenText: "for this report"
+                                }
+                            ]
+                        }
                     } %}
                 {% endif %}
 
@@ -144,8 +153,6 @@
                         sectionsRow
                     ]
                 }) }}
-
-
 
             {% endfor %}
 
