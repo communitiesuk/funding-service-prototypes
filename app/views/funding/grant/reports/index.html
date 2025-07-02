@@ -14,26 +14,26 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        
+
         {# Template-based breadcrumbs for reports page #}
         {% set breadcrumbItems = [] %}
         {% set breadcrumbItems = (breadcrumbItems.push({ text: "Reports" }), breadcrumbItems) %}
-        
+
         {# Reports page only shows breadcrumbs if there are multiple levels (which there aren't) #}
         {# So breadcrumbs won't show on reports page - this is correct #}
-        
+
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-                
+
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-                
-                {% if not data.reports or data.reports.length == 0 %}                                    
+
+                {% if not data.reports or data.reports.length == 0 %}
                     <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
                     <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
                 {% else %}
                     <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
-                {% endif %}                
-        
+                {% endif %}
+
                 <form method="post" action="/funding/grant/reports/add/">
                     {% set buttonText = "Add a monitoring report" %}
                     {% if data.reports and data.reports.length > 0 %}
@@ -46,65 +46,65 @@
                 </form>
             </div>
         </div>
-    
+
         {% if data.reports and data.reports.length > 0 %}
-      
+
             {% for report in data.reports %}
                 {% if report.sections %}
                     {% set sectionCount = report.sections.length %}
                 {% else %}
                     {% set sectionCount = 0 %}
                 {% endif %}
-                
+
                 {% if sectionCount == 0 %}
- {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to create your report' %}
- {% set sectionsRow = {
- key: { text: "Sections" },
- value: { html: sectionsText }
- } %}
- {% elif sectionCount == 1 %}
- {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' section</a>' %}
- {% set sectionsList = '<ul class="govuk-list">' %}
- {% for section in report.sections %}
- {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
- {% endfor %}
- {% set sectionsList = sectionsList + '</ul>' %}
- {% set sectionsRow = {
- key: { text: "Sections" },
- value: { html: sectionsText + '<br>' + sectionsList },
- actions: {
- items: [
- { href: "/funding/grant/reports/sections?reportId=" + report.id,
- classes: "govuk-link govuk-link--no-visited-state",
- text: "Manage sections",
- visuallyHiddenText: "for this report"
- }
- ]
- }
- } %}
- {% else %}
- {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' sections</a>' %}
- {% set sectionsList = '<ul class="govuk-list">' %}
- {% for section in report.sections %}
- {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
- {% endfor %}
- {% set sectionsList = sectionsList + '</ul>' %}
- {% set sectionsRow = {
- key: { text: "Sections" },
- value: { html: sectionsText + '<br>' + sectionsList },
- actions: {
- items: [
- {
- href: "/funding/grant/reports/sections?reportId=" + report.id,
- classes: "govuk-link govuk-link--no-visited-state",
- text: "Manage sections",
- visuallyHiddenText: "for this report"
- }
- ]
- }
- } %}
- {% endif %}
- 
+                    {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> to create your report' %}
+
+                    {% set sectionsRow = {
+                        key: { text: "Sections" },
+                        value: { html: sectionsText }
+                    } %}
+
+                {% elif sectionCount == 1 %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' section</a>' %}
+                    {% set sectionsList = '<ul class="govuk-list">' %}
+                        {% for section in report.sections %}
+                            {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+                        {% endfor %}
+                    {% set sectionsList = sectionsList + '</ul>' %}
+                    {% set sectionsRow = {
+                        key: { text: "Sections" },
+                        value: { html: sectionsText + '<br>' + sectionsList },
+                        actions: {
+                            items: [
+                                { href: "/funding/grant/reports/sections?reportId=" + report.id,
+                                classes: "govuk-link govuk-link--no-visited-state",
+                                text: "Manage sections",
+                                visuallyHiddenText: "for this report"
+                            }
+                        ]
+                    } %}
+
+                {% else %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' + sectionCount|string + ' sections</a>' %}
+                    {% set sectionsList = '<ul class="govuk-list">' %}
+                        {% for section in report.sections %}
+                            {% set sectionsList = sectionsList + '<li>' + section.sectionName + '</li>' %}
+                        {% endfor %}
+                    {% set sectionsList = sectionsList + '</ul>' %}
+                    {% set sectionsRow = {
+                        key: { text: "Sections" },
+                        value: { html: sectionsText + '<br>' + sectionsList },
+                        actions: {
+                            items: [
+                                { href: "/funding/grant/reports/sections?reportId=" + report.id,
+                                classes: "govuk-link govuk-link--no-visited-state",
+                                text: "Manage sections",
+                                visuallyHiddenText: "for this report"
+                            }
+                        ]
+                    } %}
+                {% endif %}
+
                 {{ govukSummaryList({
                     card: {
                         title: { text: report.reportName or "Form name" },
@@ -144,13 +144,13 @@
                         sectionsRow
                     ]
                 }) }}
-                
-               
-                
+
+
+
             {% endfor %}
 
         {% endif %}
-    
+
         {% if data['liveReports'] == "yes" %}
             {% include "/includes/reports/live.html" %}
         {% endif %}
