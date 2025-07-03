@@ -15,8 +15,8 @@
     {% set backLinkHref = "/funding/grant/reports/" %}
     {% set pageHeading = "Add a task" %}
     {% set pageSection = '' + (reportName or 'Report') + '' %}
-    {% set contextDescription = "Tasks help you group related questions together. You can organize tasks into sections later." %}
-    {% set contextExample = "For example 'Budget variance' or 'Key milestones'" %}
+    {% set contextDescription = "Tasks help you group related questions together. You can organise tasks into sections later if you need to." %}
+    {% set contextExample = "For example, 'Risk mitigations' or 'Risk status'." %}
 {% endif %}
 
 {% set showBackApplicationsLink = false %}
@@ -50,7 +50,7 @@
                 {{ govukInput({
                     label: {
                         text: "Task name",
-                        classes: "govuk-label--m"
+                        classes: "govuk-label govuk-visually-hidden"
                     },
                     classes: "govuk-!-width-two-thirds",
                     id: "taskName",
@@ -64,7 +64,7 @@
                 {{ govukInput({
                     label: {
                         text: "Task name",
-                        classes: "govuk-label--m"
+                        classes: "govuk-label govuk-visually-hidden"
                     },
                     hint: {
                         text: contextExample

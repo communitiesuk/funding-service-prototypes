@@ -105,7 +105,7 @@
                         items: [
                             {
                                 href: "#",
-                                text: "Assign to section",
+                                text: "Move to section",
                                 visuallyHiddenText: task.taskName,
                                 classes: "govuk-link govuk-link--no-visited-state"
                             },
@@ -135,7 +135,7 @@
 
             {{ govukSummaryList({
                 card: {
-                    title: { text: "Unassigned tasks" },
+                    title: { text: "Tasks not assigned to a section" },
                     classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
                 },
                 rows: unassignedRows
@@ -303,7 +303,7 @@
             {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
                 <p class="govuk-body">There are no sections or tasks in this report yet.</p>
             {% else %}
-                <p class="govuk-body">There are no sections in this report yet. You can create sections to organize your tasks.</p>
+                <p class="govuk-body">There are no sections in this report yet.</p>
             {% endif %}
         {% endif %}
 
@@ -318,21 +318,6 @@
                 {% else %}
                     {{ govukButton({
                         text: "Add a section"
-                    }) }}
-                {% endif %}
-            </form>
-
-            <form method="get" action="/funding/grant/reports/add/task/" class="govuk-!-display-inline-block">
-                <input type="hidden" name="reportId" value="{{ currentReportId }}">
-                {% if currentUnassignedTasks and currentUnassignedTasks.length > 0 %}
-                    {{ govukButton({
-                        text: "Add another task",
-                        classes: "govuk-button--secondary"
-                    }) }}
-                {% else %}
-                    {{ govukButton({
-                        text: "Add a task",
-                        classes: "govuk-button--secondary"
                     }) }}
                 {% endif %}
             </form>
