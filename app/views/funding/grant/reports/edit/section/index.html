@@ -15,11 +15,11 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-        
+
         <form method="post" action="/funding/grant/reports/edit/section/update">
-            <input type="hidden" name="sectionId" value="{{ data.currentSectionId }}">
-            <input type="hidden" name="reportId" value="{{ data.currentReportId }}">
-            
+            <input type="hidden" name="sectionId" value="{{ currentSectionId or data.currentSectionId }}">
+            <input type="hidden" name="reportId" value="{{ currentReportId or data.currentReportId }}">
+
             {{ govukInput({
                 label: {
                     text: "Section name",
@@ -29,12 +29,12 @@
                 classes: "govuk-!-width-two-thirds",
                 id: "sectionName",
                 name: "sectionName",
-                value: data.currentSectionName,
+                value: currentSectionName or data.currentSectionName,
                 attributes: {
                     "spellcheck": "false"
                 }
             }) }}
-            
+
             <div class="govuk-button-group">
                 {{ govukButton({
                     text: "Update section name"
