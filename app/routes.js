@@ -461,13 +461,21 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
 
+    console.log('=== DEBUG TASK ROUTE ===')
+    console.log('Query params - reportId:', req.query.reportId, 'sectionId:', req.query.sectionId)
+    console.log('Session before - reportId:', req.session.data.currentReportId, 'reportName:', req.session.data.reportName)
+
     if (!reportId) {
+        console.log('No reportId found, redirecting')
         return res.redirect('/funding/grant/reports/')
     }
 
     // ALWAYS get fresh data from the reports array to ensure we have current context
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
+    console.log('Found report:', currentReport ? currentReport.reportName : 'NOT FOUND')
+
     if (!currentReport) {
+        console.log('Report not found in session, redirecting')
         return res.redirect('/funding/grant/reports/')
     }
 
