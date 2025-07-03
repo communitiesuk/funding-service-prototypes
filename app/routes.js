@@ -484,6 +484,8 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
     req.session.data.currentSectionId = sectionId  // This will be undefined for unassigned tasks
     req.session.data.reportName = currentReport.reportName
 
+    console.log('Session after setting - reportName:', req.session.data.reportName)
+
     if (sectionId && currentReport.sections) {
         // Adding to a specific section
         const currentSection = currentReport.sections.find(section => section.id === sectionId)
@@ -503,6 +505,7 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
         if (err) {
             console.log('Session save error:', err)
         }
+        console.log('About to render template with reportName:', req.session.data.reportName)
         res.render('funding/grant/reports/add/task/index')
     })
 })
