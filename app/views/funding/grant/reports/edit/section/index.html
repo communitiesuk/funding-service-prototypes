@@ -1,0 +1,47 @@
+{% extends "layouts/grantManagement.html" %}
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+{% set showBackApplicationsLink = false %}
+{% set pageSize = "l" %}
+{% set pageHeading = "Change the name for this section" %}
+{% set pageSection = '' + data['reportName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        
+        <form method="post" action="/funding/grant/reports/edit/section/update">
+            <input type="hidden" name="sectionId" value="{{ data.currentSectionId }}">
+            <input type="hidden" name="reportId" value="{{ data.currentReportId }}">
+            
+            {{ govukInput({
+                label: {
+                    text: "Section name",
+                    classes: "govuk-label govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "sectionName",
+                name: "sectionName",
+                value: data.currentSectionName,
+                attributes: {
+                    "spellcheck": "false"
+                }
+            }) }}
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Update section name"
+                }) }}
+                <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What type of question do you need?" %}
+{% set pageSection = '' + data['taskName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/reports/add/question/options" >
+
+            {{ govukRadios({
+                name: "questionType",
+                fieldset: {
+                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-fieldset__legend govuk-visually-hidden" }
+                },
+                items: [
+                    { value: "Text", text: "Text", hint: {
+                        text: "Free text responses of a single line or longer text with a word limit"
+                    } },
+                    { value: "dateInput", text: "Date input", hint: {
+                        text: "Date input consisting of 3 fields - day, month and year"
+                    } },
+                    { value: "Selection from a list of options", text: "Selection from a list of options", hint: {
+                        text: "Radio buttons for one option only or checkboxes for multiple choice"
+                    } },
+                    { value: "Number", text: "Number", hint: {
+                        text: "Numeric input with validation, and optional prefix and suffix"
+                    } },
+                    { value: "Email address", text: "Email address", hint: {
+                        text: "Email input with validation"
+                    } },
+                    { value: "Phone number", text: "Phone number", hint: {
+                        text: "Phone number input with validation"
+                    } },
+                    { value: "Address", text: "Address", hint: {
+                        text: "Full address input fields"
+                    } },
+                    { value: "File upload", text: "File upload", hint: {
+                        text: "Allow users to upload documents"
+                    } }
+                ],
+                value: data.questionType
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

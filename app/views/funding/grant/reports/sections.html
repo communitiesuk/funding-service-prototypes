@@ -94,10 +94,13 @@
                     } %}
                     {% set sectionRows = (sectionRows.push(tasksRow), sectionRows) %}
                 {% else %}
-                    {# Add individual task rows #}
+                    {# Add individual task rows with conditional disabled states #}
                     {% for task in sectionTasks %}
                         {% set taskQuestions = task.questions or [] %}
                         {% set questionCount = taskQuestions.length %}
+                        {% set taskIndex = loop.index0 %}  {# Get the current task index (0-based) #}
+                        {% set isFirstTask = (taskIndex == 0) %}
+                        {% set isLastTask = (taskIndex == (taskCount - 1)) %}
 
                         {% if questionCount == 0 %}
                             {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
@@ -113,6 +116,37 @@
                             {% set valueContent = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + taskLinkText + '</a>' %}
                         {% endif %}
 
+                        {# Build actions array - only include active actions #}
+                        {% set taskActions = [] %}
+                        
+                        {# Only add Move Up if it should be active #}
+                        {% if taskCount > 1 and not isFirstTask %}
+                            {% set taskActions = (taskActions.push({
+                                href: "/funding/grant/reports/tasks/move-up/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
+                                text: "Move up",
+                                visuallyHiddenText: task.taskName,
+                                classes: "govuk-link govuk-link--no-visited-state"
+                            }), taskActions) %}
+                        {% endif %}
+                        
+                        {# Only add Move Down if it should be active #}
+                        {% if taskCount > 1 and not isLastTask %}
+                            {% set taskActions = (taskActions.push({
+                                href: "/funding/grant/reports/tasks/move-down/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
+                                text: "Move down",
+                                visuallyHiddenText: task.taskName,
+                                classes: "govuk-link govuk-link--no-visited-state"
+                            }), taskActions) %}
+                        {% endif %}
+                        
+                        {# Always add Delete action #}
+                        {% set taskActions = (taskActions.push({
+                            href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&taskDeleteConfirm=true&deleteTaskId=" + task.id + "&deleteTaskSectionId=" + section.id + "&deleteTaskName=" + task.taskName,
+                            text: "Delete",
+                            visuallyHiddenText: task.taskName,
+                            classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+                        }), taskActions) %}
+
                         {% set taskRow = {
                             key: {
                                 text: task.taskName,
@@ -123,26 +157,7 @@
                             },
                             actions: {
                                 classes: "govuk-!-width-one-third",
-                                items: [
-                                    {
-                                        href: "/funding/grant/reports/tasks/move-up/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
-                                        text: "Move up",
-                                        visuallyHiddenText: task.taskName,
-                                        classes: "govuk-link govuk-link--no-visited-state"
-                                    },
-                                    {
-                                        href: "/funding/grant/reports/tasks/move-down/" + task.id + "?reportId=" + data.currentReportId + "&sectionId=" + section.id,
-                                        text: "Move down",
-                                        visuallyHiddenText: task.taskName,
-                                        classes: "govuk-link govuk-link--no-visited-state"
-                                    },
-                                    {
-                                        href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&taskDeleteConfirm=true&deleteTaskId=" + task.id + "&deleteTaskSectionId=" + section.id + "&deleteTaskName=" + task.taskName,
-                                        text: "Delete",
-                                        visuallyHiddenText: task.taskName,
-                                        classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                                    }
-                                ]
+                                items: taskActions
                             }
                         } %}
                         {% set sectionRows = (sectionRows.push(taskRow), sectionRows) %}
@@ -161,31 +176,55 @@
                     {% set sectionRows = (sectionRows.push(addTaskRow), sectionRows) %}
                 {% endif %}
 
+                {# Build section actions array - only include relevant actions #}
+                {% set sectionIndex = loop.index0 %}  {# Get current section index (0-based) #}
+                {% set sectionCount = data.currentSections.length %}
+                {% set isFirstSection = (sectionIndex == 0) %}
+                {% set isLastSection = (sectionIndex == (sectionCount - 1)) %}
+                {% set sectionActions = [] %}
+                
+                {# Only add Move Up if not the first section and there are multiple sections #}
+                {% if sectionCount > 1 and not isFirstSection %}
+                    {% set sectionActions = (sectionActions.push({
+                        href: "/funding/grant/reports/sections/move-up/" + section.id + "?reportId=" + data.currentReportId,
+                        text: "Move up",
+                        visuallyHiddenText: section.sectionName,
+                        classes: "govuk-link govuk-link--no-visited-state"
+                    }), sectionActions) %}
+                {% endif %}
+                
+                {# Only add Move Down if not the last section and there are multiple sections #}
+                {% if sectionCount > 1 and not isLastSection %}
+                    {% set sectionActions = (sectionActions.push({
+                        href: "/funding/grant/reports/sections/move-down/" + section.id + "?reportId=" + data.currentReportId,
+                        text: "Move down",
+                        visuallyHiddenText: section.sectionName,
+                        classes: "govuk-link govuk-link--no-visited-state"
+                    }), sectionActions) %}
+                {% endif %}
+                
+                {# Always add Change name action #}
+                {% set sectionActions = (sectionActions.push({
+                    href: "/funding/grant/reports/edit/section/?sectionId=" + section.id + "&reportId=" + data.currentReportId,
+                    text: "Change name",
+                    visuallyHiddenText: "of " + section.sectionName,
+                    classes: "govuk-link govuk-link--no-visited-state"
+                }), sectionActions) %}
+                
+                {# Always add Delete action #}
+                {% set sectionActions = (sectionActions.push({
+                    href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&deleteConfirm=true&deleteSectionId=" + section.id + "&deleteSectionName=" + section.sectionName,
+                    text: "Delete",
+                    visuallyHiddenText: section.sectionName,
+                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+                }), sectionActions) %}
+
                 {{ govukSummaryList({
                     card: {
                         title: { text: section.sectionName },
                         classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
                         actions: {
-                            items: [
-                                {
-                                    href: "/funding/grant/reports/sections/move-up/" + section.id + "?reportId=" + data.currentReportId,
-                                    text: "Move up",
-                                    visuallyHiddenText: section.sectionName,
-                                    classes: "govuk-link govuk-link--no-visited-state"
-                                },
-                                {
-                                    href: "/funding/grant/reports/sections/move-down/" + section.id + "?reportId=" + data.currentReportId,
-                                    text: "Move down",
-                                    visuallyHiddenText: section.sectionName,
-                                    classes: "govuk-link govuk-link--no-visited-state"
-                                },
-                                {
-                                    href: "/funding/grant/reports/sections/?reportId=" + data.currentReportId + "&deleteConfirm=true&deleteSectionId=" + section.id + "&deleteSectionName=" + section.sectionName,
-                                    text: "Delete",
-                                    visuallyHiddenText: section.sectionName,
-                                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                                }
-                            ]
+                            items: sectionActions
                         }
                     },
                     rows: sectionRows

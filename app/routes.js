@@ -965,4 +965,157 @@ router.get('/funding/grant/reports/questions/delete/:questionId', function (req,
     }
 })
 
+
+// REPORT EDITING ROUTES
+
+// Show edit report page
+router.get('/funding/grant/reports/edit/', function (req, res) {
+    const reportId = req.query.reportId
+    
+    if (!reportId) {
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    // Find the report to get its current name
+    const currentReport = req.session.data.reports?.find(report => report.id === reportId)
+    if (!currentReport) {
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    // Store report data for the edit form
+    req.session.data.currentReportId = reportId
+    req.session.data.currentReportName = currentReport.reportName
+    
+    res.render('funding/grant/reports/edit/index')
+})
+
+// Update report name
+router.post('/funding/grant/reports/edit/update', function (req, res) {
+    const reportId = req.body.reportId
+    const newReportName = req.body.reportName
+    
+    if (!reportId || !newReportName) {
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    // Find and update the report
+    const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
+    if (reportIndex !== -1) {
+        req.session.data.reports[reportIndex].reportName = newReportName
+        req.session.data.reports[reportIndex].lastUpdated = new Date().toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        })
+        req.session.data.reports[reportIndex].updatedBy = 'mj@communities.gov.uk'
+    }
+    
+    // Clear edit session data
+    delete req.session.data.currentReportId
+    delete req.session.data.currentReportName
+    
+    // Force session save before redirecting
+    req.session.save(function(err) {
+        if (err) {
+            console.log('Session save error:', err)
+        }
+        res.redirect('/funding/grant/reports/')
+    })
+})
+
+
+// SECTION EDITING ROUTES
+
+// Show edit section page
+router.get('/funding/grant/reports/edit/section/', function (req, res) {
+    const sectionId = req.query.sectionId
+    const reportId = req.query.reportId
+    
+    console.log('Edit section GET - sectionId:', sectionId, 'reportId:', reportId)
+    
+    if (!sectionId || !reportId) {
+        console.log('Missing sectionId or reportId, redirecting to reports')
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    // Always get fresh data from the reports array first
+    const currentReport = req.session.data.reports?.find(report => report.id === reportId)
+    if (!currentReport) {
+        console.log('Report not found, redirecting')
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    const currentSection = currentReport.sections?.find(section => section.id === sectionId)
+    if (!currentSection) {
+        console.log('Section not found, redirecting to sections page')
+        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    }
+    
+    console.log('Found section:', currentSection.sectionName)
+    
+    // Update session with fresh data from the reports array
+    req.session.data.currentSectionId = sectionId
+    req.session.data.currentReportId = reportId
+    req.session.data.currentSectionName = currentSection.sectionName
+    req.session.data.reportName = currentReport.reportName
+    req.session.data.currentSections = currentReport.sections ? [...currentReport.sections] : []
+    
+    console.log('Set currentSectionName to:', req.session.data.currentSectionName)
+    
+    // Force session save before rendering
+    req.session.save(function(err) {
+        if (err) {
+            console.log('Session save error:', err)
+        }
+        console.log('About to render with currentSectionName:', req.session.data.currentSectionName)
+        res.render('funding/grant/reports/edit/section/index')
+    })
+})
+
+// Update section name
+router.post('/funding/grant/reports/edit/section/update', function (req, res) {
+    const sectionId = req.body.sectionId
+    const reportId = req.body.reportId
+    const newSectionName = req.body.sectionName
+    
+    if (!sectionId || !reportId || !newSectionName) {
+        return res.redirect('/funding/grant/reports/')
+    }
+    
+    // Find and update the section
+    const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
+    if (reportIndex !== -1) {
+        const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
+        if (sectionIndex !== -1) {
+            req.session.data.reports[reportIndex].sections[sectionIndex].sectionName = newSectionName
+            
+            // Update the report's last updated info
+            req.session.data.reports[reportIndex].lastUpdated = new Date().toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            })
+            req.session.data.reports[reportIndex].updatedBy = 'mj@communities.gov.uk'
+            
+            // Force update the currentSections with fresh data
+            req.session.data.currentSections = [...req.session.data.reports[reportIndex].sections]
+            req.session.data.reportName = req.session.data.reports[reportIndex].reportName
+        }
+    }
+    
+    // Clear edit session data
+    delete req.session.data.currentSectionId
+    delete req.session.data.currentSectionName
+    
+    // Force session save before redirecting
+    req.session.save(function(err) {
+        if (err) {
+            console.log('Session save error:', err)
+        }
+        // Redirect back to sections page after updating section name
+        res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    })
+})
+
+
 module.exports = router
