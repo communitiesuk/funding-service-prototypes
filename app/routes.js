@@ -246,7 +246,7 @@ router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
     res.redirect('/funding/grant/reports/add/section/')
 })
 
-// Sections page (handles delete confirmation and force data refresh)
+// Sections page (handles delete confirmation and force data refresh) - FIXED VERSION
 router.get('/funding/grant/reports/sections', function (req, res) {
     const reportId = req.query.reportId || req.session.data.currentReportId
 
@@ -254,14 +254,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // ALWAYS clear any cached session data first to prevent stale data issues
-    delete req.session.data.currentSections
-    delete req.session.data.reportName
-    delete req.session.data.currentReportId
-    delete req.session.data.currentSectionName
-    delete req.session.data.currentSectionId
-
-    // ALWAYS get fresh data from the reports array
+    // ALWAYS get fresh data from the reports array - never trust cached session data
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
     if (!currentReport) {
         // Clear any remaining stale session data and redirect
@@ -275,7 +268,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Set fresh data from the reports array
+    // ALWAYS update session with fresh data from the reports array
     req.session.data.currentReportId = reportId
     req.session.data.reportName = currentReport.reportName
     req.session.data.currentSections = currentReport.sections ? [...currentReport.sections] : []
