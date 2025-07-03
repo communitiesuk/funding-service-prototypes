@@ -51,25 +51,7 @@ function buildBreadcrumbs(req, currentPage) {
     return breadcrumbs
 }
 
-// Logging session data
-router.use((req, res, next) => {
-    const log = {
-    method: req.method,
-    url: req.originalUrl,
-    data: req.session.data
-    }
-    console.log(JSON.stringify(log, null, 2))
 
-    next()
-})
-
-// get sprint name ( not really using)
-router.use('/', (req, res, next) => {
-    res.locals.currentURL = req.originalUrl; //current screen
-    res.locals.prevURL = req.get('Referrer'); // previous screen
-  console.log('previous page is: ' + res.locals.prevURL + " and current page is " + req.url + " " + res.locals.currentURL );
-    next();
-  });
 
 // Reports index page - FIXED VERSION
 router.get('/funding/grant/reports/', function (req, res) {
@@ -85,6 +67,7 @@ router.get('/funding/grant/reports/', function (req, res) {
     delete req.session.data.currentSections
     delete req.session.data.currentSectionId
     delete req.session.data.currentSectionName
+    delete req.session.data.currentUnassignedTasks
 
     console.log('Reports index - Current reports in session:')
     if (req.session.data.reports) {
@@ -130,7 +113,9 @@ router.post('/funding/grant/reports/', function (req, res) {
       month: 'long',
       year: 'numeric'
     }),
-    updatedBy: 'mj@communities.gov.uk'
+    updatedBy: 'mj@communities.gov.uk',
+    sections: [],
+    unassignedTasks: []
   }
 
   // Add to reports array
@@ -246,7 +231,7 @@ router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
     res.redirect('/funding/grant/reports/add/section/')
 })
 
-// Sections page (handles delete confirmation and force data refresh)
+// Sections page (handles delete confirmation and force data refresh) - UPDATED VERSION
 router.get('/funding/grant/reports/sections', function (req, res) {
     const reportId = req.query.reportId || req.session.data.currentReportId
 
@@ -254,14 +239,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // ALWAYS clear any cached session data first to prevent stale data issues
-    delete req.session.data.currentSections
-    delete req.session.data.reportName
-    delete req.session.data.currentReportId
-    delete req.session.data.currentSectionName
-    delete req.session.data.currentSectionId
-
-    // ALWAYS get fresh data from the reports array
+    // ALWAYS get fresh data from the reports array - never trust cached session data
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
     if (!currentReport) {
         // Clear any remaining stale session data and redirect
@@ -275,14 +253,16 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Set fresh data from the reports array
+    // ALWAYS update session with fresh data from the reports array
     req.session.data.currentReportId = reportId
     req.session.data.reportName = currentReport.reportName
     req.session.data.currentSections = currentReport.sections ? [...currentReport.sections] : []
+    req.session.data.currentUnassignedTasks = currentReport.unassignedTasks ? [...currentReport.unassignedTasks] : []
 
     console.log('Sections page - Fresh data loaded:')
     console.log('Report name:', req.session.data.reportName)
     console.log('Sections count:', req.session.data.currentSections.length)
+    console.log('Unassigned tasks count:', req.session.data.currentUnassignedTasks.length)
 
     // Cancel parameter - redirect to clear URL
     if (req.query.cancel === 'true') {
@@ -331,12 +311,29 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         delete req.session.data.deleteTaskName
     }
 
+    // Prepare template data directly
+    const templateData = {
+        currentReportId: reportId,
+        reportName: currentReport.reportName,
+        currentSections: currentReport.sections ? [...currentReport.sections] : [],
+        currentUnassignedTasks: currentReport.unassignedTasks ? [...currentReport.unassignedTasks] : [],
+        grantName: req.session.data.grantName || 'Sample Grant Name',
+        // Pass through any confirmation states
+        deleteConfirm: req.session.data.deleteConfirm,
+        deleteSectionId: req.session.data.deleteSectionId,
+        deleteSectionName: req.session.data.deleteSectionName,
+        taskDeleteConfirm: req.session.data.taskDeleteConfirm,
+        deleteTaskId: req.session.data.deleteTaskId,
+        deleteTaskSectionId: req.session.data.deleteTaskSectionId,
+        deleteTaskName: req.session.data.deleteTaskName
+    }
+
     // Save session before rendering
     req.session.save(function(err) {
         if (err) {
             console.log('Session save error:', err)
         }
-        res.render('funding/grant/reports/sections')
+        res.render('funding/grant/reports/sections', templateData)
     })
 })
 
@@ -458,41 +455,74 @@ router.get('/funding/grant/reports/sections/move-down/:sectionId', function (req
     res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 })
 
-// Adding a task - captures which section and report from URL parameters
+// UNIFIED TASK CREATION - handles both section-specific and unassigned tasks
 router.get('/funding/grant/reports/add/task/', function (req, res) {
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
-    const reportId = req.query.reportId || req.session.data.currentReportId
+    const reportId = req.query.reportId || req.session.data.currentReportId    
 
-    if (!sectionId || !reportId) {
+    if (!reportId) {
+        console.log('No reportId found, redirecting')
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Store current context
-    req.session.data.currentSectionId = sectionId
-    req.session.data.currentReportId = reportId
-
-    // Find the section to get its name for the page header
+    // ALWAYS get fresh data from the reports array to ensure we have current context
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
-    if (currentReport && currentReport.sections) {
+    console.log('Found report:', currentReport ? currentReport.reportName : 'NOT FOUND')
+
+    if (!currentReport) {
+        console.log('Report not found in session, redirecting')
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    // Store current context with fresh data
+    req.session.data.currentReportId = reportId
+    req.session.data.currentSectionId = sectionId  // This will be undefined for unassigned tasks
+    req.session.data.reportName = currentReport.reportName
+
+    console.log('Session after setting - reportName:', req.session.data.reportName)
+
+    if (sectionId && currentReport.sections) {
+        // Adding to a specific section
         const currentSection = currentReport.sections.find(section => section.id === sectionId)
         if (currentSection) {
             req.session.data.sectionName = currentSection.sectionName
         }
+    } else {
+        // Clear any stale section data when adding unassigned task
+        delete req.session.data.sectionName
     }
 
     // Clear any existing taskName from session
     delete req.session.data.taskName
 
-    res.render('funding/grant/reports/add/task/index')
+    // Prepare template data directly instead of relying on session
+    const templateData = {
+        currentReportId: reportId,
+        reportName: currentReport.reportName,
+        currentSectionId: sectionId,
+        sectionName: req.session.data.sectionName,
+        grantName: req.session.data.grantName || 'Sample Grant Name'
+    }
+
+    console.log('Template data being passed:', templateData)
+
+    // Force session save AND pass data directly to template
+    req.session.save(function(err) {
+        if (err) {
+            console.log('Session save error:', err)
+        }
+        console.log('About to render template with direct data')
+        res.render('funding/grant/reports/add/task/index', templateData)
+    })
 })
 
-// Add task to the current section
+// UNIFIED TASK CREATION POST - handles both section-specific and unassigned tasks
 router.post('/funding/grant/reports/add/task/another', function (req, res) {
-    const sectionId = req.session.data.currentSectionId
+    const sectionId = req.session.data.currentSectionId  // Will be undefined for unassigned tasks
     const reportId = req.session.data.currentReportId
     const taskName = req.body.taskName
 
-    if (!req.session.data.reports || !reportId || !sectionId) {
+    if (!req.session.data.reports || !reportId) {
         return res.redirect('/funding/grant/reports/')
     }
 
@@ -500,17 +530,6 @@ router.post('/funding/grant/reports/add/task/another', function (req, res) {
     const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
     if (reportIndex === -1) {
         return res.redirect('/funding/grant/reports/')
-    }
-
-    // Find the section
-    const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
-    if (sectionIndex === -1) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
-    }
-
-    // Create tasks array for this section if it doesn't already exist
-    if (!req.session.data.reports[reportIndex].sections[sectionIndex].tasks) {
-        req.session.data.reports[reportIndex].sections[sectionIndex].tasks = []
     }
 
     // Create new task
@@ -521,14 +540,37 @@ router.post('/funding/grant/reports/add/task/another', function (req, res) {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
-        })
+        }),
+        questions: []
     }
 
-    // Add task to the section
-    req.session.data.reports[reportIndex].sections[sectionIndex].tasks.push(newTask)
+    if (sectionId) {
+        // Adding to a specific section
+        const sectionIndex = req.session.data.reports[reportIndex].sections?.findIndex(section => section.id === sectionId)
+        if (sectionIndex === -1) {
+            return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        }
 
-    // Update currentSections with fresh data
-    req.session.data.currentSections = [...req.session.data.reports[reportIndex].sections]
+        // Create tasks array for this section if it doesn't already exist
+        if (!req.session.data.reports[reportIndex].sections[sectionIndex].tasks) {
+            req.session.data.reports[reportIndex].sections[sectionIndex].tasks = []
+        }
+
+        // Add task to the section
+        req.session.data.reports[reportIndex].sections[sectionIndex].tasks.push(newTask)
+
+        // Update currentSections with fresh data
+        req.session.data.currentSections = [...req.session.data.reports[reportIndex].sections]
+    } else {
+        // Adding as unassigned task
+        // Create unassignedTasks array for this report if it doesn't already exist
+        if (!req.session.data.reports[reportIndex].unassignedTasks) {
+            req.session.data.reports[reportIndex].unassignedTasks = []
+        }
+
+        // Add task to the report's unassigned tasks
+        req.session.data.reports[reportIndex].unassignedTasks.push(newTask)
+    }
 
     // Clear task-related session data
     delete req.session.data.taskName
@@ -688,8 +730,9 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     const taskId = req.query.taskId || req.session.data.currentTaskId
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
+    const unassigned = req.query.unassigned === 'true'
 
-    if (!taskId || !sectionId || !reportId) {
+    if (!taskId || !reportId) {
         return res.redirect('/funding/grant/reports/')
     }
 
@@ -697,16 +740,24 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     req.session.data.currentTaskId = taskId
     req.session.data.currentSectionId = sectionId
     req.session.data.currentReportId = reportId
+    req.session.data.isUnassignedTask = unassigned
 
     // Find the task to get its name for the page header
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
-    if (currentReport && currentReport.sections) {
-        const currentSection = currentReport.sections.find(section => section.id === sectionId)
-        if (currentSection && currentSection.tasks) {
-            const currentTask = currentSection.tasks.find(task => task.id === taskId)
-            if (currentTask) {
-                req.session.data.taskName = currentTask.taskName
+    if (currentReport) {
+        let currentTask = null
+
+        if (unassigned && currentReport.unassignedTasks) {
+            currentTask = currentReport.unassignedTasks.find(task => task.id === taskId)
+        } else if (currentReport.sections && sectionId) {
+            const currentSection = currentReport.sections.find(section => section.id === sectionId)
+            if (currentSection && currentSection.tasks) {
+                currentTask = currentSection.tasks.find(task => task.id === taskId)
             }
+        }
+
+        if (currentTask) {
+            req.session.data.taskName = currentTask.taskName
         }
     }
 
@@ -732,8 +783,9 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     const reportId = req.session.data.currentReportId
     const questionName = req.body.questionName
     const questionType = req.session.data.questionType
+    const isUnassignedTask = req.session.data.isUnassignedTask
 
-    if (!req.session.data.reports || !reportId || !sectionId || !taskId) {
+    if (!req.session.data.reports || !reportId || !taskId) {
         return res.redirect('/funding/grant/reports/')
     }
 
@@ -743,21 +795,48 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Find the section
-    const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
-    if (sectionIndex === -1) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    let taskLocation = null
+
+    if (isUnassignedTask) {
+        // Find the task in unassigned tasks
+        const taskIndex = req.session.data.reports[reportIndex].unassignedTasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) {
+            return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        }
+        taskLocation = {
+            type: 'unassigned',
+            taskIndex: taskIndex
+        }
+    } else {
+        // Find the section and task
+        const sectionIndex = req.session.data.reports[reportIndex].sections?.findIndex(section => section.id === sectionId)
+        if (sectionIndex === -1) {
+            return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        }
+
+        const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) {
+            return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        }
+
+        taskLocation = {
+            type: 'section',
+            sectionIndex: sectionIndex,
+            taskIndex: taskIndex
+        }
     }
 
-    // Find the task
-    const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks.findIndex(task => task.id === taskId)
-    if (taskIndex === -1) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    // Get reference to the task based on location
+    let targetTask = null
+    if (taskLocation.type === 'unassigned') {
+        targetTask = req.session.data.reports[reportIndex].unassignedTasks[taskLocation.taskIndex]
+    } else {
+        targetTask = req.session.data.reports[reportIndex].sections[taskLocation.sectionIndex].tasks[taskLocation.taskIndex]
     }
 
     // Create questions array for this task if it doesn't already exist
-    if (!req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions) {
-        req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions = []
+    if (!targetTask.questions) {
+        targetTask.questions = []
     }
 
     // Create new question
@@ -773,21 +852,30 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     }
 
     // Add question to the task
-    req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions.push(newQuestion)
+    targetTask.questions.push(newQuestion)
 
     // Update currentQuestions with fresh data
-    req.session.data.currentQuestions = [...req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions]
+    req.session.data.currentQuestions = [...targetTask.questions]
 
     // Clear question-related session data
     delete req.session.data.questionName
     delete req.session.data.questionType
+    delete req.session.data.isUnassignedTask
+
+    // Build redirect URL based on task location
+    let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+    if (isUnassignedTask) {
+        redirectUrl += '&unassigned=true'
+    } else {
+        redirectUrl += '&sectionId=' + sectionId
+    }
 
     // Force session save before redirecting
     req.session.save(function(err) {
         if (err) {
             console.log('Session save error:', err)
         }
-        res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+        res.redirect(redirectUrl)
     })
 })
 
@@ -796,8 +884,9 @@ router.get('/funding/grant/reports/questions', function (req, res) {
     const taskId = req.query.taskId || req.session.data.currentTaskId
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
+    const unassigned = req.query.unassigned === 'true'
 
-    if (!taskId || !sectionId || !reportId) {
+    if (!taskId || !reportId) {
         return res.redirect('/funding/grant/reports/')
     }
 
@@ -807,12 +896,17 @@ router.get('/funding/grant/reports/questions', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    const currentSection = currentReport.sections?.find(section => section.id === sectionId)
-    if (!currentSection) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    let currentTask = null
+    if (unassigned && currentReport.unassignedTasks) {
+        currentTask = currentReport.unassignedTasks.find(task => task.id === taskId)
+    } else if (currentReport.sections && sectionId) {
+        const currentSection = currentReport.sections.find(section => section.id === sectionId)
+        if (!currentSection) {
+            return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        }
+        currentTask = currentSection.tasks?.find(task => task.id === taskId)
     }
 
-    const currentTask = currentSection.tasks?.find(task => task.id === taskId)
     if (!currentTask) {
         return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
     }
@@ -824,6 +918,7 @@ router.get('/funding/grant/reports/questions', function (req, res) {
     req.session.data.taskName = currentTask.taskName
     req.session.data.reportName = currentReport.reportName
     req.session.data.currentQuestions = currentTask.questions ? [...currentTask.questions] : []
+    req.session.data.isUnassignedTask = unassigned
 
     // Cancel parameter - redirect to clear URL
     if (req.query.cancel === 'true') {
@@ -832,12 +927,20 @@ router.get('/funding/grant/reports/questions', function (req, res) {
         delete req.session.data.deleteQuestionId
         delete req.session.data.deleteQuestionName
 
+        // Build clean redirect URL
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+        if (unassigned) {
+            redirectUrl += '&unassigned=true'
+        } else {
+            redirectUrl += '&sectionId=' + sectionId
+        }
+
         // Save session and redirect to clean URL
         req.session.save(function(err) {
             if (err) {
                 console.log('Session save error:', err)
             }
-            res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+            res.redirect(redirectUrl)
         })
         return
     }
@@ -869,23 +972,40 @@ router.get('/funding/grant/reports/questions/move-up/:questionId', function (req
     const taskId = req.query.taskId || req.session.data.currentTaskId
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
+    const unassigned = req.query.unassigned === 'true'
 
-    if (!reportId || !sectionId || !taskId || !questionId) {
+    if (!reportId || !taskId || !questionId) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Find the report, section, and task
+    // Find the report
     const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
     if (reportIndex === -1) return res.redirect('/funding/grant/reports/')
 
-    const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
-    if (sectionIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    let questions = null
+    if (unassigned) {
+        const taskIndex = req.session.data.reports[reportIndex].unassignedTasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        questions = req.session.data.reports[reportIndex].unassignedTasks[taskIndex].questions
+    } else {
+        const sectionIndex = req.session.data.reports[reportIndex].sections?.findIndex(section => section.id === sectionId)
+        if (sectionIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 
-    const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks.findIndex(task => task.id === taskId)
-    if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 
-    const questions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions
-    if (!questions) return res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+        questions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions
+    }
+
+    if (!questions) {
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+        if (unassigned) {
+            redirectUrl += '&unassigned=true'
+        } else {
+            redirectUrl += '&sectionId=' + sectionId
+        }
+        return res.redirect(redirectUrl)
+    }
 
     // Find the question index
     const questionIndex = questions.findIndex(question => question.id === questionId)
@@ -899,7 +1019,13 @@ router.get('/funding/grant/reports/questions/move-up/:questionId', function (req
         req.session.data.currentQuestions = [...questions]
     }
 
-    res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+    let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+    if (unassigned) {
+        redirectUrl += '&unassigned=true'
+    } else {
+        redirectUrl += '&sectionId=' + sectionId
+    }
+    res.redirect(redirectUrl)
 })
 
 // Move question down
@@ -908,23 +1034,40 @@ router.get('/funding/grant/reports/questions/move-down/:questionId', function (r
     const taskId = req.query.taskId || req.session.data.currentTaskId
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
+    const unassigned = req.query.unassigned === 'true'
 
-    if (!reportId || !sectionId || !taskId || !questionId) {
+    if (!reportId || !taskId || !questionId) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Find the report, section, and task
+    // Find the report
     const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
     if (reportIndex === -1) return res.redirect('/funding/grant/reports/')
 
-    const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
-    if (sectionIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    let questions = null
+    if (unassigned) {
+        const taskIndex = req.session.data.reports[reportIndex].unassignedTasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        questions = req.session.data.reports[reportIndex].unassignedTasks[taskIndex].questions
+    } else {
+        const sectionIndex = req.session.data.reports[reportIndex].sections?.findIndex(section => section.id === sectionId)
+        if (sectionIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 
-    const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks.findIndex(task => task.id === taskId)
-    if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks?.findIndex(task => task.id === taskId)
+        if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 
-    const questions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions
-    if (!questions) return res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+        questions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions
+    }
+
+    if (!questions) {
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+        if (unassigned) {
+            redirectUrl += '&unassigned=true'
+        } else {
+            redirectUrl += '&sectionId=' + sectionId
+        }
+        return res.redirect(redirectUrl)
+    }
 
     // Find the question index
     const questionIndex = questions.findIndex(question => question.id === questionId)
@@ -938,7 +1081,13 @@ router.get('/funding/grant/reports/questions/move-down/:questionId', function (r
         req.session.data.currentQuestions = [...questions]
     }
 
-    res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+    let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+    if (unassigned) {
+        redirectUrl += '&unassigned=true'
+    } else {
+        redirectUrl += '&sectionId=' + sectionId
+    }
+    res.redirect(redirectUrl)
 })
 
 // Deleting a question
@@ -947,54 +1096,76 @@ router.get('/funding/grant/reports/questions/delete/:questionId', function (req,
     const taskId = req.query.taskId || req.session.data.currentTaskId
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
     const reportId = req.query.reportId || req.session.data.currentReportId
+    const unassigned = req.query.unassigned === 'true'
     const confirm = req.query.confirm
 
-    if (!reportId || !sectionId || !taskId || !questionId) {
+    if (!reportId || !taskId || !questionId) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // Find the report, section, and task
+    // Find the report
     const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
     if (reportIndex === -1) return res.redirect('/funding/grant/reports/')
 
-    const sectionIndex = req.session.data.reports[reportIndex].sections.findIndex(section => section.id === sectionId)
-    if (sectionIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
-
-    const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks.findIndex(task => task.id === taskId)
-    if (taskIndex === -1) return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
-
     // If confirmed, actually delete the question
     if (confirm === 'yes') {
-        // Remove the question
-        if (req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions) {
-            req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions =
-                req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions.filter(
-                    question => question.id !== questionId
-                )
+        let questions = null
+        if (unassigned) {
+            const taskIndex = req.session.data.reports[reportIndex].unassignedTasks?.findIndex(task => task.id === taskId)
+            if (taskIndex !== -1) {
+                questions = req.session.data.reports[reportIndex].unassignedTasks[taskIndex].questions
+                if (questions) {
+                    req.session.data.reports[reportIndex].unassignedTasks[taskIndex].questions =
+                        questions.filter(question => question.id !== questionId)
+                    req.session.data.currentQuestions = [...req.session.data.reports[reportIndex].unassignedTasks[taskIndex].questions]
+                }
+            }
+        } else {
+            const sectionIndex = req.session.data.reports[reportIndex].sections?.findIndex(section => section.id === sectionId)
+            if (sectionIndex !== -1) {
+                const taskIndex = req.session.data.reports[reportIndex].sections[sectionIndex].tasks?.findIndex(task => task.id === taskId)
+                if (taskIndex !== -1) {
+                    questions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions
+                    if (questions) {
+                        req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions =
+                            questions.filter(question => question.id !== questionId)
+                        req.session.data.currentQuestions = [...req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions]
+                    }
+                }
+            }
         }
-
-        // Force update the currentQuestions with fresh data
-        req.session.data.currentQuestions = req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions ?
-            [...req.session.data.reports[reportIndex].sections[sectionIndex].tasks[taskIndex].questions] : []
 
         // Clear any confirmation data
         delete req.session.data.questionDeleteConfirm
         delete req.session.data.deleteQuestionId
         delete req.session.data.deleteQuestionName
 
+        // Build redirect URL
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+        if (unassigned) {
+            redirectUrl += '&unassigned=true'
+        } else {
+            redirectUrl += '&sectionId=' + sectionId
+        }
+
         // Force session save before redirecting
         req.session.save(function(err) {
             if (err) {
                 console.log('Session save error:', err)
             }
-            res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+            res.redirect(redirectUrl)
         })
     } else {
         // This shouldn't happen with the new flow, but redirect back if accessed directly
-        res.redirect('/funding/grant/reports/questions?taskId=' + taskId + '&sectionId=' + sectionId + '&reportId=' + reportId)
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId
+        if (unassigned) {
+            redirectUrl += '&unassigned=true'
+        } else {
+            redirectUrl += '&sectionId=' + sectionId
+        }
+        res.redirect(redirectUrl)
     }
 })
-
 
 // Show edit report page
 router.get('/funding/grant/reports/edit/', function (req, res) {
@@ -1192,6 +1363,12 @@ router.post('/funding/grant/reports/edit/section/update', function (req, res) {
         // Redirect back to sections page - this will trigger fresh data load
         res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
     })
+})
+
+// TEST ROUTE - REMOVE LATER
+router.get('/test-route', function (req, res) {
+    console.log('TEST ROUTE HIT!')
+    res.send('Test route working!')
 })
 
 module.exports = router
