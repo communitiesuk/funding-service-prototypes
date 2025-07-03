@@ -3,18 +3,18 @@
 {% set showBackLink = true %}
 
 {# Context-aware back link and page content #}
-{% if data.currentSectionId %}
+{% if currentSectionId %}
     {# Adding to a specific section #}
-    {% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+    {% set backLinkHref = "/funding/grant/reports/sections?reportId=" + currentReportId %}
     {% set pageHeading = "What is the name of this task?" %}
-    {% set pageSection = '' + data['sectionName'] + '' %}
+    {% set pageSection = '' + sectionName + '' %}
     {% set contextDescription = "Enter the name of the task you want to add to this section." %}
-    {% set contextExample = "For example, if the section is '" + (data.sectionName or "Issues and risks") + "', the task might be 'Risk mitigations' or 'Risk status'." %}
+    {% set contextExample = "For example, if the section is '" + (sectionName or "Issues and risks") + "', the task might be 'Risk mitigations' or 'Risk status'." %}
 {% else %}
     {# Adding directly to report (unassigned) #}
     {% set backLinkHref = "/funding/grant/reports/" %}
     {% set pageHeading = "Add a task" %}
-    {% set pageSection = '' + (data['reportName'] or 'Report') + '' %}
+    {% set pageSection = '' + (reportName or 'Report') + '' %}
     {% set contextDescription = "Tasks help you group related questions together. You can organize tasks into sections later." %}
     {% set contextExample = "For example 'Budget variance' or 'Key milestones'" %}
 {% endif %}
@@ -34,18 +34,19 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
         <p class="govuk-body">{{ contextDescription }}</p>
 
-        {% if data.currentSectionId %}
+        {% if currentSectionId %}
             <p class="govuk-body">{{ contextExample }}</p>
         {% endif %}
 
         <form method="post" action="/funding/grant/reports/add/task/another">
-            {% if data.currentSectionId %}
+            {% if currentSectionId %}
                 {{ govukInput({
                     label: {
                         text: "Task name",
@@ -82,8 +83,8 @@
                 {{ govukButton({
                     text: "Add task"
                 }) }}
-                {% if data.currentSectionId %}
-                    <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
+                {% if currentSectionId %}
+                    <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ currentReportId }}">Cancel</a>
                 {% else %}
                     <a class="govuk-link" href="/funding/grant/reports/">Cancel</a>
                 {% endif %}

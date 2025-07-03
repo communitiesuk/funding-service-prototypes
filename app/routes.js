@@ -51,25 +51,7 @@ function buildBreadcrumbs(req, currentPage) {
     return breadcrumbs
 }
 
-// Logging session data
-router.use((req, res, next) => {
-    const log = {
-    method: req.method,
-    url: req.originalUrl,
-    data: req.session.data
-    }
-    console.log(JSON.stringify(log, null, 2))
 
-    next()
-})
-
-// get sprint name ( not really using)
-router.use('/', (req, res, next) => {
-    res.locals.currentURL = req.originalUrl; //current screen
-    res.locals.prevURL = req.get('Referrer'); // previous screen
-  console.log('previous page is: ' + res.locals.prevURL + " and current page is " + req.url + " " + res.locals.currentURL );
-    next();
-  });
 
 // Reports index page - FIXED VERSION
 router.get('/funding/grant/reports/', function (req, res) {
@@ -329,12 +311,29 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         delete req.session.data.deleteTaskName
     }
 
+    // Prepare template data directly
+    const templateData = {
+        currentReportId: reportId,
+        reportName: currentReport.reportName,
+        currentSections: currentReport.sections ? [...currentReport.sections] : [],
+        currentUnassignedTasks: currentReport.unassignedTasks ? [...currentReport.unassignedTasks] : [],
+        grantName: req.session.data.grantName || 'Sample Grant Name',
+        // Pass through any confirmation states
+        deleteConfirm: req.session.data.deleteConfirm,
+        deleteSectionId: req.session.data.deleteSectionId,
+        deleteSectionName: req.session.data.deleteSectionName,
+        taskDeleteConfirm: req.session.data.taskDeleteConfirm,
+        deleteTaskId: req.session.data.deleteTaskId,
+        deleteTaskSectionId: req.session.data.deleteTaskSectionId,
+        deleteTaskName: req.session.data.deleteTaskName
+    }
+
     // Save session before rendering
     req.session.save(function(err) {
         if (err) {
             console.log('Session save error:', err)
         }
-        res.render('funding/grant/reports/sections')
+        res.render('funding/grant/reports/sections', templateData)
     })
 })
 
@@ -459,11 +458,7 @@ router.get('/funding/grant/reports/sections/move-down/:sectionId', function (req
 // UNIFIED TASK CREATION - handles both section-specific and unassigned tasks
 router.get('/funding/grant/reports/add/task/', function (req, res) {
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
-    const reportId = req.query.reportId || req.session.data.currentReportId
-
-    console.log('=== DEBUG TASK ROUTE ===')
-    console.log('Query params - reportId:', req.query.reportId, 'sectionId:', req.query.sectionId)
-    console.log('Session before - reportId:', req.session.data.currentReportId, 'reportName:', req.session.data.reportName)
+    const reportId = req.query.reportId || req.session.data.currentReportId    
 
     if (!reportId) {
         console.log('No reportId found, redirecting')
@@ -500,13 +495,24 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
     // Clear any existing taskName from session
     delete req.session.data.taskName
 
-    // Force session save before rendering to ensure template has fresh data
+    // Prepare template data directly instead of relying on session
+    const templateData = {
+        currentReportId: reportId,
+        reportName: currentReport.reportName,
+        currentSectionId: sectionId,
+        sectionName: req.session.data.sectionName,
+        grantName: req.session.data.grantName || 'Sample Grant Name'
+    }
+
+    console.log('Template data being passed:', templateData)
+
+    // Force session save AND pass data directly to template
     req.session.save(function(err) {
         if (err) {
             console.log('Session save error:', err)
         }
-        console.log('About to render template with reportName:', req.session.data.reportName)
-        res.render('funding/grant/reports/add/task/index')
+        console.log('About to render template with direct data')
+        res.render('funding/grant/reports/add/task/index', templateData)
     })
 })
 
@@ -1357,6 +1363,12 @@ router.post('/funding/grant/reports/edit/section/update', function (req, res) {
         // Redirect back to sections page - this will trigger fresh data load
         res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
     })
+})
+
+// TEST ROUTE - REMOVE LATER
+router.get('/test-route', function (req, res) {
+    console.log('TEST ROUTE HIT!')
+    res.send('Test route working!')
 })
 
 module.exports = router
