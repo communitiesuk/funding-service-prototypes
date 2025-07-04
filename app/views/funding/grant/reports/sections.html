@@ -135,7 +135,7 @@
 
             {{ govukSummaryList({
                 card: {
-                    title: { text: "Tasks not assigned to a section" },
+                    title: { text: "" },
                     classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
                 },
                 rows: unassignedRows
@@ -274,7 +274,7 @@
                 {# Always add Change name action #}
                 {% set sectionActions = (sectionActions.push({
                     href: "/funding/grant/reports/edit/section/?sectionId=" + section.id + "&reportId=" + currentReportId,
-                    text: "Change name",
+                    text: "Manage",
                     visuallyHiddenText: "of " + section.sectionName,
                     classes: "govuk-link govuk-link--no-visited-state"
                 }), sectionActions) %}
