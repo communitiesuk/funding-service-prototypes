@@ -72,10 +72,7 @@
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-
-
-                <p>You can do....</p>
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
             </div>
         </div>
 
@@ -90,9 +87,9 @@
                 {% set questionCount = taskQuestions.length %}
 
                 {% if questionCount == 0 %}
-                    {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
+                    {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Add questions</a>' %}
                 {% else %}
-                    {% set taskLinkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
+                    {% set taskLinkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
                 {% endif %}
 
                 {% set unassignedTaskRow = {
@@ -128,7 +125,7 @@
             {% set addUnassignedTaskRow = {
                 key: {
                     html: '<a href="/funding/grant/reports/add/task/?reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
-                    classes: "govuk-!-font-weight-regular"
+                    classes: "govuk-!-font-weight-regular govuk-!-margin-top-7"
                 },
                 value: {
                     html: ""
@@ -158,7 +155,7 @@
                 {% if taskCount == 0 %}
                     {% set tasksRow = {
                         key: {
-                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add tasks under this heading</a>',
+                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add new tasks under this heading</a>',
                             classes: "govuk-!-font-weight-regular"
                         },
                         value: { html: "" }
@@ -174,10 +171,10 @@
                         {% set isLastTask = (taskIndex == (taskCount - 1)) %}
 
                         {% if questionCount == 0 %}
-                            {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
+                            {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a>' %}
                             {% set taskLinkHref = '' %}
                         {% else %}
-                            {% set taskLinkText = 'Manage task' %}
+                            {% set taskLinkText = 'Manage' %}
                             {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
                         {% endif %}
 
@@ -238,7 +235,7 @@
                     {% set addTaskRow = {
                         key: {
                             html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
-                            classes: "govuk-!-font-weight-regular"
+                            classes: "govuk-!-font-weight-regular govuk-!-padding-top-7"
                         },
                         value: {
                             html: ""
@@ -302,15 +299,23 @@
                 }) }}
             {% endfor %}
         {% else %}
-            {# No sections exist yet #}
-            {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
-                <p class="govuk-body">There are no sections or tasks in this report yet.</p>
-            {% else %}
-                <p class="govuk-body">You can group tasks under headings. For example, several tasks about risks could be grouped under a 'Risks' heading.</p>
-            {% endif %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                {# No sections exist yet #}
+                {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
+                    <p class="govuk-body">There are no sections or tasks in this report yet.</p>
+                {% else %}
+                    <p class="govuk-body">You can group tasks under headings. For example, a task about 'Risk mitigation' and 'Risk status' could be grouped under 'Risk'.</p>
+                {% endif %}
+
+            </div>
+        </div>
+            
         {% endif %}
 
-        <div class="govuk-button-group govuk-!-margin-top-5">
+        <div class="govuk-button-group govuk-!-margin-top-1">
             <form method="get" action="/funding/grant/reports/add/section/" class="govuk-!-display-inline-block">
                 <input type="hidden" name="reportId" value="{{ currentReportId }}">
                 <input type="hidden" name="returnTo" value="sections">
@@ -320,7 +325,8 @@
                     }) }}
                 {% else %}
                     {{ govukButton({
-                        text: "Add a heading"
+                        text: "Add a heading",
+                        classes: "govuk-button--secondary"
                     }) }}
                 {% endif %}
             </form>

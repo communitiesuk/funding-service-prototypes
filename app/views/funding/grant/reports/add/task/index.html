@@ -13,10 +13,11 @@
 {% else %}
     {# Adding directly to report (unassigned) #}
     {% set backLinkHref = "/funding/grant/reports/" %}
-    {% set pageHeading = "Add a task" %}
+    {% set pageHeading = "What is the name of this task?" %}
     {% set pageSection = '' + (reportName or 'Report') + '' %}
-    {% set contextDescription = "Tasks help you group related questions together. You can organise tasks into sections later if you need to." %}
-    {% set contextExample = "For example, 'Risk mitigations' or 'Risk status'." %}
+    {% set contextDescription = "Use tasks to group related questions together. This helps the person completing the form to focus on one topic at a time." %}
+    {% set contextDescriptionTwo = "You can group tasks under headings later if you need to. " %}
+    {% set contextExample = "" %}
 {% endif %}
 
 {% set showBackApplicationsLink = false %}
@@ -40,6 +41,7 @@
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
         <p class="govuk-body">{{ contextDescription }}</p>
+        <!-- <p class="govuk-body">{{ contextDescriptionTwo }}</p> -->
 
         {% if currentSectionId %}
             <p class="govuk-body">{{ contextExample }}</p>
@@ -49,7 +51,7 @@
             {% if currentSectionId %}
                 {{ govukInput({
                     label: {
-                        text: "Task name",
+                        text: "Enter the name of the task",
                         classes: "govuk-label govuk-visually-hidden"
                     },
                     classes: "govuk-!-width-two-thirds",
@@ -63,7 +65,7 @@
             {% else %}
                 {{ govukInput({
                     label: {
-                        text: "Task name",
+                        text: "Enter the name of the task",
                         classes: "govuk-label govuk-visually-hidden"
                     },
                     hint: {
