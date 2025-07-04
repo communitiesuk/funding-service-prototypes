@@ -64,9 +64,9 @@
 
                 {% if sectionCount == 0 and unassignedTaskCount == 0 %}
                     {# No sections or tasks yet - show both options #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> or <a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">add tasks</a> to create your report' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> or <a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your form <br>Tasks are groups of questions with a common theme' %}
                     {% set sectionsRow = {
-                        key: { text: "Forms" },
+                        key: { text: "Form" },
                         value: { html: sectionsText }
                     } %}
 
@@ -79,7 +79,7 @@
                     {% endif %}
                     {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage ' + taskText + '</a> or <a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">add sections</a>' %}
                     {% set sectionsRow = {
-                        key: { text: "Forms" },
+                        key: { text: "Form" },
                         value: { html: sectionsText }
                     } %}
 
@@ -97,7 +97,7 @@
                     {% endif %}
 
                     {% set sectionsRow = {
-                        key: { text: "Forms" },
+                        key: { text: "Form" },
                         value: { html: sectionsText }
                     } %}
                 {% endif %}

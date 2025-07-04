@@ -4,7 +4,7 @@
 {% set backLinkHref = "/funding/grant/reports/" %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "What is the name of this section?" %}
+{% set pageHeading = "What heading do you need for your group of tasks?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -16,8 +16,8 @@
     <div class="govuk-grid-column-two-thirds">
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-        <p class="govuk-body">The section name will be used as the heading for a group of tasks.</p>
-        <p class="govuk-body">For example, the section name might be 'Issues and risks' and one of the tasks might be 'Risk mitigations'.</p>
+            
+        <p class="govuk-body">You’ll be able to group tasks under this heading.</p>
         
         <form method="post" action="/funding/grant/reports/add/section/another">
             {{ govukInput({
