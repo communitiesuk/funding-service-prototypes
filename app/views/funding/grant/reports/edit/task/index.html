@@ -1,11 +1,25 @@
 {% extends "layouts/grantManagement.html" %}
 {% set navID = 'grantReports' %}
 {% set showBackLink = true %}
-{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+
+{# Dynamic back link based on whether it's an unassigned task or not #}
+{% if data.isUnassignedTask %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% endif %}
+
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "What is the name of this task?" %}
-{% set pageSection = '' + data['sectionName'] + '' %}
+{% set pageHeading = "Change the name of this task" %}
+
+{# Dynamic page section based on task type #}
+{% if data.isUnassignedTask %}
+    {% set pageSection = '' + data.reportName + '' %}
+{% else %}
+    {% set pageSection = '' + data.reportName + '' %}
+{% endif %}
+
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -16,13 +30,18 @@
     <div class="govuk-grid-column-two-thirds">
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-        <p class="govuk-body">Enter the name of the task you want to add to this section.</p>
-        <p class="govuk-body">For example, if the section is 'Issues and risks', the task might be 'Risk mitigations' or 'Risk status'.</p>
+        <p class="govuk-body">Enter the new name for this task.</p>
         
-        <form method="post" action="/funding/grant/reports/add/task/another">
+        <form method="post" action="/funding/grant/reports/edit/task/update">
+            {# Hidden fields to maintain context #}
+            <input type="hidden" name="taskId" value="{{ currentTaskId or data.currentTaskId }}">
+            <input type="hidden" name="sectionId" value="{{ currentSectionId or data.currentSectionId }}">
+            <input type="hidden" name="reportId" value="{{ currentReportId or data.currentReportId }}">
+            <input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask or data.isUnassignedTask }}">
+            
             {{ govukInput({
                 label: {
-                    text: pageHeading,
+                    text: "Task name",
                     classes: "govuk-visually-hidden",
                     isPageHeading: false
                 },
@@ -32,14 +51,18 @@
                 attributes: {
                     "spellcheck": "false"
                 },
-                value: data.taskName
+                value: currentTaskName or data.currentTaskName
             }) }}
             
             <div class="govuk-button-group">
                 {{ govukButton({
-                    text: "Continue"
+                    text: "Save changes"
                 }) }}
-                <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
+                {% if data.isUnassignedTask %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&reportId={{ data.currentReportId }}&unassigned=true">Cancel</a>
+                {% else %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
+                {% endif %}
             </div>
         </form>
     </div>
