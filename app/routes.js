@@ -52,8 +52,7 @@ function buildBreadcrumbs(req, currentPage) {
 }
 
 
-
-// Reports index page - FIXED VERSION
+// Reports index page
 router.get('/funding/grant/reports/', function (req, res) {
     // Set default grant name if not already set
     if (!req.session.data.grantName) {
@@ -231,7 +230,7 @@ router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
     res.redirect('/funding/grant/reports/add/section/')
 })
 
-// Sections page (handles delete confirmation and force data refresh) - UPDATED VERSION
+// Sections page (handles delete confirmation and force data refresh)
 router.get('/funding/grant/reports/sections', function (req, res) {
     const reportId = req.query.reportId || req.session.data.currentReportId
 
@@ -239,7 +238,7 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         return res.redirect('/funding/grant/reports/')
     }
 
-    // ALWAYS get fresh data from the reports array - never trust cached session data
+    // ALWAYS get fresh data from the reports array
     const currentReport = req.session.data.reports?.find(report => report.id === reportId)
     if (!currentReport) {
         // Clear any remaining stale session data and redirect
@@ -458,7 +457,7 @@ router.get('/funding/grant/reports/sections/move-down/:sectionId', function (req
 // UNIFIED TASK CREATION - handles both section-specific and unassigned tasks
 router.get('/funding/grant/reports/add/task/', function (req, res) {
     const sectionId = req.query.sectionId || req.session.data.currentSectionId
-    const reportId = req.query.reportId || req.session.data.currentReportId    
+    const reportId = req.query.reportId || req.session.data.currentReportId
 
     if (!reportId) {
         console.log('No reportId found, redirecting')
@@ -516,7 +515,7 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
     })
 })
 
-// UNIFIED TASK CREATION POST - handles both section-specific and unassigned tasks
+// UNIFIED TASK CREATION - handles both section-specific and unassigned tasks
 router.post('/funding/grant/reports/add/task/another', function (req, res) {
     const sectionId = req.session.data.currentSectionId  // Will be undefined for unassigned tasks
     const reportId = req.session.data.currentReportId
@@ -1365,10 +1364,5 @@ router.post('/funding/grant/reports/edit/section/update', function (req, res) {
     })
 })
 
-// TEST ROUTE - REMOVE LATER
-router.get('/test-route', function (req, res) {
-    console.log('TEST ROUTE HIT!')
-    res.send('Test route working!')
-})
 
 module.exports = router
