@@ -796,6 +796,56 @@ router.get('/funding/grant/reports/tasks/delete/:taskId', function (req, res) {
     }
 })
 
+// Deleting an unassigned task
+router.get('/funding/grant/reports/unassigned-tasks/delete/:taskId', function (req, res) {
+    const taskId = req.params.taskId
+    const reportId = req.query.reportId || req.session.data.currentReportId
+    const confirm = req.query.confirm
+
+    if (!reportId || !taskId) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    // Find the report
+    const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
+    if (reportIndex === -1) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    // If confirmed, actually delete the unassigned task
+    if (confirm === 'yes') {
+        // Remove the task from unassigned tasks
+        if (req.session.data.reports[reportIndex].unassignedTasks) {
+            req.session.data.reports[reportIndex].unassignedTasks =
+                req.session.data.reports[reportIndex].unassignedTasks.filter(
+                    task => task.id !== taskId
+                )
+        }
+
+        // Force update the currentUnassignedTasks with fresh data
+        req.session.data.currentUnassignedTasks = req.session.data.reports[reportIndex].unassignedTasks ?
+            [...req.session.data.reports[reportIndex].unassignedTasks] : []
+
+        // Clear any confirmation data
+        delete req.session.data.taskDeleteConfirm
+        delete req.session.data.deleteTaskId
+        delete req.session.data.deleteTaskName
+
+        // Force session save before redirecting
+        req.session.save(function(err) {
+            if (err) {
+                console.log('Session save error:', err)
+            }
+            // Redirect back to sections page (not questions page since task is deleted)
+            res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+        })
+    } else {
+        // This shouldn't happen with the new flow, but redirect back if accessed directly
+        res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    }
+})
+
+
 // Adding a question - captures which task, section and report from URL parameters
 router.get('/funding/grant/reports/add/question/', function (req, res) {
     const taskId = req.query.taskId || req.session.data.currentTaskId
