@@ -115,13 +115,13 @@
                     }), unassignedTaskActions) %}
                 {% endif %}
 
-                {# Determine link text based on question count #}
+                {# Determine link text and href based on question count #}
                 {% if questionCount == 0 %}
-                    {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to task' %}
+                    {% set linkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
                 {% elif questionCount == 1 %}
-                    {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Manage 1 question</a>' %}
+                    {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage 1 question</a>' %}
                 {% else %}
-                    {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Manage ' + questionCount + ' questions</a>' %}
+                    {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage ' + questionCount + ' questions</a>' %}
                 {% endif %}
 
                 {% set unassignedTaskRow = {
@@ -144,7 +144,7 @@
             {% set addUnassignedTaskRow = {
                 key: {
                     html: '<a href="/funding/grant/reports/add/task/?reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
-                    classes: "govuk-!-font-weight-regular govuk-!-padding-top-5"
+                    classes: "govuk-!-font-weight-regular govuk-!-margin-top-7"
                 },
                 value: {
                     html: ""
@@ -214,13 +214,13 @@
                             }), taskActions) %}
                         {% endif %}
 
-                        {# Determine link text based on question count #}
+                        {# Determine link text and href based on question count #}
                         {% if questionCount == 0 %}
-                            {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
+                            {% set linkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
                         {% elif questionCount == 1 %}
-                            {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Manage 1 question</a>' %}
+                            {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage 1 question</a>' %}
                         {% else %}
-                            {% set linkText = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">Manage ' + questionCount + ' questions</a>' %}
+                            {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage ' + questionCount + ' questions</a>' %}
                         {% endif %}
 
                         {% set taskRow = {

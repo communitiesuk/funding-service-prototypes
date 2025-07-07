@@ -53,6 +53,13 @@
                 {% endif %}
             {% endfor %}
             
+            {# Add divider before "Add a new heading" option #}
+            {% if radioItems.length > 0 %}
+                {% set radioItems = (radioItems.push({
+                    divider: "or"
+                }), radioItems) %}
+            {% endif %}
+            
             {# Add option to create a new section #}
             {% set radioItems = (radioItems.push({
                 value: "new-section",
@@ -76,10 +83,13 @@
                 }
             }), radioItems) %}
 
-            
-            
-            {# Add option to remove from section (make unassigned) if currently in a section #}
+            {# Add divider before "Remove from heading" option if currently in a section #}
             {% if not isUnassigned %}
+                {% set radioItems = (radioItems.push({
+                    divider: "or"
+                }), radioItems) %}
+                
+                {# Add option to remove from section (make unassigned) #}
                 {% set radioItems = (radioItems.push({
                     value: "unassigned",
                     text: "Remove from heading"                    
