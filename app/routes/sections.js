@@ -2,19 +2,20 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const ReportsDataManager = require('../data/ReportsDataManager')
 
-// Sections page
-router.get('/funding/grant/reports/sections', function (req, res) {
-    const reportId = req.query.reportId;
+// List sections for a report
+// GET /funding/grant/reports/:reportId/sections
+router.get('/funding/grant/reports/:reportId/sections', function (req, res) {
+    const reportId = req.params.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     // Validate report exists
     if (!dataManager.getReport(reportId)) {
-        return res.redirect('/funding/grant/reports/');
+        return res.redirect('/funding/grant/reports');
     }
 
     // Handle cancel parameter - redirect to clear URL
     if (req.query.cancel === 'true') {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+        return res.redirect('/funding/grant/reports/' + reportId + '/sections');
     }
 
     // Build template data (always fresh!)
@@ -39,15 +40,16 @@ router.get('/funding/grant/reports/sections', function (req, res) {
     res.render('funding/grant/reports/sections', templateData);
 });
 
-// Add section page
-router.get('/funding/grant/reports/add/section/', function (req, res) {
-    const reportId = req.query.reportId
+// New section form
+// GET /funding/grant/reports/:reportId/sections/new
+router.get('/funding/grant/reports/:reportId/sections/new', function (req, res) {
+    const reportId = req.params.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     // Validate report exists
     const report = dataManager.getReport(reportId);
     if (!report) {
-        return res.redirect('/funding/grant/reports/')
+        return res.redirect('/funding/grant/reports')
     }
 
     // Store current report context
@@ -60,9 +62,10 @@ router.get('/funding/grant/reports/add/section/', function (req, res) {
     res.render('funding/grant/reports/add/section/index')
 })
 
-// Add section
-router.post('/funding/grant/reports/add/section/another', function (req, res) {
-    const reportId = req.session.data.currentReportId
+// Create new section
+// POST /funding/grant/reports/:reportId/sections
+router.post('/funding/grant/reports/:reportId/sections', function (req, res) {
+    const reportId = req.params.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     const newSection = dataManager.addSection(reportId, {
@@ -74,25 +77,29 @@ router.post('/funding/grant/reports/add/section/another', function (req, res) {
     delete req.session.data.returnToAfterSection;
 
     if (newSection) {
-        res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+        res.redirect('/funding/grant/reports/' + reportId + '/sections');
     } else {
-        res.redirect('/funding/grant/reports/');
+        res.redirect('/funding/grant/reports');
     }
 })
 
-// "Add sections" link to set currentReportId
-router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
-    // Set which report we're adding sections to
-    req.session.data.currentReportId = req.params.reportId
-    // Clear any existing sectionName
-    delete req.session.data.sectionName
-    res.redirect('/funding/grant/reports/add/section/')
+// View specific section (could be used for detailed section view in future)
+// GET /funding/grant/reports/:reportId/sections/:sectionId
+router.get('/funding/grant/reports/:reportId/sections/:sectionId', function (req, res) {
+    const reportId = req.params.reportId;
+    const sectionId = req.params.sectionId;
+    const dataManager = new ReportsDataManager(req.session.data);
+
+    // For now, redirect to the tasks within this section
+    // In future, this could show a detailed section view
+    res.redirect('/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/tasks');
 })
 
 // Delete section
-router.get('/funding/grant/reports/sections/delete/:sectionId', function (req, res) {
+// DELETE /funding/grant/reports/:reportId/sections/:sectionId (using GET for prototype compatibility)
+router.get('/funding/grant/reports/:reportId/sections/:sectionId/delete', function (req, res) {
+    const reportId = req.params.reportId;
     const sectionId = req.params.sectionId;
-    const reportId = req.query.reportId;
     const confirm = req.query.confirm;
     const dataManager = new ReportsDataManager(req.session.data);
 
@@ -100,40 +107,43 @@ router.get('/funding/grant/reports/sections/delete/:sectionId', function (req, r
         dataManager.deleteSection(reportId, sectionId);
     }
     
-    res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+    res.redirect('/funding/grant/reports/' + reportId + '/sections');
 });
 
 // Move section up
-router.get('/funding/grant/reports/sections/move-up/:sectionId', function (req, res) {
+// POST /funding/grant/reports/:reportId/sections/:sectionId/move-up (using GET for prototype compatibility)
+router.get('/funding/grant/reports/:reportId/sections/:sectionId/move-up', function (req, res) {
+    const reportId = req.params.reportId;
     const sectionId = req.params.sectionId;
-    const reportId = req.query.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     dataManager.moveSectionUp(reportId, sectionId);
-    res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+    res.redirect('/funding/grant/reports/' + reportId + '/sections');
 });
 
 // Move section down
-router.get('/funding/grant/reports/sections/move-down/:sectionId', function (req, res) {
+// POST /funding/grant/reports/:reportId/sections/:sectionId/move-down (using GET for prototype compatibility)
+router.get('/funding/grant/reports/:reportId/sections/:sectionId/move-down', function (req, res) {
+    const reportId = req.params.reportId;
     const sectionId = req.params.sectionId;
-    const reportId = req.query.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     dataManager.moveSectionDown(reportId, sectionId);
-    res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+    res.redirect('/funding/grant/reports/' + reportId + '/sections');
 });
 
-// Edit section page
-router.get('/funding/grant/reports/edit/section/', function (req, res) {
-    const sectionId = req.query.sectionId;
-    const reportId = req.query.reportId;
+// Edit section form
+// GET /funding/grant/reports/:reportId/sections/:sectionId/edit
+router.get('/funding/grant/reports/:reportId/sections/:sectionId/edit', function (req, res) {
+    const reportId = req.params.reportId;
+    const sectionId = req.params.sectionId;
     const dataManager = new ReportsDataManager(req.session.data);
 
     const currentReport = dataManager.getReport(reportId);
     const currentSection = dataManager.getSection(reportId, sectionId);
     
     if (!currentReport || !currentSection) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+        return res.redirect('/funding/grant/reports/' + reportId + '/sections');
     }
 
     const templateData = {
@@ -148,9 +158,10 @@ router.get('/funding/grant/reports/edit/section/', function (req, res) {
 })
 
 // Update section
-router.post('/funding/grant/reports/edit/section/update', function (req, res) {
-    const sectionId = req.body.sectionId;
-    const reportId = req.body.reportId;
+// PUT /funding/grant/reports/:reportId/sections/:sectionId (using POST for prototype compatibility)
+router.post('/funding/grant/reports/:reportId/sections/:sectionId/update', function (req, res) {
+    const reportId = req.params.reportId;
+    const sectionId = req.params.sectionId;
     const newSectionName = req.body.sectionName;
     const dataManager = new ReportsDataManager(req.session.data);
 
@@ -158,7 +169,112 @@ router.post('/funding/grant/reports/edit/section/update', function (req, res) {
         sectionName: newSectionName
     });
 
-    res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
+    res.redirect('/funding/grant/reports/' + reportId + '/sections');
+})
+
+// BACKWARD COMPATIBILITY ROUTES
+// These handle old URLs and redirect to new structure
+
+// Old: /funding/grant/reports/sections?reportId=123
+router.get('/funding/grant/reports/sections', function (req, res) {
+    const reportId = req.query.reportId;
+    if (reportId) {
+        res.redirect('/funding/grant/reports/' + reportId + '/sections');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+});
+
+// Old: /funding/grant/reports/add/section/?reportId=123
+router.get('/funding/grant/reports/add/section/', function (req, res) {
+    const reportId = req.query.reportId;
+    if (reportId) {
+        res.redirect('/funding/grant/reports/' + reportId + '/sections/new');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+})
+
+// Old: /funding/grant/reports/add/section/another
+router.post('/funding/grant/reports/add/section/another', function (req, res) {
+    const reportId = req.session.data.currentReportId;
+    if (reportId) {
+        // Forward the form data to the new route
+        res.redirect(307, '/funding/grant/reports/' + reportId + '/sections');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+})
+
+// Old: /funding/grant/reports/add/section/:reportId
+router.get('/funding/grant/reports/add/section/:reportId', function (req, res) {
+    res.redirect('/funding/grant/reports/' + req.params.reportId + '/sections/new');
+})
+
+// Old: /funding/grant/reports/sections/delete/:sectionId?reportId=123
+router.get('/funding/grant/reports/sections/delete/:sectionId', function (req, res) {
+    const reportId = req.query.reportId;
+    const sectionId = req.params.sectionId;
+    const confirm = req.query.confirm;
+    
+    if (reportId) {
+        let redirectUrl = '/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/delete';
+        if (confirm) {
+            redirectUrl += '?confirm=' + confirm;
+        }
+        res.redirect(redirectUrl);
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+});
+
+// Old: /funding/grant/reports/sections/move-up/:sectionId?reportId=123
+router.get('/funding/grant/reports/sections/move-up/:sectionId', function (req, res) {
+    const reportId = req.query.reportId;
+    const sectionId = req.params.sectionId;
+    
+    if (reportId) {
+        res.redirect('/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/move-up');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+});
+
+// Old: /funding/grant/reports/sections/move-down/:sectionId?reportId=123
+router.get('/funding/grant/reports/sections/move-down/:sectionId', function (req, res) {
+    const reportId = req.query.reportId;
+    const sectionId = req.params.sectionId;
+    
+    if (reportId) {
+        res.redirect('/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/move-down');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+});
+
+// Old: /funding/grant/reports/edit/section/?sectionId=456&reportId=123
+router.get('/funding/grant/reports/edit/section/', function (req, res) {
+    const reportId = req.query.reportId;
+    const sectionId = req.query.sectionId;
+    
+    if (reportId && sectionId) {
+        res.redirect('/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/edit');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
+})
+
+// Old: /funding/grant/reports/edit/section/update
+router.post('/funding/grant/reports/edit/section/update', function (req, res) {
+    const reportId = req.body.reportId;
+    const sectionId = req.body.sectionId;
+    
+    if (reportId && sectionId) {
+        // Forward the form data to the new route
+        res.redirect(307, '/funding/grant/reports/' + reportId + '/sections/' + sectionId + '/update');
+    } else {
+        res.redirect('/funding/grant/reports');
+    }
 })
 
 module.exports = router

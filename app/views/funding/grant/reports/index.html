@@ -34,16 +34,13 @@
                     <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
                 {% endif %}
 
-                <form method="post" action="/funding/grant/reports/add/">
-                    {% set buttonText = "Add a monitoring report" %}
+                <a href="/funding/grant/reports/new" class="govuk-button govuk-!-margin-top-5">
                     {% if data.reports and data.reports.length > 0 %}
-                        {% set buttonText = "Add another monitoring report" %}
+                        Add another monitoring report
+                    {% else %}
+                        Add a monitoring report
                     {% endif %}
-                    {{ govukButton({
-                        text: buttonText,
-                        classes: "govuk-!-margin-top-5"
-                    }) }}
-                </form>
+                </a>
             </div>
         </div>
 
@@ -72,7 +69,7 @@
 
                 {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
                     {# Only unassigned tasks exist - show manage link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/' + report.id + '/sections" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
                     {% set sectionsRow = {
                         key: { text: "Form" },
                         value: { html: sectionsText }
@@ -80,7 +77,7 @@
 
                 {% elif sectionCount > 0 %}
                     {# Sections exist - show normal manage sections link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/' + report.id + '/sections" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
 
                     {% set sectionsRow = {
                         key: { text: "Form" },
@@ -101,13 +98,13 @@
                                     visuallyHiddenText: "report"
                                 },
                                 {
-                                    href: "/funding/grant/reports/edit/?reportId=" + report.id,
+                                    href: "/funding/grant/reports/" + report.id + "/edit",
                                     classes: "govuk-link govuk-link--no-visited-state",
                                     text: "Change name",
                                     visuallyHiddenText: "of report"
                                 },
                                 {
-                                    href: "/funding/grant/reports/delete/" + report.id,
+                                    href: "/funding/grant/reports/" + report.id + "/delete",
                                     classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive",
                                     text: "Delete",
                                     visuallyHiddenText: "report"
