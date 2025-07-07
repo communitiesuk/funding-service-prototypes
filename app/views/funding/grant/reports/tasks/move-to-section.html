@@ -1,0 +1,114 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+
+{# Dynamic back link based on task location #}
+{% if isUnassigned %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + taskId + "&reportId=" + reportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + taskId + "&sectionId=" + currentSectionId + "&reportId=" + reportId %}
+{% endif %}
+
+{% set showBackApplicationsLink = false %}
+{% set pageSize = "l" %}
+{% set pageHeading = "Which heading should this task be grouped under?" %}
+{% set pageSection = '' + reportName + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        
+        <!-- <p class="govuk-body">Select how you want to group '{{ taskName }}'.</p> -->
+        
+        
+        {% if currentSectionName %}
+            <p class="govuk-body">This task is currently grouped under the heading '{{ currentSectionName }}'.</p>
+        {% else %}
+            
+        {% endif %}
+        
+        <form method="post" action="/funding/grant/reports/move-task-to-section/move">
+            {# Hidden fields to maintain context #}
+            <input type="hidden" name="taskId" value="{{ taskId }}">
+            <input type="hidden" name="reportId" value="{{ reportId }}">
+            <input type="hidden" name="currentSectionId" value="{{ currentSectionId }}">
+            <input type="hidden" name="isUnassigned" value="{{ isUnassigned }}">
+            
+            {% set radioItems = [] %}
+            
+            {# Add existing sections as radio options #}
+            {% for section in availableSections %}
+                {# Don't show the current section as an option #}
+                {% if not currentSectionId or section.id != currentSectionId %}
+                    {% set radioItems = (radioItems.push({
+                        value: section.id,
+                        text: section.sectionName                        
+                    }), radioItems) %}
+                {% endif %}
+            {% endfor %}
+            
+            {# Add option to create a new section #}
+            {% set radioItems = (radioItems.push({
+                value: "new-section",
+                text: "Add a new heading",                
+                conditional: {
+                    html: govukInput({
+                        id: "newSectionName",
+                        name: "newSectionName",
+                        label: {
+                            text: "Heading name",
+                            classes: "govuk-label--s"
+                        },
+                        hint: {
+                            text: "Enter the name for the new heading"
+                        },
+                        classes: "govuk-!-width-two-thirds",
+                        attributes: {
+                            "spellcheck": "false"
+                        }
+                    })
+                }
+            }), radioItems) %}
+
+            
+            
+            {# Add option to remove from section (make unassigned) if currently in a section #}
+            {% if not isUnassigned %}
+                {% set radioItems = (radioItems.push({
+                    value: "unassigned",
+                    text: "Remove from heading"                    
+                }), radioItems) %}
+            {% endif %}
+            
+            {{ govukRadios({
+                name: "sectionChoice",
+                fieldset: {
+                    legend: {
+                        text: "Select an option for heading group",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                    }
+                },
+                items: radioItems
+            }) }}
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Save changes"
+                }) }}
+                {% if isUnassigned %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ taskId }}&reportId={{ reportId }}&unassigned=true">Cancel</a>
+                {% else %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ taskId }}&sectionId={{ currentSectionId }}&reportId={{ reportId }}">Cancel</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

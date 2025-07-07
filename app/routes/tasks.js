@@ -18,6 +18,9 @@ router.get('/funding/grant/reports/add/task/', function (req, res) {
     req.session.data.currentReportId = reportId;
     req.session.data.currentSectionId = sectionId; // Will be undefined for unassigned tasks
 
+    // Clear any existing task name from session  ← ADD THIS
+    delete req.session.data.taskName;
+
     // Build template data with fresh information
     const templateData = dataManager.buildTemplateData(reportId, { 
         sectionId: sectionId 

@@ -20,6 +20,14 @@ router.get('/funding/grant/reports/questions', function (req, res) {
         return res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
     }
 
+    // Clear any stale confirmation data from session first
+    delete req.session.data.questionDeleteConfirm;
+    delete req.session.data.deleteQuestionId;
+    delete req.session.data.deleteQuestionName;
+    delete req.session.data.taskDeleteConfirm;
+    delete req.session.data.deleteTaskId;
+    delete req.session.data.deleteTaskName;
+
     // Handle cancel parameter
     if (req.query.cancel === 'true') {
         let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId;
@@ -77,8 +85,9 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
         return res.redirect('/funding/grant/reports/');
     }
 
-    // Get fresh task data
-    const currentTask = dataManager.getTask(reportId, taskId, sectionId);
+    // Get fresh task data - handle undefined sectionId properly
+    const actualSectionId = sectionId && sectionId !== 'undefined' ? sectionId : null;
+    const currentTask = dataManager.getTask(reportId, taskId, actualSectionId);
     if (!currentTask) {
         return res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
     }
