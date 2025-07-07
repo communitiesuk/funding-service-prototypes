@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "Sections and tasks" %}
+{% set pageHeading = "Manage tasks" %}
 {% set pageSection = '' + reportName + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -72,7 +72,7 @@
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
-                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
             </div>
         </div>
 
@@ -85,37 +85,51 @@
             {% for task in currentUnassignedTasks %}
                 {% set taskQuestions = task.questions or [] %}
                 {% set questionCount = taskQuestions.length %}
+                {% set taskIndex = loop.index0 %}  {# Get the current task index (0-based) #}
+                {% set unassignedTaskCount = currentUnassignedTasks.length %}
+                {% set isFirstTask = (taskIndex == 0) %}
+                {% set isLastTask = (taskIndex == (unassignedTaskCount - 1)) %}
 
                 {% if questionCount == 0 %}
-                    {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
+                    {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
                 {% else %}
-                    {% set taskLinkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
+                    {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
+                {% endif %}
+
+                {# Build actions array - only include active actions #}
+                {% set unassignedTaskActions = [] %}
+
+                {# Only add Move Up if it should be active #}
+                {% if unassignedTaskCount > 1 and not isFirstTask %}
+                    {% set unassignedTaskActions = (unassignedTaskActions.push({
+                        href: "/funding/grant/reports/unassigned-tasks/move-up/" + task.id + "?reportId=" + currentReportId,
+                        text: "Move up",
+                        visuallyHiddenText: task.taskName,
+                        classes: "govuk-link govuk-link--no-visited-state"
+                    }), unassignedTaskActions) %}
+                {% endif %}
+
+                {# Only add Move Down if it should be active #}
+                {% if unassignedTaskCount > 1 and not isLastTask %}
+                    {% set unassignedTaskActions = (unassignedTaskActions.push({
+                        href: "/funding/grant/reports/unassigned-tasks/move-down/" + task.id + "?reportId=" + currentReportId,
+                        text: "Move down",
+                        visuallyHiddenText: task.taskName,
+                        classes: "govuk-link govuk-link--no-visited-state"
+                    }), unassignedTaskActions) %}
                 {% endif %}
 
                 {% set unassignedTaskRow = {
                     key: {
-                        text: task.taskName,
+                        html: '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + task.taskName + '</a>',
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                        html: taskLinkText
+                        html: ""
                     },
                     actions: {
                         classes: "govuk-!-width-one-third",
-                        items: [
-                            {
-                                href: "#",
-                                text: "Move to section",
-                                visuallyHiddenText: task.taskName,
-                                classes: "govuk-link govuk-link--no-visited-state"
-                            },
-                            {
-                                href: "#",
-                                text: "Delete",
-                                visuallyHiddenText: task.taskName,
-                                classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                            }
-                        ]
+                        items: unassignedTaskActions
                     }
                 } %}
                 {% set unassignedRows = (unassignedRows.push(unassignedTaskRow), unassignedRows) %}
@@ -125,7 +139,7 @@
             {% set addUnassignedTaskRow = {
                 key: {
                     html: '<a href="/funding/grant/reports/add/task/?reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
-                    classes: "govuk-!-font-weight-regular"
+                    classes: "govuk-!-font-weight-regular govuk-!-margin-top-7"
                 },
                 value: {
                     html: ""
@@ -155,7 +169,7 @@
                 {% if taskCount == 0 %}
                     {% set tasksRow = {
                         key: {
-                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add tasks to this section</a>',
+                            html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add new tasks under this heading</a>',
                             classes: "govuk-!-font-weight-regular"
                         },
                         value: { html: "" }
@@ -171,17 +185,9 @@
                         {% set isLastTask = (taskIndex == (taskCount - 1)) %}
 
                         {% if questionCount == 0 %}
-                            {% set taskLinkText = '<a href="/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions</a> to this task' %}
-                            {% set taskLinkHref = '' %}
-                        {% else %}
-                            {% set taskLinkText = 'Manage task' %}
                             {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
-                        {% endif %}
-
-                        {% if questionCount == 0 %}
-                            {% set valueContent = taskLinkText %}
                         {% else %}
-                            {% set valueContent = '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + taskLinkText + '</a>' %}
+                            {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
                         {% endif %}
 
                         {# Build actions array - only include active actions #}
@@ -207,21 +213,13 @@
                             }), taskActions) %}
                         {% endif %}
 
-                        {# Always add Delete action #}
-                        {% set taskActions = (taskActions.push({
-                            href: "/funding/grant/reports/sections/?reportId=" + currentReportId + "&taskDeleteConfirm=true&deleteTaskId=" + task.id + "&deleteTaskSectionId=" + section.id + "&deleteTaskName=" + task.taskName,
-                            text: "Delete",
-                            visuallyHiddenText: task.taskName,
-                            classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                        }), taskActions) %}
-
                         {% set taskRow = {
                             key: {
-                                text: task.taskName,
+                                html: '<a href="' + taskLinkHref + '" class="govuk-link govuk-link--no-visited-state">' + task.taskName + '</a>',
                                 classes: "govuk-!-font-weight-regular"
                             },
                             value: {
-                                html: valueContent
+                                html: ""
                             },
                             actions: {
                                 classes: "govuk-!-width-one-third",
@@ -235,7 +233,7 @@
                     {% set addTaskRow = {
                         key: {
                             html: '<a href="/funding/grant/reports/add/task/?sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another task</a>',
-                            classes: "govuk-!-font-weight-regular"
+                            classes: "govuk-!-font-weight-regular govuk-!-padding-top-7"
                         },
                         value: {
                             html: ""
@@ -274,7 +272,7 @@
                 {# Always add Change name action #}
                 {% set sectionActions = (sectionActions.push({
                     href: "/funding/grant/reports/edit/section/?sectionId=" + section.id + "&reportId=" + currentReportId,
-                    text: "Manage",
+                    text: "Change name",
                     visuallyHiddenText: "of " + section.sectionName,
                     classes: "govuk-link govuk-link--no-visited-state"
                 }), sectionActions) %}
@@ -299,25 +297,34 @@
                 }) }}
             {% endfor %}
         {% else %}
-            {# No sections exist yet #}
-            {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
-                <p class="govuk-body">There are no sections or tasks in this report yet.</p>
-            {% else %}
-                <p class="govuk-body">There are no sections in this report yet.</p>
-            {% endif %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                {# No sections exist yet #}
+                {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
+                    <p class="govuk-body">There are no sections or tasks in this report yet.</p>
+                {% else %}
+                    <p class="govuk-body">You can group tasks under headings. For example, a task about 'Risk mitigation' and 'Risk status' could be grouped under 'Risk'.</p>
+                {% endif %}
+
+            </div>
+        </div>
+            
         {% endif %}
 
-        <div class="govuk-button-group govuk-!-margin-top-5">
+        <div class="govuk-button-group govuk-!-margin-top-1">
             <form method="get" action="/funding/grant/reports/add/section/" class="govuk-!-display-inline-block">
                 <input type="hidden" name="reportId" value="{{ currentReportId }}">
                 <input type="hidden" name="returnTo" value="sections">
                 {% if currentSections and currentSections.length > 0 %}
                     {{ govukButton({
-                        text: "Add another section"
+                        text: "Add another heading"
                     }) }}
                 {% else %}
                     {{ govukButton({
-                        text: "Add a section"
+                        text: "Add a heading",
+                        classes: "govuk-button--secondary"
                     }) }}
                 {% endif %}
             </form>

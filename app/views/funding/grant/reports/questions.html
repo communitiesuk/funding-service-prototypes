@@ -5,8 +5,12 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Questions" %}
-{% set pageSection = '' + data['taskName'] + '' %}
+{% set pageHeading = "Manage questions" %}
+{% if isUnassignedTask or data.isUnassignedTask %}
+    {% set pageSection = "Unassigned task" %}
+{% else %}
+    {% set pageSection = '' + (sectionName or data.sectionName) + '' %}
+{% endif %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -24,21 +28,21 @@
             href: "/funding/grant/reports/"
         }), breadcrumbItems) %}
 
-        {% if data.reportName %}
+        {% if reportName or data.reportName %}
             {% set breadcrumbItems = (breadcrumbItems.push({
-                text: data.reportName,
-                href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
+                text: reportName or data.reportName,
+                href: "/funding/grant/reports/sections?reportId=" + (currentReportId or data.currentReportId)
             }), breadcrumbItems) %}
         {% endif %}
 
         {% set breadcrumbItems = (breadcrumbItems.push({
             text: "Sections and tasks",
-            href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
+            href: "/funding/grant/reports/sections?reportId=" + (currentReportId or data.currentReportId)
         }), breadcrumbItems) %}
 
-        {% if data.taskName %}
+        {% if taskName or data.taskName %}
             {% set breadcrumbItems = (breadcrumbItems.push({
-                text: data.taskName
+                text: taskName or data.taskName
             }), breadcrumbItems) %}
         {% endif %}
 
@@ -46,16 +50,46 @@
             items: breadcrumbItems,
             classes: "govuk-!-margin-bottom-6"
         }) }}
+
         {# Show question delete confirmation banner if questionDeleteConfirm parameter is present #}
-        {% if data.questionDeleteConfirm %}
-            {% set deleteQuestionName = data.deleteQuestionName or 'this question' %}
+        {% if questionDeleteConfirm or data.questionDeleteConfirm %}
+            {% set deleteQuestionName = (deleteQuestionName or data.deleteQuestionName) or 'this question' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
                     Are you sure you want to delete "{{ deleteQuestionName }}"?
                 </p>
                 <p class="govuk-body">
-                    <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ data.deleteQuestionId }}?reportId={{ data.currentReportId }}&sectionId={{ data.currentSectionId }}&taskId={{ data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
-                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ data.currentReportId }}&sectionId={{ data.currentSectionId }}&taskId={{ data.currentTaskId }}&cancel=true">Cancel</a>
+                    {% if isUnassignedTask or data.isUnassignedTask %}
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId or data.deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&confirm=yes">Yes, delete this question</a>
+                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
+                    {% else %}
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId or data.deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
+                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
+                    {% endif %}
+                </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important"
+            }) }}
+        {% endif %}
+
+        {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
+        {% if taskDeleteConfirm or data.taskDeleteConfirm %}
+            {% set deleteTaskName = (deleteTaskName or data.deleteTaskName) or 'this task' %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete "{{ deleteTaskName }}"?
+                </p>
+                <p class="govuk-body">
+                    {% if isUnassignedTask or data.isUnassignedTask %}
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId or data.deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
+                    {% else %}
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId or data.deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
+                    {% endif %}
                 </p>
             {% endset %}
             {{ govukNotificationBanner({
@@ -71,39 +105,50 @@
             </div>
         </div>
 
-        {% if data.currentQuestions and data.currentQuestions.length > 0 %}
-            {% set questionCount = data.currentQuestions.length %}
+        {% if (currentQuestions or data.currentQuestions) and (currentQuestions or data.currentQuestions).length > 0 %}
+            {% set questionCount = (currentQuestions or data.currentQuestions).length %}
 
             {# Build the questions summary list rows #}
             {% set questionRows = [] %}
 
             {# Add individual question rows #}
-            {% for question in data.currentQuestions %}
+            {% for question in (currentQuestions or data.currentQuestions) %}
+                {# Build move up/down and delete URLs based on task type #}
+                {% if isUnassignedTask or data.isUnassignedTask %}
+                    {% set moveUpHref = "/funding/grant/reports/questions/move-up/" + question.id + "?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true" %}
+                    {% set moveDownHref = "/funding/grant/reports/questions/move-down/" + question.id + "?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true" %}
+                    {% set deleteHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true&questionDeleteConfirm=true&deleteQuestionId=" + question.id + "&deleteQuestionName=" + question.questionName %}
+                {% else %}
+                    {% set moveUpHref = "/funding/grant/reports/questions/move-up/" + question.id + "?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) %}
+                    {% set moveDownHref = "/funding/grant/reports/questions/move-down/" + question.id + "?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) %}
+                    {% set deleteHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&questionDeleteConfirm=true&deleteQuestionId=" + question.id + "&deleteQuestionName=" + question.questionName %}
+                {% endif %}
+
                 {% set questionRow = {
                     key: {
                         text: question.questionName,
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                        text: question.questionType
+                        html: ""
                     },
                     actions: {
                         classes: "govuk-!-width-one-third",
                         items: [
                             {
-                                href: "/funding/grant/reports/questions/move-up/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
+                                href: moveUpHref,
                                 text: "Move up",
                                 visuallyHiddenText: question.questionName,
                                 classes: "govuk-link govuk-link--no-visited-state"
                             },
                             {
-                                href: "/funding/grant/reports/questions/move-down/" + question.id + "?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId,
+                                href: moveDownHref,
                                 text: "Move down",
                                 visuallyHiddenText: question.questionName,
                                 classes: "govuk-link govuk-link--no-visited-state"
                             },
                             {
-                                href: "/funding/grant/reports/questions/?reportId=" + data.currentReportId + "&sectionId=" + data.currentSectionId + "&taskId=" + data.currentTaskId + "&questionDeleteConfirm=true&deleteQuestionId=" + question.id + "&deleteQuestionName=" + question.questionName,
+                                href: deleteHref,
                                 text: "Delete",
                                 visuallyHiddenText: question.questionName,
                                 classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
@@ -115,10 +160,16 @@
             {% endfor %}
 
             {# Add "Add another question" row at the end #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set addQuestionHref = "/funding/grant/reports/add/question/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&unassigned=true" %}
+            {% else %}
+                {% set addQuestionHref = "/funding/grant/reports/add/question/?taskId=" + (currentTaskId or data.currentTaskId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&reportId=" + (currentReportId or data.currentReportId) %}
+            {% endif %}
+
             {% set addQuestionRow = {
                 key: {
-                    html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add another question</a>',
-                    classes: "govuk-!-font-weight-regular"
+                    html: '<a href="' + addQuestionHref + '" class="govuk-link govuk-link--no-visited-state">Add another question</a>',
+                    classes: "govuk-!-font-weight-regular govuk-!-padding-top-5"
                 },
                 value: {
                     html: ""
@@ -126,18 +177,66 @@
             } %}
             {% set questionRows = (questionRows.push(addQuestionRow), questionRows) %}
 
+            {# Build task card actions - Change name, Heading group (for unassigned tasks), Delete action #}
+            {% set taskActions = [] %}
+            
+            {# Always show "Change name" first - handle both regular and unassigned tasks #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&unassigned=true" %}
+            {% else %}
+                {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&reportId=" + (currentReportId or data.currentReportId) %}
+            {% endif %}
+
+            {% set taskActions = (taskActions.push({
+                href: changeNameHref,
+                text: "Change name",
+                visuallyHiddenText: "of task",
+                classes: "govuk-link govuk-link--no-visited-state"
+            }), taskActions) %}
+            
+            {# Always show "Heading group" - for moving between sections or assigning to sections #}
+            {% set taskActions = (taskActions.push({
+                href: "/funding/grant/reports/move-task-to-section/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&currentSectionId=" + (currentSectionId or data.currentSectionId) + "&unassigned=" + (isUnassignedTask or data.isUnassignedTask),
+                text: "Heading group",
+                visuallyHiddenText: "task",
+                classes: "govuk-link govuk-link--no-visited-state"
+            }), taskActions) %}
+            
+            {# Always show "Delete" last - handle both regular and unassigned tasks #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
+            {% else %}
+                {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
+            {% endif %}
+
+            {% set taskActions = (taskActions.push({
+                href: deleteTaskHref,
+                text: "Delete",
+                visuallyHiddenText: "task",
+                classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+            }), taskActions) %}
+
             {{ govukSummaryList({
                 card: {
-                    title: { text: data.taskName },
-                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
+                    title: { text: taskName or data.taskName },
+                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
+                    actions: {
+                        items: taskActions
+                    }
                 },
                 rows: questionRows
             }) }}
         {% else %}
             {# No questions exist yet #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set addQuestionHref = "/funding/grant/reports/add/question/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&unassigned=true" %}
+            {% else %}
+                {% set addQuestionHref = "/funding/grant/reports/add/question/?taskId=" + (currentTaskId or data.currentTaskId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&reportId=" + (currentReportId or data.currentReportId) %}
+            {% endif %}
+
             {% set noQuestionsRow = {
                 key: {
-                    html: '<a href="/funding/grant/reports/add/question/?taskId=' + data.currentTaskId + '&sectionId=' + data.currentSectionId + '&reportId=' + data.currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add questions to this task</a>',
+                    html: '<a href="' + addQuestionHref + '" class="govuk-link govuk-link--no-visited-state">Add questions to this task</a>',
                     classes: "govuk-!-font-weight-regular"
                 },
                 value: {
@@ -145,10 +244,52 @@
                 }
             } %}
 
+            {# Build task card actions for empty state - include Group under heading (for unassigned tasks) and Delete action #}
+            {% set taskActions = [] %}
+            
+            {# Add "Change name" action for empty state too #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&unassigned=true" %}
+            {% else %}
+                {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&reportId=" + (currentReportId or data.currentReportId) %}
+            {% endif %}
+
+            {% set taskActions = (taskActions.push({
+                href: changeNameHref,
+                text: "Change name",
+                visuallyHiddenText: "of task",
+                classes: "govuk-link govuk-link--no-visited-state"
+            }), taskActions) %}
+            
+         {# Always show "Heading group" - for moving between sections or assigning to sections #}
+{% set taskActions = (taskActions.push({
+    href: "/funding/grant/reports/move-task-to-section/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&currentSectionId=" + (currentSectionId or data.currentSectionId) + "&unassigned=" + (isUnassignedTask or data.isUnassignedTask),
+    text: "Heading group",
+    visuallyHiddenText: "task",
+    classes: "govuk-link govuk-link--no-visited-state"
+}), taskActions) %}
+            
+            {# Always show "Delete" last - handle both regular and unassigned tasks #}
+            {% if isUnassignedTask or data.isUnassignedTask %}
+                {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
+            {% else %}
+                {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
+            {% endif %}
+
+            {% set taskActions = (taskActions.push({
+                href: deleteTaskHref,
+                text: "Delete",
+                visuallyHiddenText: "task",
+                classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
+            }), taskActions) %}
+
             {{ govukSummaryList({
                 card: {
-                    title: { text: data.taskName },
-                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
+                    title: { text: taskName or data.taskName },
+                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
+                    actions: {
+                        items: taskActions
+                    }
                 },
                 rows: [noQuestionsRow]
             }) }}
