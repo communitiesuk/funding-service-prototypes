@@ -91,7 +91,7 @@
                 {% set isLastTask = (taskIndex == (unassignedTaskCount - 1)) %}
 
                 {% if questionCount == 0 %}
-                    {% set taskLinkHref = '/funding/grant/reports/add/question/?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
+                    {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
                 {% else %}
                     {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
                 {% endif %}
@@ -185,7 +185,7 @@
                         {% set isLastTask = (taskIndex == (taskCount - 1)) %}
 
                         {% if questionCount == 0 %}
-                            {% set taskLinkHref = '/funding/grant/reports/add/question/?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
+                            {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
                         {% else %}
                             {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
                         {% endif %}
@@ -272,7 +272,7 @@
                 {# Always add Change name action #}
                 {% set sectionActions = (sectionActions.push({
                     href: "/funding/grant/reports/edit/section/?sectionId=" + section.id + "&reportId=" + currentReportId,
-                    text: "Manage",
+                    text: "Change name",
                     visuallyHiddenText: "of " + section.sectionName,
                     classes: "govuk-link govuk-link--no-visited-state"
                 }), sectionActions) %}

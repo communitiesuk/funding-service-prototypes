@@ -669,6 +669,78 @@ router.get('/funding/grant/reports/tasks/move-down/:taskId', function (req, res)
     res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
 })
 
+
+// Move unassigned task up
+router.get('/funding/grant/reports/unassigned-tasks/move-up/:taskId', function (req, res) {
+    const taskId = req.params.taskId
+    const reportId = req.query.reportId || req.session.data.currentReportId
+
+    if (!reportId || !taskId) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    // Find the report
+    const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
+    if (reportIndex === -1) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    const unassignedTasks = req.session.data.reports[reportIndex].unassignedTasks
+    if (!unassignedTasks) {
+        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    }
+
+    // Find the task index
+    const taskIndex = unassignedTasks.findIndex(task => task.id === taskId)
+    if (taskIndex > 0) {
+        // Swap with previous task
+        const temp = unassignedTasks[taskIndex]
+        unassignedTasks[taskIndex] = unassignedTasks[taskIndex - 1]
+        unassignedTasks[taskIndex - 1] = temp
+
+        // Update currentUnassignedTasks with fresh data
+        req.session.data.currentUnassignedTasks = [...unassignedTasks]
+    }
+
+    res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+})
+
+// Move unassigned task down
+router.get('/funding/grant/reports/unassigned-tasks/move-down/:taskId', function (req, res) {
+    const taskId = req.params.taskId
+    const reportId = req.query.reportId || req.session.data.currentReportId
+
+    if (!reportId || !taskId) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    // Find the report
+    const reportIndex = req.session.data.reports.findIndex(report => report.id === reportId)
+    if (reportIndex === -1) {
+        return res.redirect('/funding/grant/reports/')
+    }
+
+    const unassignedTasks = req.session.data.reports[reportIndex].unassignedTasks
+    if (!unassignedTasks) {
+        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+    }
+
+    // Find the task index
+    const taskIndex = unassignedTasks.findIndex(task => task.id === taskId)
+    if (taskIndex >= 0 && taskIndex < unassignedTasks.length - 1) {
+        // Swap with next task
+        const temp = unassignedTasks[taskIndex]
+        unassignedTasks[taskIndex] = unassignedTasks[taskIndex + 1]
+        unassignedTasks[taskIndex + 1] = temp
+
+        // Update currentUnassignedTasks with fresh data
+        req.session.data.currentUnassignedTasks = [...unassignedTasks]
+    }
+
+    res.redirect('/funding/grant/reports/sections?reportId=' + reportId)
+})
+
+
 // Deleting a task
 router.get('/funding/grant/reports/tasks/delete/:taskId', function (req, res) {
     const taskId = req.params.taskId
