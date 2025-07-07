@@ -63,21 +63,16 @@
                 {% endif %}
 
                 {% if sectionCount == 0 and unassignedTaskCount == 0 %}
-                    {# No sections or tasks yet - show both options #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add sections</a> or <a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your form <br>Tasks are groups of questions with a common theme' %}
+                    {# No sections or tasks yet - show task option only #}
+                    {% set sectionsText = '<a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your form <br>Tasks are groups of questions with a common theme' %}
                     {% set sectionsRow = {
                         key: { text: "Form" },
                         value: { html: sectionsText }
                     } %}
 
                 {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
-                    {# Only unassigned tasks exist - encourage sections or show manage link #}
-                    {% if unassignedTaskCount == 1 %}
-                        {% set taskText = "1 unassigned task" %}
-                    {% else %}
-                        {% set taskText = unassignedTaskCount + " unassigned tasks" %}
-                    {% endif %}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage ' + taskText + '</a> or <a href="/funding/grant/reports/add/section/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">add sections</a>' %}
+                    {# Only unassigned tasks exist - show manage link #}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
                     {% set sectionsRow = {
                         key: { text: "Form" },
                         value: { html: sectionsText }
@@ -86,15 +81,6 @@
                 {% elif sectionCount > 0 %}
                     {# Sections exist - show normal manage sections link #}
                     {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
-
-                    {% if unassignedTaskCount > 0 %}
-                        {% if unassignedTaskCount == 1 %}
-                            {% set taskText = "1 unassigned task" %}
-                        {% else %}
-                            {% set taskText = unassignedTaskCount + " unassigned tasks" %}
-                        {% endif %}
-                        {% set sectionsText = sectionsText + ' (' + taskText + ')' %}
-                    {% endif %}
 
                     {% set sectionsRow = {
                         key: { text: "Form" },
@@ -130,6 +116,7 @@
                         }
                     },
                     rows: [
+                        sectionsRow,
                         {
                             key: { text: "Created by" },
                             value: { html: '<a href="#">' + report.createdBy + '</a> on ' + report.createdDate }
@@ -137,8 +124,7 @@
                         {
                             key: { text: "Last updated" },
                             value: { html: '<a href="#">' + report.updatedBy + '</a> on ' + report.lastUpdated }
-                        },
-                        sectionsRow
+                        }
                     ]
                 }) }}
 
