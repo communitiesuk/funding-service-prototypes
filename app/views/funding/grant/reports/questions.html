@@ -169,7 +169,7 @@
             {% set addQuestionRow = {
                 key: {
                     html: '<a href="' + addQuestionHref + '" class="govuk-link govuk-link--no-visited-state">Add another question</a>',
-                    classes: "govuk-!-font-weight-regular"
+                    classes: "govuk-!-font-weight-regular govuk-!-padding-top-5"
                 },
                 value: {
                     html: ""
@@ -194,15 +194,13 @@
                 classes: "govuk-link govuk-link--no-visited-state"
             }), taskActions) %}
             
-            {# Only show "Heading group" if this is an unassigned task #}
-            {% if isUnassignedTask or data.isUnassignedTask %}
-                {% set taskActions = (taskActions.push({
-                    href: "#",
-                    text: "Heading group",
-                    visuallyHiddenText: "task",
-                    classes: "govuk-link govuk-link--no-visited-state"
-                }), taskActions) %}
-            {% endif %}
+            {# Always show "Heading group" - for moving between sections or assigning to sections #}
+            {% set taskActions = (taskActions.push({
+                href: "/funding/grant/reports/move-task-to-section/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&currentSectionId=" + (currentSectionId or data.currentSectionId) + "&unassigned=" + (isUnassignedTask or data.isUnassignedTask),
+                text: "Heading group",
+                visuallyHiddenText: "task",
+                classes: "govuk-link govuk-link--no-visited-state"
+            }), taskActions) %}
             
             {# Always show "Delete" last - handle both regular and unassigned tasks #}
             {% if isUnassignedTask or data.isUnassignedTask %}
@@ -263,15 +261,13 @@
                 classes: "govuk-link govuk-link--no-visited-state"
             }), taskActions) %}
             
-            {# Only show "Heading group" if this is an unassigned task #}
-            {% if isUnassignedTask or data.isUnassignedTask %}
-                {% set taskActions = (taskActions.push({
-                    href: "#",
-                    text: "Heading group",
-                    visuallyHiddenText: "task",
-                    classes: "govuk-link govuk-link--no-visited-state"
-                }), taskActions) %}
-            {% endif %}
+         {# Always show "Heading group" - for moving between sections or assigning to sections #}
+{% set taskActions = (taskActions.push({
+    href: "/funding/grant/reports/move-task-to-section/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&currentSectionId=" + (currentSectionId or data.currentSectionId) + "&unassigned=" + (isUnassignedTask or data.isUnassignedTask),
+    text: "Heading group",
+    visuallyHiddenText: "task",
+    classes: "govuk-link govuk-link--no-visited-state"
+}), taskActions) %}
             
             {# Always show "Delete" last - handle both regular and unassigned tasks #}
             {% if isUnassignedTask or data.isUnassignedTask %}
