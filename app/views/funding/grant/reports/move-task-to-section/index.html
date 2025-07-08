@@ -24,13 +24,8 @@
     <div class="govuk-grid-column-two-thirds">
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
-        <!-- <p class="govuk-body">Select how you want to group '{{ taskName }}'.</p> -->
-        
-        
         {% if currentSectionName %}
             <p class="govuk-body">This task is currently grouped under the heading '{{ currentSectionName }}'.</p>
-        {% else %}
-            
         {% endif %}
         
         <form method="post" action="/funding/grant/reports/move-task-to-section/move">
@@ -43,15 +38,24 @@
             {% set radioItems = [] %}
             
             {# Add existing sections as radio options #}
-            {% for section in availableSections %}
-                {# Don't show the current section as an option #}
-                {% if not currentSectionId or section.id != currentSectionId %}
+            {% if availableSections and availableSections.length > 0 %}
+                {% for section in availableSections %}
+                    {# Don't show the current section as an option #}
+                    {% if not currentSectionId or section.id != currentSectionId %}
+                        {% set radioItems = (radioItems.push({
+                            value: section.id,
+                            text: section.sectionName                        
+                        }), radioItems) %}
+                    {% endif %}
+                {% endfor %}
+                
+                {# Add divider after existing sections if there are any #}
+                {% if radioItems.length > 0 %}
                     {% set radioItems = (radioItems.push({
-                        value: section.id,
-                        text: section.sectionName                        
+                        divider: "or"
                     }), radioItems) %}
                 {% endif %}
-            {% endfor %}
+            {% endif %}
             
             {# Add option to create a new section #}
             {% set radioItems = (radioItems.push({
@@ -75,8 +79,6 @@
                     })
                 }
             }), radioItems) %}
-
-            
             
             {# Add option to remove from section (make unassigned) if currently in a section #}
             {% if not isUnassigned %}
