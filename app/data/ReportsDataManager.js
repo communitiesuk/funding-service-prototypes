@@ -1,443 +1,515 @@
-// app/data/ReportsDataManager.js
-// Data management for GOV.UK prototype kit
-
 class ReportsDataManager {
     constructor(sessionData) {
         this.data = sessionData;
         
-        // Ensure reports array exists
+        // Initialize reports array if it doesn't exist
         if (!this.data.reports) {
             this.data.reports = [];
         }
     }
 
-    // === GETTERS ===
+    // Helper function to generate unique IDs
+    generateId() {
+        return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+    }
+
+    // REPORT METHODS
     
+    // Get all reports
+    getReports() {
+        return this.data.reports || [];
+    }
+
+    // Get a specific report by ID
     getReport(reportId) {
-        if (!reportId) return null;
+        if (!reportId || !this.data.reports) return null;
         return this.data.reports.find(report => report.id === reportId);
     }
 
-    getSection(reportId, sectionId) {
-        if (!sectionId) return null;
-        const report = this.getReport(reportId);
-        return report?.sections?.find(section => section.id === sectionId);
-    }
-
-    getTask(reportId, taskId, sectionId = null) {
-        if (!taskId) return null;
-        const report = this.getReport(reportId);
-        if (!report) return null;
-
-        if (sectionId) {
-            // Task in a section
-            const section = report.sections?.find(s => s.id === sectionId);
-            return section?.tasks?.find(task => task.id === taskId);
-        } else {
-            // Unassigned task
-            return report.unassignedTasks?.find(task => task.id === taskId);
-        }
-    }
-
-    getQuestion(reportId, taskId, questionId, sectionId = null) {
-        if (!questionId) return null;
-        const task = this.getTask(reportId, taskId, sectionId);
-        return task?.questions?.find(question => question.id === questionId);
-    }
-
-    // === CREATORS ===
-    
+    // Add a new report
     addReport(reportData) {
         const newReport = {
-            id: Date.now().toString(),
-            reportName: reportData.reportName,
-            createdDate: new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            }),
-            createdBy: 'hugo.furst@communities.gov.uk',
-            lastUpdated: new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            }),
-            updatedBy: 'mj@communities.gov.uk',
+            id: this.generateId(),
+            reportName: reportData.reportName || 'Untitled Report',
+            createdBy: 'Current User', // You might want to get this from session
+            createdDate: new Date().toLocaleDateString('en-GB'),
+            updatedBy: 'Current User',
+            lastUpdated: new Date().toLocaleDateString('en-GB'),
             sections: [],
             unassignedTasks: []
         };
-        
+
         this.data.reports.push(newReport);
         return newReport;
     }
 
+    // Update a report
+    updateReport(reportId, updates) {
+        const report = this.getReport(reportId);
+        if (!report) return false;
+
+        Object.assign(report, updates);
+        report.updatedBy = 'Current User';
+        report.lastUpdated = new Date().toLocaleDateString('en-GB');
+        return true;
+    }
+
+    // Delete a report
+    deleteReport(reportId) {
+        if (!this.data.reports) return false;
+        
+        const reportIndex = this.data.reports.findIndex(report => report.id === reportId);
+        if (reportIndex === -1) return false;
+
+        this.data.reports.splice(reportIndex, 1);
+        return true;
+    }
+
+    // SECTION METHODS
+
+    // Get a specific section by ID
+    getSection(reportId, sectionId) {
+        const report = this.getReport(reportId);
+        if (!report || !report.sections) return null;
+        return report.sections.find(section => section.id === sectionId);
+    }
+
+    // Add a new section to a report
     addSection(reportId, sectionData) {
         const report = this.getReport(reportId);
         if (!report) return null;
 
-        if (!report.sections) report.sections = [];
+        if (!report.sections) {
+            report.sections = [];
+        }
 
         const newSection = {
-            id: Date.now().toString(),
-            sectionName: sectionData.sectionName,
-            createdDate: new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            }),
+            id: this.generateId(),
+            sectionName: sectionData.sectionName || 'Untitled Section',
             tasks: []
         };
 
         report.sections.push(newSection);
-        this.updateReportTimestamp(reportId);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return newSection;
     }
 
+    // Update a section
+    updateSection(reportId, sectionId, updates) {
+        const section = this.getSection(reportId, sectionId);
+        if (!section) return false;
+
+        Object.assign(section, updates);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Delete a section
+    deleteSection(reportId, sectionId) {
+        const report = this.getReport(reportId);
+        if (!report || !report.sections) return false;
+
+        const sectionIndex = report.sections.findIndex(section => section.id === sectionId);
+        if (sectionIndex === -1) return false;
+
+        // Move tasks from deleted section to unassigned tasks
+        const deletedSection = report.sections[sectionIndex];
+        if (deletedSection.tasks && deletedSection.tasks.length > 0) {
+            if (!report.unassignedTasks) {
+                report.unassignedTasks = [];
+            }
+            report.unassignedTasks.push(...deletedSection.tasks);
+        }
+
+        report.sections.splice(sectionIndex, 1);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Move section up
+    moveSectionUp(reportId, sectionId) {
+        const report = this.getReport(reportId);
+        if (!report || !report.sections) return false;
+
+        const sectionIndex = report.sections.findIndex(section => section.id === sectionId);
+        if (sectionIndex <= 0) return false; // Already at top or not found
+
+        // Swap with previous section
+        [report.sections[sectionIndex - 1], report.sections[sectionIndex]] = 
+        [report.sections[sectionIndex], report.sections[sectionIndex - 1]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Move section down
+    moveSectionDown(reportId, sectionId) {
+        const report = this.getReport(reportId);
+        if (!report || !report.sections) return false;
+
+        const sectionIndex = report.sections.findIndex(section => section.id === sectionId);
+        if (sectionIndex === -1 || sectionIndex >= report.sections.length - 1) return false; // Not found or already at bottom
+
+        // Swap with next section
+        [report.sections[sectionIndex], report.sections[sectionIndex + 1]] = 
+        [report.sections[sectionIndex + 1], report.sections[sectionIndex]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // TASK METHODS
+
+    // Get a specific task by ID
+    getTask(reportId, taskId, sectionId = null) {
+        const report = this.getReport(reportId);
+        if (!report) return null;
+
+        let tasks = [];
+        
+        if (sectionId) {
+            // Look in specific section
+            const section = this.getSection(reportId, sectionId);
+            if (section && section.tasks) {
+                tasks = section.tasks;
+            }
+        } else {
+            // Look in unassigned tasks
+            if (report.unassignedTasks) {
+                tasks = report.unassignedTasks;
+            }
+        }
+
+        return tasks.find(task => task.id === taskId);
+    }
+
+    // Add a new task
     addTask(reportId, taskData, sectionId = null) {
         const report = this.getReport(reportId);
         if (!report) return null;
 
         const newTask = {
-            id: Date.now().toString(),
-            taskName: taskData.taskName,
-            createdDate: new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            }),
+            id: this.generateId(),
+            taskName: taskData.taskName || 'Untitled Task',
             questions: []
         };
 
         if (sectionId) {
+            // Add to specific section
             const section = this.getSection(reportId, sectionId);
             if (!section) return null;
-            if (!section.tasks) section.tasks = [];
+            
+            if (!section.tasks) {
+                section.tasks = [];
+            }
             section.tasks.push(newTask);
         } else {
-            if (!report.unassignedTasks) report.unassignedTasks = [];
+            // Add to unassigned tasks
+            if (!report.unassignedTasks) {
+                report.unassignedTasks = [];
+            }
             report.unassignedTasks.push(newTask);
         }
 
-        this.updateReportTimestamp(reportId);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return newTask;
     }
 
-    addQuestion(reportId, taskId, questionData, sectionId = null) {
-        const task = this.getTask(reportId, taskId, sectionId);
-        if (!task) return null;
-
-        if (!task.questions) task.questions = [];
-
-        const newQuestion = {
-            id: Date.now().toString(),
-            questionName: questionData.questionName,
-            questionType: questionData.questionType,
-            createdDate: new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            })
-        };
-
-        task.questions.push(newQuestion);
-        this.updateReportTimestamp(reportId);
-        return newQuestion;
-    }
-
-    // === UPDATERS ===
-    
-    updateReport(reportId, updates) {
-        const report = this.getReport(reportId);
-        if (report) {
-            Object.assign(report, updates);
-            this.updateReportTimestamp(reportId);
-            return true;
-        }
-        return false;
-    }
-
-    updateSection(reportId, sectionId, updates) {
-        const section = this.getSection(reportId, sectionId);
-        if (section) {
-            Object.assign(section, updates);
-            this.updateReportTimestamp(reportId);
-            return true;
-        }
-        return false;
-    }
-
+    // Update a task
     updateTask(reportId, taskId, updates, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
-        if (task) {
-            Object.assign(task, updates);
-            this.updateReportTimestamp(reportId);
-            return true;
-        }
-        return false;
-    }
+        if (!task) return false;
 
-    // === MOVERS ===
-    
-    moveItemInArray(array, itemId, direction) {
-        const index = array.findIndex(item => item.id === itemId);
-        if (index === -1) return false;
-
-        const newIndex = direction === 'up' ? index - 1 : index + 1;
-        if (newIndex < 0 || newIndex >= array.length) return false;
-
-        // Swap items
-        [array[index], array[newIndex]] = [array[newIndex], array[index]];
+        Object.assign(task, updates);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return true;
     }
 
-    moveSectionUp(reportId, sectionId) {
-        const report = this.getReport(reportId);
-        if (report?.sections) {
-            const success = this.moveItemInArray(report.sections, sectionId, 'up');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    moveSectionDown(reportId, sectionId) {
-        const report = this.getReport(reportId);
-        if (report?.sections) {
-            const success = this.moveItemInArray(report.sections, sectionId, 'down');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    moveTaskUp(reportId, taskId, sectionId = null) {
-        const report = this.getReport(reportId);
-        if (!report) return false;
-
-        let tasks;
-        if (sectionId) {
-            const section = this.getSection(reportId, sectionId);
-            tasks = section?.tasks;
-        } else {
-            tasks = report.unassignedTasks;
-        }
-
-        if (tasks) {
-            const success = this.moveItemInArray(tasks, taskId, 'up');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    moveTaskDown(reportId, taskId, sectionId = null) {
-        const report = this.getReport(reportId);
-        if (!report) return false;
-
-        let tasks;
-        if (sectionId) {
-            const section = this.getSection(reportId, sectionId);
-            tasks = section?.tasks;
-        } else {
-            tasks = report.unassignedTasks;
-        }
-
-        if (tasks) {
-            const success = this.moveItemInArray(tasks, taskId, 'down');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    moveQuestionUp(reportId, taskId, questionId, sectionId = null) {
-        const task = this.getTask(reportId, taskId, sectionId);
-        if (task?.questions) {
-            const success = this.moveItemInArray(task.questions, questionId, 'up');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    moveQuestionDown(reportId, taskId, questionId, sectionId = null) {
-        const task = this.getTask(reportId, taskId, sectionId);
-        if (task?.questions) {
-            const success = this.moveItemInArray(task.questions, questionId, 'down');
-            if (success) this.updateReportTimestamp(reportId);
-            return success;
-        }
-        return false;
-    }
-
-    // === DELETERS ===
-    
-    deleteReport(reportId) {
-        const index = this.data.reports.findIndex(r => r.id === reportId);
-        if (index !== -1) {
-            this.data.reports.splice(index, 1);
-            return true;
-        }
-        return false;
-    }
-
-    deleteSection(reportId, sectionId) {
-        const report = this.getReport(reportId);
-        if (report?.sections) {
-            const index = report.sections.findIndex(s => s.id === sectionId);
-            if (index !== -1) {
-                report.sections.splice(index, 1);
-                this.updateReportTimestamp(reportId);
-                return true;
-            }
-        }
-        return false;
-    }
-
+    // Delete a task
     deleteTask(reportId, taskId, sectionId = null) {
         const report = this.getReport(reportId);
         if (!report) return false;
 
+        let tasks = [];
+        let taskArray = null;
+
+        if (sectionId) {
+            // Delete from specific section
+            const section = this.getSection(reportId, sectionId);
+            if (section && section.tasks) {
+                taskArray = section.tasks;
+            }
+        } else {
+            // Delete from unassigned tasks
+            if (report.unassignedTasks) {
+                taskArray = report.unassignedTasks;
+            }
+        }
+
+        if (!taskArray) return false;
+
+        const taskIndex = taskArray.findIndex(task => task.id === taskId);
+        if (taskIndex === -1) return false;
+
+        taskArray.splice(taskIndex, 1);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Move task up
+    moveTaskUp(reportId, taskId, sectionId = null) {
+        const report = this.getReport(reportId);
+        if (!report) return false;
+
+        let taskArray = null;
+
         if (sectionId) {
             const section = this.getSection(reportId, sectionId);
-            if (section?.tasks) {
-                const index = section.tasks.findIndex(t => t.id === taskId);
-                if (index !== -1) {
-                    section.tasks.splice(index, 1);
-                    this.updateReportTimestamp(reportId);
-                    return true;
-                }
+            if (section && section.tasks) {
+                taskArray = section.tasks;
             }
         } else {
             if (report.unassignedTasks) {
-                const index = report.unassignedTasks.findIndex(t => t.id === taskId);
-                if (index !== -1) {
-                    report.unassignedTasks.splice(index, 1);
-                    this.updateReportTimestamp(reportId);
-                    return true;
-                }
+                taskArray = report.unassignedTasks;
             }
         }
-        return false;
+
+        if (!taskArray) return false;
+
+        const taskIndex = taskArray.findIndex(task => task.id === taskId);
+        if (taskIndex <= 0) return false; // Already at top or not found
+
+        // Swap with previous task
+        [taskArray[taskIndex - 1], taskArray[taskIndex]] = 
+        [taskArray[taskIndex], taskArray[taskIndex - 1]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
     }
 
-    deleteQuestion(reportId, taskId, questionId, sectionId = null) {
-        const task = this.getTask(reportId, taskId, sectionId);
-        if (task?.questions) {
-            const index = task.questions.findIndex(q => q.id === questionId);
-            if (index !== -1) {
-                task.questions.splice(index, 1);
-                this.updateReportTimestamp(reportId);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // === TEMPLATE DATA BUILDER ===
-    
-    buildTemplateData(reportId, options = {}) {
+    // Move task down
+    moveTaskDown(reportId, taskId, sectionId = null) {
         const report = this.getReport(reportId);
-        if (!report) return null;
+        if (!report) return false;
 
-        const data = {
-            currentReportId: reportId,
-            reportName: report.reportName,
-            grantName: this.data.grantName || 'Sample Grant Name'
-        };
+        let taskArray = null;
 
-        if (options.includeSections) {
-            data.currentSections = report.sections || [];
-            data.currentUnassignedTasks = report.unassignedTasks || [];
-        }
-
-        if (options.sectionId) {
-            const section = this.getSection(reportId, options.sectionId);
-            if (section) {
-                data.currentSectionId = options.sectionId;
-                data.sectionName = section.sectionName;
-                data.currentSectionName = section.sectionName; // For edit forms
+        if (sectionId) {
+            const section = this.getSection(reportId, sectionId);
+            if (section && section.tasks) {
+                taskArray = section.tasks;
+            }
+        } else {
+            if (report.unassignedTasks) {
+                taskArray = report.unassignedTasks;
             }
         }
 
-        if (options.taskId) {
-            const task = this.getTask(reportId, options.taskId, options.sectionId);
-            if (task) {
-                data.currentTaskId = options.taskId;
-                data.taskName = task.taskName;
-                data.currentTaskName = task.taskName; // For edit forms
-                data.currentQuestions = task.questions || [];
-                data.isUnassignedTask = !options.sectionId;
-            }
-        }
+        if (!taskArray) return false;
 
-        return data;
+        const taskIndex = taskArray.findIndex(task => task.id === taskId);
+        if (taskIndex === -1 || taskIndex >= taskArray.length - 1) return false; // Not found or already at bottom
+
+        // Swap with next task
+        [taskArray[taskIndex], taskArray[taskIndex + 1]] = 
+        [taskArray[taskIndex + 1], taskArray[taskIndex]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
     }
 
-    // === HELPERS ===
-    
-    updateReportTimestamp(reportId) {
-        const report = this.getReport(reportId);
-        if (report) {
-            report.lastUpdated = new Date().toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-            report.updatedBy = 'mj@communities.gov.uk';
-        }
-    }
-
-    // Task movement between sections
-    moveTaskToSection(reportId, taskId, fromSectionId, toSectionId, newSectionName = null) {
+    // Move task to a different section
+    moveTaskToSection(reportId, taskId, fromSectionId, toSectionChoice, newSectionName = null) {
         const report = this.getReport(reportId);
         if (!report) return false;
 
         // Find and remove task from current location
         let task = null;
+        let sourceArray = null;
+
         if (fromSectionId) {
+            // Task is currently in a section
             const fromSection = this.getSection(reportId, fromSectionId);
-            if (fromSection?.tasks) {
-                const taskIndex = fromSection.tasks.findIndex(t => t.id === taskId);
-                if (taskIndex !== -1) {
-                    task = fromSection.tasks.splice(taskIndex, 1)[0];
-                }
+            if (fromSection && fromSection.tasks) {
+                sourceArray = fromSection.tasks;
             }
         } else {
-            // From unassigned
+            // Task is currently unassigned
             if (report.unassignedTasks) {
-                const taskIndex = report.unassignedTasks.findIndex(t => t.id === taskId);
-                if (taskIndex !== -1) {
-                    task = report.unassignedTasks.splice(taskIndex, 1)[0];
-                }
+                sourceArray = report.unassignedTasks;
             }
         }
 
-        if (!task) return false;
+        if (!sourceArray) return false;
+
+        const taskIndex = sourceArray.findIndex(t => t.id === taskId);
+        if (taskIndex === -1) return false;
+
+        task = sourceArray[taskIndex];
+        sourceArray.splice(taskIndex, 1);
 
         // Add task to new location
-        if (toSectionId === 'unassigned') {
-            // Moving to unassigned
-            if (!report.unassignedTasks) report.unassignedTasks = [];
+        if (toSectionChoice === 'unassigned') {
+            // Move to unassigned tasks
+            if (!report.unassignedTasks) {
+                report.unassignedTasks = [];
+            }
             report.unassignedTasks.push(task);
-        } else if (toSectionId === 'new-section' && newSectionName) {
-            // Create new section and add task
+        } else if (toSectionChoice === 'new' && newSectionName) {
+            // Create new section and add task there
             const newSection = this.addSection(reportId, { sectionName: newSectionName });
             if (newSection) {
                 newSection.tasks.push(task);
             }
         } else {
-            // Moving to existing section
-            const toSection = this.getSection(reportId, toSectionId);
-            if (!toSection) return false;
-            if (!toSection.tasks) toSection.tasks = [];
-            toSection.tasks.push(task);
+            // Move to existing section
+            const toSection = this.getSection(reportId, toSectionChoice);
+            if (toSection) {
+                if (!toSection.tasks) {
+                    toSection.tasks = [];
+                }
+                toSection.tasks.push(task);
+            } else {
+                // Failed to find target section, put back in source
+                sourceArray.splice(taskIndex, 0, task);
+                return false;
+            }
         }
 
-        this.updateReportTimestamp(reportId);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return true;
+    }
+
+    // QUESTION METHODS
+
+    // Get a specific question by ID
+    getQuestion(reportId, taskId, questionId, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task || !task.questions) return null;
+        
+        return task.questions.find(question => question.id === questionId);
+    }
+
+    // Add a new question to a task
+    addQuestion(reportId, taskId, questionData, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task) return null;
+
+        if (!task.questions) {
+            task.questions = [];
+        }
+
+        const newQuestion = {
+            id: this.generateId(),
+            questionName: questionData.questionName || 'Untitled Question',
+            questionType: questionData.questionType || 'text'
+        };
+
+        task.questions.push(newQuestion);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return newQuestion;
+    }
+
+    // Update a question
+    updateQuestion(reportId, taskId, questionId, updates, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task || !task.questions) return false;
+        
+        const questionIndex = task.questions.findIndex(question => question.id === questionId);
+        if (questionIndex === -1) return false;
+        
+        // Update the question with new data
+        Object.assign(task.questions[questionIndex], updates);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Delete a question
+    deleteQuestion(reportId, taskId, questionId, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task || !task.questions) return false;
+
+        const questionIndex = task.questions.findIndex(question => question.id === questionId);
+        if (questionIndex === -1) return false;
+
+        task.questions.splice(questionIndex, 1);
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Move question up
+    moveQuestionUp(reportId, taskId, questionId, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task || !task.questions) return false;
+
+        const questionIndex = task.questions.findIndex(question => question.id === questionId);
+        if (questionIndex <= 0) return false; // Already at top or not found
+
+        // Swap with previous question
+        [task.questions[questionIndex - 1], task.questions[questionIndex]] = 
+        [task.questions[questionIndex], task.questions[questionIndex - 1]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // Move question down
+    moveQuestionDown(reportId, taskId, questionId, sectionId = null) {
+        const task = this.getTask(reportId, taskId, sectionId);
+        if (!task || !task.questions) return false;
+
+        const questionIndex = task.questions.findIndex(question => question.id === questionId);
+        if (questionIndex === -1 || questionIndex >= task.questions.length - 1) return false; // Not found or already at bottom
+
+        // Swap with next question
+        [task.questions[questionIndex], task.questions[questionIndex + 1]] = 
+        [task.questions[questionIndex + 1], task.questions[questionIndex]];
+
+        this.updateReport(reportId, {}); // Update lastUpdated timestamp
+        return true;
+    }
+
+    // TEMPLATE DATA BUILDER
+
+    // Build template data for rendering pages
+    buildTemplateData(reportId, options = {}) {
+        const report = this.getReport(reportId);
+        if (!report) return null;
+
+        const templateData = {
+            currentReportId: reportId,
+            reportName: report.reportName,
+            grantName: this.data.grantName || 'Sample Grant Name'
+        };
+
+        // Include sections if requested
+        if (options.includeSections) {
+            templateData.currentSections = report.sections || [];
+            templateData.currentUnassignedTasks = report.unassignedTasks || [];
+        }
+
+        // Include specific section data if sectionId provided
+        if (options.sectionId) {
+            const section = this.getSection(reportId, options.sectionId);
+            if (section) {
+                templateData.currentSectionId = options.sectionId;
+                templateData.sectionName = section.sectionName;
+                templateData.currentTasks = section.tasks || [];
+            }
+        }
+
+        // Include specific task data if taskId provided
+        if (options.taskId) {
+            const task = this.getTask(reportId, options.taskId, options.sectionId);
+            if (task) {
+                templateData.currentTaskId = options.taskId;
+                templateData.taskName = task.taskName;
+                templateData.currentQuestions = task.questions || [];
+            }
+        }
+
+        return templateData;
     }
 }
 
-// Export for prototype kit
 module.exports = ReportsDataManager;

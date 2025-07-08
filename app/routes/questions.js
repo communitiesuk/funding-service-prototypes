@@ -148,6 +148,84 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     }
 })
 
+// Edit question page
+router.get('/funding/grant/reports/edit/question/', function (req, res) {
+    const questionId = req.query.questionId;
+    const taskId = req.query.taskId;
+    const sectionId = req.query.sectionId;
+    const reportId = req.query.reportId;
+    const unassigned = req.query.unassigned === 'true';
+    const dataManager = new ReportsDataManager(req.session.data);
+
+    if (!questionId || !taskId || !reportId) {
+        return res.redirect('/funding/grant/reports/');
+    }
+
+    // Get fresh data
+    const currentReport = dataManager.getReport(reportId);
+    const currentTask = dataManager.getTask(reportId, taskId, sectionId);
+    const currentQuestion = dataManager.getQuestion(reportId, taskId, questionId, sectionId);
+    
+    if (!currentReport || !currentTask || !currentQuestion) {
+        // Redirect back to questions page if any data is missing
+        let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId;
+        if (unassigned) {
+            redirectUrl += '&unassigned=true';
+        } else {
+            redirectUrl += '&sectionId=' + sectionId;
+        }
+        return res.redirect(redirectUrl);
+    }
+
+    // Get current section name if task is in a section
+    let currentSectionName = null;
+    if (sectionId && !unassigned) {
+        const currentSection = dataManager.getSection(reportId, sectionId);
+        currentSectionName = currentSection?.sectionName;
+    }
+
+    const templateData = {
+        currentQuestionId: questionId,
+        currentTaskId: taskId,
+        currentSectionId: sectionId,
+        currentReportId: reportId,
+        currentQuestionName: currentQuestion.questionName,
+        currentQuestionType: currentQuestion.questionType,
+        taskName: currentTask.taskName,
+        reportName: currentReport.reportName,
+        sectionName: currentSectionName,
+        isUnassignedTask: unassigned,
+        grantName: req.session.data.grantName || 'Sample Grant Name'
+    };
+
+    res.render('funding/grant/reports/edit/question/index', templateData);
+})
+
+// Update question
+router.post('/funding/grant/reports/edit/question/update', function (req, res) {
+    const questionId = req.body.questionId;
+    const taskId = req.body.taskId;
+    const sectionId = req.body.sectionId;
+    const reportId = req.body.reportId;
+    const newQuestionName = req.body.questionName;
+    const isUnassignedTask = req.body.isUnassignedTask === 'true';
+    const dataManager = new ReportsDataManager(req.session.data);
+
+    dataManager.updateQuestion(reportId, taskId, questionId, {
+        questionName: newQuestionName
+    }, sectionId);
+
+    // Build redirect URL back to questions page
+    let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId;
+    if (isUnassignedTask) {
+        redirectUrl += '&unassigned=true';
+    } else {
+        redirectUrl += '&sectionId=' + sectionId;
+    }
+
+    res.redirect(redirectUrl);
+})
+
 // Move question up
 router.get('/funding/grant/reports/questions/move-up/:questionId', function (req, res) {
     const questionId = req.params.questionId;

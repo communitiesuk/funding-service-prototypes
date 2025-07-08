@@ -1,13 +1,16 @@
 {% extends "layouts/grantManagement.html" %}
 
 {% set navID = 'grantReports' %}
-{% set showBackLink = true %}
-{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+{% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "What type of question do you need?" %}
-{% set pageSection = '' + data['taskName'] + '' %}
+{% set pageHeading = "Edit question" %}
+{% if isUnassignedTask %}
+    {% set pageSection = "Unassigned task" %}
+{% else %}
+    {% set pageSection = sectionName %}
+{% endif %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
@@ -16,51 +19,92 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        {# Template-based breadcrumbs for edit question page #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Reports",
+            href: "/funding/grant/reports/"
+        }), breadcrumbItems) %}
 
-        <form method="post" action="/funding/grant/reports/add/question/options" >
+        {% if reportName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: reportName,
+                href: "/funding/grant/reports/sections?reportId=" + currentReportId
+            }), breadcrumbItems) %}
+        {% endif %}
 
-            {{ govukRadios({
-                name: "questionType",
-                fieldset: {
-                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-fieldset__legend govuk-visually-hidden" }
-                },
-                items: [
-                    { value: "Text", text: "Text", hint: {
-                        text: "Free text responses of a single line or longer text with a word limit"
-                    } },
-                    { value: "dateInput", text: "Date input", hint: {
-                        text: "Date input consisting of 3 fields - day, month and year"
-                    } },
-                    { value: "Selection from a list of options", text: "Selection from a list of options", hint: {
-                        text: "Radio buttons for one option only or checkboxes for multiple choice"
-                    } },
-                    { value: "Number", text: "Number", hint: {
-                        text: "Numeric input with validation, and optional prefix and suffix"
-                    } },
-                    { value: "Email address", text: "Email address", hint: {
-                        text: "Email input with validation"
-                    } },
-                    { value: "Phone number", text: "Phone number", hint: {
-                        text: "Phone number input with validation"
-                    } },
-                    { value: "Address", text: "Address", hint: {
-                        text: "Full address input fields"
-                    } },
-                    { value: "File upload", text: "File upload", hint: {
-                        text: "Allow users to upload documents"
-                    } }
-                ],
-                value: data.questionType
-            }) }}
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Sections and tasks",
+            href: "/funding/grant/reports/sections?reportId=" + currentReportId
+        }), breadcrumbItems) %}
 
-            {{ govukButton({
-                text: "Continue"
-            }) }}
+        {% if taskName %}
+            {% if isUnassignedTask %}
+                {% set questionsHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&reportId=" + currentReportId + "&unassigned=true" %}
+            {% else %}
+                {% set questionsHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&sectionId=" + currentSectionId + "&reportId=" + currentReportId %}
+            {% endif %}
+            
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: taskName,
+                href: questionsHref
+            }), breadcrumbItems) %}
+        {% endif %}
 
-        </form>
+        {% if currentQuestionName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: "Edit " + currentQuestionName
+            }), breadcrumbItems) %}
+        {% endif %}
+
+        {{ govukBreadcrumbs({
+            items: breadcrumbItems,
+            classes: "govuk-!-margin-bottom-6"
+        }) }}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+                <form method="post" action="/funding/grant/reports/edit/question/update">
+                    
+                    {# Hidden fields to maintain context #}
+                    <input type="hidden" name="questionId" value="{{ currentQuestionId }}">
+                    <input type="hidden" name="taskId" value="{{ currentTaskId }}">
+                    <input type="hidden" name="sectionId" value="{{ currentSectionId }}">
+                    <input type="hidden" name="reportId" value="{{ currentReportId }}">
+                    <input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask }}">
+
+                    {{ govukInput({
+                        label: {
+                            text: "Question name",
+                            classes: "govuk-label govuk-visually-hidden"
+                        },                        
+                        id: "questionName",
+                        name: "questionName",
+                        value: currentQuestionName,
+                        classes: "govuk-!-width-two-thirds"
+                    }) }}
+
+                    <div class="govuk-button-group">
+                        {{ govukButton({
+                            text: "Save changes"
+                        }) }}
+
+                        {% if isUnassignedTask %}
+                            {% set cancelHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&reportId=" + currentReportId + "&unassigned=true" %}
+                        {% else %}
+                            {% set cancelHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&sectionId=" + currentSectionId + "&reportId=" + currentReportId %}
+                        {% endif %}
+
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ cancelHref }}">Cancel</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
 
     </div>
 </div>
