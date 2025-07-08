@@ -72,7 +72,7 @@
 
                 {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
                     {# Only unassigned tasks exist - show manage link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
                     {% set sectionsRow = {
                         key: { text: "Form" },
                         value: { html: sectionsText }
@@ -80,7 +80,7 @@
 
                 {% elif sectionCount > 0 %}
                     {# Sections exist - show normal manage sections link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage tasks</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
 
                     {% set sectionsRow = {
                         key: { text: "Form" },
