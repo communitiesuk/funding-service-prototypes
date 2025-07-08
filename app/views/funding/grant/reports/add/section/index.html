@@ -4,7 +4,7 @@
 {% set backLinkHref = "/funding/grant/reports/" %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "What is the heading for the group of tasks?" %}
+{% set pageHeading = "What is the name of this section?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -17,7 +17,7 @@
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
         
             
-        <p class="govuk-body">You’ll be able to group tasks under this heading.</p>
+        <p class="govuk-body">You’ll be able to group tasks under this section.</p>
         
         <form method="post" action="/funding/grant/reports/add/section/another">
             {{ govukInput({

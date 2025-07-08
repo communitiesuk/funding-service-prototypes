@@ -12,7 +12,7 @@
 
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "Which heading should this task be grouped under?" %}
+{% set pageHeading = "Which section should this task be grouped under?" %}
 {% set pageSection = '' + reportName + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -60,7 +60,7 @@
             {# Add option to create a new section #}
             {% set radioItems = (radioItems.push({
                 value: "new-section",
-                text: "Add a new heading",                
+                text: "Add a new section",                
                 conditional: {
                     html: govukInput({
                         id: "newSectionName",
@@ -84,7 +84,7 @@
             {% if not isUnassigned %}
                 {% set radioItems = (radioItems.push({
                     value: "unassigned",
-                    text: "Remove from heading"                    
+                    text: "Remove from section"                    
                 }), radioItems) %}
             {% endif %}
             

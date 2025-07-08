@@ -4,7 +4,7 @@
 {% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "Change the name for this heading" %}
+{% set pageHeading = "What is the name of this section?" %}
 {% set pageSection = '' + data['reportName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -37,7 +37,7 @@
 
             <div class="govuk-button-group">
                 {{ govukButton({
-                    text: "Update heading name"
+                    text: "Update section name"
                 }) }}
                 <a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
             </div>
