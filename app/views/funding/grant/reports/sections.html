@@ -79,6 +79,7 @@
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
             </div>
         </div>
+        
 
         {# Show unassigned tasks if any exist #}
         {% if currentUnassignedTasks and currentUnassignedTasks.length > 0 %}
@@ -363,6 +364,12 @@
                     }) }}
                 {% endif %}
             </form>
+
+            {{ govukButton({
+                text: "Preview form",
+                href: "/funding/grant/reports/preview?reportId=" + currentReportId,
+                classes: "govuk-button--secondary"
+            }) }}
         </div>
     </div>
 </div>

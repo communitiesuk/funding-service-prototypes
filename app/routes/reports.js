@@ -32,6 +32,125 @@ router.get('/funding/grant/reports/', function (req, res) {
     res.render('funding/grant/reports/index')
 })
 
+// Preview report page
+router.get('/funding/grant/reports/preview', function (req, res) {
+    const reportId = req.query.reportId;
+    const dataManager = new ReportsDataManager(req.session.data);
+
+    // Validate report exists
+    const currentReport = dataManager.getReport(reportId);
+    if (!currentReport) {
+        return res.redirect('/funding/grant/reports/');
+    }
+
+    // Build template data with sections and tasks
+    const templateData = dataManager.buildTemplateData(reportId, { 
+        includeSections: true 
+    });
+
+    // Transform the data structure for the task list pattern
+    templateData.previewSections = [];
+
+    // Add sections with their tasks
+    if (currentReport.sections && currentReport.sections.length > 0) {
+        currentReport.sections.forEach(section => {
+            const sectionTasks = [];
+            
+            if (section.tasks && section.tasks.length > 0) {
+                section.tasks.forEach(task => {
+                    const questionCount = task.questions ? task.questions.length : 0;
+                    let statusText = "Not started";
+                    let statusClass = "govuk-tag--grey";
+                    
+                    if (questionCount > 0) {
+                        statusText = "Ready";
+                        statusClass = "govuk-tag--green";
+                    }
+
+                    sectionTasks.push({
+                        title: { text: task.taskName },
+                        href: "#", // Could link to actual form if needed
+                        status: {
+                            tag: {
+                                text: statusText,
+                                classes: statusClass
+                            }
+                        }
+                    });
+                });
+            } else {
+                // Section has no tasks
+                sectionTasks.push({
+                    title: { text: "No tasks in this section" },
+                    href: "#",
+                    status: {
+                        tag: {
+                            text: "Empty",
+                            classes: "govuk-tag--grey"
+                        }
+                    }
+                });
+            }
+
+            templateData.previewSections.push({
+                heading: section.sectionName,
+                tasks: sectionTasks
+            });
+        });
+    }
+
+    // Add unassigned tasks as a separate section if they exist
+    if (currentReport.unassignedTasks && currentReport.unassignedTasks.length > 0) {
+        const unassignedTasks = [];
+        
+        currentReport.unassignedTasks.forEach(task => {
+            const questionCount = task.questions ? task.questions.length : 0;
+            let statusText = "Not started";
+            let statusClass = "govuk-tag--grey";
+            
+            if (questionCount > 0) {
+                statusText = "Ready";
+                statusClass = "govuk-tag--green";
+            }
+
+            unassignedTasks.push({
+                title: { text: task.taskName },
+                href: "#",
+                status: {
+                    tag: {
+                        text: statusText,
+                        classes: statusClass
+                    }
+                }
+            });
+        });
+
+        templateData.previewSections.push({
+            heading: "General tasks",
+            tasks: unassignedTasks
+        });
+    }
+
+    // If no sections or tasks exist
+    if (templateData.previewSections.length === 0) {
+        templateData.previewSections.push({
+            heading: "No content",
+            tasks: [{
+                title: { text: "This report has no sections or tasks yet" },
+                href: "#",
+                status: {
+                    tag: {
+                        text: "Empty",
+                        classes: "govuk-tag--grey"
+                    }
+                }
+            }]
+        });
+    }
+
+    res.render('funding/grant/reports/preview', templateData);
+})
+
 // Create new report
 router.post('/funding/grant/reports/', function (req, res) {
     const dataManager = new ReportsDataManager(req.session.data);
