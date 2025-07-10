@@ -56,22 +56,13 @@ router.get('/funding/grant/reports/preview', function (req, res) {
         const unassignedTasks = [];
         
         currentReport.unassignedTasks.forEach(task => {
-            const questionCount = task.questions ? task.questions.length : 0;
-            let statusText = "Not started";
-            let statusClass = "govuk-tag--grey";
-            
-            if (questionCount > 0) {
-                statusText = "Ready";
-                statusClass = "govuk-tag--green";
-            }
-
             unassignedTasks.push({
                 title: { text: task.taskName },
                 href: "#",
                 status: {
                     tag: {
-                        text: statusText,
-                        classes: statusClass
+                        text: "Not started",
+                        classes: "govuk-tag--grey"
                     }
                 }
             });
@@ -90,22 +81,13 @@ router.get('/funding/grant/reports/preview', function (req, res) {
             
             if (section.tasks && section.tasks.length > 0) {
                 section.tasks.forEach(task => {
-                    const questionCount = task.questions ? task.questions.length : 0;
-                    let statusText = "Not started";
-                    let statusClass = "govuk-tag--grey";
-                    
-                    if (questionCount > 0) {
-                        statusText = "Ready";
-                        statusClass = "govuk-tag--green";
-                    }
-
                     sectionTasks.push({
                         title: { text: task.taskName },
                         href: "#", // Could link to actual form if needed
                         status: {
                             tag: {
-                                text: statusText,
-                                classes: statusClass
+                                text: "Not started",
+                                classes: "govuk-tag--grey"
                             }
                         }
                     });

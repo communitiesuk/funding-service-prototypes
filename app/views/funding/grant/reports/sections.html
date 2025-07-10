@@ -78,6 +78,15 @@
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
             </div>
+            <div class="govuk-grid-column-one-third">
+                <div class="govuk-!-text-align-right govuk-!-margin-top-6">
+                    {{ govukButton({
+                        text: "Preview form",
+                        href: "/funding/grant/reports/preview?reportId=" + currentReportId,
+                        classes: "govuk-button--secondary"
+                    }) }}
+                </div>
+            </div>
         </div>
         
 
@@ -364,12 +373,6 @@
                     }) }}
                 {% endif %}
             </form>
-
-            {{ govukButton({
-                text: "Preview form",
-                href: "/funding/grant/reports/preview?reportId=" + currentReportId,
-                classes: "govuk-button--secondary"
-            }) }}
         </div>
     </div>
 </div>

@@ -18,29 +18,15 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-        {# Breadcrumbs #}
-        {% set breadcrumbItems = [] %}
-        {% set breadcrumbItems = (breadcrumbItems.push({
-            text: "Reports",
-            href: "/funding/grant/reports/"
-        }), breadcrumbItems) %}
 
-        {% if reportName %}
-            {% set breadcrumbItems = (breadcrumbItems.push({
-                text: reportName
-            }), breadcrumbItems) %}
-        {% endif %}
-
-        {{ govukBreadcrumbs({
-            items: breadcrumbItems,
-            classes: "govuk-!-margin-bottom-6"
-        }) }}
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
                 <p class="govuk-body">This is how your monitoring report form will appear to grant recipients when they complete it.</p>
+        
+
 
                 {% if previewSections and previewSections.length > 0 %}
                     {% for section in previewSections %}
@@ -76,61 +62,7 @@
                     {% endif %}
                 </div>
 
-            </div>
-            
-            <!-- <div class="govuk-grid-column-one-third">
-                <aside class="app-related-items" role="complementary">
-                    <h2 class="govuk-heading-m" id="subsection-title">
-                        Form details
-                    </h2>
-                    <nav role="navigation" aria-labelledby="subsection-title">
-                        <ul class="govuk-list govuk-!-font-size-16">
-                            {% if currentSections %}
-                                <li>
-                                    <strong>{{ currentSections.length }}</strong> 
-                                    {% if currentSections.length == 1 %}section{% else %}sections{% endif %}
-                                </li>
-                            {% endif %}
-                            
-                            {% set totalTasks = 0 %}
-                            {% set totalQuestions = 0 %}
-                            
-                            {% if currentSections %}
-                                {% for section in currentSections %}
-                                    {% if section.tasks %}
-                                        {% set totalTasks = totalTasks + section.tasks.length %}
-                                        {% for task in section.tasks %}
-                                            {% if task.questions %}
-                                                {% set totalQuestions = totalQuestions + task.questions.length %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                            
-                            {% if currentUnassignedTasks %}
-                                {% set totalTasks = totalTasks + currentUnassignedTasks.length %}
-                                {% for task in currentUnassignedTasks %}
-                                    {% if task.questions %}
-                                        {% set totalQuestions = totalQuestions + task.questions.length %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                            
-                            <li>
-                                <strong>{{ totalTasks }}</strong> 
-                                {% if totalTasks == 1 %}task{% else %}tasks{% endif %}
-                            </li>
-                            
-                            <li>
-                                <strong>{{ totalQuestions }}</strong> 
-                                {% if totalQuestions == 1 %}question{% else %}questions{% endif %}
-                            </li>
-                        </ul>
-                    </nav>
-                </aside>
-            </div>
-        </div> -->
+            </div>                   
 
     </div>
 </div>
