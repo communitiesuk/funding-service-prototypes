@@ -51,7 +51,39 @@ router.get('/funding/grant/reports/preview', function (req, res) {
     // Transform the data structure for the task list pattern
     templateData.previewSections = [];
 
-    // Add sections with their tasks
+    // Add unassigned tasks FIRST as a separate section if they exist
+    if (currentReport.unassignedTasks && currentReport.unassignedTasks.length > 0) {
+        const unassignedTasks = [];
+        
+        currentReport.unassignedTasks.forEach(task => {
+            const questionCount = task.questions ? task.questions.length : 0;
+            let statusText = "Not started";
+            let statusClass = "govuk-tag--grey";
+            
+            if (questionCount > 0) {
+                statusText = "Ready";
+                statusClass = "govuk-tag--green";
+            }
+
+            unassignedTasks.push({
+                title: { text: task.taskName },
+                href: "#",
+                status: {
+                    tag: {
+                        text: statusText,
+                        classes: statusClass
+                    }
+                }
+            });
+        });
+
+        templateData.previewSections.push({
+            heading: "",
+            tasks: unassignedTasks
+        });
+    }
+
+    // Then add sections with their tasks
     if (currentReport.sections && currentReport.sections.length > 0) {
         currentReport.sections.forEach(section => {
             const sectionTasks = [];
@@ -96,38 +128,6 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                 heading: section.sectionName,
                 tasks: sectionTasks
             });
-        });
-    }
-
-    // Add unassigned tasks as a separate section if they exist
-    if (currentReport.unassignedTasks && currentReport.unassignedTasks.length > 0) {
-        const unassignedTasks = [];
-        
-        currentReport.unassignedTasks.forEach(task => {
-            const questionCount = task.questions ? task.questions.length : 0;
-            let statusText = "Not started";
-            let statusClass = "govuk-tag--grey";
-            
-            if (questionCount > 0) {
-                statusText = "Ready";
-                statusClass = "govuk-tag--green";
-            }
-
-            unassignedTasks.push({
-                title: { text: task.taskName },
-                href: "#",
-                status: {
-                    tag: {
-                        text: statusText,
-                        classes: statusClass
-                    }
-                }
-            });
-        });
-
-        templateData.previewSections.push({
-            heading: "General tasks",
-            tasks: unassignedTasks
         });
     }
 
