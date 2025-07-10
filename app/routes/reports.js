@@ -93,16 +93,11 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                     });
                 });
             } else {
-                // Section has no tasks
+                // Section has no tasks - add a simple text indicator
                 sectionTasks.push({
-                    title: { text: "No tasks in this section" },
-                    href: "#",
-                    status: {
-                        tag: {
-                            text: "Empty",
-                            classes: "govuk-tag--grey"
-                        }
-                    }
+                    title: { text: "There are no tasks in this section" },
+                    href: null,
+                    status: null
                 });
             }
 
