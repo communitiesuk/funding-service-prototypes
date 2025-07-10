@@ -18,41 +18,14 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-
-
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
                 <p class="govuk-body">This is how your monitoring report form will appear to grant recipients when they complete it.</p>
-        
-
-
-                {% if previewSections and previewSections.length > 0 %}
-                    {% for section in previewSections %}
-                        {% if section.heading != "No content" %}
-                            <h2 class="govuk-heading-m{% if not loop.first %} govuk-!-margin-top-7{% endif %}">{{ section.heading }}</h2>
-                        {% endif %}
-
-                        {{ govukTaskList({
-                            idPrefix: "section-" + loop.index,
-                            items: section.tasks
-                        }) }}
-                    {% endfor %}
-                {% else %}
-                    <div class="govuk-inset-text">
-                        <p class="govuk-body">This report has no content yet.</p>
-                        <p class="govuk-body"><a href="/funding/grant/reports/sections?reportId={{ currentReportId }}" class="govuk-link">Add sections and tasks</a> to create your form.</p>
-                    </div>
-                {% endif %}
-
-                <div class="govuk-button-group govuk-!-margin-top-7">
-                    {{ govukButton({
-                        text: "Back to reports",
-                        href: "/funding/grant/reports/",
-                        classes: "govuk-button--secondary"
-                    }) }}
-                    
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <div class="govuk-!-text-align-right govuk-!-margin-top-6">
                     {% if currentReportId %}
                         {{ govukButton({
                             text: "Manage form",
@@ -61,8 +34,29 @@
                         }) }}
                     {% endif %}
                 </div>
+            </div>
+        </div>
+    </div>
 
-            </div>                   
+     <div class="govuk-grid-column-two-thirds">
+        
+        {% if previewSections and previewSections.length > 0 %}
+            {% for section in previewSections %}
+                {% if section.heading != "No content" %}
+                    <h2 class="govuk-heading-m{% if not loop.first %} govuk-!-margin-top-7{% endif %}">{{ section.heading }}</h2>
+                {% endif %}
+
+                {{ govukTaskList({
+                    idPrefix: "section-" + loop.index,
+                    items: section.tasks
+                }) }}
+            {% endfor %}
+        {% else %}
+            <div class="govuk-inset-text">
+                <p class="govuk-body">This report has no content yet.</p>
+                <p class="govuk-body"><a href="/funding/grant/reports/sections?reportId={{ currentReportId }}" class="govuk-link">Add sections and tasks</a> to create your form.</p>
+            </div>
+        {% endif %}
 
     </div>
 </div>
