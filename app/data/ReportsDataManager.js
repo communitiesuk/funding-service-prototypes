@@ -390,7 +390,7 @@ class ReportsDataManager {
         return task.questions.find(question => question.id === questionId);
     }
 
-    // Add a new question to a task
+    // Add a new question to a task - FIXED TO STORE ALL CONFIGURATION
     addQuestion(reportId, taskId, questionData, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task) return null;
@@ -399,10 +399,54 @@ class ReportsDataManager {
             task.questions = [];
         }
 
+        // Create question with ALL the provided configuration data
         const newQuestion = {
             id: this.generateId(),
+            // Core fields
             questionName: questionData.questionName || 'Untitled Question',
-            questionType: questionData.questionType || 'text'
+            questionText: questionData.questionText || questionData.questionName,
+            questionHint: questionData.questionHint,
+            questionType: questionData.questionType || 'text',
+            isRequired: questionData.isRequired || false,
+            
+            // Text type fields
+            textType: questionData.textType,
+            characterLimit: questionData.characterLimit,
+            
+            // Number type fields
+            numberPrefix: questionData.numberPrefix,
+            numberSuffix: questionData.numberSuffix,
+            allowDecimals: questionData.allowDecimals,
+            
+            // Selection type fields
+            selectionType: questionData.selectionType,
+            selectionOptions: questionData.selectionOptions,
+            selectionOptionsArray: questionData.selectionOptionsArray,
+            
+            // Date type fields
+            includePastDates: questionData.includePastDates,
+            includeFutureDates: questionData.includeFutureDates,
+            earliestDate: questionData.earliestDate,
+            latestDate: questionData.latestDate,
+            
+            // Email type fields
+            emailAutocomplete: questionData.emailAutocomplete,
+            allowMultipleEmails: questionData.allowMultipleEmails,
+            
+            // Phone type fields
+            phoneType: questionData.phoneType,
+            phoneAutocomplete: questionData.phoneAutocomplete,
+            
+            // Address type fields
+            addressType: questionData.addressType,
+            includeAddressLine3: questionData.includeAddressLine3,
+            requireCounty: questionData.requireCounty,
+            
+            // File type fields
+            acceptedFileTypes: questionData.acceptedFileTypes,
+            maxFileSize: questionData.maxFileSize,
+            allowMultipleFiles: questionData.allowMultipleFiles,
+            maxFiles: questionData.maxFiles
         };
 
         task.questions.push(newQuestion);
@@ -410,7 +454,7 @@ class ReportsDataManager {
         return newQuestion;
     }
 
-    // Update a question
+    // Update a question - FIXED TO UPDATE ALL CONFIGURATION
     updateQuestion(reportId, taskId, questionId, updates, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task || !task.questions) return false;
@@ -418,7 +462,7 @@ class ReportsDataManager {
         const questionIndex = task.questions.findIndex(question => question.id === questionId);
         if (questionIndex === -1) return false;
         
-        // Update the question with new data
+        // Update the question with ALL new data
         Object.assign(task.questions[questionIndex], updates);
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return true;

@@ -2,11 +2,15 @@
 
 {% set navID = 'grantReports' %}
 {% set showBackLink = true %}
-{% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% if data.isUnassignedTask %}
+    {% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% endif %}
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "What is the question?" %}
+{% set pageHeading = "Configure your question" %}
 {% set pageSection = '' + data['taskName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -20,18 +24,45 @@
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-        <p class="govuk-body">Enter the question text that grant recipients will see on their monitoring report.</p>
-        <p class="govuk-body">For example, 'What are the main risks to your programme?' or 'What are you doing to mitigate the risk?'</p>
+        {% if data.questionType %}
+            {# Map question type values to display names #}
+            {% set questionTypeDisplay = data.questionType %}
+            {% if data.questionType == "text" %}
+                {% set questionTypeDisplay = "Text" %}
+            {% elif data.questionType == "date" %}
+                {% set questionTypeDisplay = "Date input" %}
+            {% elif data.questionType == "selection" %}
+                {% set questionTypeDisplay = "Selection from a list of options" %}
+            {% elif data.questionType == "number" %}
+                {% set questionTypeDisplay = "Number" %}
+            {% elif data.questionType == "email" %}
+                {% set questionTypeDisplay = "Email address" %}
+            {% elif data.questionType == "phone" %}
+                {% set questionTypeDisplay = "Phone number" %}
+            {% elif data.questionType == "address" %}
+                {% set questionTypeDisplay = "Address" %}
+            {% elif data.questionType == "file" %}
+                {% set questionTypeDisplay = "File upload" %}
+            {% endif %}
+
+            <div class="govuk-inset-text">
+                <p class="govuk-body">Question type: <strong>{{ questionTypeDisplay }}</strong></p>
+            </div>
+        {% endif %}
 
         <form method="post" action="/funding/grant/reports/add/question/another" >
 
+            {# Core fields that all question types need #}
             {{ govukInput({
                 label: {
-                    text: pageHeading,
-                    classes: "govuk-visually-hidden",
+                    text: "What is the question?",
+                    classes: "govuk-label--m",
                     isPageHeading: false
                 },
-                classes: "govuk-!-width-two-thirds",
+                hint: {
+                    text: "This is the main question text that grant recipients will see. For example, 'What are the main risks to your programme?'"
+                },
+                classes: "govuk-!-width-full",
                 id: "questionName",
                 name: "questionName",
                 attributes: {
@@ -40,11 +71,457 @@
                 value: data.questionName
             }) }}
 
+            {{ govukInput({
+                label: {
+                    text: "Question name (internal reference)",
+                    classes: "govuk-label--m",
+                    isPageHeading: false
+                },
+                hint: {
+                    text: "A short name for this question that will help you identify it when managing your report. This won't be shown to grant recipients."
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "questionText",
+                name: "questionText",
+                attributes: {
+                    "spellcheck": "false"
+                },
+                value: data.questionText
+            }) }}
+
+            {{ govukTextarea({
+                label: {
+                    text: "Question hint (optional)",
+                    classes: "govuk-label--m",
+                    isPageHeading: false
+                },
+                hint: {
+                    text: "Additional guidance to help grant recipients understand what you're asking for. This will appear below the question."
+                },
+                classes: "govuk-!-width-full",
+                id: "questionHint",
+                name: "questionHint",
+                rows: 3,
+                attributes: {
+                    "spellcheck": "false"
+                },
+                value: data.questionHint
+            }) }}
+
+            {# Question type specific configuration #}
+            {% if data.questionType == "text" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Text input options
+                        </legend>
+                        
+                        {{ govukRadios({
+                            name: "textType",
+                            items: [
+                                { value: "single", text: "Single line text", hint: {
+                                    text: "For short responses like names or titles"
+                                } },
+                                { value: "multi", text: "Multi-line text (textarea)", hint: {
+                                    text: "For longer responses with multiple paragraphs"
+                                } }
+                            ],
+                            value: data.textType or "single"
+                        }) }}
+
+                        {{ govukInput({
+                            label: {
+                                text: "Character limit (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Maximum number of characters allowed. Leave blank for no limit."
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "characterLimit",
+                            name: "characterLimit",
+                            type: "number",
+                            attributes: {
+                                "min": "1"
+                            },
+                            value: data.characterLimit
+                        }) }}
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "number" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Number input options
+                        </legend>
+                        
+                        {{ govukInput({
+                            label: {
+                                text: "Prefix (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Text to show before the input, e.g. '£' for currency"
+                            },
+                            classes: "govuk-input--width-5",
+                            id: "numberPrefix",
+                            name: "numberPrefix",
+                            value: data.numberPrefix
+                        }) }}
+
+                        {{ govukInput({
+                            label: {
+                                text: "Suffix (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Text to show after the input, e.g. 'kg' for weight"
+                            },
+                            classes: "govuk-input--width-5",
+                            id: "numberSuffix",
+                            name: "numberSuffix",
+                            value: data.numberSuffix
+                        }) }}
+
+                        <div class="govuk-form-group">
+                            <div class="govuk-checkboxes govuk-checkboxes--small">
+                                <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="allowDecimals" name="allowDecimals" type="checkbox" value="true"{% if data.allowDecimals %} checked{% endif %}>
+                                    <label class="govuk-label govuk-checkboxes__label" for="allowDecimals">
+                                        Allow decimal numbers
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "selection" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Selection options
+                        </legend>
+                        
+                        {{ govukRadios({
+                            name: "selectionType",
+                            items: [
+                                { value: "radio", text: "Radio buttons (single choice)", hint: {
+                                    text: "Users can select only one option"
+                                } },
+                                { value: "checkbox", text: "Checkboxes (multiple choice)", hint: {
+                                    text: "Users can select multiple options"
+                                } }
+                            ],
+                            value: data.selectionType or "radio"
+                        }) }}
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-label--s" for="selectionOptions">
+                                Options (one per line)
+                            </label>
+                            <div class="govuk-hint">
+                                Enter each option on a new line. For example:<br>
+                                Option 1<br>
+                                Option 2<br>
+                                Option 3
+                            </div>
+                            <textarea class="govuk-textarea" id="selectionOptions" name="selectionOptions" rows="5">{{ data.selectionOptions }}</textarea>
+                        </div>
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "date" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Date input options
+                        </legend>
+                        
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="includePastDates" name="includePastDates" type="checkbox" value="true"{% if data.includePastDates %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="includePastDates">
+                                    Allow past dates
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Users can enter dates in the past
+                                </div>
+                            </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="includeFutureDates" name="includeFutureDates" type="checkbox" value="true"{% if data.includeFutureDates %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="includeFutureDates">
+                                    Allow future dates
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Users can enter dates in the future
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ govukInput({
+                            label: {
+                                text: "Earliest allowed date (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Format: DD/MM/YYYY. Leave blank for no restriction."
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "earliestDate",
+                            name: "earliestDate",
+                            attributes: {
+                                "placeholder": "DD/MM/YYYY"
+                            },
+                            value: data.earliestDate
+                        }) }}
+
+                        {{ govukInput({
+                            label: {
+                                text: "Latest allowed date (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Format: DD/MM/YYYY. Leave blank for no restriction."
+                            },
+                            classes: "govuk-input--width-10",
+                            id: "latestDate",
+                            name: "latestDate",
+                            attributes: {
+                                "placeholder": "DD/MM/YYYY"
+                            },
+                            value: data.latestDate
+                        }) }}
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "email" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Email input options
+                        </legend>
+                        
+                        {{ govukInput({
+                            label: {
+                                text: "Autocomplete attribute (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Help browsers autocomplete the field, e.g. 'email' or 'work email'"
+                            },
+                            classes: "govuk-!-width-one-half",
+                            id: "emailAutocomplete",
+                            name: "emailAutocomplete",
+                            value: data.emailAutocomplete or "email"
+                        }) }}
+
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="allowMultipleEmails" name="allowMultipleEmails" type="checkbox" value="true"{% if data.allowMultipleEmails %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="allowMultipleEmails">
+                                    Allow multiple email addresses
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Users can enter multiple email addresses separated by commas
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "phone" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Phone number options
+                        </legend>
+                        
+                        {{ govukRadios({
+                            name: "phoneType",
+                            items: [
+                                { value: "any", text: "Any phone number", hint: {
+                                    text: "UK, international, mobile, or landline"
+                                } },
+                                { value: "uk", text: "UK numbers only", hint: {
+                                    text: "Only accept UK phone numbers"
+                                } },
+                                { value: "mobile", text: "Mobile numbers only", hint: {
+                                    text: "Only accept mobile phone numbers"
+                                } },
+                                { value: "international", text: "International format", hint: {
+                                    text: "Accept international phone numbers with country codes"
+                                } }
+                            ],
+                            value: data.phoneType or "any"
+                        }) }}
+
+                        {{ govukInput({
+                            label: {
+                                text: "Autocomplete attribute (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Help browsers autocomplete the field, e.g. 'tel' or 'mobile tel'"
+                            },
+                            classes: "govuk-!-width-one-half",
+                            id: "phoneAutocomplete",
+                            name: "phoneAutocomplete",
+                            value: data.phoneAutocomplete or "tel"
+                        }) }}
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "address" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            Address input options
+                        </legend>
+                        
+                        {{ govukRadios({
+                            name: "addressType",
+                            items: [
+                                { value: "uk", text: "UK addresses only", hint: {
+                                    text: "Standard UK address format with postcode lookup"
+                                } },
+                                { value: "international", text: "International addresses", hint: {
+                                    text: "Allow addresses from any country"
+                                } },
+                                { value: "manual", text: "Manual entry only", hint: {
+                                    text: "No postcode lookup, users enter full address manually"
+                                } }
+                            ],
+                            value: data.addressType or "uk"
+                        }) }}
+
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="includeAddressLine3" name="includeAddressLine3" type="checkbox" value="true"{% if data.includeAddressLine3 %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="includeAddressLine3">
+                                    Include third address line
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Add an optional third line for the address
+                                </div>
+                            </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="requireCounty" name="requireCounty" type="checkbox" value="true"{% if data.requireCounty %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="requireCounty">
+                                    Require county/state field
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Make the county or state field mandatory
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            {% elif data.questionType == "file" %}
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            File upload options
+                        </legend>
+                        
+                        {{ govukInput({
+                            label: {
+                                text: "Accepted file types (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Comma-separated list, e.g. 'PDF, DOC, DOCX'. Leave blank to accept all file types."
+                            },
+                            classes: "govuk-!-width-two-thirds",
+                            id: "acceptedFileTypes",
+                            name: "acceptedFileTypes",
+                            value: data.acceptedFileTypes
+                        }) }}
+
+                        {{ govukInput({
+                            label: {
+                                text: "Maximum file size (MB)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Maximum file size in megabytes. Leave blank for system default."
+                            },
+                            classes: "govuk-input--width-5",
+                            id: "maxFileSize",
+                            name: "maxFileSize",
+                            type: "number",
+                            attributes: {
+                                "min": "1"
+                            },
+                            value: data.maxFileSize
+                        }) }}
+
+                        <div class="govuk-checkboxes govuk-checkboxes--small">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="allowMultipleFiles" name="allowMultipleFiles" type="checkbox" value="true"{% if data.allowMultipleFiles %} checked{% endif %}>
+                                <label class="govuk-label govuk-checkboxes__label" for="allowMultipleFiles">
+                                    Allow multiple file uploads
+                                </label>
+                                <div class="govuk-hint govuk-checkboxes__hint">
+                                    Users can upload more than one file
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ govukInput({
+                            label: {
+                                text: "Maximum number of files (optional)",
+                                classes: "govuk-label--s"
+                            },
+                            hint: {
+                                text: "Only applies if multiple files are allowed. Leave blank for no limit."
+                            },
+                            classes: "govuk-input--width-5",
+                            id: "maxFiles",
+                            name: "maxFiles",
+                            type: "number",
+                            attributes: {
+                                "min": "1"
+                            },
+                            value: data.maxFiles
+                        }) }}
+                    </fieldset>
+                </div>
+
+            {% endif %}
+
+            {# Common options for all question types #}
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        Question settings
+                    </legend>
+                    
+                    <div class="govuk-checkboxes govuk-checkboxes--small">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="isRequired" name="isRequired" type="checkbox" value="true"{% if data.isRequired %} checked{% endif %}>
+                            <label class="govuk-label govuk-checkboxes__label" for="isRequired">
+                                Make this question required
+                            </label>
+                            <div class="govuk-hint govuk-checkboxes__hint">
+                                Users must answer this question before they can submit their report
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
             <div class="govuk-button-group">
                 {{ govukButton({
-                    text: "Continue"
+                    text: "Add question"
                 }) }}
-                <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
+                {% if data.isUnassignedTask %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&reportId={{ data.currentReportId }}&unassigned=true">Cancel</a>
+                {% else %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
+                {% endif %}
             </div>
         </form>
 
