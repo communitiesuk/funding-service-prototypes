@@ -9,12 +9,14 @@ const radioButtonRedirect = require('radio-button-redirect')
 router.use(radioButtonRedirect)
 
 // Import feature-specific routes
+const grantsRoutes = require('./routes/grants')
 const reportsRoutes = require('./routes/reports')
 const sectionsRoutes = require('./routes/sections')
 const tasksRoutes = require('./routes/tasks')
 const questionsRoutes = require('./routes/questions')
 
 // Use the feature routes
+router.use(grantsRoutes)
 router.use(reportsRoutes)
 router.use(sectionsRoutes)
 router.use(tasksRoutes)
