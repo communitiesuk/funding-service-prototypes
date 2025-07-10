@@ -22,7 +22,7 @@
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-                <p class="govuk-body">This is how your monitoring report form will appear to grant recipients when they complete it.</p>
+                <p class="govuk-body">This is how your monitoring report form will appear to grant recipients when they have to complete it.</p>
             </div>
             <div class="govuk-grid-column-one-third">
                 <div class="govuk-!-text-align-right govuk-!-margin-top-6">
@@ -51,6 +51,16 @@
                     items: section.tasks
                 }) }}
             {% endfor %}
+
+            <div class="govuk-!-margin-top-7">
+                <p class="govuk-body">You must complete all sections before you can submit the report.</p>
+                
+                {{ govukButton({
+                    text: "Submit",
+                    href: "#",
+                    classes: "govuk-button"
+                }) }}
+            </div>
         {% else %}
             <div class="govuk-inset-text">
                 <p class="govuk-body">This report has no content yet.</p>
