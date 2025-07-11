@@ -1,0 +1,21 @@
+{# Common question settings for all question types #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Question settings
+        </legend>
+        
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="isRequired" name="isRequired" type="checkbox" value="true"{% if (questionData.isRequired if questionData else data.isRequired) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="isRequired">
+                    Make this question required
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Users must answer this question before they can submit their report
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

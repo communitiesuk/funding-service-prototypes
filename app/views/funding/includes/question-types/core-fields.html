@@ -1,0 +1,57 @@
+{# Core fields that all question types need #}
+{# Works for both add (data) and edit (questionData) contexts #}
+
+{{ govukInput({
+    label: {
+        text: "What is the question?",
+        classes: "govuk-label--m",
+        isPageHeading: false
+    },
+    hint: {
+        text: "This is the main question text that grant recipients will see. For example, 'What are the main risks to your programme?'"
+    },
+    classes: "govuk-!-width-full",
+    id: "questionName",
+    name: "questionName",
+    attributes: {
+        "spellcheck": "false"
+    },
+    value: questionData.questionName if questionData else data.questionName
+}) }}
+
+{{ govukInput({
+    label: {
+        text: "Question name (internal reference)",
+        classes: "govuk-label--m",
+        isPageHeading: false
+    },
+    hint: {
+        text: "A short name for this question that will help you identify it when managing your report. This won't be shown to grant recipients."
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "questionText",
+    name: "questionText",
+    attributes: {
+        "spellcheck": "false"
+    },
+    value: questionData.questionText if questionData else data.questionText
+}) }}
+
+{{ govukTextarea({
+    label: {
+        text: "Question hint (optional)",
+        classes: "govuk-label--m",
+        isPageHeading: false
+    },
+    hint: {
+        text: "Additional guidance to help grant recipients understand what you're asking for. This will appear below the question."
+    },
+    classes: "govuk-!-width-full",
+    id: "questionHint",
+    name: "questionHint",
+    rows: 3,
+    attributes: {
+        "spellcheck": "false"
+    },
+    value: questionData.questionHint if questionData else data.questionHint
+}) }}

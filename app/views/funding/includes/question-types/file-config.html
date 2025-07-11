@@ -1,0 +1,94 @@
+{# File upload question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            File upload options
+        </legend>
+        
+        {{ govukInput({
+            label: {
+                text: "Accepted file types (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Comma-separated list, e.g. 'PDF, DOC, DOCX, XLS, XLSX, PNG, JPG'. Leave blank to accept all file types."
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "acceptedFileTypes",
+            name: "acceptedFileTypes",
+            value: questionData.acceptedFileTypes if questionData else data.acceptedFileTypes
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Maximum file size (MB)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Maximum file size in megabytes. Leave blank for system default (usually 10MB)."
+            },
+            classes: "govuk-input--width-5",
+            id: "maxFileSize",
+            name: "maxFileSize",
+            type: "number",
+            attributes: {
+                "min": "1",
+                "max": "100"
+            },
+            value: questionData.maxFileSize if questionData else data.maxFileSize
+        }) }}
+
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allowMultipleFiles" name="allowMultipleFiles" type="checkbox" value="true"{% if (questionData.allowMultipleFiles if questionData else data.allowMultipleFiles) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="allowMultipleFiles">
+                    Allow multiple file uploads
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Users can upload more than one file
+                </div>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="enableDragDrop" name="enableDragDrop" type="checkbox" value="true"{% if (questionData.enableDragDrop if questionData else data.enableDragDrop) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="enableDragDrop">
+                    Enable drag and drop
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Allow users to drag files directly onto the upload area
+                </div>
+            </div>
+        </div>
+
+        {{ govukInput({
+            label: {
+                text: "Maximum number of files (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Only applies if multiple files are allowed. Leave blank for no limit."
+            },
+            classes: "govuk-input--width-5",
+            id: "maxFiles",
+            name: "maxFiles",
+            type: "number",
+            attributes: {
+                "min": "1",
+                "max": "20"
+            },
+            value: questionData.maxFiles if questionData else data.maxFiles
+        }) }}
+
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="requireFileDescription" name="requireFileDescription" type="checkbox" value="true"{% if (questionData.requireFileDescription if questionData else data.requireFileDescription) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="requireFileDescription">
+                    Require description for each file
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Ask users to provide a description for each uploaded file
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

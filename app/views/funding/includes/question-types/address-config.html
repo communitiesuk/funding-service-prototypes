@@ -1,0 +1,46 @@
+{# Address question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Address input options
+        </legend>
+        
+        {{ govukRadios({
+            name: "addressType",
+            items: [
+                { value: "uk", text: "UK addresses only", hint: {
+                    text: "Standard UK address format with postcode lookup"
+                } },
+                { value: "international", text: "International addresses", hint: {
+                    text: "Allow addresses from any country"
+                } },
+                { value: "manual", text: "Manual entry only", hint: {
+                    text: "No postcode lookup, users enter full address manually"
+                } }
+            ],
+            value: (questionData.addressType if questionData else data.addressType) or "uk"
+        }) }}
+
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="includeAddressLine3" name="includeAddressLine3" type="checkbox" value="true"{% if (questionData.includeAddressLine3 if questionData else data.includeAddressLine3) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="includeAddressLine3">
+                    Include third address line
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Add an optional third line for the address
+                </div>
+            </div>
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="requireCounty" name="requireCounty" type="checkbox" value="true"{% if (questionData.requireCounty if questionData else data.requireCounty) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="requireCounty">
+                    Require county/state field
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Make the county or state field mandatory
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
