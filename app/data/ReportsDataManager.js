@@ -390,7 +390,7 @@ class ReportsDataManager {
         return task.questions.find(question => question.id === questionId);
     }
 
-    // Add a new question to a task - FIXED TO STORE ALL CONFIGURATION
+    // Add a new question to a task - ENHANCED TO STORE ALL CONFIGURATION
     addQuestion(reportId, taskId, questionData, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task) return null;
@@ -412,18 +412,29 @@ class ReportsDataManager {
             // Text type fields
             textType: questionData.textType,
             characterLimit: questionData.characterLimit,
+            inputWidth: questionData.inputWidth,
+            textAutocomplete: questionData.textAutocomplete,
+            inputMode: questionData.inputMode,
             
             // Number type fields
             numberPrefix: questionData.numberPrefix,
             numberSuffix: questionData.numberSuffix,
             allowDecimals: questionData.allowDecimals,
+            minValue: questionData.minValue,
+            maxValue: questionData.maxValue,
+            stepValue: questionData.stepValue,
+            numberInputWidth: questionData.numberInputWidth,
             
             // Selection type fields
             selectionType: questionData.selectionType,
             selectionOptions: questionData.selectionOptions,
             selectionOptionsArray: questionData.selectionOptionsArray,
+            selectionLayout: questionData.selectionLayout,
+            selectionSize: questionData.selectionSize,
+            includeOtherOption: questionData.includeOtherOption,
             
             // Date type fields
+            dateInputType: questionData.dateInputType,
             includePastDates: questionData.includePastDates,
             includeFutureDates: questionData.includeFutureDates,
             earliestDate: questionData.earliestDate,
@@ -446,7 +457,9 @@ class ReportsDataManager {
             acceptedFileTypes: questionData.acceptedFileTypes,
             maxFileSize: questionData.maxFileSize,
             allowMultipleFiles: questionData.allowMultipleFiles,
-            maxFiles: questionData.maxFiles
+            maxFiles: questionData.maxFiles,
+            enableDragDrop: questionData.enableDragDrop,
+            requireFileDescription: questionData.requireFileDescription
         };
 
         task.questions.push(newQuestion);
@@ -454,7 +467,7 @@ class ReportsDataManager {
         return newQuestion;
     }
 
-    // Update a question - FIXED TO UPDATE ALL CONFIGURATION
+    // Update a question - ENHANCED TO UPDATE ALL CONFIGURATION
     updateQuestion(reportId, taskId, questionId, updates, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task || !task.questions) return false;

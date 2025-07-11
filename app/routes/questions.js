@@ -96,13 +96,13 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
         // Text fields
-        'textType', 'characterLimit',
+        'textType', 'characterLimit', 'inputWidth', 'textAutocomplete', 'inputMode',
         // Number fields
-        'numberPrefix', 'numberSuffix', 'allowDecimals',
+        'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
         // Date fields
-        'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
+        'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
         'emailAutocomplete', 'allowMultipleEmails',
         // Phone fields
@@ -110,7 +110,7 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
     ];
 
     fieldsToDelete.forEach(field => {
@@ -127,19 +127,19 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     res.render('funding/grant/reports/add/question/index');
 })
 
-// Question type selection
+// Question type selection - ENHANCED to clear all new fields
 router.post('/funding/grant/reports/add/question/options', function (req, res) {
     // Clear any existing question configuration data first (except context data)
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'isRequired',
         // Text fields
-        'textType', 'characterLimit',
+        'textType', 'characterLimit', 'inputWidth', 'textAutocomplete', 'inputMode',
         // Number fields
-        'numberPrefix', 'numberSuffix', 'allowDecimals',
+        'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
         // Date fields
-        'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
+        'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
         'emailAutocomplete', 'allowMultipleEmails',
         // Phone fields
@@ -147,7 +147,7 @@ router.post('/funding/grant/reports/add/question/options', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
     ];
 
     fieldsToDelete.forEach(field => {
@@ -159,7 +159,7 @@ router.post('/funding/grant/reports/add/question/options', function (req, res) {
     res.render('funding/grant/reports/add/question/options');
 })
 
-// Add question
+// Add question - ENHANCED to handle all new configuration fields
 router.post('/funding/grant/reports/add/question/another', function (req, res) {
     const taskId = req.session.data.currentTaskId;
     const sectionId = req.session.data.currentSectionId;
@@ -167,10 +167,10 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     const isUnassignedTask = req.session.data.isUnassignedTask;
     const dataManager = new ReportsDataManager(req.session.data);
 
-    // Build base question configuration
+    // Build comprehensive question configuration
     const questionConfig = {
-        questionName: req.body.questionName, // This is the actual question text users see
-        questionText: req.body.questionText || req.body.questionName, // This is the internal reference
+        questionName: req.body.questionName,
+        questionText: req.body.questionText || req.body.questionName,
         questionHint: req.body.questionHint,
         questionType: req.session.data.questionType,
         isRequired: req.body.isRequired === 'true'
@@ -183,17 +183,34 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             if (req.body.characterLimit) {
                 questionConfig.characterLimit = parseInt(req.body.characterLimit);
             }
+            questionConfig.inputWidth = req.body.inputWidth;
+            questionConfig.textAutocomplete = req.body.textAutocomplete;
+            questionConfig.inputMode = req.body.inputMode;
             break;
 
         case 'number':
             questionConfig.numberPrefix = req.body.numberPrefix;
             questionConfig.numberSuffix = req.body.numberSuffix;
             questionConfig.allowDecimals = req.body.allowDecimals === 'true';
+            if (req.body.minValue) {
+                questionConfig.minValue = parseFloat(req.body.minValue);
+            }
+            if (req.body.maxValue) {
+                questionConfig.maxValue = parseFloat(req.body.maxValue);
+            }
+            if (req.body.stepValue) {
+                questionConfig.stepValue = parseFloat(req.body.stepValue);
+            }
+            questionConfig.numberInputWidth = req.body.numberInputWidth;
             break;
 
         case 'selection':
             questionConfig.selectionType = req.body.selectionType || 'radio';
             questionConfig.selectionOptions = req.body.selectionOptions;
+            questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
+            questionConfig.selectionSize = req.body.selectionSize || 'regular';
+            questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
+            
             // Parse options into array (split by newlines, remove empty lines)
             if (questionConfig.selectionOptions) {
                 questionConfig.selectionOptionsArray = questionConfig.selectionOptions
@@ -204,6 +221,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             break;
 
         case 'date':
+            questionConfig.dateInputType = req.body.dateInputType || 'full';
             questionConfig.includePastDates = req.body.includePastDates === 'true';
             questionConfig.includeFutureDates = req.body.includeFutureDates === 'true';
             questionConfig.earliestDate = req.body.earliestDate;
@@ -232,6 +250,8 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
                 questionConfig.maxFileSize = parseInt(req.body.maxFileSize);
             }
             questionConfig.allowMultipleFiles = req.body.allowMultipleFiles === 'true';
+            questionConfig.enableDragDrop = req.body.enableDragDrop === 'true';
+            questionConfig.requireFileDescription = req.body.requireFileDescription === 'true';
             if (req.body.maxFiles) {
                 questionConfig.maxFiles = parseInt(req.body.maxFiles);
             }
@@ -249,17 +269,17 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     // Add the question to the task
     const newQuestion = dataManager.addQuestion(reportId, taskId, questionConfig, sectionId);
 
-    // Clear form data from session
+    // Clear form data from session - ENHANCED to clear all new fields
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
         // Text fields
-        'textType', 'characterLimit',
+        'textType', 'characterLimit', 'inputWidth', 'textAutocomplete', 'inputMode',
         // Number fields
-        'numberPrefix', 'numberSuffix', 'allowDecimals',
+        'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
         // Date fields
-        'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
+        'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
         'emailAutocomplete', 'allowMultipleEmails',
         // Phone fields
@@ -267,7 +287,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles',
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription',
         // Context fields
         'isUnassignedTask', 'validationErrors'
     ];
@@ -291,7 +311,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     }
 })
 
-// Edit question page
+// Edit question page - ENHANCED to store all configuration data in session
 router.get('/funding/grant/reports/edit/question/', function (req, res) {
     const questionId = req.query.questionId;
     const taskId = req.query.taskId;
@@ -327,17 +347,17 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         currentSectionName = currentSection?.sectionName;
     }
 
-    // Clear any existing question configuration data first
+    // Clear any existing question configuration data first - ENHANCED
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
         // Text fields
-        'textType', 'characterLimit',
+        'textType', 'characterLimit', 'inputWidth', 'textAutocomplete', 'inputMode',
         // Number fields
-        'numberPrefix', 'numberSuffix', 'allowDecimals',
+        'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
         // Date fields
-        'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
+        'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
         'emailAutocomplete', 'allowMultipleEmails',
         // Phone fields
@@ -345,16 +365,16 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
     ];
 
     fieldsToDelete.forEach(field => {
         delete req.session.data[field];
     });
 
-    // Store current question data in session for form population
-    req.session.data.questionName = currentQuestion.questionName; // The actual question text
-    req.session.data.questionText = currentQuestion.questionText; // The internal reference
+    // Store current question data in session for form population - ENHANCED
+    req.session.data.questionName = currentQuestion.questionName;
+    req.session.data.questionText = currentQuestion.questionText;
     req.session.data.questionHint = currentQuestion.questionHint;
     req.session.data.questionType = currentQuestion.questionType;
     req.session.data.isRequired = currentQuestion.isRequired;
@@ -364,17 +384,28 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         case 'text':
             req.session.data.textType = currentQuestion.textType;
             req.session.data.characterLimit = currentQuestion.characterLimit;
+            req.session.data.inputWidth = currentQuestion.inputWidth;
+            req.session.data.textAutocomplete = currentQuestion.textAutocomplete;
+            req.session.data.inputMode = currentQuestion.inputMode;
             break;
         case 'number':
             req.session.data.numberPrefix = currentQuestion.numberPrefix;
             req.session.data.numberSuffix = currentQuestion.numberSuffix;
             req.session.data.allowDecimals = currentQuestion.allowDecimals;
+            req.session.data.minValue = currentQuestion.minValue;
+            req.session.data.maxValue = currentQuestion.maxValue;
+            req.session.data.stepValue = currentQuestion.stepValue;
+            req.session.data.numberInputWidth = currentQuestion.numberInputWidth;
             break;
         case 'selection':
             req.session.data.selectionType = currentQuestion.selectionType;
             req.session.data.selectionOptions = currentQuestion.selectionOptions;
+            req.session.data.selectionLayout = currentQuestion.selectionLayout;
+            req.session.data.selectionSize = currentQuestion.selectionSize;
+            req.session.data.includeOtherOption = currentQuestion.includeOtherOption;
             break;
         case 'date':
+            req.session.data.dateInputType = currentQuestion.dateInputType;
             req.session.data.includePastDates = currentQuestion.includePastDates;
             req.session.data.includeFutureDates = currentQuestion.includeFutureDates;
             req.session.data.earliestDate = currentQuestion.earliestDate;
@@ -398,6 +429,8 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.maxFileSize = currentQuestion.maxFileSize;
             req.session.data.allowMultipleFiles = currentQuestion.allowMultipleFiles;
             req.session.data.maxFiles = currentQuestion.maxFiles;
+            req.session.data.enableDragDrop = currentQuestion.enableDragDrop;
+            req.session.data.requireFileDescription = currentQuestion.requireFileDescription;
             break;
     }
 
@@ -427,17 +460,28 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             // Text fields
             textType: currentQuestion.textType,
             characterLimit: currentQuestion.characterLimit,
+            inputWidth: currentQuestion.inputWidth,
+            textAutocomplete: currentQuestion.textAutocomplete,
+            inputMode: currentQuestion.inputMode,
             
             // Number fields
             numberPrefix: currentQuestion.numberPrefix,
             numberSuffix: currentQuestion.numberSuffix,
             allowDecimals: currentQuestion.allowDecimals,
+            minValue: currentQuestion.minValue,
+            maxValue: currentQuestion.maxValue,
+            stepValue: currentQuestion.stepValue,
+            numberInputWidth: currentQuestion.numberInputWidth,
             
             // Selection fields
             selectionType: currentQuestion.selectionType,
             selectionOptions: currentQuestion.selectionOptions,
+            selectionLayout: currentQuestion.selectionLayout,
+            selectionSize: currentQuestion.selectionSize,
+            includeOtherOption: currentQuestion.includeOtherOption,
             
             // Date fields
+            dateInputType: currentQuestion.dateInputType,
             includePastDates: currentQuestion.includePastDates,
             includeFutureDates: currentQuestion.includeFutureDates,
             earliestDate: currentQuestion.earliestDate,
@@ -460,14 +504,16 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             acceptedFileTypes: currentQuestion.acceptedFileTypes,
             maxFileSize: currentQuestion.maxFileSize,
             allowMultipleFiles: currentQuestion.allowMultipleFiles,
-            maxFiles: currentQuestion.maxFiles
+            maxFiles: currentQuestion.maxFiles,
+            enableDragDrop: currentQuestion.enableDragDrop,
+            requireFileDescription: currentQuestion.requireFileDescription
         }
     };
 
     res.render('funding/grant/reports/edit/question/index', templateData);
 })
 
-// Update question
+// Update question - ENHANCED to handle all new configuration fields
 router.post('/funding/grant/reports/edit/question/update', function (req, res) {
     const questionId = req.body.questionId;
     const taskId = req.body.taskId;
@@ -476,33 +522,49 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
     const isUnassignedTask = req.body.isUnassignedTask === 'true';
     const dataManager = new ReportsDataManager(req.session.data);
 
-    // Build updated question configuration
+    // Build comprehensive updated question configuration
     const questionConfig = {
-        questionName: req.body.questionName, // The actual question text users see
-        questionText: req.body.questionText || req.body.questionName, // The internal reference
+        questionName: req.body.questionName,
+        questionText: req.body.questionText || req.body.questionName,
         questionHint: req.body.questionHint,
         questionType: req.body.questionType,
         isRequired: req.body.isRequired === 'true'
     };
 
-    // Add type-specific configurations
+    // Add type-specific configurations - SAME AS ADD ROUTE
     switch (req.body.questionType) {
         case 'text':
             questionConfig.textType = req.body.textType || 'single';
             if (req.body.characterLimit) {
                 questionConfig.characterLimit = parseInt(req.body.characterLimit);
             }
+            questionConfig.inputWidth = req.body.inputWidth;
+            questionConfig.textAutocomplete = req.body.textAutocomplete;
+            questionConfig.inputMode = req.body.inputMode;
             break;
 
         case 'number':
             questionConfig.numberPrefix = req.body.numberPrefix;
             questionConfig.numberSuffix = req.body.numberSuffix;
             questionConfig.allowDecimals = req.body.allowDecimals === 'true';
+            if (req.body.minValue) {
+                questionConfig.minValue = parseFloat(req.body.minValue);
+            }
+            if (req.body.maxValue) {
+                questionConfig.maxValue = parseFloat(req.body.maxValue);
+            }
+            if (req.body.stepValue) {
+                questionConfig.stepValue = parseFloat(req.body.stepValue);
+            }
+            questionConfig.numberInputWidth = req.body.numberInputWidth;
             break;
 
         case 'selection':
             questionConfig.selectionType = req.body.selectionType || 'radio';
             questionConfig.selectionOptions = req.body.selectionOptions;
+            questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
+            questionConfig.selectionSize = req.body.selectionSize || 'regular';
+            questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
             if (questionConfig.selectionOptions) {
                 questionConfig.selectionOptionsArray = questionConfig.selectionOptions
                     .split('\n')
@@ -512,6 +574,7 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             break;
 
         case 'date':
+            questionConfig.dateInputType = req.body.dateInputType || 'full';
             questionConfig.includePastDates = req.body.includePastDates === 'true';
             questionConfig.includeFutureDates = req.body.includeFutureDates === 'true';
             questionConfig.earliestDate = req.body.earliestDate;
@@ -540,6 +603,8 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
                 questionConfig.maxFileSize = parseInt(req.body.maxFileSize);
             }
             questionConfig.allowMultipleFiles = req.body.allowMultipleFiles === 'true';
+            questionConfig.enableDragDrop = req.body.enableDragDrop === 'true';
+            questionConfig.requireFileDescription = req.body.requireFileDescription === 'true';
             if (req.body.maxFiles) {
                 questionConfig.maxFiles = parseInt(req.body.maxFiles);
             }
@@ -623,7 +688,7 @@ router.get('/funding/grant/reports/questions/delete/:questionId', function (req,
     res.redirect(redirectUrl);
 })
 
-// Helper function to validate question configuration
+// Enhanced validation function for question configuration
 function validateQuestionConfig(questionConfig) {
     const errors = [];
 
@@ -668,12 +733,26 @@ function validateQuestionConfig(questionConfig) {
             }
             break;
 
+        case 'number':
+            if (questionConfig.minValue !== undefined && questionConfig.maxValue !== undefined) {
+                if (questionConfig.minValue >= questionConfig.maxValue) {
+                    errors.push('Minimum value must be less than maximum value');
+                }
+            }
+            if (questionConfig.stepValue !== undefined && questionConfig.stepValue <= 0) {
+                errors.push('Step value must be greater than 0');
+            }
+            break;
+
         case 'file':
             if (questionConfig.maxFileSize && questionConfig.maxFileSize < 1) {
                 errors.push('Maximum file size must be at least 1MB');
             }
             if (questionConfig.maxFiles && questionConfig.maxFiles < 1) {
                 errors.push('Maximum number of files must be at least 1');
+            }
+            if (questionConfig.maxFileSize && questionConfig.maxFileSize > 100) {
+                errors.push('Maximum file size cannot exceed 100MB');
             }
             break;
     }

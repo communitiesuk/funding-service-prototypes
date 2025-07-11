@@ -169,41 +169,7 @@
                                 </legend>
                                 
                                 {{ govukRadios({
-                                    name: "addressType",
-                                    items: [
-                                        { value: "uk", text: "UK addresses only", hint: {
-                                            text: "Standard UK address format with postcode lookup"
-                                        } },
-                                        { value: "international", text: "International addresses", hint: {
-                                            text: "Allow addresses from any country"
-                                        } },
-                                        { value: "manual", text: "Manual entry only", hint: {
-                                            text: "No postcode lookup, users enter full address manually"
-                                        } }
-                                    ],
-                                    value: questionData.addressType or "uk"
-                                }) }}
-
-                                <div class="govuk-checkboxes govuk-checkboxes--small">
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="includeAddressLine3" name="includeAddressLine3" type="checkbox" value="true"{% if questionData.includeAddressLine3 %} checked{% endif %}>
-                                        <label class="govuk-label govuk-checkboxes__label" for="includeAddressLine3">
-                                            Include third address line
-                                        </label>
-                                        <div class="govuk-hint govuk-checkboxes__hint">
-                                            Add an optional third line for the address
-                                        </div>
-                                    </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="requireCounty" name="requireCounty" type="checkbox" value="true"{% if questionData.requireCounty %} checked{% endif %}>
-                                        <label class="govuk-label govuk-checkboxes__label" for="requireCounty">
-                                            Require county/state field
-                                        </label>
-                                        <div class="govuk-hint govuk-checkboxes__hint">
-                                            Make the county or state field mandatory
-                                        </div>
-                                    </div>
-                                </div>    name: "textType",
+                                    name: "textType",
                                     items: [
                                         { value: "single", text: "Single line text", hint: {
                                             text: "For short responses like names or titles"
@@ -231,6 +197,61 @@
                                         "min": "1"
                                     },
                                     value: questionData.characterLimit
+                                }) }}
+
+                                {{ govukSelect({
+                                    label: {
+                                        text: "Input width",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "How wide should the input field appear?"
+                                    },
+                                    id: "inputWidth",
+                                    name: "inputWidth",
+                                    items: [
+                                        { value: "", text: "Default width", selected: not questionData.inputWidth },
+                                        { value: "govuk-input--width-20", text: "20 characters", selected: questionData.inputWidth == "govuk-input--width-20" },
+                                        { value: "govuk-input--width-10", text: "10 characters", selected: questionData.inputWidth == "govuk-input--width-10" },
+                                        { value: "govuk-input--width-5", text: "5 characters", selected: questionData.inputWidth == "govuk-input--width-5" },
+                                        { value: "govuk-input--width-4", text: "4 characters", selected: questionData.inputWidth == "govuk-input--width-4" },
+                                        { value: "govuk-input--width-3", text: "3 characters", selected: questionData.inputWidth == "govuk-input--width-3" },
+                                        { value: "govuk-input--width-2", text: "2 characters", selected: questionData.inputWidth == "govuk-input--width-2" }
+                                    ]
+                                }) }}
+
+                                {{ govukInput({
+                                    label: {
+                                        text: "Autocomplete attribute (optional)",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "Help browsers autocomplete common fields like 'name', 'organization', 'street-address'"
+                                    },
+                                    classes: "govuk-!-width-one-half",
+                                    id: "textAutocomplete",
+                                    name: "textAutocomplete",
+                                    value: questionData.textAutocomplete
+                                }) }}
+
+                                {{ govukSelect({
+                                    label: {
+                                        text: "Mobile keyboard type",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "Optimize mobile keyboard for expected input type"
+                                    },
+                                    id: "inputMode",
+                                    name: "inputMode",
+                                    items: [
+                                        { value: "", text: "Default keyboard", selected: not questionData.inputMode },
+                                        { value: "text", text: "Text keyboard", selected: questionData.inputMode == "text" },
+                                        { value: "numeric", text: "Numeric keyboard", selected: questionData.inputMode == "numeric" },
+                                        { value: "email", text: "Email keyboard", selected: questionData.inputMode == "email" },
+                                        { value: "url", text: "URL keyboard", selected: questionData.inputMode == "url" },
+                                        { value: "search", text: "Search keyboard", selected: questionData.inputMode == "search" }
+                                    ]
                                 }) }}
                             </fieldset>
                         </div>
@@ -270,6 +291,50 @@
                                     value: questionData.numberSuffix
                                 }) }}
 
+                                {{ govukInput({
+                                    label: {
+                                        text: "Minimum value (optional)",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "Lowest number allowed"
+                                    },
+                                    classes: "govuk-input--width-10",
+                                    id: "minValue",
+                                    name: "minValue",
+                                    type: "number",
+                                    value: questionData.minValue
+                                }) }}
+
+                                {{ govukInput({
+                                    label: {
+                                        text: "Maximum value (optional)",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "Highest number allowed"
+                                    },
+                                    classes: "govuk-input--width-10",
+                                    id: "maxValue",
+                                    name: "maxValue",
+                                    type: "number",
+                                    value: questionData.maxValue
+                                }) }}
+
+                                {{ govukInput({
+                                    label: {
+                                        text: "Step value (optional)",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "For decimals, e.g. '0.01' for currency or '0.1' for one decimal place"
+                                    },
+                                    classes: "govuk-input--width-10",
+                                    id: "stepValue",
+                                    name: "stepValue",
+                                    value: questionData.stepValue
+                                }) }}
+
                                 <div class="govuk-form-group">
                                     <div class="govuk-checkboxes govuk-checkboxes--small">
                                         <div class="govuk-checkboxes__item">
@@ -280,6 +345,27 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {{ govukSelect({
+                                    label: {
+                                        text: "Input width",
+                                        classes: "govuk-label--s"
+                                    },
+                                    hint: {
+                                        text: "How wide should the number input appear?"
+                                    },
+                                    id: "numberInputWidth",
+                                    name: "numberInputWidth",
+                                    items: [
+                                        { value: "", text: "Default width", selected: not questionData.numberInputWidth },
+                                        { value: "govuk-input--width-20", text: "20 characters", selected: questionData.numberInputWidth == "govuk-input--width-20" },
+                                        { value: "govuk-input--width-10", text: "10 characters", selected: questionData.numberInputWidth == "govuk-input--width-10" },
+                                        { value: "govuk-input--width-5", text: "5 characters", selected: questionData.numberInputWidth == "govuk-input--width-5" },
+                                        { value: "govuk-input--width-4", text: "4 characters", selected: questionData.numberInputWidth == "govuk-input--width-4" },
+                                        { value: "govuk-input--width-3", text: "3 characters", selected: questionData.numberInputWidth == "govuk-input--width-3" },
+                                        { value: "govuk-input--width-2", text: "2 characters", selected: questionData.numberInputWidth == "govuk-input--width-2" }
+                                    ]
+                                }) }}
                             </fieldset>
                         </div>
 
@@ -303,17 +389,53 @@
                                     value: questionData.selectionType or "radio"
                                 }) }}
 
+                                {{ govukRadios({
+                                    name: "selectionLayout",
+                                    items: [
+                                        { value: "stacked", text: "Stacked (vertical)", hint: {
+                                            text: "Options appear one below the other (recommended)"
+                                        } },
+                                        { value: "inline", text: "Inline (horizontal)", hint: {
+                                            text: "Options appear side by side (only for short options)"
+                                        } }
+                                    ],
+                                    value: questionData.selectionLayout or "stacked"
+                                }) }}
+
+                                {{ govukRadios({
+                                    name: "selectionSize",
+                                    items: [
+                                        { value: "regular", text: "Regular size" },
+                                        { value: "small", text: "Small size", hint: {
+                                            text: "More compact appearance"
+                                        } }
+                                    ],
+                                    value: questionData.selectionSize or "regular"
+                                }) }}
+
                                 <div class="govuk-form-group">
                                     <label class="govuk-label govuk-label--s" for="selectionOptions">
                                         Options (one per line)
                                     </label>
                                     <div class="govuk-hint">
-                                        Enter each option on a new line. For example:<br>
-                                        Option 1<br>
+                                        Enter each option on a new line. You can also add hints by using || separator:<br>
+                                        Option 1||This is a hint for option 1<br>
                                         Option 2<br>
-                                        Option 3
+                                        Option 3||Another hint
                                     </div>
                                     <textarea class="govuk-textarea" id="selectionOptions" name="selectionOptions" rows="5">{{ questionData.selectionOptions }}</textarea>
+                                </div>
+
+                                <div class="govuk-checkboxes govuk-checkboxes--small">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="includeOtherOption" name="includeOtherOption" type="checkbox" value="true"{% if questionData.includeOtherOption %} checked{% endif %}>
+                                        <label class="govuk-label govuk-checkboxes__label" for="includeOtherOption">
+                                            Include "Other" option with text input
+                                        </label>
+                                        <div class="govuk-hint govuk-checkboxes__hint">
+                                            Add an "Other" option that reveals a text input when selected
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
                         </div>
@@ -324,6 +446,22 @@
                                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                                     Date input options
                                 </legend>
+                                
+                                {{ govukRadios({
+                                    name: "dateInputType",
+                                    items: [
+                                        { value: "full", text: "Full date (day, month, year)", hint: {
+                                            text: "Three separate fields for day, month, and year"
+                                        } },
+                                        { value: "month-year", text: "Month and year only", hint: {
+                                            text: "Two fields for month and year (no day)"
+                                        } },
+                                        { value: "year-only", text: "Year only", hint: {
+                                            text: "Single field for year"
+                                        } }
+                                    ],
+                                    value: questionData.dateInputType or "full"
+                                }) }}
                                 
                                 <div class="govuk-checkboxes govuk-checkboxes--small">
                                     <div class="govuk-checkboxes__item">
@@ -518,7 +656,7 @@
                                         classes: "govuk-label--s"
                                     },
                                     hint: {
-                                        text: "Comma-separated list, e.g. 'PDF, DOC, DOCX'. Leave blank to accept all file types."
+                                        text: "Comma-separated list, e.g. 'PDF, DOC, DOCX, XLS, XLSX, PNG, JPG'. Leave blank to accept all file types."
                                     },
                                     classes: "govuk-!-width-two-thirds",
                                     id: "acceptedFileTypes",
@@ -532,14 +670,15 @@
                                         classes: "govuk-label--s"
                                     },
                                     hint: {
-                                        text: "Maximum file size in megabytes. Leave blank for system default."
+                                        text: "Maximum file size in megabytes. Leave blank for system default (usually 10MB)."
                                     },
                                     classes: "govuk-input--width-5",
                                     id: "maxFileSize",
                                     name: "maxFileSize",
                                     type: "number",
                                     attributes: {
-                                        "min": "1"
+                                        "min": "1",
+                                        "max": "100"
                                     },
                                     value: questionData.maxFileSize
                                 }) }}
@@ -552,6 +691,15 @@
                                         </label>
                                         <div class="govuk-hint govuk-checkboxes__hint">
                                             Users can upload more than one file
+                                        </div>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="enableDragDrop" name="enableDragDrop" type="checkbox" value="true"{% if questionData.enableDragDrop %} checked{% endif %}>
+                                        <label class="govuk-label govuk-checkboxes__label" for="enableDragDrop">
+                                            Enable drag and drop
+                                        </label>
+                                        <div class="govuk-hint govuk-checkboxes__hint">
+                                            Allow users to drag files directly onto the upload area
                                         </div>
                                     </div>
                                 </div>
@@ -569,10 +717,23 @@
                                     name: "maxFiles",
                                     type: "number",
                                     attributes: {
-                                        "min": "1"
+                                        "min": "1",
+                                        "max": "20"
                                     },
                                     value: questionData.maxFiles
                                 }) }}
+
+                                <div class="govuk-checkboxes govuk-checkboxes--small">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="requireFileDescription" name="requireFileDescription" type="checkbox" value="true"{% if questionData.requireFileDescription %} checked{% endif %}>
+                                        <label class="govuk-label govuk-checkboxes__label" for="requireFileDescription">
+                                            Require description for each file
+                                        </label>
+                                        <div class="govuk-hint govuk-checkboxes__hint">
+                                            Ask users to provide a description for each uploaded file
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
                         </div>
 
