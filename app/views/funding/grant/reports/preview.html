@@ -4,25 +4,69 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Application for funding" %}
-{% set pageSection = "Green Belt Review Funding" %}
+{% set pageHeading = reportName or "Monitoring Report" %}
+{% set pageSection = grantName or "Grant Name" %}
 
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
 
 <div class="govuk-inset-text preview govuk-!-margin-top-0">
-  Application preview
+  Report form preview
 </div>
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-		<p class="govuk-body">Dummy page to highlight that authentication happens with Microsoft MHCLG sign-in (page itself not seen)</p>
+                <p class="govuk-body">This is how your monitoring report form will appear to grant recipients when they have to complete it.</p>
+            </div>
+            <div class="govuk-grid-column-one-third">
+                <div class="govuk-!-text-align-right govuk-!-margin-top-6">
+                    {% if currentReportId %}
+                        {{ govukButton({
+                            text: "Manage form",
+                            href: "/funding/grant/reports/sections?reportId=" + currentReportId,
+                            classes: "govuk-button--secondary"
+                        }) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<p class="govuk-body-s govuk-footer__link govuk-!-margin-top-9"><a class="govuk-link govuk-link--no-visited-state " href="/funding/grants?signedIn=yes">Continue to signed in state</a></p>
+     <div class="govuk-grid-column-two-thirds">
+
+        {% if previewSections and previewSections.length > 0 %}
+            {% for section in previewSections %}
+                {% if section.heading != "No content" %}
+                    <h2 class="govuk-heading-m{% if not loop.first %} govuk-!-margin-top-7{% endif %}">{{ section.heading }}</h2>
+                {% endif %}
+
+                {{ govukTaskList({
+                    idPrefix: "section-" + loop.index,
+                    items: section.tasks
+                }) }}
+            {% endfor %}
+
+            <div class="govuk-!-margin-top-7">
+                <p class="govuk-body">You must complete all sections before you can submit the report.</p>
+
+                {{ govukButton({
+                    text: "Submit",
+                    href: "#",
+                    classes: "govuk-button"
+                }) }}
+            </div>
+        {% else %}
+            <div class="govuk-inset-text">
+                <p class="govuk-body">This report has no content yet.</p>
+                <p class="govuk-body"><a href="/funding/grant/reports/sections?reportId={{ currentReportId }}" class="govuk-link">Add sections and tasks</a> to create your form.</p>
+            </div>
+        {% endif %}
 
     </div>
 </div>
