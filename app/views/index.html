@@ -61,7 +61,7 @@
 
 			<form method="post" action="/sign-in/" >
 				<input type="hidden" name="fundingService" id="fundingService" value="access" />
-				<input type="hidden" name="authentication" id="authentication" value="Magic link" />				
+				<input type="hidden" name="authentication" id="authentication" value="Magic link" />
 				{{ govukButton({
 					text: "Continue",
 					classes: "govuk-!-margin-top-3"
@@ -80,7 +80,7 @@
 					text: "Continue",
 					classes: "govuk-!-margin-top-3"
 				}) }}
-			</form>			
+			</form>
 		{% endset %}
 
 		{% set serviceAssessHtml %}
@@ -106,9 +106,8 @@
 		{{ govukTabs({
 			items: [
 				{ label: "Deliver grant funding", id: "service-deliver-funding", panel: { html: serviceDeliverFundingHtml } },
-				{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } },
-				{ label: "Apply for funding", id: "service-apply", panel: { html: serviceApplyHtml } },
-				{ label: "Assess applications for funding", id: "service-assess", panel: { html: serviceAssessHtml } }
+				{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } }
+
 			]
 		}) }}
 
