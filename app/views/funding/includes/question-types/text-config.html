@@ -5,36 +5,18 @@
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             Text input options
         </legend>
-        
+
         {{ govukRadios({
             name: "textType",
             items: [
                 { value: "single", text: "Single line text", hint: {
-                    text: "For short responses like names or titles"
+                    text: "When you need to let users enter text that's no longer than a single line, such as their name or phone number"
                 } },
                 { value: "multi", text: "Multi-line text (textarea)", hint: {
-                    text: "For longer responses with multiple paragraphs"
+                    text: "When you need to let users enter an amount of text that's longer than a single line."
                 } }
             ],
             value: (questionData.textType if questionData else data.textType) or "single"
-        }) }}
-
-        {{ govukInput({
-            label: {
-                text: "Character limit (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Maximum number of characters allowed. Leave blank for no limit."
-            },
-            classes: "govuk-input--width-10",
-            id: "characterLimit",
-            name: "characterLimit",
-            type: "number",
-            attributes: {
-                "min": "1"
-            },
-            value: questionData.characterLimit if questionData else data.characterLimit
         }) }}
 
         {{ govukSelect({
@@ -43,7 +25,7 @@
                 classes: "govuk-label--s"
             },
             hint: {
-                text: "How wide should the input field appear?"
+                text: "Size text inputs to match their expected content length"
             },
             id: "inputWidth",
             name: "inputWidth",
@@ -60,6 +42,34 @@
 
         {{ govukInput({
             label: {
+                text: "Prefix (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Use prefixes to help users enter things like currencies, for example £ "
+            },
+            classes: "govuk-input--width-10",
+            id: "textPrefix",
+            name: "textPrefix",
+            value: questionData.textPrefix if questionData else data.textPrefix
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Suffix (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Use suffixes to help users enter things like weights, for example kg"
+            },
+            classes: "govuk-input--width-10",
+            id: "textSuffix",
+            name: "textSuffix",
+            value: questionData.textSuffix if questionData else data.textSuffix
+        }) }}
+
+        <!-- {{ govukInput({
+            label: {
                 text: "Autocomplete attribute (optional)",
                 classes: "govuk-label--s"
             },
@@ -70,26 +80,6 @@
             id: "textAutocomplete",
             name: "textAutocomplete",
             value: questionData.textAutocomplete if questionData else data.textAutocomplete
-        }) }}
-
-        {{ govukSelect({
-            label: {
-                text: "Mobile keyboard type",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Optimize mobile keyboard for expected input type"
-            },
-            id: "inputMode",
-            name: "inputMode",
-            items: [
-                { value: "", text: "Default keyboard", selected: not ((questionData.inputMode if questionData else data.inputMode)) },
-                { value: "text", text: "Text keyboard", selected: (questionData.inputMode if questionData else data.inputMode) == "text" },
-                { value: "numeric", text: "Numeric keyboard", selected: (questionData.inputMode if questionData else data.inputMode) == "numeric" },
-                { value: "email", text: "Email keyboard", selected: (questionData.inputMode if questionData else data.inputMode) == "email" },
-                { value: "url", text: "URL keyboard", selected: (questionData.inputMode if questionData else data.inputMode) == "url" },
-                { value: "search", text: "Search keyboard", selected: (questionData.inputMode if questionData else data.inputMode) == "search" }
-            ]
-        }) }}
+        }) }} -->
     </fieldset>
 </div>
