@@ -2,7 +2,7 @@
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
             Number input options
         </legend>
         
@@ -64,7 +64,7 @@
             value: questionData.maxValue if questionData else data.maxValue
         }) }}
 
-        {{ govukInput({
+        <!-- {{ govukInput({
             label: {
                 text: "Step value (optional)",
                 classes: "govuk-label--s"
@@ -76,16 +76,16 @@
             id: "stepValue",
             name: "stepValue",
             value: questionData.stepValue if questionData else data.stepValue
-        }) }}
+        }) }} -->
 
-        <div class="govuk-checkboxes govuk-checkboxes--small">
+        <!-- <div class="govuk-checkboxes govuk-checkboxes--small">
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="allowDecimals" name="allowDecimals" type="checkbox" value="true"{% if (questionData.allowDecimals if questionData else data.allowDecimals) %} checked{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="allowDecimals">
                     Allow decimal numbers
                 </label>
             </div>
-        </div>
+        </div> -->
 
         {{ govukSelect({
             label: {

@@ -6,19 +6,60 @@
             File upload options
         </legend>
         
-        {{ govukInput({
-            label: {
-                text: "Accepted file types (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Comma-separated list, e.g. 'PDF, DOC, DOCX, XLS, XLSX, PNG, JPG'. Leave blank to accept all file types."
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "acceptedFileTypes",
-            name: "acceptedFileTypes",
-            value: questionData.acceptedFileTypes if questionData else data.acceptedFileTypes
-        }) }}
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    Accepted file types
+                </legend>
+                <div class="govuk-hint">
+                    Select which file types users can upload. If none are selected, all file types will be accepted.
+                </div>
+                <div class="govuk-checkboxes govuk-checkboxes--small">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-pdf" name="acceptedFileTypes" type="checkbox" value="PDF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-pdf">
+                            PDF documents
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-word" name="acceptedFileTypes" type="checkbox" value="DOC,DOCX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-word">
+                            Word documents (DOC, DOCX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-excel" name="acceptedFileTypes" type="checkbox" value="XLS,XLSX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-excel">
+                            Excel spreadsheets (XLS, XLSX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-powerpoint" name="acceptedFileTypes" type="checkbox" value="PPT,PPTX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-powerpoint">
+                            PowerPoint presentations (PPT, PPTX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-images" name="acceptedFileTypes" type="checkbox" value="JPG,JPEG,PNG,GIF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-images">
+                            Images (JPG, PNG, GIF)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-text" name="acceptedFileTypes" type="checkbox" value="TXT,RTF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-text">
+                            Text files (TXT, RTF)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-csv" name="acceptedFileTypes" type="checkbox" value="CSV">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-csv">
+                            CSV files
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
 
         {{ govukInput({
             label: {
@@ -39,7 +80,7 @@
             value: questionData.maxFileSize if questionData else data.maxFileSize
         }) }}
 
-        <div class="govuk-checkboxes govuk-checkboxes--small">
+        <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-bottom-5">
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="allowMultipleFiles" name="allowMultipleFiles" type="checkbox" value="true"{% if (questionData.allowMultipleFiles if questionData else data.allowMultipleFiles) %} checked{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="allowMultipleFiles">
@@ -49,7 +90,7 @@
                     Users can upload more than one file
                 </div>
             </div>
-            <div class="govuk-checkboxes__item">
+            <!-- <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="enableDragDrop" name="enableDragDrop" type="checkbox" value="true"{% if (questionData.enableDragDrop if questionData else data.enableDragDrop) %} checked{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="enableDragDrop">
                     Enable drag and drop
@@ -57,7 +98,7 @@
                 <div class="govuk-hint govuk-checkboxes__hint">
                     Allow users to drag files directly onto the upload area
                 </div>
-            </div>
+            </div> -->
         </div>
 
         {{ govukInput({
@@ -78,17 +119,5 @@
             },
             value: questionData.maxFiles if questionData else data.maxFiles
         }) }}
-
-        <div class="govuk-checkboxes govuk-checkboxes--small">
-            <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="requireFileDescription" name="requireFileDescription" type="checkbox" value="true"{% if (questionData.requireFileDescription if questionData else data.requireFileDescription) %} checked{% endif %}>
-                <label class="govuk-label govuk-checkboxes__label" for="requireFileDescription">
-                    Require description for each file
-                </label>
-                <div class="govuk-hint govuk-checkboxes__hint">
-                    Ask users to provide a description for each uploaded file
-                </div>
-            </div>
-        </div>
     </fieldset>
 </div>

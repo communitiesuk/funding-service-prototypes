@@ -2,7 +2,7 @@
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
             Phone number options
         </legend>
         
@@ -14,29 +14,9 @@
                 } },
                 { value: "uk", text: "UK numbers only", hint: {
                     text: "Only accept UK phone numbers"
-                } },
-                { value: "mobile", text: "Mobile numbers only", hint: {
-                    text: "Only accept mobile phone numbers"
-                } },
-                { value: "international", text: "International format", hint: {
-                    text: "Accept international phone numbers with country codes"
                 } }
             ],
-            value: (questionData.phoneType if questionData else data.phoneType) or "any"
-        }) }}
-
-        {{ govukInput({
-            label: {
-                text: "Autocomplete attribute (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Help browsers autocomplete the field, e.g. 'tel' or 'mobile tel'"
-            },
-            classes: "govuk-!-width-one-half",
-            id: "phoneAutocomplete",
-            name: "phoneAutocomplete",
-            value: (questionData.phoneAutocomplete if questionData else data.phoneAutocomplete) or "tel"
+            value: questionData.phoneType if questionData else data.phoneType
         }) }}
     </fieldset>
 </div>

@@ -6,20 +6,6 @@
             Email input options
         </legend>
         
-        {{ govukInput({
-            label: {
-                text: "Autocomplete attribute (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Help browsers autocomplete the field, e.g. 'email' or 'work email'"
-            },
-            classes: "govuk-!-width-one-half",
-            id: "emailAutocomplete",
-            name: "emailAutocomplete",
-            value: (questionData.emailAutocomplete if questionData else data.emailAutocomplete) or "email"
-        }) }}
-
         <div class="govuk-checkboxes govuk-checkboxes--small">
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="allowMultipleEmails" name="allowMultipleEmails" type="checkbox" value="true"{% if (questionData.allowMultipleEmails if questionData else data.allowMultipleEmails) %} checked{% endif %}>
