@@ -1,0 +1,22 @@
+{# Phone question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Phone number options
+        </legend>
+        
+        {{ govukRadios({
+            name: "phoneType",
+            items: [
+                { value: "any", text: "Any phone number", hint: {
+                    text: "UK, international, mobile, or landline"
+                } },
+                { value: "uk", text: "UK numbers only", hint: {
+                    text: "Only accept UK phone numbers"
+                } }
+            ],
+            value: questionData.phoneType if questionData else data.phoneType
+        }) }}
+    </fieldset>
+</div>

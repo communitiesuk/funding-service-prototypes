@@ -2,7 +2,11 @@
 
 {% set navID = 'grantReports' %}
 {% set showBackLink = true %}
-{% set backLinkHref = "/funding/grant/reports/sections?reportId=" + data.currentReportId %}
+{% if data.isUnassignedTask %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% endif %}
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
@@ -28,28 +32,28 @@
                     legend: { text: pageHeading, isPageHeading: false, classes: "govuk-fieldset__legend govuk-visually-hidden" }
                 },
                 items: [
-                    { value: "Text", text: "Text", hint: {
+                    { value: "text", text: "Text", hint: {
                         text: "Free text responses of a single line or longer text with a word limit"
                     } },
-                    { value: "dateInput", text: "Date input", hint: {
+                    { value: "date", text: "Date input", hint: {
                         text: "Date input consisting of 3 fields - day, month and year"
                     } },
-                    { value: "Selection from a list of options", text: "Selection from a list of options", hint: {
+                    { value: "selection", text: "Selection from a list of options", hint: {
                         text: "Radio buttons for one option only or checkboxes for multiple choice"
                     } },
-                    { value: "Number", text: "Number", hint: {
+                    { value: "number", text: "Number", hint: {
                         text: "Numeric input with validation, and optional prefix and suffix"
                     } },
-                    { value: "Email address", text: "Email address", hint: {
+                    { value: "email", text: "Email address", hint: {
                         text: "Email input with validation"
                     } },
-                    { value: "Phone number", text: "Phone number", hint: {
+                    { value: "phone", text: "Phone number", hint: {
                         text: "Phone number input with validation"
                     } },
-                    { value: "Address", text: "Address", hint: {
+                    { value: "address", text: "Address", hint: {
                         text: "Full address input fields"
                     } },
-                    { value: "File upload", text: "File upload", hint: {
+                    { value: "file", text: "File upload", hint: {
                         text: "Allow users to upload documents"
                     } }
                 ],

@@ -1,0 +1,111 @@
+{# Number question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Number input options
+        </legend>
+        
+        {{ govukInput({
+            label: {
+                text: "Prefix (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Text to show before the input, e.g. '£' for currency"
+            },
+            classes: "govuk-input--width-5",
+            id: "numberPrefix",
+            name: "numberPrefix",
+            value: questionData.numberPrefix if questionData else data.numberPrefix
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Suffix (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Text to show after the input, e.g. 'kg' for weight"
+            },
+            classes: "govuk-input--width-5",
+            id: "numberSuffix",
+            name: "numberSuffix",
+            value: questionData.numberSuffix if questionData else data.numberSuffix
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Minimum value (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Lowest number allowed"
+            },
+            classes: "govuk-input--width-10",
+            id: "minValue",
+            name: "minValue",
+            type: "number",
+            value: questionData.minValue if questionData else data.minValue
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Maximum value (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Highest number allowed"
+            },
+            classes: "govuk-input--width-10",
+            id: "maxValue",
+            name: "maxValue",
+            type: "number",
+            value: questionData.maxValue if questionData else data.maxValue
+        }) }}
+
+        <!-- {{ govukInput({
+            label: {
+                text: "Step value (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "For decimals, e.g. '0.01' for currency or '0.1' for one decimal place"
+            },
+            classes: "govuk-input--width-10",
+            id: "stepValue",
+            name: "stepValue",
+            value: questionData.stepValue if questionData else data.stepValue
+        }) }} -->
+
+        <!-- <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allowDecimals" name="allowDecimals" type="checkbox" value="true"{% if (questionData.allowDecimals if questionData else data.allowDecimals) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="allowDecimals">
+                    Allow decimal numbers
+                </label>
+            </div>
+        </div> -->
+
+        {{ govukSelect({
+            label: {
+                text: "Input width",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "How wide should the number input appear?"
+            },
+            id: "numberInputWidth",
+            name: "numberInputWidth",
+            items: [
+                { value: "", text: "Default width", selected: not ((questionData.numberInputWidth if questionData else data.numberInputWidth)) },
+                { value: "govuk-input--width-20", text: "20 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-20" },
+                { value: "govuk-input--width-10", text: "10 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-10" },
+                { value: "govuk-input--width-5", text: "5 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-5" },
+                { value: "govuk-input--width-4", text: "4 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-4" },
+                { value: "govuk-input--width-3", text: "3 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-3" },
+                { value: "govuk-input--width-2", text: "2 characters", selected: (questionData.numberInputWidth if questionData else data.numberInputWidth) == "govuk-input--width-2" }
+            ]
+        }) }}
+    </fieldset>
+</div>

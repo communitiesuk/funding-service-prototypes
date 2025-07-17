@@ -1,0 +1,123 @@
+{# File upload question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            File upload options
+        </legend>
+        
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    Accepted file types
+                </legend>
+                <div class="govuk-hint">
+                    Select which file types users can upload. If none are selected, all file types will be accepted.
+                </div>
+                <div class="govuk-checkboxes govuk-checkboxes--small">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-pdf" name="acceptedFileTypes" type="checkbox" value="PDF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-pdf">
+                            PDF documents
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-word" name="acceptedFileTypes" type="checkbox" value="DOC,DOCX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-word">
+                            Word documents (DOC, DOCX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-excel" name="acceptedFileTypes" type="checkbox" value="XLS,XLSX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-excel">
+                            Excel spreadsheets (XLS, XLSX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-powerpoint" name="acceptedFileTypes" type="checkbox" value="PPT,PPTX">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-powerpoint">
+                            PowerPoint presentations (PPT, PPTX)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-images" name="acceptedFileTypes" type="checkbox" value="JPG,JPEG,PNG,GIF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-images">
+                            Images (JPG, PNG, GIF)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-text" name="acceptedFileTypes" type="checkbox" value="TXT,RTF">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-text">
+                            Text files (TXT, RTF)
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="fileType-csv" name="acceptedFileTypes" type="checkbox" value="CSV">
+                        <label class="govuk-label govuk-checkboxes__label" for="fileType-csv">
+                            CSV files
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        {{ govukInput({
+            label: {
+                text: "Maximum file size (MB)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Maximum file size in megabytes. Leave blank for system default (usually 10MB)."
+            },
+            classes: "govuk-input--width-5",
+            id: "maxFileSize",
+            name: "maxFileSize",
+            type: "number",
+            attributes: {
+                "min": "1",
+                "max": "100"
+            },
+            value: questionData.maxFileSize if questionData else data.maxFileSize
+        }) }}
+
+        <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-bottom-5">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allowMultipleFiles" name="allowMultipleFiles" type="checkbox" value="true"{% if (questionData.allowMultipleFiles if questionData else data.allowMultipleFiles) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="allowMultipleFiles">
+                    Allow multiple file uploads
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Users can upload more than one file
+                </div>
+            </div>
+            <!-- <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="enableDragDrop" name="enableDragDrop" type="checkbox" value="true"{% if (questionData.enableDragDrop if questionData else data.enableDragDrop) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="enableDragDrop">
+                    Enable drag and drop
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Allow users to drag files directly onto the upload area
+                </div>
+            </div> -->
+        </div>
+
+        {{ govukInput({
+            label: {
+                text: "Maximum number of files (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Only applies if multiple files are allowed. Leave blank for no limit."
+            },
+            classes: "govuk-input--width-5",
+            id: "maxFiles",
+            name: "maxFiles",
+            type: "number",
+            attributes: {
+                "min": "1",
+                "max": "20"
+            },
+            value: questionData.maxFiles if questionData else data.maxFiles
+        }) }}
+    </fieldset>
+</div>

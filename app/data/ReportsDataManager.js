@@ -1,7 +1,7 @@
 class ReportsDataManager {
     constructor(sessionData) {
         this.data = sessionData;
-        
+
         // Initialize reports array if it doesn't exist
         if (!this.data.reports) {
             this.data.reports = [];
@@ -14,7 +14,7 @@ class ReportsDataManager {
     }
 
     // REPORT METHODS
-    
+
     // Get all reports
     getReports() {
         return this.data.reports || [];
@@ -57,7 +57,7 @@ class ReportsDataManager {
     // Delete a report
     deleteReport(reportId) {
         if (!this.data.reports) return false;
-        
+
         const reportIndex = this.data.reports.findIndex(report => report.id === reportId);
         if (reportIndex === -1) return false;
 
@@ -135,7 +135,7 @@ class ReportsDataManager {
         if (sectionIndex <= 0) return false; // Already at top or not found
 
         // Swap with previous section
-        [report.sections[sectionIndex - 1], report.sections[sectionIndex]] = 
+        [report.sections[sectionIndex - 1], report.sections[sectionIndex]] =
         [report.sections[sectionIndex], report.sections[sectionIndex - 1]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
@@ -151,7 +151,7 @@ class ReportsDataManager {
         if (sectionIndex === -1 || sectionIndex >= report.sections.length - 1) return false; // Not found or already at bottom
 
         // Swap with next section
-        [report.sections[sectionIndex], report.sections[sectionIndex + 1]] = 
+        [report.sections[sectionIndex], report.sections[sectionIndex + 1]] =
         [report.sections[sectionIndex + 1], report.sections[sectionIndex]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
@@ -166,7 +166,7 @@ class ReportsDataManager {
         if (!report) return null;
 
         let tasks = [];
-        
+
         if (sectionId) {
             // Look in specific section
             const section = this.getSection(reportId, sectionId);
@@ -198,7 +198,7 @@ class ReportsDataManager {
             // Add to specific section
             const section = this.getSection(reportId, sectionId);
             if (!section) return null;
-            
+
             if (!section.tasks) {
                 section.tasks = [];
             }
@@ -280,7 +280,7 @@ class ReportsDataManager {
         if (taskIndex <= 0) return false; // Already at top or not found
 
         // Swap with previous task
-        [taskArray[taskIndex - 1], taskArray[taskIndex]] = 
+        [taskArray[taskIndex - 1], taskArray[taskIndex]] =
         [taskArray[taskIndex], taskArray[taskIndex - 1]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
@@ -311,7 +311,7 @@ class ReportsDataManager {
         if (taskIndex === -1 || taskIndex >= taskArray.length - 1) return false; // Not found or already at bottom
 
         // Swap with next task
-        [taskArray[taskIndex], taskArray[taskIndex + 1]] = 
+        [taskArray[taskIndex], taskArray[taskIndex + 1]] =
         [taskArray[taskIndex + 1], taskArray[taskIndex]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
@@ -386,11 +386,11 @@ class ReportsDataManager {
     getQuestion(reportId, taskId, questionId, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task || !task.questions) return null;
-        
+
         return task.questions.find(question => question.id === questionId);
     }
 
-    // Add a new question to a task
+    // Add a new question to a task - UPDATED TO REMOVE characterLimit & inputMode
     addQuestion(reportId, taskId, questionData, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task) return null;
@@ -399,10 +399,67 @@ class ReportsDataManager {
             task.questions = [];
         }
 
+        // Create question with ALL the provided configuration data
         const newQuestion = {
             id: this.generateId(),
+            // Core fields
             questionName: questionData.questionName || 'Untitled Question',
-            questionType: questionData.questionType || 'text'
+            questionText: questionData.questionText || questionData.questionName,
+            questionHint: questionData.questionHint,
+            questionType: questionData.questionType || 'text',
+            isRequired: questionData.isRequired || false,
+
+            // Text type fields - REMOVED characterLimit & inputMode
+            textType: questionData.textType,
+            textPrefix: questionData.textPrefix,
+            textSuffix: questionData.textSuffix,
+            inputWidth: questionData.inputWidth,
+            textAutocomplete: questionData.textAutocomplete,
+
+            // Number type fields
+            numberPrefix: questionData.numberPrefix,
+            numberSuffix: questionData.numberSuffix,
+            allowDecimals: questionData.allowDecimals,
+            minValue: questionData.minValue,
+            maxValue: questionData.maxValue,
+            stepValue: questionData.stepValue,
+            numberInputWidth: questionData.numberInputWidth,
+
+            // Selection type fields
+            selectionType: questionData.selectionType,
+            selectionOptions: questionData.selectionOptions,
+            selectionOptionsArray: questionData.selectionOptionsArray,
+            selectionLayout: questionData.selectionLayout,
+            selectionSize: questionData.selectionSize,
+            includeOtherOption: questionData.includeOtherOption,
+
+            // Date type fields
+            dateInputType: questionData.dateInputType,
+            includePastDates: questionData.includePastDates,
+            includeFutureDates: questionData.includeFutureDates,
+            earliestDate: questionData.earliestDate,
+            latestDate: questionData.latestDate,
+
+            // Email type fields
+            emailAutocomplete: questionData.emailAutocomplete,
+            allowMultipleEmails: questionData.allowMultipleEmails,
+
+            // Phone type fields
+            phoneType: questionData.phoneType,
+            phoneAutocomplete: questionData.phoneAutocomplete,
+
+            // Address type fields
+            addressType: questionData.addressType,
+            includeAddressLine3: questionData.includeAddressLine3,
+            requireCounty: questionData.requireCounty,
+
+            // File type fields
+            acceptedFileTypes: questionData.acceptedFileTypes,
+            maxFileSize: questionData.maxFileSize,
+            allowMultipleFiles: questionData.allowMultipleFiles,
+            maxFiles: questionData.maxFiles,
+            enableDragDrop: questionData.enableDragDrop,
+            requireFileDescription: questionData.requireFileDescription
         };
 
         task.questions.push(newQuestion);
@@ -410,15 +467,15 @@ class ReportsDataManager {
         return newQuestion;
     }
 
-    // Update a question
+    // Update a question - UPDATED TO REMOVE characterLimit & inputMode
     updateQuestion(reportId, taskId, questionId, updates, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task || !task.questions) return false;
-        
+
         const questionIndex = task.questions.findIndex(question => question.id === questionId);
         if (questionIndex === -1) return false;
-        
-        // Update the question with new data
+
+        // Update the question with ALL new data
         Object.assign(task.questions[questionIndex], updates);
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
         return true;
@@ -446,7 +503,7 @@ class ReportsDataManager {
         if (questionIndex <= 0) return false; // Already at top or not found
 
         // Swap with previous question
-        [task.questions[questionIndex - 1], task.questions[questionIndex]] = 
+        [task.questions[questionIndex - 1], task.questions[questionIndex]] =
         [task.questions[questionIndex], task.questions[questionIndex - 1]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp
@@ -462,7 +519,7 @@ class ReportsDataManager {
         if (questionIndex === -1 || questionIndex >= task.questions.length - 1) return false; // Not found or already at bottom
 
         // Swap with next question
-        [task.questions[questionIndex], task.questions[questionIndex + 1]] = 
+        [task.questions[questionIndex], task.questions[questionIndex + 1]] =
         [task.questions[questionIndex + 1], task.questions[questionIndex]];
 
         this.updateReport(reportId, {}); // Update lastUpdated timestamp

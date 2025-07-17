@@ -1,0 +1,21 @@
+{# Email question type configuration #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Email input options
+        </legend>
+        
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="allowMultipleEmails" name="allowMultipleEmails" type="checkbox" value="true"{% if (questionData.allowMultipleEmails if questionData else data.allowMultipleEmails) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="allowMultipleEmails">
+                    Allow multiple email addresses
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Users can enter multiple email addresses separated by commas
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

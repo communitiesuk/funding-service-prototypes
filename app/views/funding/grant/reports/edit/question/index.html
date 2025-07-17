@@ -68,6 +68,32 @@
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
+                {% if currentQuestionType %}
+                    {# Map question type values to display names #}
+                    {% set questionTypeDisplay = currentQuestionType %}
+                    {% if currentQuestionType == "text" %}
+                        {% set questionTypeDisplay = "Text" %}
+                    {% elif currentQuestionType == "date" %}
+                        {% set questionTypeDisplay = "Date input" %}
+                    {% elif currentQuestionType == "selection" %}
+                        {% set questionTypeDisplay = "Selection from a list of options" %}
+                    {% elif currentQuestionType == "number" %}
+                        {% set questionTypeDisplay = "Number" %}
+                    {% elif currentQuestionType == "email" %}
+                        {% set questionTypeDisplay = "Email address" %}
+                    {% elif currentQuestionType == "phone" %}
+                        {% set questionTypeDisplay = "Phone number" %}
+                    {% elif currentQuestionType == "address" %}
+                        {% set questionTypeDisplay = "Address" %}
+                    {% elif currentQuestionType == "file" %}
+                        {% set questionTypeDisplay = "File upload" %}
+                    {% endif %}
+
+                    <div class="govuk-inset-text">
+                        <p class="govuk-body">Question type: <strong>{{ questionTypeDisplay }}</strong></p>
+                    </div>
+                {% endif %}
+
                 <form method="post" action="/funding/grant/reports/edit/question/update">
                     
                     {# Hidden fields to maintain context #}
@@ -76,17 +102,32 @@
                     <input type="hidden" name="sectionId" value="{{ currentSectionId }}">
                     <input type="hidden" name="reportId" value="{{ currentReportId }}">
                     <input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask }}">
+                    <input type="hidden" name="questionType" value="{{ currentQuestionType }}">
 
-                    {{ govukInput({
-                        label: {
-                            text: "Question name",
-                            classes: "govuk-label govuk-visually-hidden"
-                        },                        
-                        id: "questionName",
-                        name: "questionName",
-                        value: currentQuestionName,
-                        classes: "govuk-!-width-two-thirds"
-                    }) }}
+                    {# Core fields - used by all question types #}
+                    {% include "/funding/includes/question-types/core-fields.html" %}
+
+                    {# Question type specific configuration #}
+                    {% if currentQuestionType == "text" %}
+                        {% include "/funding/includes/question-types/text-config.html" %}
+                    {% elif currentQuestionType == "number" %}
+                        {% include "/funding/includes/question-types/number-config.html" %}
+                    {% elif currentQuestionType == "selection" %}
+                        {% include "/funding/includes/question-types/selection-config.html" %}
+                    {% elif currentQuestionType == "date" %}
+                        {% include "/funding/includes/question-types/date-config.html" %}
+                    {% elif currentQuestionType == "email" %}
+                        {% include "/funding/includes/question-types/email-config.html" %}
+                    {% elif currentQuestionType == "phone" %}
+                        {% include "/funding/includes/question-types/phone-config.html" %}
+                    {% elif currentQuestionType == "address" %}
+                        {% include "/funding/includes/question-types/address-config.html" %}
+                    {% elif currentQuestionType == "file" %}
+                        {% include "/funding/includes/question-types/file-config.html" %}
+                    {% endif %}
+
+                    {# Common settings - used by all question types #}
+                    {% include "/funding/includes/question-types/question-settings.html" %}
 
                     <div class="govuk-button-group">
                         {{ govukButton({
