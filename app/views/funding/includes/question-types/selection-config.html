@@ -1,4 +1,4 @@
-{# Selection question type configuration #}
+{# Selection question type configuration - FIXED #}
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
@@ -16,7 +16,7 @@
                     text: "Users can select multiple options"
                 } }
             ],
-            value: (questionData.selectionType if questionData else data.selectionType) or "radio"
+            value: questionData.selectionType if questionData else data.selectionType
         }) }}
 
         {{ govukRadios({
@@ -29,7 +29,7 @@
                     text: "Options appear side by side (only for short options)"
                 } }
             ],
-            value: (questionData.selectionLayout if questionData else data.selectionLayout) or "stacked"
+            value: questionData.selectionLayout if questionData else data.selectionLayout
         }) }}
 
         {{ govukRadios({
@@ -40,7 +40,7 @@
                     text: "More compact appearance"
                 } }
             ],
-            value: (questionData.selectionSize if questionData else data.selectionSize) or "regular"
+            value: questionData.selectionSize if questionData else data.selectionSize
         }) }}
 
         <div class="govuk-form-group">
@@ -48,10 +48,7 @@
                 Options (one per line)
             </label>
             <div class="govuk-hint">
-                Enter each option on a new line. You can also add hints by using || separator:<br>
-                Option 1||This is a hint for option 1<br>
-                Option 2<br>
-                Option 3||Another hint
+                Enter each option on a new line                
             </div>
             <textarea class="govuk-textarea" id="selectionOptions" name="selectionOptions" rows="5">{{ questionData.selectionOptions if questionData else data.selectionOptions }}</textarea>
         </div>
@@ -60,10 +57,10 @@
             <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="includeOtherOption" name="includeOtherOption" type="checkbox" value="true"{% if (questionData.includeOtherOption if questionData else data.includeOtherOption) %} checked{% endif %}>
                 <label class="govuk-label govuk-checkboxes__label" for="includeOtherOption">
-                    Include "Other" option with text input
+                    Include Other option with text input
                 </label>
                 <div class="govuk-hint govuk-checkboxes__hint">
-                    Add an "Other" option that reveals a text input when selected
+                    Add an Other option that reveals a text input when selected
                 </div>
             </div>
         </div>
