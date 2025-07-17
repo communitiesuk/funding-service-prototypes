@@ -95,9 +95,9 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     // IMMEDIATELY clear any existing question data from session BEFORE storing context
     // UPDATED - REMOVED characterLimit & inputMode
     const fieldsToDelete = [
-        'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
+        'questionName', 'questionText', 'questionHint', 'questionType',
         // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'inputWidth', 'textAutocomplete',
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
@@ -133,9 +133,9 @@ router.post('/funding/grant/reports/add/question/options', function (req, res) {
     // Clear any existing question configuration data first (except context data)
     // UPDATED - REMOVED characterLimit & inputMode
     const fieldsToDelete = [
-        'questionName', 'questionText', 'questionHint', 'isRequired',
+        'questionName', 'questionText', 'questionHint',
         // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'inputWidth', 'textAutocomplete',
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
@@ -175,7 +175,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
         questionText: req.body.questionText || req.body.questionName,
         questionHint: req.body.questionHint,
         questionType: req.session.data.questionType,
-        isRequired: req.body.isRequired === 'true'
+        isRequired: true
     };
 
     // Add type-specific configurations
@@ -185,7 +185,6 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
             // REMOVED characterLimit processing
-            questionConfig.inputWidth = req.body.inputWidth;
             questionConfig.textAutocomplete = req.body.textAutocomplete;
             // REMOVED inputMode processing
             break;
@@ -273,9 +272,9 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
 
     // Clear form data from session - UPDATED to clear removed fields
     const fieldsToDelete = [
-        'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
+        'questionName', 'questionText', 'questionHint', 'questionType',
         // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'inputWidth', 'textAutocomplete',
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
@@ -351,9 +350,9 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
 
     // Clear any existing question configuration data first - UPDATED
     const fieldsToDelete = [
-        'questionName', 'questionText', 'questionHint', 'questionType', 'isRequired',
+        'questionName', 'questionText', 'questionHint', 'questionType',
         // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'inputWidth', 'textAutocomplete',
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
@@ -531,7 +530,7 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
         questionText: req.body.questionText || req.body.questionName,
         questionHint: req.body.questionHint,
         questionType: req.body.questionType,
-        isRequired: req.body.isRequired === 'true'
+        isRequired: true
     };
 
     // Add type-specific configurations - SAME AS ADD ROUTE
@@ -541,7 +540,6 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
             // REMOVED characterLimit processing
-            questionConfig.inputWidth = req.body.inputWidth;
             questionConfig.textAutocomplete = req.body.textAutocomplete;
             // REMOVED inputMode processing
             break;
