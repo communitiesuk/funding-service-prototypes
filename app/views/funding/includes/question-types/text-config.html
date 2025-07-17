@@ -1,4 +1,4 @@
-{# Text question type configuration #}
+{# Text question type configuration - FIXED #}
 
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
@@ -13,7 +13,7 @@
                     value: "single", 
                     text: "Single line text", 
                     hint: {
-                        text: "When you need to let users enter text that's no longer than a single line, such as their name or phone number"
+                        text: "When you need to let users enter text that’s no longer than a single line, such as their name or phone number"
                     },
                     conditional: {
                         html: '
@@ -42,46 +42,11 @@
                     value: "multi", 
                     text: "Multi-line text (textarea)", 
                     hint: {
-                        text: "When you need to let users enter an amount of text that's longer than a single line."
+                        text: "When you need to let users enter an amount of text that’s longer than a single line."
                     } 
                 }
             ],
-            value: (questionData.textType if questionData else data.textType) or "single"
+            value: questionData.textType if questionData else data.textType
         }) }}
-
-        <!-- {{ govukSelect({
-            label: {
-                text: "Input width",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Size text inputs to match their expected content length"
-            },
-            id: "inputWidth",
-            name: "inputWidth",
-            items: [
-                { value: "", text: "Default width", selected: not ((questionData.inputWidth if questionData else data.inputWidth)) },
-                { value: "govuk-input--width-20", text: "20 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-20" },
-                { value: "govuk-input--width-10", text: "10 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-10" },
-                { value: "govuk-input--width-5", text: "5 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-5" },
-                { value: "govuk-input--width-4", text: "4 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-4" },
-                { value: "govuk-input--width-3", text: "3 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-3" },
-                { value: "govuk-input--width-2", text: "2 characters", selected: (questionData.inputWidth if questionData else data.inputWidth) == "govuk-input--width-2" }
-            ]
-        }) }} -->
-
-        <!-- {{ govukInput({
-            label: {
-                text: "Autocomplete attribute (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Help browsers autocomplete common fields like 'name', 'organization', 'street-address'"
-            },
-            classes: "govuk-!-width-one-half",
-            id: "textAutocomplete",
-            name: "textAutocomplete",
-            value: questionData.textAutocomplete if questionData else data.textAutocomplete
-        }) }} -->
     </fieldset>
 </div>
