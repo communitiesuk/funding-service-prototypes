@@ -3,7 +3,7 @@
 <div class="govuk-form-group">
     <fieldset class="govuk-fieldset">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            Date input options
+            Date options
         </legend>
         
         {{ govukRadios({
@@ -19,56 +19,65 @@
                     text: "Single field for year"
                 } }
             ],
-            value: (questionData.dateInputType if questionData else data.dateInputType) or "full"
+            value: questionData.dateInputType if questionData else data.dateInputType
         }) }}
         
-        <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-bottom-7">
-            <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="includePastDates" name="includePastDates" type="checkbox" value="true"{% if (questionData.includePastDates if questionData else data.includePastDates) %} checked{% endif %}>
-                <label class="govuk-label govuk-checkboxes__label" for="includePastDates">
-                    Allow past dates
-                </label>
-                <div class="govuk-hint govuk-checkboxes__hint">
-                    Users can enter dates in the past
+        <details class="govuk-details govuk-!-margin-top-7" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Advanced formatting options
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+                <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-bottom-7">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="includePastDates" name="includePastDates" type="checkbox" value="true"{% if (questionData.includePastDates if questionData else data.includePastDates) %} checked{% endif %}>
+                        <label class="govuk-label govuk-checkboxes__label" for="includePastDates">
+                            Allow past dates
+                        </label>
+                        <div class="govuk-hint govuk-checkboxes__hint">
+                            Users can enter dates in the past
+                        </div>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="includeFutureDates" name="includeFutureDates" type="checkbox" value="true"{% if (questionData.includeFutureDates if questionData else data.includeFutureDates) %} checked{% endif %}>
+                        <label class="govuk-label govuk-checkboxes__label" for="includeFutureDates">
+                            Allow future dates
+                        </label>
+                        <div class="govuk-hint govuk-checkboxes__hint">
+                            Users can enter dates in the future
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="includeFutureDates" name="includeFutureDates" type="checkbox" value="true"{% if (questionData.includeFutureDates if questionData else data.includeFutureDates) %} checked{% endif %}>
-                <label class="govuk-label govuk-checkboxes__label" for="includeFutureDates">
-                    Allow future dates
-                </label>
-                <div class="govuk-hint govuk-checkboxes__hint">
-                    Users can enter dates in the future
-                </div>
-            </div>
-        </div>
 
-        {{ govukInput({
-            label: {
-                text: "Earliest allowed date (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Format: DD/MM/YYYY. Leave blank for no restriction."
-            },
-            classes: "govuk-input--width-10",
-            id: "earliestDate",
-            name: "earliestDate",            
-            value: questionData.earliestDate if questionData else data.earliestDate
-        }) }}
+                {{ govukInput({
+                    label: {
+                        text: "Earliest allowed date (optional)",
+                        classes: "govuk-label--s"
+                    },
+                    hint: {
+                        text: "Format: DD/MM/YYYY. Leave blank for no restriction."
+                    },
+                    classes: "govuk-input--width-10",
+                    id: "earliestDate",
+                    name: "earliestDate",            
+                    value: questionData.earliestDate if questionData else data.earliestDate
+                }) }}
 
-        {{ govukInput({
-            label: {
-                text: "Latest allowed date (optional)",
-                classes: "govuk-label--s"
-            },
-            hint: {
-                text: "Format: DD/MM/YYYY. Leave blank for no restriction."
-            },
-            classes: "govuk-input--width-10",
-            id: "latestDate",
-            name: "latestDate",            
-            value: questionData.latestDate if questionData else data.latestDate
-        }) }}
+                {{ govukInput({
+                    label: {
+                        text: "Latest allowed date (optional)",
+                        classes: "govuk-label--s"
+                    },
+                    hint: {
+                        text: "Format: DD/MM/YYYY. Leave blank for no restriction."
+                    },
+                    classes: "govuk-input--width-10",
+                    id: "latestDate",
+                    name: "latestDate",            
+                    value: questionData.latestDate if questionData else data.latestDate
+                }) }}
+            </div>
+        </details>
     </fieldset>
 </div>

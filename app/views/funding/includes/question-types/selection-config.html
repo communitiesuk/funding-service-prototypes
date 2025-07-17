@@ -53,15 +53,27 @@
             <textarea class="govuk-textarea" id="selectionOptions" name="selectionOptions" rows="5">{{ questionData.selectionOptions if questionData else data.selectionOptions }}</textarea>
         </div>
 
-        <div class="govuk-checkboxes govuk-checkboxes--small">
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="includeOtherOption" name="includeOtherOption" type="checkbox" value="true"{% if (questionData.includeOtherOption if questionData else data.includeOtherOption) %} checked{% endif %}>
+                <input class="govuk-checkboxes__input" id="includeOtherOption" name="includeOtherOption" type="checkbox" value="true"{% if (questionData.includeOtherOption if questionData else data.includeOtherOption) %} checked{% endif %} data-aria-controls="conditional-includeOtherOption">
                 <label class="govuk-label govuk-checkboxes__label" for="includeOtherOption">
-                    Include Other option with text input
-                </label>
-                <div class="govuk-hint govuk-checkboxes__hint">
-                    Add an Other option that reveals a text input when selected
-                </div>
+                    Include other option with text input
+                </label>                
+            </div>
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-includeOtherOption">
+                {{ govukInput({
+                    label: {
+                        text: "Enter content to be used for other option",
+                        classes: "govuk-label--s"
+                    },
+                    hint: {
+                        text: "If left blank, it will default to Other."
+                    },
+                    classes: "govuk-input--width-20",
+                    id: "otherOptionText",
+                    name: "otherOptionText",
+                    value: questionData.otherOptionText if questionData else data.otherOptionText
+                }) }}
             </div>
         </div>
     </fieldset>

@@ -1,13 +1,20 @@
 {# Address question type configuration #}
 
-<div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            Address input options
-        </legend>
-        
+<details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            Advanced formatting options
+        </span>
+    </summary>
+    <div class="govuk-details__text">
         {{ govukRadios({
             name: "addressType",
+            fieldset: {
+                legend: {
+                    text: "Address type",
+                    classes: "govuk-fieldset__legend--s"
+                }
+            },
             items: [
                 { value: "uk", text: "UK addresses only", hint: {
                     text: "Standard UK address format with postcode lookup"
@@ -21,5 +28,5 @@
             ],
             value: questionData.addressType if questionData else data.addressType
         }) }}
-    </fieldset>
-</div>
+    </div>
+</details>

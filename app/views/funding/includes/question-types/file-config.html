@@ -1,11 +1,12 @@
 {# File upload question type configuration #}
 
-<div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            File upload options
-        </legend>
-        
+<details class="govuk-details govuk-!-margin-top-7" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            Advanced formatting options
+        </span>
+    </summary>
+    <div class="govuk-details__text">
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
@@ -90,15 +91,6 @@
                     Users can upload more than one file
                 </div>
             </div>
-            <!-- <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="enableDragDrop" name="enableDragDrop" type="checkbox" value="true"{% if (questionData.enableDragDrop if questionData else data.enableDragDrop) %} checked{% endif %}>
-                <label class="govuk-label govuk-checkboxes__label" for="enableDragDrop">
-                    Enable drag and drop
-                </label>
-                <div class="govuk-hint govuk-checkboxes__hint">
-                    Allow users to drag files directly onto the upload area
-                </div>
-            </div> -->
         </div>
 
         {{ govukInput({
@@ -119,5 +111,5 @@
             },
             value: questionData.maxFiles if questionData else data.maxFiles
         }) }}
-    </fieldset>
-</div>
+    </div>
+</details>
