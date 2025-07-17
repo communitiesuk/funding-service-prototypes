@@ -390,7 +390,7 @@ class ReportsDataManager {
         return task.questions.find(question => question.id === questionId);
     }
 
-    // Add a new question to a task - UPDATED TO REMOVE characterLimit & inputMode
+    // Add a new question to a task
     addQuestion(reportId, taskId, questionData, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task) return null;
@@ -409,12 +409,14 @@ class ReportsDataManager {
             questionType: questionData.questionType || 'text',
             isRequired: questionData.isRequired || false,
 
-            // Text type fields - REMOVED characterLimit & inputMode
+            // Text type fields
             textType: questionData.textType,
             textPrefix: questionData.textPrefix,
             textSuffix: questionData.textSuffix,
             inputWidth: questionData.inputWidth,
             textAutocomplete: questionData.textAutocomplete,
+            characterLimit: questionData.characterLimit,
+            textareaRows: questionData.textareaRows,
 
             // Number type fields
             numberPrefix: questionData.numberPrefix,
@@ -432,6 +434,7 @@ class ReportsDataManager {
             selectionLayout: questionData.selectionLayout,
             selectionSize: questionData.selectionSize,
             includeOtherOption: questionData.includeOtherOption,
+            otherOptionText: questionData.otherOptionText, // ADDED
 
             // Date type fields
             dateInputType: questionData.dateInputType,
@@ -467,7 +470,7 @@ class ReportsDataManager {
         return newQuestion;
     }
 
-    // Update a question - UPDATED TO REMOVE characterLimit & inputMode
+    // Update a question
     updateQuestion(reportId, taskId, questionId, updates, sectionId = null) {
         const task = this.getTask(reportId, taskId, sectionId);
         if (!task || !task.questions) return false;

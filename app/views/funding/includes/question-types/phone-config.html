@@ -1,26 +1,29 @@
 {# Phone question type configuration #}
 
-<div class="govuk-form-group">        
-        <details class="govuk-details govuk-!-margin-top-7" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                    Advanced formatting options
-                </span>
-            </summary>
-            <div class="govuk-details__text">
-                {{ govukRadios({
-                    name: "phoneType",
-                    items: [
-                        { value: "any", text: "Any phone number", hint: {
-                            text: "UK, international, mobile, or landline"
-                        } },
-                        { value: "uk", text: "UK numbers only", hint: {
-                            text: "Only accept UK phone numbers"
-                        } }
-                    ],
-                    value: questionData.phoneType if questionData else data.phoneType
-                }) }}
-            </div>
-        </details>
-    
-</div>
+<details class="govuk-details govuk-!-margin-top-7" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            Advanced formatting options
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+        {{ govukRadios({
+            name: "phoneType",
+            fieldset: {
+                legend: {
+                    text: "Phone number validation",
+                    classes: "govuk-fieldset__legend--s"
+                }
+            },
+            items: [
+                { value: "any", text: "Any phone number", hint: {
+                    text: "UK, international, mobile, or landline"
+                } },
+                { value: "uk", text: "UK numbers only", hint: {
+                    text: "Only accept UK phone numbers"
+                } }
+            ],
+            value: questionData.phoneType if questionData else data.phoneType
+        }) }}
+    </div>
+</details>

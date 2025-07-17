@@ -13,7 +13,7 @@
                     value: "single", 
                     text: "Single line text", 
                     hint: {
-                        text: "When you need to let users enter text that’s no longer than a single line, such as their name or phone number"
+                        text: "When you need to let users enter text that's no longer than a single line, such as their name or phone number"
                     },
                     conditional: {
                         html: '
@@ -42,8 +42,35 @@
                     value: "multi", 
                     text: "Multi-line text (textarea)", 
                     hint: {
-                        text: "When you need to let users enter an amount of text that’s longer than a single line."
-                    } 
+                        text: "When you need to let users enter an amount of text that's longer than a single line."
+                    },
+                    conditional: {
+                        html: '
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-label--s" for="textareaRows">
+                                    Number of rows
+                                </label>
+                                <div class="govuk-hint">
+                                    How tall should the textarea appear?
+                                </div>
+                                <select class="govuk-select govuk-select--width-3" id="textareaRows" name="textareaRows">
+                                    <option value="3">3 rows</option>
+                                    <option value="5" selected>5 rows (default)</option>
+                                    <option value="8">8 rows</option>
+                                    <option value="10">10 rows</option>
+                                </select>
+                            </div>
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-label--s" for="characterLimit">
+                                    Character limit (optional)
+                                </label>
+                                <div class="govuk-hint">
+                                    Maximum number of characters allowed. Leave blank for no limit.
+                                </div>
+                                <input class="govuk-input govuk-input--width-5" id="characterLimit" name="characterLimit" type="number" min="1" max="5000" value="' + ((questionData.characterLimit if questionData else data.characterLimit) or '') + '">
+                            </div>
+                        '
+                    }
                 }
             ],
             value: questionData.textType if questionData else data.textType

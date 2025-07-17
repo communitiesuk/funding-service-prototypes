@@ -93,15 +93,14 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     }
 
     // IMMEDIATELY clear any existing question data from session BEFORE storing context
-    // UPDATED - REMOVED characterLimit & inputMode
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType',
-        // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
+        // Text fields
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete', 'characterLimit', 'textareaRows',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption', 'otherOptionText',
         // Date fields
         'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
@@ -128,18 +127,17 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
     res.render('funding/grant/reports/add/question/index');
 })
 
-// Question type selection - UPDATED to clear removed fields
+// Question type selection
 router.post('/funding/grant/reports/add/question/options', function (req, res) {
     // Clear any existing question configuration data first (except context data)
-    // UPDATED - REMOVED characterLimit & inputMode
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint',
-        // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
+        // Text fields
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete', 'characterLimit', 'textareaRows',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption', 'otherOptionText',
         // Date fields
         'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
@@ -161,7 +159,7 @@ router.post('/funding/grant/reports/add/question/options', function (req, res) {
     res.render('funding/grant/reports/add/question/options');
 })
 
-// Add question - UPDATED to handle removed fields
+// Add question
 router.post('/funding/grant/reports/add/question/another', function (req, res) {
     const taskId = req.session.data.currentTaskId;
     const sectionId = req.session.data.currentSectionId;
@@ -184,9 +182,12 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.textType = req.body.textType || 'single';
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
-            // REMOVED characterLimit processing
             questionConfig.textAutocomplete = req.body.textAutocomplete;
-            // REMOVED inputMode processing
+            // Multi-line text fields
+            if (req.body.characterLimit) {
+                questionConfig.characterLimit = parseInt(req.body.characterLimit);
+            }
+            questionConfig.textareaRows = req.body.textareaRows;
             break;
 
         case 'number':
@@ -211,6 +212,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
             questionConfig.selectionSize = req.body.selectionSize || 'regular';
             questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
+            questionConfig.otherOptionText = req.body.otherOptionText; // ADDED
 
             // Parse options into array (split by newlines, remove empty lines)
             if (questionConfig.selectionOptions) {
@@ -270,15 +272,15 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     // Add the question to the task
     const newQuestion = dataManager.addQuestion(reportId, taskId, questionConfig, sectionId);
 
-    // Clear form data from session - UPDATED to clear removed fields
+    // Clear form data from session
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType',
-        // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
+        // Text fields
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete', 'characterLimit', 'textareaRows',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption', 'otherOptionText',
         // Date fields
         'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
@@ -312,7 +314,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
     }
 })
 
-// Edit question page - UPDATED to store removed fields in session
+// Edit question page
 router.get('/funding/grant/reports/edit/question/', function (req, res) {
     const questionId = req.query.questionId;
     const taskId = req.query.taskId;
@@ -348,15 +350,15 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         currentSectionName = currentSection?.sectionName;
     }
 
-    // Clear any existing question configuration data first - UPDATED
+    // Clear any existing question configuration data first
     const fieldsToDelete = [
         'questionName', 'questionText', 'questionHint', 'questionType',
-        // Text fields - REMOVED characterLimit & inputMode
-        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete',
+        // Text fields
+        'textType', 'textPrefix', 'textSuffix', 'textAutocomplete', 'characterLimit', 'textareaRows',
         // Number fields
         'numberPrefix', 'numberSuffix', 'allowDecimals', 'minValue', 'maxValue', 'stepValue', 'numberInputWidth',
         // Selection fields
-        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption',
+        'selectionType', 'selectionOptions', 'selectionLayout', 'selectionSize', 'includeOtherOption', 'otherOptionText',
         // Date fields
         'dateInputType', 'includePastDates', 'includeFutureDates', 'earliestDate', 'latestDate',
         // Email fields
@@ -373,7 +375,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         delete req.session.data[field];
     });
 
-    // Store current question data in session for form population - UPDATED
+    // Store current question data in session for form population
     req.session.data.questionName = currentQuestion.questionName;
     req.session.data.questionText = currentQuestion.questionText;
     req.session.data.questionHint = currentQuestion.questionHint;
@@ -386,9 +388,10 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.textType = currentQuestion.textType;
             req.session.data.textPrefix = currentQuestion.textPrefix;
             req.session.data.textSuffix = currentQuestion.textSuffix;
-            // REMOVED characterLimit & inputMode
             req.session.data.inputWidth = currentQuestion.inputWidth;
             req.session.data.textAutocomplete = currentQuestion.textAutocomplete;
+            req.session.data.characterLimit = currentQuestion.characterLimit;
+            req.session.data.textareaRows = currentQuestion.textareaRows;
             break;
         case 'number':
             req.session.data.numberPrefix = currentQuestion.numberPrefix;
@@ -405,6 +408,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.selectionLayout = currentQuestion.selectionLayout;
             req.session.data.selectionSize = currentQuestion.selectionSize;
             req.session.data.includeOtherOption = currentQuestion.includeOtherOption;
+            req.session.data.otherOptionText = currentQuestion.otherOptionText; // ADDED
             break;
         case 'date':
             req.session.data.dateInputType = currentQuestion.dateInputType;
@@ -451,7 +455,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         grantName: req.session.data.grantName || 'Sample Grant Name',
         isEdit: true,
 
-        // Pass all question data directly to template - UPDATED
+        // Pass all question data directly to template
         questionData: {
             questionName: currentQuestion.questionName,
             questionText: currentQuestion.questionText,
@@ -459,12 +463,14 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             questionType: currentQuestion.questionType,
             isRequired: currentQuestion.isRequired,
 
-            // Text fields - REMOVED characterLimit & inputMode
+            // Text fields
             textType: currentQuestion.textType,
             textPrefix: currentQuestion.textPrefix,
             textSuffix: currentQuestion.textSuffix,
             inputWidth: currentQuestion.inputWidth,
             textAutocomplete: currentQuestion.textAutocomplete,
+            characterLimit: currentQuestion.characterLimit,
+            textareaRows: currentQuestion.textareaRows,
 
             // Number fields
             numberPrefix: currentQuestion.numberPrefix,
@@ -481,6 +487,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             selectionLayout: currentQuestion.selectionLayout,
             selectionSize: currentQuestion.selectionSize,
             includeOtherOption: currentQuestion.includeOtherOption,
+            otherOptionText: currentQuestion.otherOptionText, // ADDED
 
             // Date fields
             dateInputType: currentQuestion.dateInputType,
@@ -515,7 +522,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
     res.render('funding/grant/reports/edit/question/index', templateData);
 })
 
-// Update question - UPDATED to handle removed fields
+// Update question
 router.post('/funding/grant/reports/edit/question/update', function (req, res) {
     const questionId = req.body.questionId;
     const taskId = req.body.taskId;
@@ -539,9 +546,12 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.textType = req.body.textType || 'single';
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
-            // REMOVED characterLimit processing
             questionConfig.textAutocomplete = req.body.textAutocomplete;
-            // REMOVED inputMode processing
+            // Multi-line text fields
+            if (req.body.characterLimit) {
+                questionConfig.characterLimit = parseInt(req.body.characterLimit);
+            }
+            questionConfig.textareaRows = req.body.textareaRows;
             break;
 
         case 'number':
@@ -566,6 +576,7 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
             questionConfig.selectionSize = req.body.selectionSize || 'regular';
             questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
+            questionConfig.otherOptionText = req.body.otherOptionText; // ADDED
             if (questionConfig.selectionOptions) {
                 questionConfig.selectionOptionsArray = questionConfig.selectionOptions
                     .split('\n')
@@ -689,7 +700,7 @@ router.get('/funding/grant/reports/questions/delete/:questionId', function (req,
     res.redirect(redirectUrl);
 })
 
-// Enhanced validation function for question configuration - UPDATED
+// Enhanced validation function for question configuration
 function validateQuestionConfig(questionConfig) {
     const errors = [];
 
@@ -729,7 +740,6 @@ function validateQuestionConfig(questionConfig) {
             break;
 
         case 'text':
-            // REMOVED characterLimit validation
             // Validation for prefix/suffix with textarea
             if (questionConfig.textType === 'multi' && (questionConfig.textPrefix || questionConfig.textSuffix)) {
                 errors.push('Prefix and suffix are not supported with multi-line text (textarea)');
