@@ -29,9 +29,9 @@
 
                 {% if not data.reports or data.reports.length == 0 %}
                     <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
-                    <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
+                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
                 {% else %}
-                    <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p>
+                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
                 {% endif %}
 
                 <form method="post" action="/funding/grant/reports/add/">
@@ -64,23 +64,23 @@
 
                 {% if sectionCount == 0 and unassignedTaskCount == 0 %}
                     {# No sections or tasks yet - show task option only #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your form <br>Tasks are groups of questions with a common theme' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your report <br>Tasks are groups of questions with a common theme' %}
                     {% set sectionsRow = {
-                        key: { text: "Form" },
+                        key: { text: "Report" },
                         value: { html: sectionsText }
                     } %}
 
                 {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
                     {# Only unassigned tasks exist - show manage link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage form</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
                     {% set sectionsRow = {
-                        key: { text: "Form" },
+                        key: { text: "Report" },
                         value: { html: sectionsText }
                     } %}
 
                 {% elif sectionCount > 0 %}
                     {# Sections exist - show normal manage sections link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage form</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
 
                     {% set sectionsRow = {
                         key: { text: "Form" },
