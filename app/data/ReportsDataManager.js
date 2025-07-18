@@ -434,7 +434,7 @@ class ReportsDataManager {
             selectionLayout: questionData.selectionLayout,
             selectionSize: questionData.selectionSize,
             includeOtherOption: questionData.includeOtherOption,
-            otherOptionText: questionData.otherOptionText, // ADDED
+            otherOptionText: questionData.otherOptionText,
 
             // Date type fields
             dateInputType: questionData.dateInputType,
@@ -462,7 +462,13 @@ class ReportsDataManager {
             allowMultipleFiles: questionData.allowMultipleFiles,
             maxFiles: questionData.maxFiles,
             enableDragDrop: questionData.enableDragDrop,
-            requireFileDescription: questionData.requireFileDescription
+            requireFileDescription: questionData.requireFileDescription,
+
+            // Add another type fields
+            addAnotherMinItems: questionData.addAnotherMinItems,
+            addAnotherMaxItems: questionData.addAnotherMaxItems,
+            addAnotherShowSummary: questionData.addAnotherShowSummary,
+            addAnotherButtonText: questionData.addAnotherButtonText
         };
 
         task.questions.push(newQuestion);

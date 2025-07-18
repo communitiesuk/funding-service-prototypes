@@ -45,6 +45,8 @@
                 {% set questionTypeDisplay = "Address" %}
             {% elif data.questionType == "file" %}
                 {% set questionTypeDisplay = "File upload" %}
+            {% elif data.questionType == "addanother" %}
+                {% set questionTypeDisplay = "Add another" %}
             {% endif %}
 
             <div class="govuk-inset-text">
@@ -76,6 +78,8 @@
                 {% include "/funding/includes/question-types/address-config.html" %}
             {% elif data.questionType == "file" %}
                 {% include "/funding/includes/question-types/file-config.html" %}
+            {% elif data.questionType == "addanother" %}
+                {% include "/funding/includes/question-types/add-another-config.html" %}
             {% endif %}
 
             <div class="govuk-button-group govuk-!-margin-top-7">

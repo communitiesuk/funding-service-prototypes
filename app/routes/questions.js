@@ -110,7 +110,9 @@ router.get('/funding/grant/reports/add/question/', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription',
+        // Add another fields
+        'addAnotherMinItems', 'addAnotherMaxItems', 'addAnotherShowSummary', 'addAnotherButtonText'
     ];
 
     fieldsToDelete.forEach(field => {
@@ -147,7 +149,9 @@ router.post('/funding/grant/reports/add/question/options', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription',
+        // Add another fields
+        'addAnotherMinItems', 'addAnotherMaxItems', 'addAnotherShowSummary', 'addAnotherButtonText'
     ];
 
     fieldsToDelete.forEach(field => {
@@ -263,6 +267,19 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
                 questionConfig.maxFiles = parseInt(req.body.maxFiles);
             }
             break;
+
+        case 'addanother':
+            // Advanced options
+            if (req.body.addAnotherMinItems) {
+                questionConfig.addAnotherMinItems = parseInt(req.body.addAnotherMinItems);
+            }
+            if (req.body.addAnotherMaxItems) {
+                questionConfig.addAnotherMaxItems = parseInt(req.body.addAnotherMaxItems);
+            }
+
+            questionConfig.addAnotherShowSummary = req.body.addAnotherShowSummary === 'true';
+            questionConfig.addAnotherButtonText = req.body.addAnotherButtonText;
+            break;
     }
 
     // Validate question configuration
@@ -295,6 +312,8 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
         'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription',
+        // Add another fields
+        'addAnotherMinItems', 'addAnotherMaxItems', 'addAnotherShowSummary', 'addAnotherButtonText',
         // Context fields
         'isUnassignedTask', 'validationErrors'
     ];
@@ -372,7 +391,9 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         // Address fields
         'addressType', 'includeAddressLine3', 'requireCounty',
         // File fields
-        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription'
+        'acceptedFileTypes', 'maxFileSize', 'allowMultipleFiles', 'maxFiles', 'enableDragDrop', 'requireFileDescription',
+        // Add another fields
+        'addAnotherMinItems', 'addAnotherMaxItems', 'addAnotherShowSummary', 'addAnotherButtonText'
     ];
 
     fieldsToDelete.forEach(field => {
@@ -444,6 +465,12 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.maxFiles = currentQuestion.maxFiles;
             req.session.data.enableDragDrop = currentQuestion.enableDragDrop;
             req.session.data.requireFileDescription = currentQuestion.requireFileDescription;
+            break;
+        case 'addanother':
+            req.session.data.addAnotherMinItems = currentQuestion.addAnotherMinItems;
+            req.session.data.addAnotherMaxItems = currentQuestion.addAnotherMaxItems;
+            req.session.data.addAnotherShowSummary = currentQuestion.addAnotherShowSummary;
+            req.session.data.addAnotherButtonText = currentQuestion.addAnotherButtonText;
             break;
     }
 
@@ -524,7 +551,13 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             allowMultipleFiles: currentQuestion.allowMultipleFiles,
             maxFiles: currentQuestion.maxFiles,
             enableDragDrop: currentQuestion.enableDragDrop,
-            requireFileDescription: currentQuestion.requireFileDescription
+            requireFileDescription: currentQuestion.requireFileDescription,
+
+            // Add another fields
+            addAnotherMinItems: currentQuestion.addAnotherMinItems,
+            addAnotherMaxItems: currentQuestion.addAnotherMaxItems,
+            addAnotherShowSummary: currentQuestion.addAnotherShowSummary,
+            addAnotherButtonText: currentQuestion.addAnotherButtonText
         }
     };
 
@@ -556,7 +589,6 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
             questionConfig.textAutocomplete = req.body.textAutocomplete;
-            // Multi-line text fields
             if (req.body.characterLimit) {
                 questionConfig.characterLimit = parseInt(req.body.characterLimit);
             }
@@ -564,7 +596,6 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             break;
 
         case 'yesno':
-            // No additional configuration needed - always Yes/No
             break;
 
         case 'number':
@@ -633,6 +664,17 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             if (req.body.maxFiles) {
                 questionConfig.maxFiles = parseInt(req.body.maxFiles);
             }
+            break;
+
+        case 'addanother':
+            if (req.body.addAnotherMinItems) {
+                questionConfig.addAnotherMinItems = parseInt(req.body.addAnotherMinItems);
+            }
+            if (req.body.addAnotherMaxItems) {
+                questionConfig.addAnotherMaxItems = parseInt(req.body.addAnotherMaxItems);
+            }
+            questionConfig.addAnotherShowSummary = req.body.addAnotherShowSummary === 'true';
+            questionConfig.addAnotherButtonText = req.body.addAnotherButtonText;
             break;
     }
 
@@ -741,7 +783,6 @@ function validateQuestionConfig(questionConfig) {
 
         case 'date':
             if (questionConfig.earliestDate && questionConfig.latestDate) {
-                // Basic date format validation
                 const dateFormat = /^\d{2}\/\d{2}\/\d{4}$/;
                 if (questionConfig.earliestDate && !dateFormat.test(questionConfig.earliestDate)) {
                     errors.push('Earliest date must be in DD/MM/YYYY format');
@@ -753,7 +794,6 @@ function validateQuestionConfig(questionConfig) {
             break;
 
         case 'text':
-            // Validation for prefix/suffix with textarea
             if (questionConfig.textType === 'multi' && (questionConfig.textPrefix || questionConfig.textSuffix)) {
                 errors.push('Prefix and suffix are not supported with multi-line text (textarea)');
             }
@@ -779,6 +819,18 @@ function validateQuestionConfig(questionConfig) {
             }
             if (questionConfig.maxFileSize && questionConfig.maxFileSize > 100) {
                 errors.push('Maximum file size cannot exceed 100MB');
+            }
+            break;
+
+        case 'addanother':
+            if (questionConfig.addAnotherMinItems !== undefined && questionConfig.addAnotherMaxItems !== undefined) {
+                if (questionConfig.addAnotherMinItems > questionConfig.addAnotherMaxItems) {
+                    errors.push('Minimum number cannot be greater than maximum number');
+                }
+            }
+
+            if (questionConfig.addAnotherMaxItems !== undefined && questionConfig.addAnotherMaxItems < 1) {
+                errors.push('Maximum number must be at least 1');
             }
             break;
     }
