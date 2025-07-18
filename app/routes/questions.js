@@ -190,6 +190,10 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.textareaRows = req.body.textareaRows;
             break;
 
+        case 'yesno':
+            // No additional configuration needed - always Yes/No
+            break;
+
         case 'number':
             questionConfig.numberPrefix = req.body.numberPrefix;
             questionConfig.numberSuffix = req.body.numberSuffix;
@@ -212,7 +216,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
             questionConfig.selectionSize = req.body.selectionSize || 'regular';
             questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
-            questionConfig.otherOptionText = req.body.otherOptionText; // ADDED
+            questionConfig.otherOptionText = req.body.otherOptionText;
 
             // Parse options into array (split by newlines, remove empty lines)
             if (questionConfig.selectionOptions) {
@@ -393,6 +397,9 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.characterLimit = currentQuestion.characterLimit;
             req.session.data.textareaRows = currentQuestion.textareaRows;
             break;
+        case 'yesno':
+            // No session data needed - always Yes/No
+            break;
         case 'number':
             req.session.data.numberPrefix = currentQuestion.numberPrefix;
             req.session.data.numberSuffix = currentQuestion.numberSuffix;
@@ -408,7 +415,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             req.session.data.selectionLayout = currentQuestion.selectionLayout;
             req.session.data.selectionSize = currentQuestion.selectionSize;
             req.session.data.includeOtherOption = currentQuestion.includeOtherOption;
-            req.session.data.otherOptionText = currentQuestion.otherOptionText; // ADDED
+            req.session.data.otherOptionText = currentQuestion.otherOptionText;
             break;
         case 'date':
             req.session.data.dateInputType = currentQuestion.dateInputType;
@@ -472,6 +479,8 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             characterLimit: currentQuestion.characterLimit,
             textareaRows: currentQuestion.textareaRows,
 
+            // Yes/No fields (no additional data needed)
+
             // Number fields
             numberPrefix: currentQuestion.numberPrefix,
             numberSuffix: currentQuestion.numberSuffix,
@@ -487,7 +496,7 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             selectionLayout: currentQuestion.selectionLayout,
             selectionSize: currentQuestion.selectionSize,
             includeOtherOption: currentQuestion.includeOtherOption,
-            otherOptionText: currentQuestion.otherOptionText, // ADDED
+            otherOptionText: currentQuestion.otherOptionText,
 
             // Date fields
             dateInputType: currentQuestion.dateInputType,
@@ -554,6 +563,10 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.textareaRows = req.body.textareaRows;
             break;
 
+        case 'yesno':
+            // No additional configuration needed - always Yes/No
+            break;
+
         case 'number':
             questionConfig.numberPrefix = req.body.numberPrefix;
             questionConfig.numberSuffix = req.body.numberSuffix;
@@ -576,7 +589,7 @@ router.post('/funding/grant/reports/edit/question/update', function (req, res) {
             questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
             questionConfig.selectionSize = req.body.selectionSize || 'regular';
             questionConfig.includeOtherOption = req.body.includeOtherOption === 'true';
-            questionConfig.otherOptionText = req.body.otherOptionText; // ADDED
+            questionConfig.otherOptionText = req.body.otherOptionText;
             if (questionConfig.selectionOptions) {
                 questionConfig.selectionOptionsArray = questionConfig.selectionOptions
                     .split('\n')

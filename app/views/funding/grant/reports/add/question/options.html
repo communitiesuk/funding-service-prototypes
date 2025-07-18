@@ -29,6 +29,8 @@
             {% set questionTypeDisplay = data.questionType %}
             {% if data.questionType == "text" %}
                 {% set questionTypeDisplay = "Text" %}
+            {% elif data.questionType == "yesno" %}
+                {% set questionTypeDisplay = "Yes or No" %}
             {% elif data.questionType == "date" %}
                 {% set questionTypeDisplay = "Date input" %}
             {% elif data.questionType == "selection" %}
@@ -58,6 +60,8 @@
             {# Question type specific configuration #}
             {% if data.questionType == "text" %}
                 {% include "/funding/includes/question-types/text-config.html" %}
+            {% elif data.questionType == "yesno" %}
+                {% include "/funding/includes/question-types/yesno-config.html" %}
             {% elif data.questionType == "number" %}
                 {% include "/funding/includes/question-types/number-config.html" %}
             {% elif data.questionType == "selection" %}

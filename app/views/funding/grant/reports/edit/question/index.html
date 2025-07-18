@@ -46,7 +46,7 @@
             {% else %}
                 {% set questionsHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&sectionId=" + currentSectionId + "&reportId=" + currentReportId %}
             {% endif %}
-            
+
             {% set breadcrumbItems = (breadcrumbItems.push({
                 text: taskName,
                 href: questionsHref
@@ -73,7 +73,8 @@
                     {% set questionTypeDisplay = currentQuestionType %}
                     {% if currentQuestionType == "text" %}
                         {% set questionTypeDisplay = "Text" %}
-                    {% elif currentQuestionType == "date" %}
+                    {% elif currentQuestionType == "yesno" %}
+                        {% set questionTypeDisplay = "Yes or No" %}
                         {% set questionTypeDisplay = "Date input" %}
                     {% elif currentQuestionType == "selection" %}
                         {% set questionTypeDisplay = "Selection from a list of options" %}
@@ -95,7 +96,7 @@
                 {% endif %}
 
                 <form method="post" action="/funding/grant/reports/edit/question/update">
-                    
+
                     {# Hidden fields to maintain context #}
                     <input type="hidden" name="questionId" value="{{ currentQuestionId }}">
                     <input type="hidden" name="taskId" value="{{ currentTaskId }}">
@@ -110,6 +111,8 @@
                     {# Question type specific configuration #}
                     {% if currentQuestionType == "text" %}
                         {% include "/funding/includes/question-types/text-config.html" %}
+                    {% elif currentQuestionType == "yesno" %}
+                        {% include "/funding/includes/question-types/yesno-config.html" %}
                     {% elif currentQuestionType == "number" %}
                         {% include "/funding/includes/question-types/number-config.html" %}
                     {% elif currentQuestionType == "selection" %}
