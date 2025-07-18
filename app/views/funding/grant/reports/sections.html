@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "Monitoring report form" %}
+{% set pageHeading = "Monitoring report" %}
 {% set pageSection = reportName %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -81,7 +81,7 @@
             <div class="govuk-grid-column-one-third">
                 <div class="govuk-!-text-align-right govuk-!-margin-top-6">
                     {{ govukButton({
-                        text: "Preview form",
+                        text: "Preview report",
                         href: "/funding/grant/reports/preview?reportId=" + currentReportId,
                         classes: "govuk-button--secondary"
                     }) }}

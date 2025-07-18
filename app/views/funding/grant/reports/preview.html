@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 
-{% set pageSize = "xl" %}
+{% set pageSize = "l" %}
 {% set pageHeading = reportName or "Monitoring Report" %}
 {% set pageSection = grantName or "Grant Name" %}
 
@@ -28,7 +28,7 @@
                 <div class="govuk-!-text-align-right govuk-!-margin-top-6">
                     {% if currentReportId %}
                         {{ govukButton({
-                            text: "Manage form",
+                            text: "Manage report",
                             href: "/funding/grant/reports/sections?reportId=" + currentReportId,
                             classes: "govuk-button--secondary"
                         }) }}

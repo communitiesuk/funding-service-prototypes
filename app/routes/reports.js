@@ -32,7 +32,7 @@ router.get('/funding/grant/reports/', function (req, res) {
     res.render('funding/grant/reports/index')
 })
 
-// Preview report page
+// Preview report page - UPDATED to include questions data
 router.get('/funding/grant/reports/preview', function (req, res) {
     const reportId = req.query.reportId;
     const dataManager = new ReportsDataManager(req.session.data);
@@ -64,7 +64,8 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                         text: "Not started",
                         classes: "govuk-tag--grey"
                     }
-                }
+                },
+                questions: task.questions || [] // ADD QUESTIONS DATA
             });
         });
 
@@ -89,7 +90,8 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                                 text: "Not started",
                                 classes: "govuk-tag--grey"
                             }
-                        }
+                        },
+                        questions: task.questions || [] // ADD QUESTIONS DATA
                     });
                 });
             } else {
@@ -97,7 +99,8 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                 sectionTasks.push({
                     title: { text: "There are no tasks in this section" },
                     href: null,
-                    status: null
+                    status: null,
+                    questions: [] // ENSURE QUESTIONS ARRAY EXISTS
                 });
             }
 
@@ -120,7 +123,8 @@ router.get('/funding/grant/reports/preview', function (req, res) {
                         text: "Empty",
                         classes: "govuk-tag--grey"
                     }
-                }
+                },
+                questions: [] // ENSURE QUESTIONS ARRAY EXISTS
             }]
         });
     }
