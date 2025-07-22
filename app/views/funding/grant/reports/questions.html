@@ -5,7 +5,7 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Manage task" %}
+{% set pageHeading = "Manage task and questions" %}
 {% if isUnassignedTask or data.isUnassignedTask %}
     {% set pageSection = "Unassigned task" %}
 {% else %}
@@ -105,7 +105,7 @@
             </div>
         </div>
 
-        {# Task information summary list - separate from questions #}
+        {# Task information summary list - simplified to show task name in first column #}
         {% set taskActions = [] %}
         
         {# Always show "Change name" first - handle both regular and unassigned tasks #}
@@ -121,19 +121,14 @@
             visuallyHiddenText: "of task",
             classes: "govuk-link govuk-link--no-visited-state"
         }), taskActions) %}
-        
-        {# Always show "Delete" last - handle both regular and unassigned tasks #}
-        {% if isUnassignedTask or data.isUnassignedTask %}
-            {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&unassigned=true&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
-        {% else %}
-            {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
-        {% endif %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
 
         {{ govukSummaryList({
             rows: [
                 {
-                    key: { text: "Task name" },
-                    value: { text: taskName or data.taskName },
+                    key: { text: taskName or data.taskName },
                     actions: {
                         classes: "govuk-!-width-one-half",
                         items: taskActions
@@ -142,6 +137,9 @@
             ],
             classes: "govuk-!-margin-bottom-7"
         }) }}
+
+        </div>
+        </div>
 
         {% if (currentQuestions or data.currentQuestions) and (currentQuestions or data.currentQuestions).length > 0 %}
             {% set questionCount = (currentQuestions or data.currentQuestions).length %}
