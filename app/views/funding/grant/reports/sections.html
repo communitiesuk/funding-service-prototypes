@@ -153,11 +153,12 @@
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                    	html: questionHtml
+                    	html: questionHtml,
+                    	classes: "govuk-!-width-one-third"
                     },
                     actions: {
-                        classes: "govuk-!-width-one-half",
-                        items: unassignedTaskActions
+                        items: unassignedTaskActions,
+												classes: "govuk-!-width-one-quarter"
                     }
                 } %}
                 {% set unassignedRows = (unassignedRows.push(unassignedTaskRow), unassignedRows) %}
