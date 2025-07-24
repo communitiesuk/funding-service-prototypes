@@ -119,11 +119,11 @@
                         sectionsRow,
                         {
                             key: { text: "Created by" },
-                            value: { html: '<a href="#">' + report.createdBy + '</a> on ' + report.createdDate }
+                            value: { text: report.createdBy + ' on ' + report.createdDate }
                         },
                         {
                             key: { text: "Last updated" },
-                            value: { html: '<a href="#">' + report.updatedBy + '</a> on ' + report.lastUpdated }
+                            value: { text: report.updatedBy + ' on ' + report.lastUpdated }
                         }
                     ]
                 }) }}
