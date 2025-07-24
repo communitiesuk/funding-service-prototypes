@@ -56,22 +56,23 @@
             {% set deleteQuestionName = deleteQuestionName or 'this question' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteQuestionName }}"?
+                    Are you sure you want to delete ‘{{ deleteQuestionName }}’?
                 </p>
-                <p class="govuk-body">
+                <p class="govuk-body govuk-button-group">
                     {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&confirm=yes">Yes, delete this question</a>
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
                     {% else %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
+                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
                     {% endif %}
                 </p>
             {% endset %}
             {{ govukNotificationBanner({
                 html: html,
                 type: "warning",
-                titleText: "Important"
+                titleText: "Important",
+                classes: "app-notification-banner--destructive"
             }) }}
         {% endif %}
 
@@ -80,22 +81,23 @@
             {% set deleteTaskName = deleteTaskName or 'this task' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteTaskName }}"?
+                    Are you sure you want to delete ‘{{ deleteTaskName }}’?
                 </p>
-                <p class="govuk-body">
+                <p class="govuk-body govuk-button-group">
                     {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
                     {% else %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
                     {% endif %}
                 </p>
             {% endset %}
             {{ govukNotificationBanner({
                 html: html,
                 type: "warning",
-                titleText: "Important"
+                titleText: "Important",
+                classes: "app-notification-banner--destructive"
             }) }}
         {% endif %}
 

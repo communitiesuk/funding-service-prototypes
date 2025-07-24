@@ -104,3 +104,9 @@
     background: #ff00dd33;
     opacity: 80%;
 }
+
+
+.app-notification-banner--destructive {
+    border-color:  #d4351c;
+    background-color: #d4351c;
+}
