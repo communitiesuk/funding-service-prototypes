@@ -146,7 +146,7 @@
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                        html: linkText
+                    	text: questionCount + " questions"
                     },
                     actions: {
                         classes: "govuk-!-width-one-half",
@@ -163,7 +163,6 @@
                     classes: "govuk-!-font-weight-regular govuk-!-margin-top-7"
                 },
                 value: {
-                    html: ""
                 }
             } %}
             {% set unassignedRows = (unassignedRows.push(addUnassignedTaskRow), unassignedRows) %}
