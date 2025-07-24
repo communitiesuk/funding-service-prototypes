@@ -116,7 +116,7 @@ router.get('/funding/grant/reports/preview', function (req, res) {
         templateData.previewSections.push({
             heading: "No content",
             tasks: [{
-                title: { text: "This report has no sections or tasks yet" },
+                title: { text: "This report has no tasks yet" },
                 href: "#",
                 status: {
                     tag: {
