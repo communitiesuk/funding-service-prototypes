@@ -408,6 +408,7 @@ class ReportsDataManager {
             questionHint: questionData.questionHint,
             questionType: questionData.questionType || 'text',
             isRequired: questionData.isRequired || false,
+            humanQuestionType: questionData.humanQuestionType,
 
             // Text type fields
             textType: questionData.textType,
