@@ -26,24 +26,6 @@
             <div class="govuk-grid-column-two-thirds">
 
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-
-                {% if not data.reports or data.reports.length == 0 %}
-                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
-                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
-                {% else %}
-                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
-                {% endif %}
-
-                <form method="post" action="/funding/grant/reports/add/">
-                    {% set buttonText = "Add a monitoring report" %}
-                    {% if data.reports and data.reports.length > 0 %}
-                        {% set buttonText = "Add another monitoring report" %}
-                    {% endif %}
-                    {{ govukButton({
-                        text: buttonText,
-                        classes: "govuk-!-margin-top-5"
-                    }) }}
-                </form>
             </div>
         </div>
 
@@ -135,6 +117,27 @@
         {% if data['liveReports'] == "yes" %}
             {% include "/includes/reports/live.html" %}
         {% endif %}
+
+
+				{% if not data.reports or data.reports.length == 0 %}
+						<p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}.</p>
+						<!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
+				{% else %}
+						<!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
+				{% endif %}
+
+				<form method="post" action="/funding/grant/reports/add/">
+						{% set buttonText = "Add a monitoring report" %}
+						{% set buttonClasses = 'govuk-!-margin-top-5' + (' govuk-button--secondary' if data.reports.length > 0) %}
+						{% if data.reports and data.reports.length > 0 %}
+								{% set buttonText = "Add another monitoring report" %}
+						{% endif %}
+						{{ govukButton({
+								text: buttonText,
+								classes: buttonClasses
+						}) }}
+				</form>
+
 
     </div>
 </div>
