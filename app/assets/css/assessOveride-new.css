@@ -110,3 +110,15 @@
     border-color:  #d4351c;
     background-color: #d4351c;
 }
+
+
+
+.app-link--destructive:link, .app-link--destructive:visited {
+  color: #d4351c;
+}
+.app-link--destructive:hover {
+  color: #d4351c;
+}
+.app-link--destructive:active, .app-link--destructive:focus {
+  color: #0b0c0c;
+}

@@ -259,19 +259,15 @@
 
             <p class="govuk-body">There are no questions in this task yet.</p>
 
-            <div class="govuk-button-group">
                 {{ govukButton({
                     text: "Add questions",
                     href: addQuestionHref,
-                    classes: "govuk-button--secondary"
+                    classes: "govuk-button"
                 }) }}
+                <p class="govuk-body">
 
-                {{ govukButton({
-                    text: "Delete task",
-                    href: deleteTaskHref,
-                    classes: "govuk-button--warning"
-                }) }}
-            </div>
+								<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="{{ deleteTaskHref }}">Delete task</a>
+								</p>
         {% endif %}
 
     </div>

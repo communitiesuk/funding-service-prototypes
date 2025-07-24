@@ -140,13 +140,20 @@
                 }), unassignedTaskActions) %}
 
 
+								{% set questionHtml %}
+									{% if questionCount === 0 %}
+										<a class="govuk-link govuk-link--no-visited-state" href="{{ '/funding/grant/reports/add/question?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true'}}">Add questions</a>
+									{% else %}
+										<a class="govuk-link govuk-link--no-visited-state" href="{{ '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true'}}">{{ questionCount }} questions</a>
+									{% endif %}
+								{% endset %}
                 {% set unassignedTaskRow = {
                     key: {
                         text: task.taskName,
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                    	text: questionCount + " questions"
+                    	html: questionHtml
                     },
                     actions: {
                         classes: "govuk-!-width-one-half",
