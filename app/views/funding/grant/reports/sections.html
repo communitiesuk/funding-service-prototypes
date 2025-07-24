@@ -133,7 +133,7 @@
 
                 {# Always add Change section action for unassigned tasks #}
                 {% set unassignedTaskActions = (unassignedTaskActions.push({
-                    href: '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true',
+                    href: '/funding/grant/reports/edit/task?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true',
                     text: "Manage",
                     visuallyHiddenText: task.taskName,
                     classes: "govuk-link govuk-link--no-visited-state"
@@ -253,7 +253,7 @@
                         }), taskActions) %}
 
                         {# Always show "Manage task" link regardless of question count #}
-                        {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
+                        {% set linkText = '<a href="/funding/grant/reports/manage-task?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
 
                         {% set taskRow = {
                             key: {
