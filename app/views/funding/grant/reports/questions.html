@@ -148,10 +148,6 @@
 								href: addQuestionHref,
 								classes: "govuk-button--secondary"
 						}) }}
-
-						<p class="govuk-body">
-								<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="{{ deleteTaskHref }}">Delete task</a>
-						</p>
         {% else %}
             {# No questions exist yet #}
             {% if isUnassignedTask or data.isUnassignedTask %}
@@ -169,10 +165,6 @@
                     href: addQuestionHref,
                     classes: "govuk-button"
                 }) }}
-                <p class="govuk-body">
-
-								<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="{{ deleteTaskHref }}">Delete task</a>
-								</p>
         {% endif %}
 
     </div>
