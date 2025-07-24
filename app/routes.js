@@ -50,7 +50,7 @@ function buildBreadcrumbs(req, currentPage) {
     // Add sections level for questions page
     if (currentPage === 'questions') {
         breadcrumbs.push({
-            text: "Sections and tasks",
+            text: "Tasks",
             href: "/funding/grant/reports/sections?reportId=" + data.currentReportId
         })
 
