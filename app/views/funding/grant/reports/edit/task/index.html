@@ -82,9 +82,9 @@
 												text: "Update task name"
 										}) }}
 										{% if data.isUnassignedTask %}
-												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}&unassigned=true">Cancel</a>
+												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
 										{% else %}
-												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ data.currentReportId }}">Cancel</a>
+												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}">Cancel</a>
 										{% endif %}
 								</div>
 								<p class="govuk-body">
