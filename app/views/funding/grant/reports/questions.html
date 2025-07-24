@@ -50,31 +50,6 @@
             classes: "govuk-!-margin-bottom-6"
         }) }}
 
-        {# Show question delete confirmation banner if questionDeleteConfirm parameter is present #}
-        {% if questionDeleteConfirm %}
-            {% set deleteQuestionName = deleteQuestionName or 'this question' %}
-            {% set html %}
-                <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete ‘{{ deleteQuestionName }}’?
-                </p>
-                <p class="govuk-body govuk-button-group">
-                    {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
-                    {% else %}
-                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
-                    {% endif %}
-                </p>
-            {% endset %}
-            {{ govukNotificationBanner({
-                html: html,
-                type: "warning",
-                titleText: "Important",
-                classes: "app-notification-banner--destructive"
-            }) }}
-        {% endif %}
-
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
@@ -136,14 +111,6 @@
                     text: "Edit",
                     visuallyHiddenText: question.questionName,
                     classes: "govuk-link govuk-link--no-visited-state"
-                }), questionActions) %}
-
-                {# Always add Delete #}
-                {% set questionActions = (questionActions.push({
-                    href: deleteHref,
-                    text: "Delete",
-                    visuallyHiddenText: question.questionName,
-                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
                 }), questionActions) %}
 
                 {% set questionRow = {

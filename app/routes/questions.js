@@ -570,6 +570,13 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
         }
     };
 
+    // Add confirmation states if present in query
+    if (req.query.questionDeleteConfirm === 'true') {
+        templateData.questionDeleteConfirm = true;
+        templateData.deleteQuestionId = req.query.deleteQuestionId;
+        templateData.deleteQuestionName = req.query.deleteQuestionName;
+    }
+
     res.render('funding/grant/reports/edit/question/index', templateData);
 })
 
