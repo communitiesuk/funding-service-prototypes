@@ -226,6 +226,10 @@ router.get('/funding/grant/reports/edit/task/', function (req, res) {
         grantName: req.session.data.grantName || 'Sample Grant Name'
     };
 
+    if (req.query.taskDeleteConfirm === 'true') {
+        templateData.taskDeleteConfirm = true;
+    }
+
     res.render('funding/grant/reports/edit/task/index', templateData);
 })
 

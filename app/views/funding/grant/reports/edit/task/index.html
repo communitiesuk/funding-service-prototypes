@@ -30,18 +30,17 @@
     <div class="govuk-grid-column-full">
         {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
         {% if taskDeleteConfirm %}
-            {% set deleteTaskName = deleteTaskName or 'this task' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete ‘{{ deleteTaskName }}’?
+                    Are you sure you want to delete this task?
                 </p>
                 <p class="govuk-body govuk-button-group">
                     {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/unassigned-tasks/delete/{{ currentTaskId or data.currentTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
                     {% else %}
-                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/tasks/delete/{{ currentTaskId or data.currentTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
                     {% endif %}
                 </p>
             {% endset %}
@@ -88,7 +87,7 @@
 										{% endif %}
 								</div>
 								<p class="govuk-body">
-									<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Delete task</a>
+									<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="/funding/grant/reports/edit/task?taskId={{ currentTaskId or data.currentTaskId }}&sectionId={{ currentSectionId or data.currentSectionId }}&reportId={{ currentReportId or data.currentReportId }}&taskDeleteConfirm=true">Delete task</a>
 								</p>
 						</form>
             </div>
