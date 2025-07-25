@@ -355,7 +355,7 @@
         {% endif %}
 
         <div class="govuk-button-group govuk-!-margin-top-1">
-            <form method="get" action="/funding/grant/reports/add/section/" class="govuk-!-display-inline-block">
+            <form method="get" action="/funding/grant/reports/add/task/" class="govuk-!-display-inline-block">
                 <input type="hidden" name="reportId" value="{{ currentReportId }}">
                 <input type="hidden" name="returnTo" value="sections">
                 {% if currentUnassignedTasks and currentUnassignedTasks.length === 0 %}
