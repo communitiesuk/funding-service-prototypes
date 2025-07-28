@@ -183,6 +183,13 @@ router.get('/funding/grant/reports/edit/', function (req, res) {
         grantName: req.session.data.grantName || 'Sample Grant Name'
     };
 
+    // Add confirmation states if present in query
+    if (req.query.deleteConfirm === 'true') {
+        templateData.deleteConfirm = true;
+        templateData.deleteSectionId = req.query.deleteSectionId;
+        templateData.deleteSectionName = req.query.deleteSectionName;
+    }
+
     res.render('funding/grant/reports/edit/index', templateData);
 })
 
