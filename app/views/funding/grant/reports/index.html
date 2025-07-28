@@ -54,7 +54,7 @@
 
                 {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
                     {# Only unassigned tasks exist - show manage link #}
-                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">' ~ unassignedTaskCount ~ ' tasks</a>' %}
                     {% set sectionsRow = {
                         key: { text: "Report" },
                         value: { html: sectionsText }
