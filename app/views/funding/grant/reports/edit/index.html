@@ -6,7 +6,7 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Change the name for this monitoring report" %}
+{% set pageHeading = "Manage report" %}
 {% set pageSection = '' + (grantName or data['grantName']) + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -17,6 +17,25 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        {# Show task delete confirmation banner if deleteConfirm parameter is present #}
+        {% if deleteConfirm %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete this report?
+                </p>
+                <p class="govuk-body govuk-button-group">
+									<a class="govuk-button govuk-button--warning" href="/funding/grant/reports/delete/{{ currentReportId or data.currentReportId }}">Yes, delete this report</a>
+									<a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/edit?reportId={{ currentReportId or data.currentReportId }}">Cancel</a>
+                </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important",
+                classes: "app-notification-banner--destructive"
+            }) }}
+        {% endif %}
+
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
@@ -45,6 +64,9 @@
                 }) }}
                 <a class="govuk-link" href="/funding/grant/reports/">Cancel</a>
             </div>
+						<p class="govuk-body">
+							<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="/funding/grant/reports/edit/?reportId={{ currentReportId or data.currentReportId }}&deleteConfirm=true">Delete report</a>
+						</p>
         </form>
 
     </div>

@@ -186,6 +186,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             questionConfig.textType = req.body.textType || 'single';
             questionConfig.textPrefix = req.body.textPrefix;
             questionConfig.textSuffix = req.body.textSuffix;
+            questionConfig.humanQuestionType = "Text";
             questionConfig.textAutocomplete = req.body.textAutocomplete;
             // Multi-line text fields
             if (req.body.characterLimit) {
@@ -196,9 +197,11 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
 
         case 'yesno':
             // No additional configuration needed - always Yes/No
+            questionConfig.humanQuestionType = 'Yes or no';
             break;
 
         case 'number':
+            questionConfig.humanQuestionType = 'Number';
             questionConfig.numberPrefix = req.body.numberPrefix;
             questionConfig.numberSuffix = req.body.numberSuffix;
             questionConfig.allowDecimals = req.body.allowDecimals === 'true';
@@ -215,6 +218,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             break;
 
         case 'selection':
+            questionConfig.humanQuestionType = 'Single option';
             questionConfig.selectionType = req.body.selectionType || 'radio';
             questionConfig.selectionOptions = req.body.selectionOptions;
             questionConfig.selectionLayout = req.body.selectionLayout || 'stacked';
@@ -232,6 +236,7 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             break;
 
         case 'date':
+            questionConfig.humanQuestionType = 'Date';
             questionConfig.dateInputType = req.body.dateInputType || 'full';
             questionConfig.includePastDates = req.body.includePastDates === 'true';
             questionConfig.includeFutureDates = req.body.includeFutureDates === 'true';
@@ -240,22 +245,26 @@ router.post('/funding/grant/reports/add/question/another', function (req, res) {
             break;
 
         case 'email':
+            questionConfig.humanQuestionType = 'Email address';
             questionConfig.emailAutocomplete = req.body.emailAutocomplete || 'email';
             questionConfig.allowMultipleEmails = req.body.allowMultipleEmails === 'true';
             break;
 
         case 'phone':
+            questionConfig.humanQuestionType = 'Phone number';
             questionConfig.phoneType = req.body.phoneType || 'any';
             questionConfig.phoneAutocomplete = req.body.phoneAutocomplete || 'tel';
             break;
 
         case 'address':
+            questionConfig.humanQuestionType = 'Address';
             questionConfig.addressType = req.body.addressType || 'uk';
             questionConfig.includeAddressLine3 = req.body.includeAddressLine3 === 'true';
             questionConfig.requireCounty = req.body.requireCounty === 'true';
             break;
 
         case 'file':
+            questionConfig.humanQuestionType = 'File upload';
             questionConfig.acceptedFileTypes = req.body.acceptedFileTypes;
             if (req.body.maxFileSize) {
                 questionConfig.maxFileSize = parseInt(req.body.maxFileSize);
@@ -560,6 +569,13 @@ router.get('/funding/grant/reports/edit/question/', function (req, res) {
             addAnotherButtonText: currentQuestion.addAnotherButtonText
         }
     };
+
+    // Add confirmation states if present in query
+    if (req.query.questionDeleteConfirm === 'true') {
+        templateData.questionDeleteConfirm = true;
+        templateData.deleteQuestionId = req.query.deleteQuestionId;
+        templateData.deleteQuestionName = req.query.deleteQuestionName;
+    }
 
     res.render('funding/grant/reports/edit/question/index', templateData);
 })

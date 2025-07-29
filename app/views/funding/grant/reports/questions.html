@@ -5,11 +5,10 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Manage task and questions" %}
 {% if isUnassignedTask or data.isUnassignedTask %}
-    {% set pageSection = "Unassigned task" %}
+    {% set pageHeading = taskName or data.taskName %}
 {% else %}
-    {% set pageSection = '' + (sectionName or data.sectionName) + '' %}
+    {% set pageHeading = '' + (sectionName or data.sectionName) + '' %}
 {% endif %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -36,7 +35,7 @@
         {% endif %}
 
         {% set breadcrumbItems = (breadcrumbItems.push({
-            text: "Sections and tasks",
+            text: "Tasks",
             href: "/funding/grant/reports/sections?reportId=" + (currentReportId or data.currentReportId)
         }), breadcrumbItems) %}
 
@@ -51,95 +50,12 @@
             classes: "govuk-!-margin-bottom-6"
         }) }}
 
-        {# Show question delete confirmation banner if questionDeleteConfirm parameter is present #}
-        {% if questionDeleteConfirm %}
-            {% set deleteQuestionName = deleteQuestionName or 'this question' %}
-            {% set html %}
-                <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteQuestionName }}"?
-                </p>
-                <p class="govuk-body">
-                    {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
-                    {% else %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/questions/delete/{{ deleteQuestionId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&confirm=yes">Yes, delete this question</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
-                    {% endif %}
-                </p>
-            {% endset %}
-            {{ govukNotificationBanner({
-                html: html,
-                type: "warning",
-                titleText: "Important"
-            }) }}
-        {% endif %}
-
-        {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
-        {% if taskDeleteConfirm %}
-            {% set deleteTaskName = deleteTaskName or 'this task' %}
-            {% set html %}
-                <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete "{{ deleteTaskName }}"?
-                </p>
-                <p class="govuk-body">
-                    {% if isUnassignedTask or data.isUnassignedTask %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&taskId={{ currentTaskId or data.currentTaskId }}&unassigned=true&cancel=true">Cancel</a>
-                    {% else %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
-                        <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/questions?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&taskId={{ currentTaskId or data.currentTaskId }}&cancel=true">Cancel</a>
-                    {% endif %}
-                </p>
-            {% endset %}
-            {{ govukNotificationBanner({
-                html: html,
-                type: "warning",
-                titleText: "Important"
-            }) }}
-        {% endif %}
-
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
             </div>
         </div>
 
-        {# Task information summary list - simplified to show task name in first column #}
-        {% set taskActions = [] %}
-        
-        {# Always show "Change name" first - handle both regular and unassigned tasks #}
-        {% if isUnassignedTask or data.isUnassignedTask %}
-            {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&reportId=" + (currentReportId or data.currentReportId) + "&unassigned=true" %}
-        {% else %}
-            {% set changeNameHref = "/funding/grant/reports/edit/task/?taskId=" + (currentTaskId or data.currentTaskId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&reportId=" + (currentReportId or data.currentReportId) %}
-        {% endif %}
-
-        {% set taskActions = (taskActions.push({
-            href: changeNameHref,
-            text: "Change name",
-            visuallyHiddenText: "of task",
-            classes: "govuk-link govuk-link--no-visited-state"
-        }), taskActions) %}
-
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-
-        {{ govukSummaryList({
-            rows: [
-                {
-                    key: { text: taskName or data.taskName },
-                    actions: {
-                        classes: "govuk-!-width-one-half",
-                        items: taskActions
-                    }
-                }
-            ],
-            classes: "govuk-!-margin-bottom-7"
-        }) }}
-
-        </div>
-        </div>
 
         {% if (currentQuestions or data.currentQuestions) and (currentQuestions or data.currentQuestions).length > 0 %}
             {% set questionCount = (currentQuestions or data.currentQuestions).length %}
@@ -197,22 +113,17 @@
                     classes: "govuk-link govuk-link--no-visited-state"
                 }), questionActions) %}
 
-                {# Always add Delete #}
-                {% set questionActions = (questionActions.push({
-                    href: deleteHref,
-                    text: "Delete",
-                    visuallyHiddenText: question.questionName,
-                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                }), questionActions) %}
-
                 {% set questionRow = {
                     key: {
                         text: question.questionName,
                         classes: "govuk-!-font-weight-regular govuk-!-width-one-half"
                     },
+                    value: {
+                    	text: question.humanQuestionType
+										},
                     actions: {
-                        classes: "govuk-!-width-one-half",
-                        items: questionActions
+                        items: questionActions,
+                        classes: "govuk-!-width-one-third"
                     }
                 } %}
                 {% set questionRows = (questionRows.push(questionRow), questionRows) %}
@@ -232,19 +143,11 @@
                 {% set deleteTaskHref = "/funding/grant/reports/questions/?reportId=" + (currentReportId or data.currentReportId) + "&sectionId=" + (currentSectionId or data.currentSectionId) + "&taskId=" + (currentTaskId or data.currentTaskId) + "&taskDeleteConfirm=true&deleteTaskId=" + (currentTaskId or data.currentTaskId) + "&deleteTaskName=" + (taskName or data.taskName) %}
             {% endif %}
 
-            <div class="govuk-button-group">
-                {{ govukButton({
-                    text: "Add question",
-                    href: addQuestionHref,
-                    classes: "govuk-button--secondary"
-                }) }}
-
-                {{ govukButton({
-                    text: "Delete task",
-                    href: deleteTaskHref,
-                    classes: "govuk-button--warning"
-                }) }}
-            </div>
+						{{ govukButton({
+								text: "Add question",
+								href: addQuestionHref,
+								classes: "govuk-button--secondary"
+						}) }}
         {% else %}
             {# No questions exist yet #}
             {% if isUnassignedTask or data.isUnassignedTask %}
@@ -257,19 +160,11 @@
 
             <p class="govuk-body">There are no questions in this task yet.</p>
 
-            <div class="govuk-button-group">
                 {{ govukButton({
                     text: "Add questions",
                     href: addQuestionHref,
-                    classes: "govuk-button--secondary"
+                    classes: "govuk-button"
                 }) }}
-
-                {{ govukButton({
-                    text: "Delete task",
-                    href: deleteTaskHref,
-                    classes: "govuk-button--warning"
-                }) }}
-            </div>
         {% endif %}
 
     </div>

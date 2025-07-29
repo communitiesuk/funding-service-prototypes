@@ -1,70 +1,99 @@
 {% extends "layouts/grantManagement.html" %}
+
 {% set navID = 'grantReports' %}
-{% set showBackLink = true %}
-
-{# Dynamic back link based on whether it's an unassigned task or not #}
-{% if data.isUnassignedTask %}
-    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
-{% else %}
-    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
-{% endif %}
-
+{% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
+
 {% set pageSize = "l" %}
-{% set pageHeading = "Change the name of this task" %}
-
-{# Dynamic page section based on task type #}
-{% if data.isUnassignedTask %}
-    {% set pageSection = '' + data.reportName + '' %}
+{% set pageHeading = "Manage task" %}
+{% if isUnassignedTask or data.isUnassignedTask %}
+    {% set pageSection = "" %}
 {% else %}
-    {% set pageSection = '' + data.reportName + '' %}
+    {% set pageSection = '' + (taskName or data.taskName) + '' %}
 {% endif %}
-
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
 
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
+{% block beforeContent %}
+	{{ govukBackLink({
+		text: "Back",
+		href: "javascript:history.go(-1)"
+	}) }}
+{% endblock %}
+
+
 {% block content %}
+
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-        
-        <p class="govuk-body">Enter the new name for this task.</p>
-        
-        <form method="post" action="/funding/grant/reports/edit/task/update">
-            {# Hidden fields to maintain context #}
-            <input type="hidden" name="taskId" value="{{ currentTaskId or data.currentTaskId }}">
-            <input type="hidden" name="sectionId" value="{{ currentSectionId or data.currentSectionId }}">
-            <input type="hidden" name="reportId" value="{{ currentReportId or data.currentReportId }}">
-            <input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask or data.isUnassignedTask }}">
-            
-            {{ govukInput({
-                label: {
-                    text: "Task name",
-                    classes: "govuk-visually-hidden",
-                    isPageHeading: false
-                },
-                classes: "govuk-!-width-two-thirds",
-                id: "taskName",
-                name: "taskName",
-                attributes: {
-                    "spellcheck": "false"
-                },
-                value: currentTaskName or data.currentTaskName
+    <div class="govuk-grid-column-full">
+        {# Show task delete confirmation banner if taskDeleteConfirm parameter is present #}
+        {% if taskDeleteConfirm %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete this task?
+                </p>
+                <p class="govuk-body govuk-button-group">
+                    {% if isUnassignedTask or data.isUnassignedTask %}
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/unassigned-tasks/delete/{{ currentTaskId or data.currentTaskId }}?reportId={{ currentReportId or data.currentReportId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
+                    {% else %}
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/tasks/delete/{{ currentTaskId or data.currentTaskId }}?reportId={{ currentReportId or data.currentReportId }}&sectionId={{ currentSectionId or data.currentSectionId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
+                    {% endif %}
+                </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important",
+                classes: "app-notification-banner--destructive"
             }) }}
-            
-            <div class="govuk-button-group">
-                {{ govukButton({
-                    text: "Save changes"
-                }) }}
-                {% if data.isUnassignedTask %}
-                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&reportId={{ data.currentReportId }}&unassigned=true">Cancel</a>
-                {% else %}
-                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
-                {% endif %}
+        {% endif %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+								<form method="post" action="/funding/grant/reports/edit/task/update">
+								{# Hidden fields to maintain context #}
+								<input type="hidden" name="taskId" value="{{ currentTaskId or data.currentTaskId }}">
+								<input type="hidden" name="sectionId" value="{{ currentSectionId or data.currentSectionId }}">
+								<input type="hidden" name="reportId" value="{{ currentReportId or data.currentReportId }}">
+								<input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask or data.isUnassignedTask }}">
+
+								{{ govukInput({
+										label: {
+												text: "Task name",
+												isPageHeading: false
+										},
+										classes: "govuk-!-width-two-thirds",
+										id: "taskName",
+										name: "taskName",
+										attributes: {
+												"spellcheck": "false"
+										},
+										value: currentTaskName or data.currentTaskName
+								}) }}
+
+								<div class="govuk-button-group">
+										{{ govukButton({
+												text: "Update task name"
+										}) }}
+										{% if data.isUnassignedTask %}
+												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}&unassigned=true">Cancel</a>
+										{% else %}
+												<a class="govuk-link" href="/funding/grant/reports/sections?reportId={{ currentReportId or data.currentReportId }}">Cancel</a>
+										{% endif %}
+								</div>
+								<p class="govuk-body">
+									<a class="govuk-link govuk-link--no-visited-state app-link--destructive" href="/funding/grant/reports/edit/task?taskId={{ currentTaskId or data.currentTaskId }}&sectionId={{ currentSectionId or data.currentSectionId }}&reportId={{ currentReportId or data.currentReportId }}&taskDeleteConfirm=true">Delete task</a>
+								</p>
+						</form>
             </div>
-        </form>
+        </div>
+
     </div>
 </div>
+
 {% endblock %}

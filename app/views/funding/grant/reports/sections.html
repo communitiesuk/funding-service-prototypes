@@ -37,17 +37,18 @@
             {% set deleteSectionName = deleteSectionName or 'this section' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete '{{ deleteSectionName }}'?
+                    Are you sure you want to delete ‘{{ deleteSectionName }}’?
                 </p>
-                <p class="govuk-body">
-                    <a class="govuk-notification-banner__link" href="/funding/grant/reports/sections/delete/{{ deleteSectionId }}?reportId={{ currentReportId }}&confirm=yes">Yes, delete this section</a>
-                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/sections?reportId={{ currentReportId }}&cancel=true">Cancel</a>
+                <p class="govuk-body govuk-button-group">
+                    <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/sections/delete/{{ deleteSectionId }}?reportId={{ currentReportId }}&confirm=yes">Yes, delete this section</a>
+                    <a class="govuk-notification-banner__link" href="/funding/grant/reports/sections?reportId={{ currentReportId }}&cancel=true">Cancel</a>
                 </p>
             {% endset %}
             {{ govukNotificationBanner({
                 html: html,
                 type: "warning",
-                titleText: "Important"
+                titleText: "Important",
+                "classes": "app-notification-banner--destructive"
             }) }}
         {% endif %}
 
@@ -58,9 +59,9 @@
                 <p class="govuk-notification-banner__heading">
                     Are you sure you want to delete '{{ deleteTaskName }}'?
                 </p>
-                <p class="govuk-body">
+                <p class="govuk-body govuk-button-group">
                     {% if deleteTaskSectionId == 'unassigned' %}
-                        <a class="govuk-notification-banner__link" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId }}&confirm=yes">Yes, delete this task</a>
+                        <a class="govuk-button govuk-button--warning" href="/funding/grant/reports/unassigned-tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId }}&confirm=yes">Yes, delete this task</a>
                     {% else %}
                         <a class="govuk-notification-banner__link" href="/funding/grant/reports/tasks/delete/{{ deleteTaskId }}?reportId={{ currentReportId }}&sectionId={{ deleteTaskSectionId }}&confirm=yes">Yes, delete this task</a>
                     {% endif %}
@@ -69,8 +70,9 @@
             {% endset %}
             {{ govukNotificationBanner({
                 html: html,
-                type: "warning",
-                titleText: "Important"
+                type: "destructive",
+                titleText: "Important",
+                "classes": "app-notification-banner--destructive"
             }) }}
         {% endif %}
 
@@ -131,34 +133,32 @@
 
                 {# Always add Change section action for unassigned tasks #}
                 {% set unassignedTaskActions = (unassignedTaskActions.push({
-                    href: "/funding/grant/reports/move-task-to-section/?taskId=" + task.id + "&reportId=" + currentReportId + "&unassigned=true",
-                    text: "Section",
+                    href: '/funding/grant/reports/edit/task?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true',
+                    text: "Manage",
                     visuallyHiddenText: task.taskName,
                     classes: "govuk-link govuk-link--no-visited-state"
                 }), unassignedTaskActions) %}
 
-                {# Always add Delete action for unassigned tasks #}
-                {% set unassignedTaskActions = (unassignedTaskActions.push({
-                    href: "/funding/grant/reports/sections/?reportId=" + currentReportId + "&taskDeleteConfirm=true&deleteTaskId=" + task.id + "&deleteTaskName=" + task.taskName + "&deleteTaskSectionId=unassigned",
-                    text: "Delete",
-                    visuallyHiddenText: task.taskName,
-                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                }), unassignedTaskActions) %}
 
-                {# Always show "Manage task" link regardless of question count #}
-                {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
-
+								{% set questionHtml %}
+									{% if questionCount === 0 %}
+										<a class="govuk-link govuk-link--no-visited-state" href="{{ '/funding/grant/reports/add/question?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true'}}">Add questions</a>
+									{% else %}
+										<a class="govuk-link govuk-link--no-visited-state" href="{{ '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true'}}">{{ questionCount }} questions</a>
+									{% endif %}
+								{% endset %}
                 {% set unassignedTaskRow = {
                     key: {
                         text: task.taskName,
                         classes: "govuk-!-font-weight-regular"
                     },
                     value: {
-                        html: linkText
+                    	html: questionHtml,
+                    	classes: "govuk-!-width-one-third"
                     },
                     actions: {
-                        classes: "govuk-!-width-one-half",
-                        items: unassignedTaskActions
+                        items: unassignedTaskActions,
+												classes: "govuk-!-width-one-quarter"
                     }
                 } %}
                 {% set unassignedRows = (unassignedRows.push(unassignedTaskRow), unassignedRows) %}
@@ -167,18 +167,17 @@
             {# Add "Add another task" row at the end #}
             {% set addUnassignedTaskRow = {
                 key: {
-                    html: '<a href="/funding/grant/reports/add/task/?reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add task</a>',
+                    html: '<a href="/funding/grant/reports/add/task/?reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Add ' + ("another" if currentUnassignedTasks.length > 0 else "") + ' task</a>',
                     classes: "govuk-!-font-weight-regular govuk-!-margin-top-7"
                 },
                 value: {
-                    html: ""
                 }
             } %}
             {% set unassignedRows = (unassignedRows.push(addUnassignedTaskRow), unassignedRows) %}
 
             {{ govukSummaryList({
                 card: {
-                    title: { text: "Tasks not in a section" },
+                    title: { text: "Tasks" },
                     classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
                 },
                 rows: unassignedRows
@@ -255,7 +254,7 @@
                         }), taskActions) %}
 
                         {# Always show "Manage task" link regardless of question count #}
-                        {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
+                        {% set linkText = '<a href="/funding/grant/reports/manage-task?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">Manage task</a>' %}
 
                         {% set taskRow = {
                             key: {
@@ -347,9 +346,7 @@
 
                 {# No sections exist yet #}
                 {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
-                    <p class="govuk-body">There are no sections or tasks in this report yet.</p>
-                {% else %}
-                    <p class="govuk-body">You can group tasks under headings. For example, a task about 'Risk mitigation' and 'Risk status' could be grouped under 'Risk'.</p>
+                    <p class="govuk-body">There are no tasks in this report yet.</p>
                 {% endif %}
 
             </div>
@@ -358,17 +355,12 @@
         {% endif %}
 
         <div class="govuk-button-group govuk-!-margin-top-1">
-            <form method="get" action="/funding/grant/reports/add/section/" class="govuk-!-display-inline-block">
+            <form method="get" action="/funding/grant/reports/add/task/" class="govuk-!-display-inline-block">
                 <input type="hidden" name="reportId" value="{{ currentReportId }}">
                 <input type="hidden" name="returnTo" value="sections">
-                {% if currentSections and currentSections.length > 0 %}
+                {% if currentUnassignedTasks and currentUnassignedTasks.length === 0 %}
                     {{ govukButton({
-                        text: "Add section",
-                        classes: "govuk-button--secondary"
-                    }) }}
-                {% else %}
-                    {{ govukButton({
-                        text: "Add section",
+                        text: "Add task",
                         classes: "govuk-button--secondary"
                     }) }}
                 {% endif %}

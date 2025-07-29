@@ -29,13 +29,6 @@ router.get('/funding/grant/reports/sections', function (req, res) {
         templateData.deleteSectionName = req.query.deleteSectionName;
     }
 
-    if (req.query.taskDeleteConfirm === 'true') {
-        templateData.taskDeleteConfirm = true;
-        templateData.deleteTaskId = req.query.deleteTaskId;
-        templateData.deleteTaskSectionId = req.query.deleteTaskSectionId;
-        templateData.deleteTaskName = req.query.deleteTaskName;
-    }
-
     res.render('funding/grant/reports/sections', templateData);
 });
 

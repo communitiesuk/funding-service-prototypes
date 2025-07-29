@@ -31,10 +31,10 @@ class ReportsDataManager {
         const newReport = {
             id: this.generateId(),
             reportName: reportData.reportName || 'Untitled Report',
-            createdBy: 'Current User', // You might want to get this from session
-            createdDate: new Date().toLocaleDateString('en-GB'),
-            updatedBy: 'Current User',
-            lastUpdated: new Date().toLocaleDateString('en-GB'),
+            createdBy: 'current.user@communities.gov.uk', // You might want to get this from session
+            createdDate: new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'}),
+            updatedBy: 'current.user@communities.gov.uk',
+            lastUpdated: new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'}),
             sections: [],
             unassignedTasks: []
         };
@@ -49,8 +49,8 @@ class ReportsDataManager {
         if (!report) return false;
 
         Object.assign(report, updates);
-        report.updatedBy = 'Current User';
-        report.lastUpdated = new Date().toLocaleDateString('en-GB');
+        report.updatedBy = 'current.user@communities.gov.uk';
+        report.lastUpdated = new Date().toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
         return true;
     }
 
@@ -408,6 +408,7 @@ class ReportsDataManager {
             questionHint: questionData.questionHint,
             questionType: questionData.questionType || 'text',
             isRequired: questionData.isRequired || false,
+            humanQuestionType: questionData.humanQuestionType,
 
             // Text type fields
             textType: questionData.textType,

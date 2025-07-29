@@ -116,7 +116,7 @@ router.get('/funding/grant/reports/preview', function (req, res) {
         templateData.previewSections.push({
             heading: "No content",
             tasks: [{
-                title: { text: "This report has no sections or tasks yet" },
+                title: { text: "This report has no tasks yet" },
                 href: "#",
                 status: {
                     tag: {
@@ -182,6 +182,13 @@ router.get('/funding/grant/reports/edit/', function (req, res) {
         currentReportName: currentReport.reportName,
         grantName: req.session.data.grantName || 'Sample Grant Name'
     };
+
+    // Add confirmation states if present in query
+    if (req.query.deleteConfirm === 'true') {
+        templateData.deleteConfirm = true;
+        templateData.deleteSectionId = req.query.deleteSectionId;
+        templateData.deleteSectionName = req.query.deleteSectionName;
+    }
 
     res.render('funding/grant/reports/edit/index', templateData);
 })

@@ -226,6 +226,10 @@ router.get('/funding/grant/reports/edit/task/', function (req, res) {
         grantName: req.session.data.grantName || 'Sample Grant Name'
     };
 
+    if (req.query.taskDeleteConfirm === 'true') {
+        templateData.taskDeleteConfirm = true;
+    }
+
     res.render('funding/grant/reports/edit/task/index', templateData);
 })
 
@@ -243,7 +247,7 @@ router.post('/funding/grant/reports/edit/task/update', function (req, res) {
     }, sectionId);
 
     // Build redirect URL back to questions page
-    let redirectUrl = '/funding/grant/reports/questions?taskId=' + taskId + '&reportId=' + reportId;
+    let redirectUrl = '/funding/grant/reports/sections?reportId=' + reportId;
     if (isUnassignedTask) {
         redirectUrl += '&unassigned=true';
     } else {
@@ -252,5 +256,6 @@ router.post('/funding/grant/reports/edit/task/update', function (req, res) {
 
     res.redirect(redirectUrl);
 })
+
 
 module.exports = router

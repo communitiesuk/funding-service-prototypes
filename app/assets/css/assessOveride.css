@@ -165,6 +165,11 @@ a:link.summaryLinkOveride, .govuk-link:link.summaryLinkOveride {
     border-top: 4px solid #b1b4b6;
 }
 
+.app-notification-banner--destructive {
+    border-color:  #d4351c;
+    background-color: #d4351c;
+}
+
 
 
 // .govuk-width-container {
