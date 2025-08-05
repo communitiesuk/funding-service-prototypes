@@ -106,30 +106,50 @@
 
                 {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true' %}
 
-                {# Build actions array - only include active actions #}
+                {# Build actions array - always show move actions, disable when not applicable #}
                 {% set taskActions = [] %}
 
-                {# Only add Move Up if it should be active #}
-                {% if taskCount > 1 and not isFirstTask %}
-                    {% set taskActions = (taskActions.push({
-                        href: "/funding/grant/reports/unassigned-tasks/move-up/" + task.id + "?reportId=" + currentReportId,
-                        text: "Move up",
-                        visuallyHiddenText: task.taskName,
-                        classes: "govuk-link govuk-link--no-visited-state"
-                    }), taskActions) %}
+                {# Always add Move Up - disable if first task #}
+                {% if taskCount > 1 %}
+                    {% if isFirstTask %}
+                        {% set taskActions = (taskActions.push({
+                            text: "Move up",
+                            visuallyHiddenText: task.taskName,
+                            classes: "govuk-link--muted",
+                            attributes: {
+                                "aria-disabled": "true"
+                            }
+                        }), taskActions) %}
+                    {% else %}
+                        {% set taskActions = (taskActions.push({
+                            href: "/funding/grant/reports/unassigned-tasks/move-up/" + task.id + "?reportId=" + currentReportId,
+                            text: "Move up",
+                            visuallyHiddenText: task.taskName,
+                            classes: "govuk-link govuk-link--no-visited-state"
+                        }), taskActions) %}
+                    {% endif %}
                 {% endif %}
 
-                {# Only add Move Down if it should be active #}
-                {% if taskCount > 1 and not isLastTask %}
-                    {% set taskActions = (taskActions.push({
-                        href: "/funding/grant/reports/unassigned-tasks/move-down/" + task.id + "?reportId=" + currentReportId,
-                        text: "Move down",
-                        visuallyHiddenText: task.taskName,
-                        classes: "govuk-link govuk-link--no-visited-state"
-                    }), taskActions) %}
+                {# Always add Move Down - disable if last task #}
+                {% if taskCount > 1 %}
+                    {% if isLastTask %}
+                        {% set taskActions = (taskActions.push({
+                            text: "Move down",
+                            visuallyHiddenText: task.taskName,
+                            classes: "govuk-link--muted",
+                            attributes: {
+                                "aria-disabled": "true"
+                            }
+                        }), taskActions) %}
+                    {% else %}
+                        {% set taskActions = (taskActions.push({
+                            href: "/funding/grant/reports/unassigned-tasks/move-down/" + task.id + "?reportId=" + currentReportId,
+                            text: "Move down",
+                            visuallyHiddenText: task.taskName,
+                            classes: "govuk-link govuk-link--no-visited-state"
+                        }), taskActions) %}
+                    {% endif %}
                 {% endif %}
-
-                {# REMOVED: Delete action - only available on questions page #}
 
                 {# Task name as clickable link #}
                 {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&reportId=' + currentReportId + '&unassigned=true" class="govuk-link govuk-link--no-visited-state">' + task.taskName + '</a>' %}
@@ -179,155 +199,6 @@
                 },
                 rows: taskRows
             }) }}
-        {% endif %}
-
-        {# Show sections if any exist #}
-        {% if currentSections and currentSections.length > 0 %}
-            {% for section in currentSections %}
-                {% set sectionTasks = section.tasks or [] %}
-                {% set taskCount = sectionTasks.length %}
-
-                {# Build the section summary list rows #}
-                {% set sectionRows = [] %}
-
-                {# Tasks rows - each task gets its own row #}
-                {% if taskCount == 0 %}
-                    {% set tasksRow = {
-                        key: {
-                            text: "No tasks in this section yet",
-                            classes: "govuk-!-font-weight-regular"
-                        },
-                        value: { html: "" }
-                    } %}
-                    {% set sectionRows = (sectionRows.push(tasksRow), sectionRows) %}
-                {% else %}
-                    {# Add individual task rows with conditional disabled states #}
-                    {% for task in sectionTasks %}
-                        {% set taskQuestions = task.questions or [] %}
-                        {% set questionCount = taskQuestions.length %}
-                        {% set taskIndex = loop.index0 %}  {# Get the current task index (0-based) #}
-                        {% set isFirstTask = (taskIndex == 0) %}
-                        {% set isLastTask = (taskIndex == (taskCount - 1)) %}
-
-                        {% set taskLinkHref = '/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId %}
-
-                        {# Build actions array - only include active actions #}
-                        {% set taskActions = [] %}
-
-                        {# Only add Move Up if it should be active #}
-                        {% if taskCount > 1 and not isFirstTask %}
-                            {% set taskActions = (taskActions.push({
-                                href: "/funding/grant/reports/tasks/move-up/" + task.id + "?reportId=" + currentReportId + "&sectionId=" + section.id,
-                                text: "Move up",
-                                visuallyHiddenText: task.taskName,
-                                classes: "govuk-link govuk-link--no-visited-state"
-                            }), taskActions) %}
-                        {% endif %}
-
-                        {# Only add Move Down if it should be active #}
-                        {% if taskCount > 1 and not isLastTask %}
-                            {% set taskActions = (taskActions.push({
-                                href: "/funding/grant/reports/tasks/move-down/" + task.id + "?reportId=" + currentReportId + "&sectionId=" + section.id,
-                                text: "Move down",
-                                visuallyHiddenText: task.taskName,
-                                classes: "govuk-link govuk-link--no-visited-state"
-                            }), taskActions) %}
-                        {% endif %}
-
-                        {# REMOVED: Delete action - only available on questions page #}
-
-                        {# Show task name as clickable link and question count as value #}
-                        {% set linkText = '<a href="/funding/grant/reports/questions?taskId=' + task.id + '&sectionId=' + section.id + '&reportId=' + currentReportId + '" class="govuk-link govuk-link--no-visited-state">' + task.taskName + '</a>' %}
-
-                        {# Show question count as value #}
-                        {% set questionCount = taskQuestions.length %}
-                        {% if questionCount == 0 %}
-                            {% set valueText = "No questions" %}
-                        {% elif questionCount == 1 %}
-                            {% set valueText = "1 question" %}
-                        {% else %}
-                            {% set valueText = questionCount + " questions" %}
-                        {% endif %}
-
-                        {% set taskRow = {
-                            key: {
-                                html: linkText,
-                                classes: "govuk-!-font-weight-regular"
-                            },
-                            value: {
-                                text: valueText
-                            },
-                            actions: {
-                                classes: "govuk-!-width-one-half",
-                                items: taskActions
-                            }
-                        } %}
-                        {% set sectionRows = (sectionRows.push(taskRow), sectionRows) %}
-                    {% endfor %}
-                {% endif %}
-
-                {# Build section actions array - only include relevant actions #}
-                {% set sectionIndex = loop.index0 %}  {# Get current section index (0-based) #}
-                {% set sectionCount = currentSections.length %}
-                {% set isFirstSection = (sectionIndex == 0) %}
-                {% set isLastSection = (sectionIndex == (sectionCount - 1)) %}
-                {% set sectionActions = [] %}
-
-                {# Only add Move Up if not the first section and there are multiple sections #}
-                {% if sectionCount > 1 and not isFirstSection %}
-                    {% set sectionActions = (sectionActions.push({
-                        href: "/funding/grant/reports/sections/move-up/" + section.id + "?reportId=" + currentReportId,
-                        text: "Move up",
-                        visuallyHiddenText: section.sectionName,
-                        classes: "govuk-link govuk-link--no-visited-state"
-                    }), sectionActions) %}
-                {% endif %}
-
-                {# Only add Move Down if not the last section and there are multiple sections #}
-                {% if sectionCount > 1 and not isLastSection %}
-                    {% set sectionActions = (sectionActions.push({
-                        href: "/funding/grant/reports/sections/move-down/" + section.id + "?reportId=" + currentReportId,
-                        text: "Move down",
-                        visuallyHiddenText: section.sectionName,
-                        classes: "govuk-link govuk-link--no-visited-state"
-                    }), sectionActions) %}
-                {% endif %}
-
-                {# Always add Change name action #}
-                {% set sectionActions = (sectionActions.push({
-                    href: "/funding/grant/reports/edit/section/?sectionId=" + section.id + "&reportId=" + currentReportId,
-                    text: "Change name",
-                    visuallyHiddenText: "of " + section.sectionName,
-                    classes: "govuk-link govuk-link--no-visited-state"
-                }), sectionActions) %}
-
-                {# Always add Add task action #}
-                {% set sectionActions = (sectionActions.push({
-                    href: "/funding/grant/reports/add/task/?sectionId=" + section.id + "&reportId=" + currentReportId,
-                    text: "Add task",
-                    visuallyHiddenText: "to " + section.sectionName,
-                    classes: "govuk-link govuk-link--no-visited-state"
-                }), sectionActions) %}
-
-                {# Always add Delete action #}
-                {% set sectionActions = (sectionActions.push({
-                    href: "/funding/grant/reports/sections/?reportId=" + currentReportId + "&deleteConfirm=true&deleteSectionId=" + section.id + "&deleteSectionName=" + section.sectionName,
-                    text: "Delete",
-                    visuallyHiddenText: section.sectionName,
-                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive"
-                }), sectionActions) %}
-
-                {{ govukSummaryList({
-                    card: {
-                        title: { text: section.sectionName },
-                        classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
-                        actions: {
-                            items: sectionActions
-                        }
-                    },
-                    rows: sectionRows
-                }) }}
-            {% endfor %}
         {% else %}
 
         <div class="govuk-grid-row">
