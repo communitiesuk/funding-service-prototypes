@@ -27,13 +27,13 @@
             {% set deleteReportName = deleteReportName or 'this report' %}
             {% set html %}
                 <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete '{{ deleteReportName }}' report?
+                    Are you sure you want to delete the report “{{ deleteReportName }}”?
                 </p>
                 <div class="govuk-button-group">
                     {{ govukButton({
                         text: "Yes, delete this report",
                         href: "/funding/grant/reports/delete/" + deleteReportId + "?confirm=yes",
-                        classes: "govuk-button--warning"
+                        classes: "govuk-button--secondary"
                     }) }}
                     <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/?cancel=true">Cancel</a>
                 </div>
@@ -184,7 +184,7 @@
             <form method="post" action="/funding/grant/reports/add/">
                 {{ govukButton({
                     text: "Add another monitoring report",
-                    classes: "govuk-button--secondary govuk-!-margin-top-6"
+                    classes: "govuk-button--secondary"
                 }) }}
             </form>
 
