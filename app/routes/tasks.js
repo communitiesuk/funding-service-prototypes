@@ -130,76 +130,8 @@ router.get('/funding/grant/reports/unassigned-tasks/delete/:taskId', function (r
     res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
 })
 
-// Move task to section
-router.post('/funding/grant/reports/move-task-to-section/move', function (req, res) {
-    const taskId = req.body.taskId;
-    const reportId = req.body.reportId;
-    const currentSectionId = req.body.currentSectionId;
-    const sectionChoice = req.body.sectionChoice;
-    const newSectionName = req.body.newSectionName;
-    const isUnassigned = req.body.isUnassigned === 'true';
-    const dataManager = new ReportsDataManager(req.session.data);
-
-    if (!taskId || !reportId || !sectionChoice) {
-        return res.redirect('/funding/grant/reports/');
-    }
-
-    const fromSectionId = isUnassigned ? null : currentSectionId;
-    const success = dataManager.moveTaskToSection(reportId, taskId, fromSectionId, sectionChoice, newSectionName);
-
-    if (success) {
-        res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
-    } else {
-        res.redirect('/funding/grant/reports/');
-    }
-})
-
-// Show move task to section page
-router.get('/funding/grant/reports/move-task-to-section/', function (req, res) {
-    const taskId = req.query.taskId;
-    const reportId = req.query.reportId;
-    const currentSectionId = req.query.currentSectionId;
-    const isUnassigned = req.query.unassigned === 'true';
-    const dataManager = new ReportsDataManager(req.session.data);
-
-    if (!taskId || !reportId) {
-        return res.redirect('/funding/grant/reports/');
-    }
-
-    // Get fresh data from the data manager
-    const currentReport = dataManager.getReport(reportId);
-    if (!currentReport) {
-        return res.redirect('/funding/grant/reports/');
-    }
-
-    // Find the task
-    const currentTask = dataManager.getTask(reportId, taskId, currentSectionId);
-    if (!currentTask) {
-        return res.redirect('/funding/grant/reports/sections?reportId=' + reportId);
-    }
-
-    // Get current section name if task is in a section
-    let currentSectionName = null;
-    if (currentSectionId) {
-        const currentSection = dataManager.getSection(reportId, currentSectionId);
-        currentSectionName = currentSection?.sectionName;
-    }
-
-    // Prepare template data
-    const templateData = {
-        taskId: taskId,
-        reportId: reportId,
-        currentSectionId: currentSectionId,
-        isUnassigned: isUnassigned,
-        taskName: currentTask.taskName,
-        reportName: currentReport.reportName,
-        currentSectionName: currentSectionName,
-        availableSections: currentReport.sections || [],
-        grantName: req.session.data.grantName || 'Sample Grant Name'
-    };
-
-    res.render('funding/grant/reports/move-task-to-section/index', templateData);
-})
+// REMOVED: Move task to section routes and functionality
+// REMOVED: Show move task to section page route
 
 // Edit task page
 router.get('/funding/grant/reports/edit/task/', function (req, res) {
