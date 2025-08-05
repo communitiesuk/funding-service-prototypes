@@ -28,28 +28,61 @@
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
                 {% if not data.reports or data.reports.length == 0 %}
-                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
+                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}.</p>
                     <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
+
+                    <form method="post" action="/funding/grant/reports/add/">
+                        {{ govukButton({
+                            text: "Add a monitoring report",
+                            classes: "govuk-!-margin-top-5"
+                        }) }}
+                    </form>
                 {% else %}
                     <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
                 {% endif %}
-
-                <form method="post" action="/funding/grant/reports/add/">
-                    {% set buttonText = "Add a monitoring report" %}
-                    {% if data.reports and data.reports.length > 0 %}
-                        {% set buttonText = "Add another monitoring report" %}
-                    {% endif %}
-                    {{ govukButton({
-                        text: buttonText,
-                        classes: "govuk-!-margin-top-5"
-                    }) }}
-                </form>
             </div>
         </div>
 
         {% if data.reports and data.reports.length > 0 %}
 
             {% for report in data.reports %}
+                {% if report.sections %}
+                    {% set sectionCount = report.sections.length %}
+                {% else %}
+                    {% set sectionCount = 0 %}
+                {% endif %}
+
+                {% if report.unassignedTasks %}
+                    {% set unassignedTaskCount = report.unassignedTasks.length %}
+                {% else %}
+                    {% set unassignedTaskCount = 0 %}
+                {% endif %}
+
+                {# Format dates for display - convert DD/MM/YYYY to "5 August 2025" format #}
+                {% set createdDateFormatted = report.createdDate %}
+                {% set lastUpdatedFormatted = report.lastUpdated %}
+
+                {% if report.createdDate and report.createdDate.includes('/') %}
+                    {% set dateParts = report.createdDate.split('/') %}
+                    {% if dateParts.length == 3 %}
+                        {% set day = dateParts[0] | int %}
+                        {% set monthNum = dateParts[1] | int %}
+                        {% set year = dateParts[2] %}
+                        {% set months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+                        {% set createdDateFormatted = day + ' ' + months[monthNum] + ' ' + year %}
+                    {% endif %}
+                {% endif %}
+
+                {% if report.lastUpdated and report.lastUpdated.includes('/') %}
+                    {% set dateParts = report.lastUpdated.split('/') %}
+                    {% if dateParts.length == 3 %}
+                        {% set day = dateParts[0] | int %}
+                        {% set monthNum = dateParts[1] | int %}
+                        {% set year = dateParts[2] %}
+                        {% set months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+                        {% set lastUpdatedFormatted = day + ' ' + months[monthNum] + ' ' + year %}
+                    {% endif %}
+                {% endif %}
                 {% if report.sections %}
                     {% set sectionCount = report.sections.length %}
                 {% else %}
@@ -95,12 +128,6 @@
                         actions: {
                             items: [
                                 {
-                                    href: "/funding/grant/reports/preview?reportId=" + report.id,
-                                    classes: "govuk-link govuk-link--no-visited-state",
-                                    text: "Preview",
-                                    visuallyHiddenText: "report"
-                                },
-                                {
                                     href: "/funding/grant/reports/edit/?reportId=" + report.id,
                                     classes: "govuk-link govuk-link--no-visited-state",
                                     text: "Change name",
@@ -119,16 +146,24 @@
                         sectionsRow,
                         {
                             key: { text: "Created by" },
-                            value: { html: '<a href="#">' + report.createdBy + '</a> on ' + report.createdDate }
+                            value: { text: report.createdBy + "@communities.gov.uk on " + createdDateFormatted }
                         },
                         {
                             key: { text: "Last updated" },
-                            value: { html: '<a href="#">' + report.updatedBy + '</a> on ' + report.lastUpdated }
+                            value: { text: report.updatedBy + "@communities.gov.uk on " + lastUpdatedFormatted }
                         }
                     ]
                 }) }}
 
             {% endfor %}
+
+            {# Show "Add another monitoring report" button below all reports when reports exist #}
+            <form method="post" action="/funding/grant/reports/add/">
+                {{ govukButton({
+                    text: "Add another monitoring report",
+                    classes: "govuk-button--secondary govuk-!-margin-top-3"
+                }) }}
+            </form>
 
         {% endif %}
 

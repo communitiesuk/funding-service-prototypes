@@ -13,6 +13,20 @@ class ReportsDataManager {
         return Date.now().toString() + Math.random().toString(36).substr(2, 9);
     }
 
+    // Helper function to format dates as "5 August 2025"
+    formatDate(date = new Date()) {
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        const day = date.getDate();
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${day} ${month} ${year}`;
+    }
+
     // REPORT METHODS
 
     // Get all reports
@@ -31,10 +45,10 @@ class ReportsDataManager {
         const newReport = {
             id: this.generateId(),
             reportName: reportData.reportName || 'Untitled Report',
-            createdBy: 'Current User', // You might want to get this from session
-            createdDate: new Date().toLocaleDateString('en-GB'),
-            updatedBy: 'Current User',
-            lastUpdated: new Date().toLocaleDateString('en-GB'),
+            createdBy: 'hugo.furst', // Temporary made up user name
+            createdDate: this.formatDate(),
+            updatedBy: 'hugo.furst',
+            lastUpdated: this.formatDate(),
             sections: [],
             unassignedTasks: []
         };
@@ -49,8 +63,8 @@ class ReportsDataManager {
         if (!report) return false;
 
         Object.assign(report, updates);
-        report.updatedBy = 'Current User';
-        report.lastUpdated = new Date().toLocaleDateString('en-GB');
+        report.updatedBy = 'hugo.furst';
+        report.lastUpdated = this.formatDate();
         return true;
     }
 
