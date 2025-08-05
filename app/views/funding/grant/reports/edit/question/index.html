@@ -7,9 +7,9 @@
 {% set pageSize = "l" %}
 {% set pageHeading = "Edit question" %}
 {% if isUnassignedTask %}
-    {% set pageSection = "Unassigned task" %}
+    {% set pageSection = "Task" %}
 {% else %}
-    {% set pageSection = sectionName %}
+    {% set pageSection = "Task" %}
 {% endif %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -36,7 +36,7 @@
         {% endif %}
 
         {% set breadcrumbItems = (breadcrumbItems.push({
-            text: "Sections and tasks",
+            text: "Tasks",
             href: "/funding/grant/reports/sections?reportId=" + currentReportId
         }), breadcrumbItems) %}
 
@@ -144,6 +144,22 @@
                     </div>
 
                 </form>
+
+                {# Question settings section #}
+                <div class="govuk-!-margin-top-7">
+                    <h2 class="govuk-heading-m">Question settings</h2>                                    
+                    
+                    {% if isUnassignedTask %}
+                        {% set deleteQuestionHref = "/funding/grant/reports/questions/?reportId=" + currentReportId + "&taskId=" + currentTaskId + "&unassigned=true&questionDeleteConfirm=true&deleteQuestionId=" + currentQuestionId + "&deleteQuestionName=" + currentQuestionName %}
+                    {% else %}
+                        {% set deleteQuestionHref = "/funding/grant/reports/questions/?reportId=" + currentReportId + "&sectionId=" + currentSectionId + "&taskId=" + currentTaskId + "&questionDeleteConfirm=true&deleteQuestionId=" + currentQuestionId + "&deleteQuestionName=" + currentQuestionName %}
+                    {% endif %}
+                    
+                    <ul class="govuk-list">
+                        <li><a href="{{ deleteQuestionHref }}" class="govuk-link govuk-link--no-visited-state govuk-link--destructive">Delete question</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
