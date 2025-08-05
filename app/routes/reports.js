@@ -5,7 +5,7 @@ const ReportsDataManager = require('../data/ReportsDataManager')
 // Reports index page
 router.get('/funding/grant/reports/', function (req, res) {
     const dataManager = new ReportsDataManager(req.session.data);
-    
+
     // Set default grant name if not already set
     if (!req.session.data.grantName) {
         req.session.data.grantName = "Sample Grant Name"
@@ -20,6 +20,23 @@ router.get('/funding/grant/reports/', function (req, res) {
     delete req.session.data.currentSectionName
     delete req.session.data.currentUnassignedTasks
 
+    // Handle cancel parameter - redirect to clear URL
+    if (req.query.cancel === 'true') {
+        return res.redirect('/funding/grant/reports/');
+    }
+
+    // Build template data for rendering
+    const templateData = {
+        grantName: req.session.data.grantName || 'Sample Grant Name'
+    };
+
+    // Add confirmation state if present in query
+    if (req.query.deleteConfirm === 'true') {
+        templateData.deleteConfirm = true;
+        templateData.deleteReportId = req.query.deleteReportId;
+        templateData.deleteReportName = req.query.deleteReportName;
+    }
+
     console.log('Reports index - Current reports in session:')
     if (req.session.data.reports) {
         req.session.data.reports.forEach((report, index) => {
@@ -29,7 +46,7 @@ router.get('/funding/grant/reports/', function (req, res) {
         console.log('No reports found in session')
     }
 
-    res.render('funding/grant/reports/index')
+    res.render('funding/grant/reports/index', templateData)
 })
 
 // Preview report page - UPDATED to include questions data
@@ -44,8 +61,8 @@ router.get('/funding/grant/reports/preview', function (req, res) {
     }
 
     // Build template data with sections and tasks
-    const templateData = dataManager.buildTemplateData(reportId, { 
-        includeSections: true 
+    const templateData = dataManager.buildTemplateData(reportId, {
+        includeSections: true
     });
 
     // Transform the data structure for the task list pattern
@@ -54,7 +71,7 @@ router.get('/funding/grant/reports/preview', function (req, res) {
     // Add unassigned tasks FIRST as a separate section if they exist
     if (currentReport.unassignedTasks && currentReport.unassignedTasks.length > 0) {
         const unassignedTasks = [];
-        
+
         currentReport.unassignedTasks.forEach(task => {
             unassignedTasks.push({
                 title: { text: task.taskName },
@@ -79,7 +96,7 @@ router.get('/funding/grant/reports/preview', function (req, res) {
     if (currentReport.sections && currentReport.sections.length > 0) {
         currentReport.sections.forEach(section => {
             const sectionTasks = [];
-            
+
             if (section.tasks && section.tasks.length > 0) {
                 section.tasks.forEach(task => {
                     sectionTasks.push({
@@ -135,7 +152,7 @@ router.get('/funding/grant/reports/preview', function (req, res) {
 // Create new report
 router.post('/funding/grant/reports/', function (req, res) {
     const dataManager = new ReportsDataManager(req.session.data);
-    
+
     // Set grant name if not already set
     if (!req.session.data.grantName) {
         req.session.data.grantName = "Sample Grant Name"
@@ -152,19 +169,25 @@ router.post('/funding/grant/reports/', function (req, res) {
     res.redirect('/funding/grant/reports/?setupReport=yes')
 })
 
-// Delete report
+// Delete report - Updated to use confirmation pattern
 router.get('/funding/grant/reports/delete/:id', function (req, res) {
     const reportId = req.params.id
+    const confirm = req.query.confirm;
     const dataManager = new ReportsDataManager(req.session.data);
 
-    dataManager.deleteReport(reportId);
+    if (confirm === 'yes') {
+        dataManager.deleteReport(reportId);
 
-    // If no reports left, reset setupReport
-    if (req.session.data.reports.length === 0) {
-        req.session.data.setupReport = undefined
+        // If no reports left, reset setupReport
+        if (req.session.data.reports.length === 0) {
+            req.session.data.setupReport = undefined
+        }
+
+        res.redirect('/funding/grant/reports/')
+    } else {
+        // If no confirmation, redirect back to main page
+        res.redirect('/funding/grant/reports/')
     }
-
-    res.redirect('/funding/grant/reports/')
 })
 
 // Edit report page

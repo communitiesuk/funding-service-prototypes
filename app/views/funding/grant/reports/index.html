@@ -22,13 +22,36 @@
         {# Reports page only shows breadcrumbs if there are multiple levels (which there aren't) #}
         {# So breadcrumbs won't show on reports page - this is correct #}
 
+        {# Show delete confirmation banner if deleteConfirm parameter is present #}
+        {% if deleteConfirm %}
+            {% set deleteReportName = deleteReportName or 'this report' %}
+            {% set html %}
+                <p class="govuk-notification-banner__heading">
+                    Are you sure you want to delete '{{ deleteReportName }}' report?
+                </p>
+                <div class="govuk-button-group">
+                    {{ govukButton({
+                        text: "Yes, delete this report",
+                        href: "/funding/grant/reports/delete/" + deleteReportId + "?confirm=yes",
+                        classes: "govuk-button--warning"
+                    }) }}
+                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/?cancel=true">Cancel</a>
+                </div>
+            {% endset %}
+            {{ govukNotificationBanner({
+                html: html,
+                type: "warning",
+                titleText: "Important"
+            }) }}
+        {% endif %}
+
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
 
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
                 {% if not data.reports or data.reports.length == 0 %}
-                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}.</p>
+                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}. Add a monitoring report to get started.</p>
                     <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
 
                     <form method="post" action="/funding/grant/reports/add/">
@@ -134,7 +157,7 @@
                                     visuallyHiddenText: "of report"
                                 },
                                 {
-                                    href: "/funding/grant/reports/delete/" + report.id,
+                                    href: "/funding/grant/reports/?deleteConfirm=true&deleteReportId=" + report.id + "&deleteReportName=" + report.reportName,
                                     classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive",
                                     text: "Delete",
                                     visuallyHiddenText: "report"
@@ -146,11 +169,11 @@
                         sectionsRow,
                         {
                             key: { text: "Created by" },
-                            value: { text: report.createdBy + "@communities.gov.uk on " + createdDateFormatted }
+                            value: { text: report.createdBy + "@example.gov.uk on " + createdDateFormatted }
                         },
                         {
                             key: { text: "Last updated" },
-                            value: { text: report.updatedBy + "@communities.gov.uk on " + lastUpdatedFormatted }
+                            value: { text: report.updatedBy + "@example.gov.uk on " + lastUpdatedFormatted }
                         }
                     ]
                 }) }}
@@ -161,7 +184,7 @@
             <form method="post" action="/funding/grant/reports/add/">
                 {{ govukButton({
                     text: "Add another monitoring report",
-                    classes: "govuk-button--secondary govuk-!-margin-top-3"
+                    classes: "govuk-button--secondary govuk-!-margin-top-6"
                 }) }}
             </form>
 
