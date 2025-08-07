@@ -5,7 +5,7 @@
 {% set showBackApplicationsLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Manage task and questions" %}
+{% set pageHeading = "Questions" %}
 {% if isUnassignedTask or data.isUnassignedTask %}
     {% set pageSection = "Task" %}
 {% else %}
@@ -208,7 +208,7 @@
             {{ govukButton({
                 text: "Add another question",
                 href: addQuestionHref,
-                classes: "govuk-button--secondary govuk-!-margin-bottom-7"
+                classes: "govuk-button--secondary govuk-!-margin-bottom-5"
             }) }}
 
         {% else %}
@@ -246,7 +246,7 @@
                 
                 <ul class="govuk-list">
                     <li><a href="{{ changeNameHref }}" class="govuk-link govuk-link--no-visited-state">Change task name</a></li>
-                    <li><a href="{{ deleteTaskHref }}" class="govuk-link govuk-link--no-visited-state govuk-link--destructive">Delete task</a></li>
+                    <li><a href="{{ deleteTaskHref }}" class="govuk-link govuk-link--no-visited-state govuk-link--destructive">Delete this task</a></li>
                 </ul>
 
             </div>
