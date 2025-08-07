@@ -15,6 +15,9 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
+
+
+
         {# Template-based breadcrumbs for reports page #}
         {% set breadcrumbItems = [] %}
         {% set breadcrumbItems = (breadcrumbItems.push({ text: "Reports" }), breadcrumbItems) %}
@@ -22,32 +25,33 @@
         {# Reports page only shows breadcrumbs if there are multiple levels (which there aren't) #}
         {# So breadcrumbs won't show on reports page - this is correct #}
 
-        {# Show delete confirmation banner if deleteConfirm parameter is present #}
-        {% if deleteConfirm %}
-            {% set deleteReportName = deleteReportName or 'this report' %}
-            {% set html %}
-                <p class="govuk-notification-banner__heading">
-                    Are you sure you want to delete the report “{{ deleteReportName }}”?
-                </p>
-                <div class="govuk-button-group">
-                    {{ govukButton({
-                        text: "Yes, delete this report",
-                        href: "/funding/grant/reports/delete/" + deleteReportId + "?confirm=yes",
-                        classes: "govuk-button--secondary"
-                    }) }}
-                    <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/?cancel=true">Cancel</a>
-                </div>
-            {% endset %}
-            {{ govukNotificationBanner({
-                html: html,
-                type: "warning",
-                titleText: "Important"
-            }) }}
-        {% endif %}
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
+                {# Show delete confirmation banner if deleteConfirm parameter is present #}
+                {% if deleteConfirm %}
+                    {% set deleteReportName = deleteReportName or 'this report' %}
+                    {% set html %}
+                        <p class="govuk-notification-banner__heading">
+                            Are you sure you want to delete the report “{{ deleteReportName }}”?
+                        </p>
+                        <div class="govuk-button-group">
+                            {{ govukButton({
+                                text: "Yes, delete this report",
+                                href: "/funding/grant/reports/delete/" + deleteReportId + "?confirm=yes",
+                                classes: "govuk-button--secondary"
+                            }) }}
+                            <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/?cancel=true">Cancel</a>
+                        </div>
+                    {% endset %}
+                    {{ govukNotificationBanner({
+                        html: html,
+                        type: "warning",
+                        titleText: "Important"
+                    }) }}
+                {% endif %}
 
+        
                 {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
                 {% if not data.reports or data.reports.length == 0 %}
