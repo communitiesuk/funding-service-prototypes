@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 {% set showBackApplicationsLink = false %}
 {% set pageSize = "l" %}
-{% set pageHeading = "Monitoring report" %}
+{% set pageHeading = "Tasks" %}
 {% set pageSection = reportName %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -180,41 +180,32 @@
                 {% set taskRows = (taskRows.push(taskRow), taskRows) %}
             {% endfor %}
 
-            {# Build card actions for tasks section #}
-            {% set cardActions = [] %}
-            {% set cardActions = (cardActions.push({
-                href: "/funding/grant/reports/add/task/?reportId=" + currentReportId,
-                classes: "govuk-link govuk-link--no-visited-state",
-                text: "Add another task",
-                visuallyHiddenText: "to report"
-            }), cardActions) %}
-
             {{ govukSummaryList({
-                card: {
-                    title: { text: "Tasks" },
-                    classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
-                    actions: {
-                        items: cardActions
-                    }
-                },
-                rows: taskRows
+                rows: taskRows,
+                classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7"
             }) }}
+
+            {# Add another task button below the summary list #}
+            {{ govukButton({
+                text: "Add another task",
+                href: "/funding/grant/reports/add/task/?reportId=" + currentReportId,
+                classes: "govuk-button--secondary"
+            }) }}
+
         {% else %}
 
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">
 
-                {# No sections exist yet #}
+                {# No tasks exist yet #}
                 {% if not currentUnassignedTasks or currentUnassignedTasks.length == 0 %}
                     <p class="govuk-body">There are no tasks in this report yet.</p>
                     
-                    <form method="get" action="/funding/grant/reports/add/task/" class="govuk-!-margin-top-5">
-                        <input type="hidden" name="reportId" value="{{ currentReportId }}">
-                        {{ govukButton({
-                            text: "Add task",
-                            classes: "govuk-button--secondary"
-                        }) }}
-                    </form>
+                    {{ govukButton({
+                        text: "Add task",
+                        href: "/funding/grant/reports/add/task/?reportId=" + currentReportId,
+                        classes: "govuk-button--secondary govuk-!-margin-top-5"
+                    }) }}
                 {% endif %}
 
             </div>
