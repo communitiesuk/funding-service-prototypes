@@ -1,0 +1,68 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showGuidance = false %}
+
+{% set pageSize = "xl" %}
+{% if data['authentication'] == "SSO" %}
+    {% set pageHeading = "Deliver grant funding" %}
+{% else %}
+    {% set pageHeading = "Access grant funding" %}
+{% endif %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['authentication'] == "SSO" %}
+            <p class="gocuk-body">A connected and consistent digital service for users within Funding Service, and grant teams.</p>
+            <p class="gocuk-body">The service includes:</p>
+            <ul class="govuk-list govuk-list--bullet">
+				<li>grant set-up and management</li>
+				<li>forms for pre-award and post-award data collection </li>				
+			</ul>
+
+            <form method="post" action="/sign-in/authentication" >
+                {{ govukButton({
+                    text: "Sign in",
+                    isStartButton: true,
+                    classes: "govuk-!-margin-top-5"
+                }) }}
+            </form>
+
+        {% else %}
+
+            <p class="govuk-body">Enter your work email address and we’ll send you a link to sign in.</p>
+            <div class="govuk-inset-text">
+                <p class="govuk-body">The link will work once and stop working after 15 minutes.</p>
+            </div>
+            
+            <form method="post" action="/sign-in/email-sent" >
+                {{ govukInput({
+                    label: {
+                        text: "Email address",
+                        classes: "govuk-label",
+                        isPageHeading: false
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "gMmagicLinkEmail",
+                    name: "gMmagicLinkEmail",
+                    type: "email"
+                }) }}
+
+                {{ govukButton({
+                    text: "Request link"
+                }) }}
+            </form>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -37,7 +37,6 @@
 				<li>assessing grant applications </li>
 				<li>viewing monitoring data  </li>
 				<li>payment integration with SAP </li>
-				<li>Chanel </li>
 			</ul>
 
 			<form method="post" action="/sign-in/" >
@@ -64,7 +63,16 @@
 				<input type="hidden" name="fundingService" id="fundingService" value="access" />
 				<input type="hidden" name="authentication" id="authentication" value="Magic link" />
 				{{ govukButton({
-					text: "Continue",
+					text: "Continue as grant team",
+					classes: "govuk-!-margin-top-3"
+				}) }}
+			</form>
+
+			<form method="post" action="/grant-recipient-sign-in/" >
+				<input type="hidden" name="fundingService" id="fundingService" value="access" />
+				<input type="hidden" name="authentication" id="authentication" value="Magic link" />
+				{{ govukButton({
+					text: "Continue as grant recipient",
 					classes: "govuk-!-margin-top-3"
 				}) }}
 			</form>

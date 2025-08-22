@@ -1,0 +1,71 @@
+{% extends "layouts/email.html" %}
+{% set serviceName = "" %}
+
+{% set title = 'Email: Sign in to design and deliver a grant' %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+    <div class="email-message">
+    	<table class="govuk-table email-message-meta">
+        	<tbody>
+				<tr>
+                	<th class="govuk-table__cell" scope="row">From</th>
+                	<td class="govuk-table__cell">The Funding Service team</td>
+              	</tr>
+            	<tr>
+              		<th class="govuk-table__cell" scope="row">To</th>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.gMmagicLinkEmail or "monitoringofficer@town.gov.uk"  }}</span></td>
+            	</tr>
+          		<tr class="email-message-meta">
+            		<th class="govuk-table__cell" scope="row">Subject</th>
+
+						<td class="govuk-table__cell">Sign in to access your grant reports</td>
+
+
+          		</tr>
+        	</tbody>
+      	</table>
+      	<div class="email-message-body">
+
+
+			<p>You requested a link to sign in to access your grant reports. </p>
+
+			<p><a href="/funding/grant/?grantName=Digital%20Planning%20Improvement">Sign in to your account</a>.</p>
+
+			<div class="govuk-inset-text">
+				<p>The link will work once and stop working after 15 minutes.</p>
+			</div>
+
+			<h2 class="govuk-heading-s govuk-!-margin-bottom-1">If your link expires</h2>
+			<p>If the link has expired, you can <a href="#">request a new link</a>.</p>
+
+
+          <p>Kind regards,</p>
+          <p>The Funding Service team</p>
+
+      	</div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}
