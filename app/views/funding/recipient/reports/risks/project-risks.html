@@ -1,0 +1,93 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% if data['projecRisks'] != "No" %}
+	{% set pageHeading = "Risks across your projects" %}
+{% else %}
+	{% set pageHeading = "Risks across your projects" %}
+{% endif %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+
+		{% if data['notifcation'] == "RiskDeleted" %}
+			{% set html %}
+				<h3 class="govuk-notification-banner__heading">Risk deleted</h3>
+				<p class="govuk-body">Contact <a class="govuk-notification-banner__link" href="#">example@department.gov.uk</a> if you think there’s a problem.</p>
+			{% endset %}
+
+			{{ govukNotificationBanner({
+				html: html,
+				type: "success"
+			}) }}
+		{% endif %}
+
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		{% if data['projecRisks'] != "No" %}			
+			<p class="govuk-body">
+				{% if data['projectRiskTitle'] %}
+					<a class="gouvk-link govuk-link--no-visited-state" href="/report/risks/add/?risk=2">Add a new risk</a>
+				{% elif data['projectRiskTitleTwo'] %}
+					<a class="gouvk-link govuk-link--no-visited-state" href="/report/risks/add/?risk=3">Add a new risk</a>
+				{% elif data['projectRiskTitleThree'] %}
+					<a class="gouvk-link govuk-link--no-visited-state" href="/report/risks/add/?risk=4">Add a new risk</a>
+				{% endif %}
+			
+			</p>
+		{% endif %}
+
+		
+
+	</div>
+    <div class="govuk-grid-column-full govuk-!-margin-top-3">
+
+		{% if data['projecRisks'] != "No" %}
+				
+			{{ govukSummaryList({
+				card: {
+				title: { text: data.projectRiskTitle },
+				actions: { items: [ { href: "/report/risks/delete/", text: "Delete risk", visuallyHiddenText: "from the list" } ] } },
+				rows: [					
+					{ key: { text: "Category" }, value: { text: data.projectRiskCategory  }, actions: { items: [ { href: "/report/risks/add/category?change=active", text: "Change", visuallyHiddenText: "category of risk" } ] } },
+					{ key: { text: "Why this is a risk" }, value: { text: data.projectRiskOutcome }, actions: { items: [ { href: "/report/risks/add/issue?change=active", text: "Change", visuallyHiddenText: "description of what could go wrong" } ] } },
+					{ key: { text: "Pre-mitigated likelihood" }, value: { text: data.projectRiskScore }, actions: { items: [ { href: "/report/risks/add/likelihood?change=active", text: "Change", visuallyHiddenText: "likelihood score" } ] }  },
+					{ key: { text: "Pre-mitigated impact" }, value: { text: data.projectRiskImpactScore }, actions: { items: [ { href: "/report/risks/add/impact?change=active", text: "Change", visuallyHiddenText: "impact score" } ] }  },
+					{ key: { text: "How the risk will be managed" }, value: { text: data.projectRiskMitigation }, actions: { items: [ { href: "/report/risks/add/mitigation?change=active", text: "Change", visuallyHiddenText: "how you will manage the risk" } ] }  }					
+				]
+			}) }}			
+
+		{% endif %}
+
+	</div>
+	<div class="govuk-grid-column-two-thirds">
+			
+			{% if data['projecRisks'] == "No" %}
+			<p class="govuk-body">You have told us you do not have any risks across your projects.</p>
+			{% endif %}
+
+		<div class="govuk-inset-text">
+			<p class="govuk-body">Return to edit this section at any time before sending your report.</p>
+			<!-- <p class="govuk-body">You can return to this section at any time to edit it before sending your report.</p> -->
+		</div>
+		
+		<form method="post" action="/report/?reportSectionRisks=complete" >
+            
+			{{ govukButton({
+				text: "Save and continue",
+				classes: "govuk-!-margin-top-5"
+			}) }}
+			
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

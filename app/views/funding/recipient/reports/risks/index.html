@@ -1,0 +1,34 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "About this section" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		<p>We use this page to see how we might be able to give information about the section. For example, you what you might need or things we will ask about:</p>
+      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        	<li>content TBC</li>
+        	<li>content TBC</li>
+        	<li>content TBC</li>
+			</ul>
+
+		<form method="post" action="/report/risks/add-risks" >            			
+			
+			{{ govukButton({
+				text: "Continue"
+			}) }}			
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

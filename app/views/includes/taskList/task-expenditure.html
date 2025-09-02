@@ -1,0 +1,45 @@
+<h2 class="govuk-heading-m">Financial</h2>
+<ul class="govuk-task-list">
+	<li class="govuk-task-list__item govuk-task-list__item--with-link">
+		<div class="govuk-task-list__name-and-hint">
+			<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/report/expenditure/" aria-describedby="report-details-7-status">Project expenditure</a>
+	  	</div>
+	  	<div class="govuk-task-list__status" id="report-details-9-status">			
+			{% if data['report-9-status'] == "Completed" %}
+				Completed
+			{% elif data['report-9-status'] == "inProgress" %}
+				<strong class="govuk-tag govuk-tag--light-blue">In progress</strong>
+			{% else %}
+				<strong class="govuk-tag govuk-tag--blue">Not yet started</strong>
+			{% endif %}
+		</div>
+	</li>	
+	<li class="govuk-task-list__item govuk-task-list__item--with-link">
+		<div class="govuk-task-list__name-and-hint">
+			<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/report/outcomes" aria-describedby="report-details-7-status">Project outcomes</a>
+	  	</div>
+	  	<div class="govuk-task-list__status" id="report-details-11-status">			
+			{% if data['report-11-status'] == "Completed" %}
+				Completed
+			{% elif data['report-11-status'] == "inProgress" %}
+				<strong class="govuk-tag govuk-tag--light-blue">In progress</strong>
+			{% else %}
+				<strong class="govuk-tag govuk-tag--blue">Not yet started</strong>
+			{% endif %}
+		</div>
+	</li>	
+	<li class="govuk-task-list__item govuk-task-list__item--with-link">
+		<div class="govuk-task-list__name-and-hint">
+			<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/report/outputs" aria-describedby="report-details-7-status">Project outputs</a>
+	  	</div>
+	  	<div class="govuk-task-list__status" id="report-details-10-status">			
+			{% if data['report-10-status'] == "Completed" %}
+				Completed
+			{% elif data['report-10-status'] == "inProgress" %}
+				<strong class="govuk-tag govuk-tag--light-blue">In progress</strong>
+			{% else %}
+				<strong class="govuk-tag govuk-tag--blue">Not yet started</strong>
+			{% endif %}
+		</div>
+	</li>
+  </ul>

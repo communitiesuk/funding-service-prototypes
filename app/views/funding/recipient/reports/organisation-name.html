@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What’s the name of the organisation?" %}
+{% set pageSection = "Your account" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+			
+
+		<form method="post" action="/admin/contact-name" >
+            
+            {{ govukInput({
+                label: {
+                  text: "Title of the communication opportunity",
+                  classes: "govuk-label govuk-visually-hidden",
+                  isPageHeading: false
+                },                
+				classes: "govuk-!-width-two-thirds",
+                id: "adminPracticalCompletionDate",
+                name: "adminPracticalCompletionDate"
+            }) }}            
+			
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+		
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

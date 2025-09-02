@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% if data['userType'] != "Section151" %}
+{% set showBackLink = true %}
+{% endif %}
+
+
+{% if data['signOffName'] %}
+	{% set pageHeading = 'What’s ' + data.signOffName + '’s role?' %}
+{% else %}
+	{% set pageHeading = "What’s their role?" %}
+{% endif %}
+
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Information about emailing them etc.</p>
+
+		
+		<form method="post" action="/sign-off/responsible/contributing-to-report" >
+		
+		
+			{{ govukRadios({				
+				name: "signOffRole",							
+				fieldset: {
+				  legend: {
+					text: "Do you want to add any further communications?",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},				
+				items: [
+				  { value: "Section 151 Officer", text: "Section 151 Officer", checked: checked("signOffRole", "Section 151 Officer")  },
+				  { value: "Deputy Section 151 Officer", text: "Deputy Section 151 Officer", checked: checked("signOffRole", "Deputy Section 151 Officer")  },
+				  { value: "Chief Finance Officer", text: "Chief Finance Officer", checked: checked("signOffRole", "Chief Finance Officer")  }
+				]
+			}) }}
+
+		
+			{{ govukButton({
+			  text: "Continue"
+			}) }}	
+
+		</form>
+
+	</div>  
+</div>
+
+{% endblock %}

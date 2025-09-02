@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is the risk category?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+
+		{% if data['change'] == "active" %}
+			<form method="post" action="/report/risks/project-risks" >
+				{% include "includes/changeStatus.html" %}				
+>		{% else %}
+			<form method="post" action="/report/risks/add/issue" >
+		{% endif %}
+            
+
+            {{ govukCheckboxes({
+				name: "projectRiskCategory",
+				id: "projectRiskCategory",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				hint: {
+					text: "Select all that apply"
+				},
+				items: [
+				  { value: "Arm’s length body risks", text: "Arm’s length body", checked: checked("projectRiskCategory", "Arm’s length body") },
+				  { value: "Commercial or procurement", text: "Commercial or procurement", checked: checked("projectRiskCategory", "Commercial or procurement") },
+				  { value: "Delivery partner", text: "Delivery partner", checked: checked("projectRiskCategory", "Delivery partner") },
+				  { value: "Financial flexibility", text: "Financial flexibility", checked: checked("projectRiskCategory", "Financial flexibility") },
+				  { value: "Governance risks", text: "Governance", checked: checked("projectRiskCategory", "Governance") },
+
+				  { value: "Local government risks", text: "Local government", checked: checked("projectRiskCategory", "Local government") },
+				  { value: "Operational process or control", text: "Operational process or control", checked: checked("projectRiskCategory", "Operational process or control risks") },
+				  { value: "People", text: "People", checked: checked("projectRiskCategory", "People") },
+				  { value: "Planning Permission / other consents", text: "Planning permission or other consents", checked: checked("projectRiskCategory", "Planning permission or other consents") },
+				  { value: "Political sensitivity", text: "Political sensitivity", checked: checked("projectRiskCategory", "Political sensitivity") },
+				  { value: "Procurement or contracting", text: "Procurement or contracting", checked: checked("projectRiskCategory", "Procurement or contracting") },
+				  { value: "Programme or project delivery", text: "Programme or project delivery", checked: checked("projectRiskCategory", "Programme or project delivery") },
+				  { value: "Reputational Risk", text: "Reputation", checked: checked("projectRiskCategory", "Reputation") },
+
+				  { value: "Resilience", text: "Resilience", checked: checked("projectRiskCategory", "Resilience") },
+				  { value: "Resource and expertise", text: "Resource and expertise", checked: checked("projectRiskCategory", "Resource and Expertise") },
+				  { value: "Security risks", text: "Security risks", checked: checked("projectRiskCategory", "Security") },
+				  { value: "Slippage", text: "Slippage", checked: checked("projectRiskCategory", "Slippage") },
+				  { value: "Strategy risks", text: "Strategy risks", checked: checked("projectRiskCategory", "Strategy") },
+				  { value: "Subsidy control", text: "Subsidy control", checked: checked("projectRiskCategory", "Subsidy control") },
+				  { value: "System or IT infrastructure", text: "System or IT infrastructure", checked: checked("projectRiskCategory", "System or IT infrastructure") },
+				  { value: "Other", text: "Other", checked: checked("projectRiskCategory", "Other") }
+				]
+			}) }}           
+			
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}			  	
+
+		</form>
+
+  	</div>
+
+</div>
+
+{% endblock %}

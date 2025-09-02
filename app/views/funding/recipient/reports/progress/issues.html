@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Are there any issues affecting the delivery of your projects?" %}
+{% set pageSection = "Programme progress" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		<p>We use this information to see how we might be able to help. For example, you could tell us about:</p>
+      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        	<li>content TBC</li>
+        	<li>content TBC</li>
+        	<li>content TBC</li>
+			</ul>
+
+		<form method="post" action="/report/progress/milestones" >
+            
+			{{ govukCharacterCount({
+				name: "progressIssues",
+				id: "progressIssues",
+				maxwords: 500,
+				label: {
+				  text: "Can you provide more detail?",
+				  classes: "govuk-label govuk-visually-hidden",
+				  isPageHeading: true
+				},
+				hint: {
+				  text: ""
+				},
+				value: data.progressIssues
+			}) }} 
+			
+			{{ govukButton({
+				text: "Continue"
+			}) }}			
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

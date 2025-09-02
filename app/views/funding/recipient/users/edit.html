@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "Kate Harries" %}
+{% set pageSection = data.organisationName %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+  
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Kate Harries"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              text: "kate.harries@localgov.co.uk"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: "00700070070"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Permissions"
+            },
+            value: {
+              html: '<p class="govuk-body">Sign-off</p>'
+            },
+            actions: {
+              
+            }
+          },
+           {
+        key: {
+          text: "Role"
+        },
+        value: {
+          text: "Section 151 Officer"
+        },
+        actions: {
+          
+        }
+      }
+        ]
+      }) }}
+
+
+     
+
+
+      <p class="govuk-body"><a class="govuk-link" href="#">Remove this user</a></p>
+  </div>  
+</div>
+
+
+
+{% endblock %}

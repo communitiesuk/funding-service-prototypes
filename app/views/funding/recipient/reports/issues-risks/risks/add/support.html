@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you need any support from us?" %}
+{% set pageSection = "Project risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/issues-risks/issues/add/more" >
+            
+			{% set infoHtml %}
+
+				{{ govukTextarea({
+					name: "projectIssueDetails",
+					id: "projectIssueDetails",
+					label: {
+					text: "What support do you need?",
+					classes: "govuk-label",
+					isPageHeading: true
+					},
+					hint: {
+					text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+					}
+				}) }}
+
+			{% endset -%}
+
+			{{ govukRadios({
+				name: "contact",
+				fieldset: {
+					legend: {
+						text: "Do you need any support from us?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},  
+				items: [
+					{ value: "Yes", text: "Yes", conditional: { html: infoHtml } },
+					{ value: "No", text: "No" }    
+				]
+			}) }}
+
+
+
+
+            
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

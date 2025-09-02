@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "What role will they have?" %}
+{% set pageSection = "Add new user" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+  
+    
+            
+            <form method="post" action="/users/add/check-your-answers" >
+            
+                {{ govukRadios({
+                    name: "whereDoYouLive",
+                    fieldset: {
+                      legend: {
+                        text: "What role will they have?",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                      }
+                    },
+                    items: [
+                      { value: "reporter", text: "Reporter" },
+                      { value: "sign-off", text: "Sign-off" },
+                      { value: "viewer", text: "Viewer" }                      
+                    ]
+                  }) }}
+                
+                
+                
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+      
+  </div>  
+</div>
+
+
+
+{% endblock %}

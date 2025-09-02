@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you need to add any project challenges?" %}
+{% set pageSection = "Project challenges" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Add any challenges you have faced for your project Growing Community Green Spaces.</p>
+
+		
+		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+			<li>include this</li>
+			<li>Also include this</li>
+			<li>And lastly, you should include this</li>
+		</ul>
+
+		<form method="post" action="/report/overview/challenges/add/" >
+		
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "projectChallenges",
+				id: "projectChallenges",				
+				fieldset: {
+				  legend: {
+					text: "Do you need to add any project challenges?",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},				
+				items: [
+				  { value: "Yes", text: "Yes", checked: checked("projectChallenges", "Yes")  },
+				  { value: "No~/funds/reports/?report-4-status=Completed", text: "No", checked: checked("projectChallenges", "No")  }
+				]
+			  }) }}
+
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary",
+				  href: "/funds/reports/?report-4-status=inProgress" 
+				}) }} -->
+		  </div>
+
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+
+	{% include "includes/reportPeriod.html "%}
+
+  </div>
+</div>
+
+{% endblock %}

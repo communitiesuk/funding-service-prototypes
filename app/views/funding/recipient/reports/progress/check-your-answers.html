@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Programme progress" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}		
+		
+		<form method="post" action="/report/?reportSectionProgress=complete" >            
+		
+			{{ govukSummaryList({
+				classes: "govuk-!-margin-bottom-9",
+				rows: [
+					{ key: { text: "Financial completion date" }, value: { text: data.progressFinancialDate-year }, actions: { items: [ { href: "/report/progress/completion-date",  text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Activity completion date" }, value: { text: data.progressActivityDate-year }, actions: { items: [  { href: "/report/progress/activity-completion-date", text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Practical completion date" }, value: { text: data.progressPracticalDate-year }, actions: { items: [  { href: "/report/progress/practical-completion-date", text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "How is the delivery progressing" }, value: { text: data.progressDelivery }, actions: { items: [  { href: "/report/progress/delivery", text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Issues affecting the delivery of your projects" }, value: { text: data.progressIssues }, actions: { items: [  { href: "/report/progress/issues", text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Milestones and achievements" }, value: { text: data.progressMilestones }, actions: { items: [  { href: "/report/progress/milestones", text: "Change", visuallyHiddenText: "name" } ] } }
+				]
+			}) }}
+
+
+			
+
+
+			<div class="govuk-inset-text">
+				<p class="govuk-body">Return to edit this section at any time before sending your report.</p>
+				<!-- <p class="govuk-body">You can return to this section at any time to edit it before sending your report.</p> -->
+			</div>
+
+			
+      
+        	<input type="hidden" name="answers-checked" value="true">
+
+        	{{ govukButton({
+          		text: "Accept and complete section"
+        	}) }}
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Title of issue" %}
+{% set pageSection = "Project risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/issues-risks/risks/add/category" >
+            
+            {{ govukInput({
+                label: {
+                  text: "Title of issue",
+                  classes: "govuk-label govuk-visually-hidden",
+                  isPageHeading: false
+                },     
+				hint: {
+					text: "For example, Planting more trees may be delayed."
+				},
+                classes: "govuk-!-width-two-thirds",           
+                id: "projectRiskTitle",
+                name: "projectRiskTitle"
+            }) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

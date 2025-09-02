@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is the likelihood of this risk becoming an issue?" %}
+{% set pageSection = "Project risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/issues-risks/risks/add/more" >
+            
+            {{ govukRadios({
+				name: "projectRiskLikelihoodIssue",
+				id: "projectRiskLikelihoodIssue",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				items: [
+				  { value: "Extremely Unlikely", text: "Extremely Unlikely", checked: checked("projectRiskLikelihoodIssue", "Extremely Unlikely") },
+				  { value: "Unlikely", text: "Unlikely", checked: checked("projectRiskLikelihoodIssue", "Unlikely") },
+				  { value: "Neutral", text: "Neutral", checked: checked("projectRiskLikelihoodIssue", "Neutral") },
+				  { value: "Likely", text: "Likely", checked: checked("projectRiskLikelihoodIssue", "Likely") },
+				  { value: "Extremely Likely", text: "Extremely Likely", checked: checked("projectRiskLikelihoodIssue", "Extremely Likely") }
+				]
+			}) }}  
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

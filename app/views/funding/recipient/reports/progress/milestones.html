@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Are there any significant milestones or achievements you’d like to tell us about?" %}
+{% set pageSection = "Programme progress" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>We use this information to find communication opportunities and share your progress. For example, we might:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>share your successes with others</li>
+			<li>write a case study</li>
+			<li>organise a ministerial visit</li>
+		</ul>
+
+		<form method="post" action="/report/progress/check-your-answers" >
+		<!-- <form method="post" action="/report/?reportSectionProgress=complete" > -->
+            
+			{{ govukCharacterCount({
+				name: "progressMilestones",
+				id: "progressMilestones",
+				maxwords: 500,
+				label: {
+				  text: "Can you provide more detail?",
+				  classes: "govuk-label govuk-visually-hidden",
+				  isPageHeading: true
+				},
+				hint: {
+				  text: ""
+				},
+				value: data.progressMilestones
+			}) }} 
+			
+			{{ govukButton({
+				text: "Continue"
+			}) }}			
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

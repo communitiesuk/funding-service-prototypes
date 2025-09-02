@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is the name of the risk?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		{% if data['change'] == "active" %}
+			<form method="post" action="/report/risks/project-risks" >
+				{% include "includes/changeStatus.html" %}				
+		{% else %}	
+			<form method="post" action="/report/risks/add/category" >
+		{% endif %}
+            
+            {{ govukInput({
+                label: {
+                  text: "Title of issue",
+                  classes: "govuk-label govuk-visually-hidden",
+                  isPageHeading: false
+                },     
+				hint: {
+					text: "For example, 'Building materials - supplier problem'"
+				},
+                classes: "govuk-!-width-two-thirds",           
+                id: "projectRiskTitle",
+                name: "projectRiskTitle"
+            }) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	
+</div>
+
+{% endblock %}

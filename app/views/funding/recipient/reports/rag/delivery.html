@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is the delivery RAG rating for this project" %}
+{% set pageSection = "RAG ratings" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+    
+					
+		<form method="post" action="/report/rag/information" >	  
+			
+			{% set greenHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>planning is in place</li>
+				<li>main contract procurement process is complete</li>
+				<li>delivery milestones on target</li>
+				<li>appropriate RIBA stage on track</li>
+				<li>project completed</li>
+			</ul>
+			{% endset -%}
+
+			{% set amberGreenHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>project progressing but with minor issues</li>
+				<li>issues are within control and there is a mitigation plan in place</li>
+				<li>the appropriate RIBA stage has minor slippage but there is mitigation plan in place</li>
+				<li>there is no additional support required</li>
+			</ul>
+			{% endset -%}
+
+			{% set amberHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>the project is progressing but delayed</li>
+				<li>the issues identified are within control but there is no plan in place to deal with the issue</li>
+				<li>value engineering is required or in progress</li>
+				<li>appropriate RIBA stage has slipped considerably</li>
+				<li>additional support is required</li>
+			</ul>
+			{% endset -%}
+
+			{% set amberRedHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>the project has stalled</li>
+				<li>value engineering is required or in progress and likely to result in a new planning application and delayed delivery timelines</li>
+				<li>major RIBA stage slippage</li>
+				<li>major additional support required</li>
+			</ul>
+			{% endset -%}
+
+			{% set redHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>Project stalled</li>
+				  <li>Issues out of control</li>
+				  <li>Major support required</li>
+				  <li>Major RIBA stage slippage</li>
+				  <li>No plan in place</li>
+			</ul>
+			{% endset -%}
+
+
+			{{ govukRadios({
+				name: "projectRagRatingDelivery",
+				id: "projectRagRatingDelivery",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				items: [
+				{ value: "Green", text: "Green", checked: checked("projectRagRatingDelivery", "Green"), conditional: { html: greenHtml } },
+				{ value: "Amber/Green", text: "Amber/Green", checked: checked("projectRagRatingDelivery", "Amber/Green"), conditional: { html: amberGreenHtml } },
+				{ value: "Amber", text: "Amber", checked: checked("projectRagRatingDelivery", "Amber"), conditional: { html: amberHtml } },
+				{ value: "Amber/Red", text: "Amber/Red", checked: checked("projectRagRatingDelivery", "Amber/Red"), conditional: { html: amberRedHtml } },
+				{ value: "Red", text: "Red", checked: checked("projectRagRatingDelivery", "Red"), conditional: { html: redHtml } }
+				  
+				  
+				]
+			}) }}
+
+
+				
+				{{ govukButton({
+				    text: "Continue"
+				}) }}
+
+
+		</form>
+
+    </div>    
+</div>
+
+{% endblock %}

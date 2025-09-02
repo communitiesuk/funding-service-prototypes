@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "How is your project progressing?" %}
+{% set pageSection = "Progress summary" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+      	<p>You might want to include information about:</p>
+      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        	<li>any significant challenges the project is facing</li>
+        	<li>important milestones</li>
+        	<li>how the project is starting to have an impact</li>
+      	</ul>
+
+      	<form method="post" action="/funds/reports/?report-1-status=Completed" >
+      	
+			{{ govukCharacterCount({
+        		name: "projectProgress",
+        		id: "projectProgress",
+        		value: data['projectProgress'],				
+        		maxlength: 500,
+        		label: {
+          			text: "Describe how your project is progressing?",
+          			classes: "govuk-label govuk-visually-hidden",
+          			isPageHeading: false
+        		},
+        		hint: {
+          			text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+        		}
+      		}) }}
+
+
+      		<div class="govuk-button-group">
+      			{{ govukButton({
+        			text: "Save and continue"
+      			}) }}
+
+      			{{ govukButton({
+        			text: "Save as draft",
+        			classes: "govuk-button--secondary",
+					href: "/funds/reports/?report-1-status=inProgress"
+      			}) }}
+    		</div>
+
+  		</form>
+
+  	</div>
+	  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

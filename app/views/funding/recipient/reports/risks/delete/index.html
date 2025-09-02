@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Confirm you want to delete this risk?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}    
+		
+		<!-- <div class="govuk-inset-text"> -->
+			<p>{RISK TITLE}</p>
+		<!-- </div> -->
+		<p class="govuk-body">This will delete all of the information you have told us for this risk.</p>
+	
+		<form method="post" action="/report/risks/funds/reports-risks?notifcation=RiskDeleted" >
+                        
+
+			<div class="govuk-button-group govuk-!-margin-top-7">
+				{{ govukButton({
+				  text: "Confirm and delete risk"
+				}) }}
+				
+				<a class="govuk-link"  href="#">Cancel</a>
+		  	</div>
+
+		</form>
+
+  	</div>
+	
+</div>
+
+{% endblock %}

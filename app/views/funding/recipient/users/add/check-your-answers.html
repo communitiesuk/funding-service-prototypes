@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Add new user" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+  
+    
+            
+            <form method="post" action="/users/add/confirmation" >
+            
+        
+                <p>Summary list of content TBC.</p>
+
+                        
+                {{ govukButton({
+                    text: "Confirm and add user"
+                }) }}
+
+            </form>
+
+
+      
+  </div>  
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "Reporting period " %}
+{% set pageSection = 'Rugby warm hub' %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Show check your answers style page with all content submitted on the report including:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Project ID</li>
+			<li>Section 151 Officer</li>
+			<li>Reporter</li>
+			<li>Download option</li>
+		</ul>
+
+
+  	</div>
+  	<div class="govuk-grid-column-one-third">
+		<!-- {% include "includes/reportBox.html "%} -->
+  	</div>
+</div>
+
+{% endblock %}

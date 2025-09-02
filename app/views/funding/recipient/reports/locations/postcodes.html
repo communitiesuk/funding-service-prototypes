@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+
+{% set pageHeading = "Add project postcodes" %}
+{% set pageSection = "Project postcodes" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+    </div>
+    <div class="govuk-grid-column-full">        
+
+        {{ govukTable({
+            caption: "Project postcodes",
+            captionClasses: "govuk-table__caption govuk-visually-hidden",
+            firstCellIsHeader: false,
+            head: [
+                { text: "Project", classes: "govuk-!-width-one-half" },
+                { text: "Postcodes", classes: "govuk-!-width-one-third" },
+                { text: "", classes: "" }
+            ],
+            rows: [
+                [
+                    { text: "George Elliott Visitor Centre" },
+                    { html: "Postcode provided" if data['projectLocation'] else '<a href="/report/locations/add-postcode?project=1" class="govuk-link govuk-link--no-visited-state">Add postcodes</a>' },
+                    { html: '<a href="/report/locations/change-postcode?project=1"  class="govuk-link govuk-link--no-visited-state">Change</a>' if data['projectLocation'] else '' }
+                ],
+                [
+                    { text: "Digital Skills and Innovation Centre" },
+                    { html: "Postcode provided" if data['projectLocation2'] else '<a href="/report/locations/add-postcode?project=2" class="govuk-link govuk-link--no-visited-state">Add postcodes</a>' },
+                    { html: '<a href="/report/locations/change-postcode?project=1" class="govuk-link govuk-link--no-visited-state">Change</a>' if data['projectLocation2'] else '' }
+                ],
+                [
+                    { text: "The Saints" },
+                    { html: "Postcode provided" if data['projectLocation3'] else '<a href="/report/locations/add-postcode?project=3" class="govuk-link govuk-link--no-visited-state">Add postcodes</a>' },
+                    { html: '<a href="/report/locations/change-postcode?project=1" class="govuk-link govuk-link--no-visited-state">Change</a>' if data['projectLocation3'] else '' }
+                ],
+                [
+                    { text: "Weddington Road Cycle Scheme" },
+                    { html: "Postcode provided" if data['projectLocation4'] else '<a href="/report/locations/add-postcode?project=4" class="govuk-link govuk-link--no-visited-state">Add postcodes</a>' },
+                    { html: '<a href="/report/locations/change-postcode?project=1" class="govuk-link govuk-link--no-visited-state">Change</a>' if data['projectLocation4'] else '' }
+                ],
+                [
+                    { text: "Visiting Nuneaton: Changing Perspectives" },
+                    { html: "Postcode provided" if data['projectLocation5'] else '<a href="/report/locations/add-postcode?project=5" class="govuk-link govuk-link--no-visited-state">Add postcodes</a>' },
+                    { html: '<a href="/report/locations/change-postcode?project=1" class="govuk-link govuk-link--no-visited-state">Change</a>' if data['projectLocation5'] else '' }
+                ]
+            ]
+        }) }}
+
+        <form method="post" action="/report/?reportSectionPostcodes=complete" >        
+				
+            {{ govukButton({
+				text: "Save and continue"
+			}) }}
+		
+		</form>
+
+  	</div>  
+</div>
+
+{% endblock %}
