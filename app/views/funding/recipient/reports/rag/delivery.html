@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,12 +11,12 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
-    
-					
-		<form method="post" action="/report/rag/information" >	  
-			
+
+
+		<form method="post" action="/report/rag/information" >
+
 			{% set greenHtml %}
 			<p>For example:</p>
 			<ul class="govuk-list govuk-list--bullet">
@@ -87,13 +87,13 @@
 				{ value: "Amber", text: "Amber", checked: checked("projectRagRatingDelivery", "Amber"), conditional: { html: amberHtml } },
 				{ value: "Amber/Red", text: "Amber/Red", checked: checked("projectRagRatingDelivery", "Amber/Red"), conditional: { html: amberRedHtml } },
 				{ value: "Red", text: "Red", checked: checked("projectRagRatingDelivery", "Red"), conditional: { html: redHtml } }
-				  
-				  
+
+
 				]
 			}) }}
 
 
-				
+
 				{{ govukButton({
 				    text: "Continue"
 				}) }}
@@ -101,7 +101,7 @@
 
 		</form>
 
-    </div>    
+    </div>
 </div>
 
 {% endblock %}

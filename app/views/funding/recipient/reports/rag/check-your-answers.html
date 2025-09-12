@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -12,22 +12,22 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
 
-		
-		
-		<form method="post" action="/funding/recipient/reports/?reportSectionRag=complete" >            
-		
+
+
+		<form method="post" action="/funding/recipient/reports/?reportSectionRag=complete" >
+
 			{{ govukSummaryList({
 				classes: "govuk-!-margin-bottom-9",
 				rows: [
 					{ key: { text: "Question 1" }, value: { text: data.progressFinancialDate-year }, actions: { items: [ { href: "#",  text: "Change", visuallyHiddenText: "name" } ] } },
 					{ key: { text: "Question 2" }, value: { text: data.progressActivityDate-year }, actions: { items: [  { href: "#", text: "Change", visuallyHiddenText: "name" } ] } },
-					{ key: { text: "Question 3" }, value: { text: data.progressPracticalDate-year }, actions: { items: [  { href: "#", text: "Change", visuallyHiddenText: "name" } ] } }					
+					{ key: { text: "Question 3" }, value: { text: data.progressPracticalDate-year }, actions: { items: [  { href: "#", text: "Change", visuallyHiddenText: "name" } ] } }
 				]
 			}) }}
-		
+
 
 
 			{{ govukRadios({
@@ -50,8 +50,8 @@
     }
   ]
 }) }}
-			
-      
+
+
         	<input type="hidden" name="answers-checked" value="true">
 
         	{{ govukButton({
@@ -60,7 +60,7 @@
 
 		</form>
 
-  	</div>	  
+  	</div>
 </div>
 
 {% endblock %}

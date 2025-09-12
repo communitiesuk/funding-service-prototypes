@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = false %}
 {% set showBread = false %}
@@ -14,39 +14,39 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
   </div>
   <div class="govuk-grid-column-three-quarters">
-	
+
 	<form method="post" action="/users/add/" >
     {{ govukButton({
-      text: "Add a new user"	  
+      text: "Add a new user"
     }) }}
 	</form>
 
-	
+
     <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-5">Reporters</h2>
-		
-		{{ govukTable({      
-      		captionClasses: "govuk-table__caption--m",      
+
+		{{ govukTable({
+      		captionClasses: "govuk-table__caption--m",
       		head: [
-        		{ text: "Name", classes: "govuk-!-width-one-quarter" },                
+        		{ text: "Name", classes: "govuk-!-width-one-quarter" },
         		{ text: "Email" },
         		{ text: "Permissions", classes: "govuk-!-width-one-quarter", format: "numeric" }
       		],
-      		rows: [        
+      		rows: [
         		[
-          			{ html: '<a href="/users/edit">Gemma Currie</a>' },                                         
+          			{ html: '<a href="/users/edit">Gemma Currie</a>' },
           			{ text: "gemma.currie@localgov.co.uk" },
           			{ text: "Edit, Review", format: "numeric" }
         		],
         		[
-          			{ html: '<a href="/users/edit">Sam Williams</a>' },                            
+          			{ html: '<a href="/users/edit">Sam Williams</a>' },
           			{ text: "sam.williams@localgov.co.uk" },
-          			{ html: "Edit, Review", format: "numeric" }          
+          			{ html: "Edit, Review", format: "numeric" }
         		],
         		[
-          			{ html: '<a href="/users/edit">Gideon Goldberg</a>' },                                        
+          			{ html: '<a href="/users/edit">Gideon Goldberg</a>' },
           			{ text: "gideon.goldberg@localgov.co.uk" },
           			{ html: "Edit, Review", format: "numeric" }
         		]
@@ -55,35 +55,35 @@
 
 
     	<h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-9">Sign-off</h2>
-    	{{ govukTable({      
-      		captionClasses: "govuk-table__caption--m",      
+    	{{ govukTable({
+      		captionClasses: "govuk-table__caption--m",
       		head: [
-        		{ text: "Name", classes: "govuk-!-width-one-quarter" },                
+        		{ text: "Name", classes: "govuk-!-width-one-quarter" },
         		{ text: "Email" },
-        		{ text: "Permissions", classes: "govuk-!-width-one-quarter", format: "numeric"  }                
+        		{ text: "Permissions", classes: "govuk-!-width-one-quarter", format: "numeric"  }
       		],
       		rows: [
         		[
-          			{ html: '<a href="/users/edit">Kate Harries</a>' },                              
+          			{ html: '<a href="/users/edit">Kate Harries</a>' },
           			{ text: "kate.harries@localgov.co.uk" },
-          			{ html: "Sign-off", format: "numeric" }          
+          			{ html: "Sign-off", format: "numeric" }
         		]
       		]
     	}) }}
 
 
-    
 
 
 
 
-    
 
-    
+
+
+
 
     <!-- <h2 class="govuk-heading-m">Senior Reporting Officer (SRO)</h2>
-		{{ govukTable({      
-      captionClasses: "govuk-table__caption--m",      
+		{{ govukTable({
+      captionClasses: "govuk-table__caption--m",
       head: [
         { text: "Name", classes: "govuk-!-width-one-quarter" },
         { text: "Email", classes: "govuk-!-width-one-third" },
@@ -96,13 +96,13 @@
           { text: "alex.smith@localgov.co.uk" },
           { text: "Viewing, sign-off" },
           { html: '', format: "numeric" }
-        ]        
+        ]
       ]
     }) }}
 
     <h2 class="govuk-heading-m">Section 151 Officer</h2>
-		{{ govukTable({      
-      captionClasses: "govuk-table__caption--m",      
+		{{ govukTable({
+      captionClasses: "govuk-table__caption--m",
       head: [
         { text: "Name", classes: "govuk-!-width-one-quarter" },
         { text: "Email", classes: "govuk-!-width-one-third" },
@@ -115,14 +115,14 @@
           { text: "alex.smith@localgov.co.uk" },
           { text: "Viewing, sign-off" },
           { html: '', format: "numeric" }
-        ]        
+        ]
       ]
     }) }}
  -->
 
 
   </div>
-  
+
 </div>
 
 {% endblock %}

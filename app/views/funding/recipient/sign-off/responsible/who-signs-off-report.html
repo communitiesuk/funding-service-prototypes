@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% if data['userType'] != "Section151" %}
 {% set showBackLink = true %}
@@ -13,35 +13,35 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 
 		<form method="post" action="/sign-off/responsible/role" >
-		
-		
+
+
 		{{ govukInput({
 			label: {
 			  text: "Name",
 			  classes: "govuk-label",
 			  isPageHeading: false
-			},                
+			},
 			classes: "govuk-!-width-two-thirds",
 			id: "signOffName",
 			name: "signOffName"
-		}) }}       
-		
-		
+		}) }}
+
+
 		{{ govukInput({
 			label: {
 			  text: "Email address",
 			  classes: "govuk-label",
 			  isPageHeading: false
-			},                
+			},
 			classes: "govuk-!-width-two-thirds",
 			type: "email",
 			id: "signOffEmail",
 			name: "signOffEmail"
-		}) }}  
+		}) }}
 
 
 		<!-- {{ govukInput({
@@ -49,20 +49,20 @@
 			  text: "Role",
 			  classes: "govuk-label",
 			  isPageHeading: false
-			},                
+			},
 			classes: "govuk-!-width-two-thirds",
 			id: "adminContactName",
 			name: "adminContactName"
 		}) }}    -->
 
-		
+
 			{{ govukButton({
 			  text: "Continue"
-			}) }}	
+			}) }}
 
 		</form>
 
-	</div>  
+	</div>
 </div>
 
 {% endblock %}

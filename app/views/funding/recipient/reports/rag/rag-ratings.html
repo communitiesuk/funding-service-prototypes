@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 {% set showBackLink = true %}
 
 {% set pageHeading = "Project RAG ratings" %}
@@ -10,10 +10,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
-        <p class="govuk-body">You need to report on the spend risk and delivery risk for each project using RAG ratings. </p>            
-        <p class="govuk-body">Use the <a href="/report/rag/rag-examples" target="_blank">RAG rating examples (opens in a new tab)</a> to help you complete the ratings as accurately as possible. </p>        
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
+        <p class="govuk-body">You need to report on the spend risk and delivery risk for each project using RAG ratings. </p>
+        <p class="govuk-body">Use the <a href="/report/rag/rag-examples" target="_blank">RAG rating examples (opens in a new tab)</a> to help you complete the ratings as accurately as possible. </p>
 
     </div>
     <div class="govuk-grid-column-full govuk-!-margin-top-3">
@@ -36,18 +36,18 @@
                 {
                     key: { text: "Reason" },
                     value: { html: "Short paragraphs are easier to read and understand. Writing experts recommend paragraphs of no more than 150 words in three to eight sentences. Paragraphs should never be longer than 250 words." },
-                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "working situation" } ] } 
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "working situation" } ] }
                 }
             ]
-        }) }}    
+        }) }}
 
         {{ govukSummaryList({
             card: {
                 title: { text: "Digital Skills and Innovation Centre" },
                 actions: {
-                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Enter RAG ratings", visuallyHiddenText: "to this project" } ] 
+                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Enter RAG ratings", visuallyHiddenText: "to this project" } ]
                 }
-            }            
+            }
         }) }}
 
 
@@ -55,39 +55,39 @@
             card: {
                 title: { text: "The Saints" },
                 actions: {
-                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Enter RAG ratings", visuallyHiddenText: "to this project" } ] 
+                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Enter RAG ratings", visuallyHiddenText: "to this project" } ]
                 }
-            }            
+            }
         }) }}
 
         {{ govukSummaryList({
             card: {
                 title: { text: "Weddington Road Cycle Scheme" },
                 actions: {
-                    items: [ { href: "/report/rag/spend",  classes:"govuk-link govuk-link--no-visited-state", text: "Add RAG ratings", visuallyHiddenText: "to this project" } ] 
+                    items: [ { href: "/report/rag/spend",  classes:"govuk-link govuk-link--no-visited-state", text: "Add RAG ratings", visuallyHiddenText: "to this project" } ]
                 }
-            }            
+            }
         }) }}
 
         {{ govukSummaryList({
             card: {
                 title: { text: "Visiting Nuneaton: Changing Perspectives" },
                 actions: {
-                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Add RAG ratings", visuallyHiddenText: "to this project" } ] 
+                    items: [ { href: "/report/rag/spend", classes:"govuk-link govuk-link--no-visited-state", text: "Add RAG ratings", visuallyHiddenText: "to this project" } ]
                 }
-            }            
+            }
         }) }}
 
-        <form method="post" action="/report/?reportSectionRAG=complete" >                   
-				
+        <form method="post" action="/report/?reportSectionRAG=complete" >
+
             {{ govukButton({
 				text: "Continue",
                 classes: "govuk-!-margin-top-5"
 			}) }}
-		
+
 		</form>
 
-  	</div>	  
+  	</div>
 </div>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% if data['userType'] != "Section151" %}
 {% set showBackLink = true %}
@@ -14,7 +14,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	    
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
       	<p class="govuk-body">{{ data.reporterName }} has completed a report ready for your review.</p>
 
@@ -22,24 +22,24 @@
 		  <!-- <div class="govuk-inset-text">
 			<p>Reporting period: <strong>July 2023 to September 2023</strong></p>
 			</div> -->
-	  
-      
+
+
       	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
       	<p class="govuk-body-l">Task list will show here for review</p>
       	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-		
+
 		  <p class="govuk-body">You can now:</p>
 
-		
+
 		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         	<li>sign off the report and submit it to {{ data.fundName }} by {{ data.fundDate }}</li>
 			<li>decline the report and provide a reason why so that {{ data.reporterName }} can amend the report and resend for review</li>
       	</ul>
 
 		<div class="govuk-button-group">
-          
-        	<form method="post" action="/sign-off/confirmation" >	  
-          		
+
+        	<form method="post" action="/sign-off/confirmation" >
+
 				<input type="hidden" name="reportStatus" id="reportStatus" value="Signed" />
 				{{ govukButton({
             		text: "Sign off and submit report"
@@ -54,13 +54,13 @@
           		<input type="hidden" name="reportStatus" id="reportStatus" value="Declined" />
 				{{ govukButton({
             		text: "Decline sign off",
-            		classes: "govuk-button--secondary"            		
+            		classes: "govuk-button--secondary"
           		}) }}
   			</form>
-          
+
         </div>
 
-	</div>  
+	</div>
 </div>
 
 {% endblock %}

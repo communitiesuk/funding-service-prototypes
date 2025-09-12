@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
       	<p>For each milestone, add details about:</p>
       	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
@@ -20,24 +20,24 @@
         	<li>how the milestone has been progressing, for example, any recent successes</li>
       	</ul>
 
-        <form method="post" action="/funds/reports/?report-6-status=Completed" >	   
-        
-		{% set milestoneOneHtml %}   
-              
+        <form method="post" action="/funds/reports/?report-6-status=Completed" >
 
-        {% endset -%} 
-
-		{% set milestoneTwoHtml %}           
-
-        {% endset -%} 
-
-		{% set milestoneThreeHtml %}   
+		{% set milestoneOneHtml %}
 
 
-        {% endset -%} 
+        {% endset -%}
+
+		{% set milestoneTwoHtml %}
+
+        {% endset -%}
+
+		{% set milestoneThreeHtml %}
+
+
+        {% endset -%}
 
         {{ govukTabs({
-          items: [           
+          items: [
               { label: "Milestone 1", id: "milestoneOne", panel: { html: milestoneOneHtml } },
               { label: "Milestone 2", id: "milestoneTwo", panel: { html: milestoneTwoHtml } },
               { label: "Milestone 3", id: "milestoneThree", panel: { html: milestoneThreeHtml } }
@@ -64,7 +64,7 @@
   <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 

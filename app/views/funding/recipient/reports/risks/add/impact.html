@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,17 +11,17 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}     
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<p>Your answer should be based on the risk level before any mitigations have been put in place. </p>
-	
+
 		{% if data['change'] == "active" %}
 			<form method="post" action="/report/risks/project-risks" >
-				{% include "includes/changeStatus.html" %}				
-		{% else %}	
+				{% include "includes/changeStatus.html" %}
+		{% else %}
 			<form method="post" action="/report/risks/add/mitigation" >
 		{% endif %}
-            
+
             {{ govukRadios({
 				name: "projectRiskImpactScore",
 				id: "projectRiskImpactScore",
@@ -39,13 +39,13 @@
 				  { value: "Likely", text: "Likely", checked: checked("projectRiskImpactScore", "Likely") },
 				  { value: "Extremely likely", text: "Extremely likely", checked: checked("projectRiskImpactScore", "Extremely likely") }
 				]
-			}) }}  
+			}) }}
 
-		
+
 				{{ govukButton({
 				  text: "Save and continue"
 				}) }}
-		
+
 
 		</form>
 

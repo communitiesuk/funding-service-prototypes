@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,13 +11,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-      {{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-            
+      {{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
       <p>There may be several people contributing to this report. Please select the name of the person who is submitting this report.</p>
 
 
-      <form method="post" action="/funds/reports/?report-13-status=Completed" >	  
-			
+      <form method="post" action="/funds/reports/?report-13-status=Completed" >
+
 
         {{ govukSelect({
           id: "location",
@@ -25,7 +25,7 @@
           label: {
             text: "Select an option to update your RIBA reporting stage",
             classes: "govuk-visually-hidden"
-          },		
+          },
           classes: "govuk-!-width-two-thirds",
           items: [
             {
@@ -33,13 +33,13 @@
             text: "Select a name",
             selected: true
             }
-          
+
           ]
           }) }}
 
 
 
-  
+
   {{ govukCheckboxes({
   name: "organisation",
   classes: "govuk-checkboxes--small",
@@ -59,17 +59,17 @@
       value: "employment-tribunal",
       text: "I confirm I want to sign off this project and submit the report"
     }
-    
+
   ]
 }) }}
-        
-  
-  
+
+
+
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Confirm and submit this report"
           }) }}
-  
+
           <a class="govuk-link">Cancel</a>
         </div>
 
@@ -80,7 +80,7 @@
   <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 

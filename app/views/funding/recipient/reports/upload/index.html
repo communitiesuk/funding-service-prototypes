@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,15 +11,15 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
-      	<p>Opening paragraph could provide list items:</p>    
+      	<p>Opening paragraph could provide list items:</p>
       	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         	<li>make sure its xyz</li>
 			<li>don’t do abc to the spreadsheet</li>
       	</ul>
 
-      	<form method="post" action="/report/upload/uploaded" >	  
+      	<form method="post" action="/report/upload/uploaded" >
 
         	{{ govukFileUpload({
             	id: "reportUpload",
@@ -33,13 +33,13 @@
               		isPageHeading: false
             	}
           	}) }}
-        
+
           	{{ govukButton({
             	text: "Continue"
           	}) }}
 
         </form>
 
-  </div>  
+  </div>
 </div>
 {% endblock %}

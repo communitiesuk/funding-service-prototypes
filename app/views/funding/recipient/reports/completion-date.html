@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,12 +11,12 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<p>This is the date the grant funding will be paid by the local authority.</p>
 
 		<form method="post" action="/admin/practical-completion-date" >
-            
+
 			{{ govukDateInput({
 				id: "adminCompletionDate",
 				namePrefix: "adminCompletionDate",
@@ -30,15 +30,15 @@
 				hint: {
 					text: "For example, 27 3 2024"
 				}
-			}) }}            
-			
+			}) }}
+
 			{{ govukButton({
 				text: "Continue"
-			}) }}			
+			}) }}
 
 		</form>
 
-  	</div>	  
+  	</div>
 </div>
 
 {% endblock %}

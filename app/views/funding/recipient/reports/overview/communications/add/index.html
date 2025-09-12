@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,22 +11,22 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 
 		<form method="post" action="/report/overview/communications/add/details" >
-            
+
 
             {{ govukInput({
                 label: {
                   text: "Title of the communication opportunity",
                   classes: "govuk-label govuk-visually-hidden",
                   isPageHeading: false
-                },                
+                },
 				classes: "govuk-!-width-two-thirds",
                 id: "projectCommunicationTitle",
                 name: "projectCommunicationTitle"
-            }) }}            
+            }) }}
 
 			<div class="govuk-button-group">
 				{{ govukButton({
@@ -44,7 +44,7 @@
 	  <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 

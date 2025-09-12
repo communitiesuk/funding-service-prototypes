@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 {% set showBread = false %}
@@ -14,8 +14,8 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-  
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -35,7 +35,7 @@
               ]
             }
           },
-          
+
           {
             key: {
               text: "Email"
@@ -78,7 +78,7 @@
               html: '<p class="govuk-body">Sign-off</p>'
             },
             actions: {
-              
+
             }
           },
            {
@@ -89,18 +89,18 @@
           text: "Section 151 Officer"
         },
         actions: {
-          
+
         }
       }
         ]
       }) }}
 
 
-     
+
 
 
       <p class="govuk-body"><a class="govuk-link" href="#">Remove this user</a></p>
-  </div>  
+  </div>
 </div>
 
 

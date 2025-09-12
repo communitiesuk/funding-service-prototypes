@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-		{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 
 		<p>Add the outcomes for the project <span class="govuk-!-font-weight-bold">Growing Community Green Spaces</span>. This allows us to:</p>
@@ -21,7 +21,7 @@
 			<li>see the impact the outcomes are having on the project</li>
 		</ul>
 
-		
+
 		{{ govukButton({
 			text: "Download previous data",
 			classes: "govuk-button--secondary"
@@ -32,44 +32,44 @@
 		}) }}
 
 
-		<form method="post" action="/funds/reports/?report-11-status=Completed" >	  
-        
-			{% set milestoneOneHtml %}   
-				  
-	
-			{% endset -%} 
-	
-			{% set milestoneTwoHtml %}           
-	
-			{% endset -%} 
-	
-			{% set milestoneThreeHtml %}   
-	
-	
-			{% endset -%} 
-	
+		<form method="post" action="/funds/reports/?report-11-status=Completed" >
+
+			{% set milestoneOneHtml %}
+
+
+			{% endset -%}
+
+			{% set milestoneTwoHtml %}
+
+			{% endset -%}
+
+			{% set milestoneThreeHtml %}
+
+
+			{% endset -%}
+
 			{{ govukTabs({
-			  items: [           
+			  items: [
 				  { label: "Outcome 1", id: "OutcomeOne", panel: { html: OutcomeOneHtml } },
 				  { label: "Outcome 2", id: "OutcomeTwo", panel: { html: OutcomeTwoHtml } },
 				  { label: "Outcome 3", id: "OutcomeThree", panel: { html: OutcomeThreeHtml } }
 			  ]
 		  }) }}
-	
-	
-	
+
+
+
 		  <div class="govuk-button-group">
 			{{ govukButton({
 			  text: "Save"
 			}) }}
-	
+
 			{{ govukButton({
 			  text: "Save as draft",
 			  classes: "govuk-button--secondary",
 			  href: "/funds/reports/?report-11-status=inProgress"
 			}) }}
 		</div>
-	
+
 	  </form>
 
 

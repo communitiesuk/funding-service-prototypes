@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -12,10 +12,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
     </div>
-    <div class="govuk-grid-column-full">        
+    <div class="govuk-grid-column-full">
 
         {{ govukTable({
             caption: "Project postcodes",
@@ -55,15 +55,15 @@
             ]
         }) }}
 
-        <form method="post" action="/report/?reportSectionPostcodes=complete" >        
-				
+        <form method="post" action="/report/?reportSectionPostcodes=complete" >
+
             {{ govukButton({
 				text: "Save and continue"
 			}) }}
-		
+
 		</form>
 
-  	</div>  
+  	</div>
 </div>
 
 {% endblock %}

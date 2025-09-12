@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -13,15 +13,15 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	   
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-      	<p>Tell {{ data.reporterName }} why you’re declining this report. You could include:</p>    
+      	<p>Tell {{ data.reporterName }} why you’re declining this report. You could include:</p>
       	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         	<li>details about any corrections needed</li>
 			<li>any support they might need to correct the problem</li>
       	</ul>
 
-      	<form method="post" action="/sign-off/confirmation" >	  
+      	<form method="post" action="/sign-off/confirmation" >
 
         	{{ govukCharacterCount({
           		name: "reportReasonDeclined",
@@ -31,15 +31,15 @@
             		text: "Why have you declined this report",
             		classes: "govuk-label--l govuk-visually-hidden",
             		isPageHeading: false
-          		}          		
-        	}) }}          
-        
+          		}
+        	}) }}
+
           	{{ govukButton({
             	text: "Continue"
           	}) }}
 
         </form>
 
-  </div>  
+  </div>
 </div>
 {% endblock %}

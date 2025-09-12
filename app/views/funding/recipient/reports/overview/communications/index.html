@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,11 +11,11 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 		<p>We need to know if you have any upcoming communications for your project Growing Community Green Spaces.</p>
 
-		
+
 		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
 			<li>include this</li>
 			<li>Also include this</li>
@@ -23,17 +23,17 @@
 		</ul>
 
 		<form method="post" action="/report/overview/communications/add/" >
-		
+
 			{{ govukRadios({
 				classes: "govuk-radios--inline",
-				name: "projectCommunication",							
+				name: "projectCommunication",
 				fieldset: {
 				  legend: {
 					text: "Do you have any upcoming communications opportunities?",
 					isPageHeading: false,
 					classes: "govuk-fieldset__legend govuk-visually-hidden"
 					}
-				},				
+				},
 				items: [
 				  { value: "Yes", text: "Yes", checked: checked("projectCommunication", "Yes")  },
 				  { value: "No~/funds/reports/?report-2-status=Completed", text: "No", checked: checked("projectCommunication", "No")  }
@@ -59,7 +59,7 @@
 	  <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 

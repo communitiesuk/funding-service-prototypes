@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 {% set showBackLink = true %}
 
 {% set pageHeading = "What is the spend RAG rating for this project?" %}
@@ -10,11 +10,11 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-					
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<!-- <p class="govuk-body">Use the <a href="/report/rag/rag-examples" target="_blank">RAG rating examples (opens in a new tab)</a> to help you complete the ratings as accurately as possible. </p>         -->
 
-		<form method="post" action="/report/rag/delivery" >	  
+		<form method="post" action="/report/rag/delivery" >
 
 			{% set greenHtml %}
 			<p>For example:</p>
@@ -96,7 +96,7 @@
 
 		</form>
 
-    </div>    
+    </div>
 </div>
 
 {% endblock %}

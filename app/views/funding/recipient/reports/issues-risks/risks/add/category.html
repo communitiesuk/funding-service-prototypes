@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,10 +11,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<form method="post" action="/report/issues-risks/risks/add/details" >
-            
+
 
             {{ govukRadios({
 				name: "projectRiskCategory",
@@ -33,7 +33,7 @@
 				  { value: "Category 4", text: "Category 4", checked: checked("projectRiskCategory", "Category 4") },
 				  { value: "Category 5", text: "Category 5", checked: checked("projectRiskCategory", "Category 5") }
 				]
-			}) }}           
+			}) }}
 
 			<div class="govuk-button-group">
 				{{ govukButton({
@@ -49,7 +49,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

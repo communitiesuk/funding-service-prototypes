@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,17 +11,17 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 
 		{% if data['change'] == "active" %}
 			<form method="post" action="/report/risks/project-risks" >
-				{% include "includes/changeStatus.html" %}				
-		{% else %}	
+				{% include "includes/changeStatus.html" %}
+		{% else %}
 			<form method="post" action="/report/risks/add/more" >
 		{% endif %}
-            
-           
+
+
 
 			{{ govukCharacterCount({
 				name: "projectRiskMitigation",
@@ -36,12 +36,12 @@
 				hint: {
 				  text: "Explain what mitigations you have, or plan to have, to manage the risk"
 				}
-		  }) }}     
-			
+		  }) }}
+
 			{{ govukButton({
 				text: "Save and continue"
 			}) }}
-				
+
 
 		</form>
 

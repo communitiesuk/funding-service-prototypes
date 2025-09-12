@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,8 +11,8 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<p>We use this information to see how we might be able to help. For example, you could tell us about:</p>
       	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         	<li>content TBC</li>
@@ -21,7 +21,7 @@
 			</ul>
 
 		<form method="post" action="/report/progress/milestones" >
-            
+
 			{{ govukCharacterCount({
 				name: "progressIssues",
 				id: "progressIssues",
@@ -35,15 +35,15 @@
 				  text: ""
 				},
 				value: data.progressIssues
-			}) }} 
-			
+			}) }}
+
 			{{ govukButton({
 				text: "Continue"
-			}) }}			
+			}) }}
 
 		</form>
 
-  	</div>	  
+  	</div>
 </div>
 
 {% endblock %}

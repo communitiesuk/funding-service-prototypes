@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
       	<p>You can add your <a href="#" target="_blank">RAG rating (opens in new tab)</a>, risks and issues within this section.</p>
 
@@ -19,8 +19,8 @@
 			summaryText: "Understanding RAG ratings",
 			text: "To follow"
 		}) }} -->
-					
-		<form method="post" action="/report/overview/ragRating/schedule" >	  
+
+		<form method="post" action="/report/overview/ragRating/schedule" >
 
 			{{ govukRadios({
 				name: "projectRagRatingOverall",
@@ -35,37 +35,37 @@
 				items: [
 				  { value: "Red", text: "Red - no progress", checked: checked("projectRagRatingOverall", "Red") },
 				  { value: "Amber", text: "Amber - partial progress", checked: checked("projectRagRatingOverall", "Amber") },
-				  { value: "Green", text: "Green - good progress", checked: checked("projectRagRatingOverall", "Green") }				  
+				  { value: "Green", text: "Green - good progress", checked: checked("projectRagRatingOverall", "Green") }
 				]
 			}) }}
 
-			<!-- {% set tabOneHtml %}   
-			
-			{% endset -%} 
-	
-			{% set tabTwoHtml %}   
-			
-			{% endset -%} 
-	
-			{% set tabThreeHtml %}   
-			
-			{% endset -%} 
+			<!-- {% set tabOneHtml %}
 
-			{% set tabFourHtml %}   
-			
-			{% endset -%} 
-  
+			{% endset -%}
+
+			{% set tabTwoHtml %}
+
+			{% endset -%}
+
+			{% set tabThreeHtml %}
+
+			{% endset -%}
+
+			{% set tabFourHtml %}
+
+			{% endset -%}
+
 			{{ govukTabs({
-				items: [           
+				items: [
 					{ label: "Overall RAG Rating", id: "tabOne", panel: { html: tabOneHtml } },
 					{ label: "Schedule RAG Rating", id: "tabTwo", panel: { html: tabTwoHtml } },
 					{ label: "Budget RAG Rating", id: "tabThree", panel: { html: tabThreeHtml } },
 					{ label: "Resourcing RAG Rating", id: "tabFour", panel: { html: tabFourHtml } }
 				]
 			}) }} -->
-				
+
 			<div class="govuk-button-group">
-				
+
 				{{ govukButton({
 				    text: "Save and continue"
 				}) }}
@@ -73,9 +73,9 @@
 				<!-- {{ govukButton({
 				text: "Save as draft",
 				classes: "govuk-button--secondary",
-				href: "/funds/reports/?report-3-status=inProgress" 
+				href: "/funds/reports/?report-3-status=inProgress"
 				}) }} -->
-			
+
 			</div>
 
 		</form>
