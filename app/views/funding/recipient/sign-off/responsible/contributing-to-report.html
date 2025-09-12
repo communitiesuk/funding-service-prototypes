@@ -16,7 +16,7 @@
     	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 
-		<form method="post" action="/sign-off/responsible/check-your-answers" >
+		<form method="post" action="/funding/recipient/sign-off/responsible/check-your-answers" >
 			{{ govukRadios({
 				classes: "govuk-radios--inline",
 				name: "contributingReport",
@@ -28,7 +28,7 @@
 					}
 				},
 				items: [
-				  { value: "Yes~/sign-off/responsible/contributer", text: "Yes", checked: checked("contributingReport", "Yes")  },
+				  { value: "Yes~/funding/recipient/sign-off/responsible/contributer", text: "Yes", checked: checked("contributingReport", "Yes")  },
 				  { value: "No", text: "No", checked: checked("contributingReport", "No")  }
 				]
 			}) }}

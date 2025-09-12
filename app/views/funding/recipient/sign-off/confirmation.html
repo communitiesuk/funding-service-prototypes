@@ -1,4 +1,4 @@
-{% extends "layouts/nonav.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = false %}
 
@@ -21,29 +21,29 @@
 			<div class="govuk-panel__body">
 				Reporting period<br><strong> {{data.reportPeriod}} </strong>
 			</div>
-		  </div>		          
-	
+		  </div>
+
 
 		{% if data['reportStatus'] == "Declined" %}
 
-			<p class="govuk-body">We have sent you a confirmation email.</p>			
-			<h2 class="govuk-heading-m">What happens next</h2>	
-			<p class="govuk-body">We’ve emailed {{ data.reporterName }} to let them know the report has been declined and included the reason you gave.</p>	
-			<p class="govuk-body">They will be able to correct the report and resend it to you for review.</p>		  
+			<p class="govuk-body">We have sent you a confirmation email.</p>
+			<h2 class="govuk-heading-m">What happens next</h2>
+			<p class="govuk-body">We’ve emailed {{ data.reporterName }} to let them know the report has been declined and included the reason you gave.</p>
+			<p class="govuk-body">They will be able to correct the report and resend it to you for review.</p>
 			<p class="govuk-body-s govuk-!-margin-top-9"><a class="govuk-back-link nochevron" href="/emails/sign-off/report-declined">Email sent to Section 151 officer</a></p>
 
 		{% else %}
 
-			<p class="govuk-body">We have sent you a confirmation email. </p>			
-			<h2 class="govuk-heading-m">What happens next</h2>	
-			<p class="govuk-body">We’ve emailed {{ data.reporterName }} to let them know the report has been reviewed and signed off. The report has now been submitted to {{ data.fundName }}.</p>		  			
+			<p class="govuk-body">We have sent you a confirmation email. </p>
+			<h2 class="govuk-heading-m">What happens next</h2>
+			<p class="govuk-body">We’ve emailed {{ data.reporterName }} to let them know the report has been reviewed and signed off. The report has now been submitted to {{ data.fundName }}.</p>
 			<p class="govuk-body-s govuk-!-margin-top-9"><a class="govuk-back-link nochevron" href="/emails/sign-off/report-signed-off">Email sent to Section 151 officer</a></p>
 
 		{% endif %}
-		
-		
-		
-  	</div>  
+
+
+
+  	</div>
 </div>
 
 {% endblock %}
