@@ -1,0 +1,73 @@
+{% extends "layouts/email.html" %}
+{% set serviceName = "" %}
+
+
+{% set title = 'You signed off a report for ' + data.organisationName + '' %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+    <div class="email-message">
+    	<table class="govuk-table email-message-meta">
+        	<tbody>
+				<tr>
+                	<th class="govuk-table__cell" scope="row">From</th>
+                	<td class="govuk-table__cell">Report Funding Progress</td>
+              	</tr>                    
+            	<tr>
+              		<th class="govuk-table__cell" scope="row">To</th>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.section151Email}}</span></td>
+            	</tr>          
+          		<tr class="email-message-meta">
+            		<th class="govuk-table__cell" scope="row">Subject</th>
+            		<td class="govuk-table__cell">{{ title }}</td>
+          		</tr>
+        	</tbody>
+      	</table>
+      	<div class="email-message-body">
+          <p>You successfully signed off and submitted a report from {{ data.organisationName }} to {{ data.fundName }}.</p>
+
+          <div class="govuk-inset-text">
+            <p>Reporting period: <strong>{{ data.reportPeriod }}</strong></p>
+            </div>
+      
+        
+          <!-- <p><a href="#">Sign in to view or download the submitted report</a></p> -->
+          
+          <h2 class="govuk-heading-m">Get help</h2>	
+      
+          <p>If you have any questions or need help, email us at <a href="mailto:fsd.support@communities.gov.uk">fsd.support@communities.gov.uk</a>.</p>
+      
+    
+      	</div>
+    </div> 
+
+
+        
+    
+    
+
+
+
+
+    <p class="govuk-body-s govuk-!-margin-top-9"><a class="govuk-back-link" href="/sign-off/">Return to report sign off options</a></p>
+  
+    <!-- <p class="govuk-body-s govuk-!-margin-top-9"><a href="/emails/sign-off/review-needed">Section 151 email</a></p> -->
+
+
+
+  </div>
+</div>
+
+{% endblock %}

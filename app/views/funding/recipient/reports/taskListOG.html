@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBread = true %}
+{% set showNav = false %}
+
+{% set pageHeading = "Reporting period 1 April 2024 to 30 September 2024" %}
+{% set pageSection = 'Boddington youth hub' %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<!-- {% set html %}
+  			<p class="govuk-notification-banner__heading">This report is due by 16th June 2024.</p>
+		{% endset %}
+
+		{{ govukNotificationBanner({
+  			html: html
+		}) }} -->
+
+		<p class="govuk-body govuk-!-margin-bottom-7">Due by 10 December 2024</p>
+		<!-- <br><span class="govuk-body-s">Last updated: 1 June 2024 by Gemma Currie</span></p> -->
+	
+		{% include "includes/taskList/task-overview.html" %}
+		{% include "includes/taskList/task-issues-and-risks.html" %}
+		{% include "includes/taskList/task-delivery.html" %}
+		{% include "includes/taskList/task-expenditure.html" %}		
+		<!-- {% include "includes/taskList/task-changes.html" %} -->
+		<!-- {% include "includes/taskList/task-sign-off.html" %} -->
+
+		<p class="govuk-body govuk-!-margin-top-7">Content to follow. All content is available under the Open Government Licence v3.0, except where otherwise stated</p>
+		<form method="post" action="/report/check-your-answers" >
+		
+			{{ govukButton({
+            	text: "Confirm and continue"				
+          	}) }}
+		
+		</form>
+
+
+  	</div>
+  	<div class="govuk-grid-column-one-third">
+		<!-- {% include "includes/reportBox.html "%} -->
+  	</div>
+</div>
+
+{% endblock %}

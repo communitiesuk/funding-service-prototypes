@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Project expenditure" %}
+{% set pageSection = "Expenditure" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Add the expenditure for your project <span class="govuk-!-font-weight-bold">Growing Community Green Spaces</span>. You can see up to 3 previous reporting rounds of data. If you need to see more, you can download all the historical expenditure data in the PDF.</p>
+
+		{{ govukDetails({
+			summaryText: "How to report your project expenditure",
+			text: "To follow"
+		}) }}
+		
+		<h2 class="govuk-heading-m">Download expenditure spreadsheet</h2>
+		<p>This spreadsheet will contain any historical date you have previously submitted, if it exists.</p>
+
+		{{ govukButton({
+			text: "Download expenditure Excel",
+			classes: "govuk-button--secondary"
+		  }) }}
+		{{ govukDetails({
+			summaryText: "Downloading an Excel",
+			text: "To follow"
+		}) }}
+
+
+		<h2 class="govuk-heading-m">Upload your spreadsheet</h2>
+
+
+		<form method="post" action="/funds/reports/?report-9-status=Completed" >	  
+
+		{{ govukFileUpload({
+			id: "file-upload-1",
+			name: "fileUpload1",
+			label: {
+			  text: "Upload a file"
+			}
+		  }) }}
+
+
+		
+					
+
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Upload and check for errors"
+				}) }}
+
+				{{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary",
+				  href: "/funds/reports/?report-9-status=inProgress"
+				}) }}
+		  </div>
+
+		  {{ govukDetails({
+			summaryText: "If you need help",
+			text: "To follow"
+		}) }}
+
+		</form>
+
+
+
+
+  	</div>
+	  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

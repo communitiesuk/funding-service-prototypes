@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is your schedule RAG rating?" %}
+{% set pageSection = "RAG rating" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+      	<p>You can add your <a href="#" target="_blank">RAG rating (opens in new tab)</a>, risks and issues within this section.</p>
+
+		<!-- {{ govukDetails({
+			summaryText: "Understanding RAG ratings",
+			text: "To follow"
+		}) }} -->
+					
+		<form method="post" action="/report/overview/ragRating/budget" >	  
+
+			{{ govukRadios({
+				name: "projectRagRatingSchedule",
+				id: "projectRagRatingSchedule",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				items: [
+				  { value: "Red", text: "Red - no progress", checked: checked("projectRagRatingSchedule", "Red") },
+				  { value: "Amber", text: "Amber - partial progress", checked: checked("projectRagRatingSchedule", "Amber") },
+				  { value: "Green", text: "Green - good progress", checked: checked("projectRagRatingSchedule", "Green") }				  
+				]
+			}) }}
+
+			<!-- {% set tabOneHtml %}   
+			
+			{% endset -%} 
+	
+			{% set tabTwoHtml %}   
+			
+			{% endset -%} 
+	
+			{% set tabThreeHtml %}   
+			
+			{% endset -%} 
+
+			{% set tabFourHtml %}   
+			
+			{% endset -%} 
+  
+			{{ govukTabs({
+				items: [           
+					{ label: "Overall RAG Rating", id: "tabOne", panel: { html: tabOneHtml } },
+					{ label: "Schedule RAG Rating", id: "tabTwo", panel: { html: tabTwoHtml } },
+					{ label: "Budget RAG Rating", id: "tabThree", panel: { html: tabThreeHtml } },
+					{ label: "Resourcing RAG Rating", id: "tabFour", panel: { html: tabFourHtml } }
+				]
+			}) }} -->
+				
+			<div class="govuk-button-group">
+				
+				{{ govukButton({
+				    text: "Save and continue"
+				}) }}
+
+				<!-- {{ govukButton({
+				text: "Save as draft",
+				classes: "govuk-button--secondary",
+				href: "/funds/reports/?report-3-status=inProgress" 
+				}) }} -->
+			
+			</div>
+
+		</form>
+
+    </div>
+    <div class="govuk-grid-column-one-third">
+	    {% include "includes/reportPeriod.html "%}
+    </div>
+</div>
+
+{% endblock %}

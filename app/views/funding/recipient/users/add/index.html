@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "What’s their full name?" %}
+{% set pageSection = "Add new user" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+  
+    
+            
+            <form method="post" action="/users/add/email" >
+            
+        
+                {{ govukInput({
+                    label: {
+                        text: pageHeading,
+                        classes: "govuk-visually-hidden",
+                        isPageHeading: false
+                    },
+                    classes: "govuk-!-width-two-thirds"
+                }) }}
+
+                
+                
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+      
+  </div>  
+</div>
+
+
+
+{% endblock %}

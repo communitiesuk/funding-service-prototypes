@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showNav = true %}
+
+
+{% set pageHeading = "Fund reports" %}
+{% set pageSection = data.organisationName %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}						
+		
+		<!-- {% set reportDue %}
+		<p class="govuk-notification-banner__heading">
+			Your report for 'Boddington youth hub’ is due in 10 days.
+			<a class="govuk-notification-banner__link" href="/funds/reports/">Complete report</a>.
+		</p>
+		{% endset %}
+
+		{{ govukNotificationBanner({
+  			html: reportDue
+		}) }} -->
+
+	</div>
+	<div class="govuk-grid-column-three-quarters">
+
+		{{ govukSummaryList({
+			card: { title: { html: '<span class="govuk-!-font-size-24">Pathfinders</span>'}, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
+			rows: [
+				{ key: { text: "Napton village hall extension" }, value: { html: "Report due: 12 October 2024 " } }
+			]
+	  	}) }}
+
+		
+		{{ govukSummaryList({
+			card: { title: { html: '<span class="govuk-!-font-size-24">Getting Building Fund</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
+			rows: [
+				{ key: { text: "Napton village hall extension" }, value: { html: "Report due: 12 October 2024 " } }
+			]
+	  	}) }}
+
+		
+		{{ govukSummaryList({
+			card: { title: { html: '<span class="govuk-!-font-size-24">Community Renewal Fund</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
+			rows: [
+				{ key: { text: "Boddington youth hub" }, value: { html: "Report due: 16 June 2024" } },
+				{ key: { text: "Elevating local communities" }, value: { html: "Report due: 30 August 2024" } },
+				{ key: { text: "Piloting Place-Based Innovation Catalysts" }, value: { html: "Report due: 22 September 2024" } }
+			]
+	  	}) }}
+
+		  {{ govukSummaryList({
+			card: { title: { html: '<span class="govuk-!-font-size-24">Gypsy, Roma and Traveller education programme</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
+			rows: [
+				
+				
+			]
+	  	}) }}
+		
+
+
+		
+
+		<!-- {{ govukSummaryList({
+			card: { title: { text: "Growing Community Green Spaces project"}, actions: { items: [ { href: "#", text: "Overview", visuallyHiddenText: "of University of Gloucestershire" } ] } },
+			rows: [
+				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Reports due" }, value: { html: "July 2023 to September 2023" }, actions: { items: [ { href: "/funds/reports/", text: "Complete", visuallyHiddenText: "age" } ] } }
+			  	
+			  
+			]
+	  	}) }} -->
+
+
+<!-- 
+		<h2 class="govuk-heading-m">Programme 2</h2>
+
+
+		{{ govukSummaryList({
+			card: { title: { text: "Growing Community Green Spaces project"}, actions: { items: [ { href: "#", text: "Overview", visuallyHiddenText: "of University of Gloucestershire" } ] } },
+			rows: [
+				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Reports due" }, value: { html: "July 2023 to September 2023" }, actions: { items: [ { href: "/funds/reports/", text: "Complete", visuallyHiddenText: "age" } ] } }
+			  	
+			  
+			]
+	  	}) }} -->
+
+  <!-- </div>
+  <div class="govuk-grid-column-full">
+       -->
+
+
+	   
+
+	   
+
+  </div>
+</div>
+
+{% endblock %}

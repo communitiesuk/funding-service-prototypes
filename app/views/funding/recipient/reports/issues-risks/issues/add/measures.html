@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What are you doing to address the issue?" %}
+{% set pageSection = "Project issues" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/issues-risks/issues/add/support" >
+            
+            {{ govukTextarea({
+				name: "projectIssueMeasures",
+				id: "projectIssueMeasures",
+				label: {
+				  text: "Can you provide more detail?",
+				  classes: "govuk-label govuk-visually-hidden",
+				  isPageHeading: true
+				},
+				hint: {
+				  text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+				}
+			}) }} 
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you want to add any more risks?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+
+		<form method="post" action="/report/risks/project-risks" >
+            
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "projectRiskMore",							
+				fieldset: {
+				  legend: {
+					text: "Do you want to add any further communications?",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},				
+				items: [
+				  { value: "Yes~/report/risks/add/", text: "Yes", checked: checked("projectRiskMore", "Yes")  },
+				  { value: "No", text: "No", checked: checked("projectRiskMore", "No")  }
+				]
+			}) }}
+            
+			
+				{{ govukButton({
+				  text: "Continue"
+				}) }}
+			
+
+		</form>
+
+  	</div>	
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+
+{% set pageSection = "Towns Fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Send your report for review" %}
+{% set pageSection = "data.fundName" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	
+		
+
+		<p>You can now send your report to be reviewed by Annette Curtain, Section 151 Officer. You will not be able to make any changes while they are reviewing the report.</p>
+		<p>We will send them and email to let them know that the report is ready.</p>		
+
+
+		<form method="post" action="/funding/recipient/reports/confirmation" >
+
+			<input type="hidden" name="reportStatus" id="reportStatus" value="Sent" />
+        
+			<div class="govuk-button-group">
+        	
+
+				  {{ govukButton({
+            		text: "Send report for review",
+					classes: "govuk-!-margin-top-5"
+          		}) }}
+				<a class="govuk-link" href="#">Cancel</a>
+        	</div>
+
+		</form>
+
+  	</div>  
+</div>
+
+{% endblock %}

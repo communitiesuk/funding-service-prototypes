@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you want to add any further communications?" %}
+{% set pageSection = "Upcoming communications" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+
+		<form method="post" action="/funds/reports/?report-2-status=Completed" >
+            
+      {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "projectCommunicationAdd",							
+				fieldset: {
+				  legend: {
+					text: "Do you want to add any further communications?",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},				
+				items: [
+				  { value: "Yes~/report/overview/communications/add/", text: "Yes", checked: checked("projectCommunicationAdd", "Yes")  },
+				  { value: "No", text: "No", checked: checked("projectCommunicationAdd", "No")  }
+				]
+			  }) }}
+            
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  </div>
+
+		</form>
+
+  	</div>
+	  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

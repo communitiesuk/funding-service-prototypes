@@ -42,7 +42,7 @@
         <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-7">Not yet signed in </h2>
         <p class="govuk-body">Grant team members who have been added but not signed in yet.</p>
 
-        <!-- {{ govukTable({
+        {{ govukTable({
             captionClasses: "govuk-table__caption--m",
             classes: "govuk-!-margin-bottom-9",
             head: [
@@ -52,10 +52,10 @@
             rows: [
                 [ { text: data['addUser-Email'] or "hugofurst@bbg.gov.uk" }, { text: "Grant team member"} ]
             ]
-        }) }} -->
+        }) }}
 
 
-        <!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-7">Grant team members</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-7">Grant team members</h2>
         
         {{ govukTable({
             captionClasses: "govuk-table__caption--m",
@@ -66,7 +66,7 @@
                 [ { html: 'Brian Coult' }, { text: "brian.coult@bbg.gov.uk" }, { html: "Grant team member"} ]
 
             ]
-        }) }} -->
+        }) }}
 
         <!-- This should only show if the user is NOT a FSD admin -->
         {% if ((not data['authentication'] == "SSO") or ( not data['authentication'] )) %}

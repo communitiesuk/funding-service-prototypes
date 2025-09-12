@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Rate the impact of the issue" %}
+{% set pageSection = "Project issues" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/issues-risks/issues/add/details" >
+            
+
+            {{ govukRadios({
+				name: "projectIssueImpact",
+				id: "projectIssueImpact",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				items: [
+				  { value: "Insignificant", text: "Insignificant", checked: checked("projectIssueImpact", "Stage 1") },
+				  { value: "Minor", text: "Minor", checked: checked("projectIssueImpact", "Minor") },
+				  { value: "Significant", text: "Significant", checked: checked("projectIssueImpact", "Significant") },
+				  { value: "Major", text: "Major", checked: checked("projectIssueImpact", "Major") },
+				  { value: "Severe", text: "Severe", checked: checked("projectIssueImpact", "Severe") }
+				]
+			}) }}           
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

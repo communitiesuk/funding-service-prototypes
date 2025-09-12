@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Task question flow" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	      
+		
+		<p>User will see the flow of questions in this task.</p>
+		
+
+		<form method="post" action="/funding/recipient/reports/rag/check-your-answers" >            			
+			
+			{{ govukButton({
+				text: "Continue",
+				classes: "govuk-!-margin-top-5"
+			}) }}			
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

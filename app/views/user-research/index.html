@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageHeading = "User research" %}
+{% set pageSection = "Report funding progress" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ macroPageHeader.pageHeader(pageHeading,pageSection) }}        
+    </div>
+    
+    <div class="govuk-grid-column-two-thirds">
+        <p class="govuk-body">This is the prototype for the Report funding progress (Report) service. The service gives grant recipients a way to report on monitoring and evaluation data. </p>        
+        
+        <h2 class="govuk-heading-m">Research flows</h2>
+        
+
+
+            <form action="/report/check-your-answers" method="post" >                    
+                {{ govukButton({
+                    text: "Complete fund report"
+                }) }}
+            </form> 
+
+            <form action="/emails/sign-off/review-needed" method="post" >                    
+                {{ govukButton({
+                    text: "Section 151 Officer review"
+                }) }}
+            </form>             
+
+    </div>
+</div>
+
+{% endblock %}

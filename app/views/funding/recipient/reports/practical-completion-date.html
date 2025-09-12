@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What’s the practical completion date?" %}
+{% set pageSection = "Your account" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		<p>This is the date the grant elements of the project will be physically complete.</p>
+
+		<form method="post" action="/admin/organisation-name" >
+            
+			{{ govukDateInput({
+				id: "adminPracticalCompletionDate",
+				namePrefix: "adminPracticalCompletionDate",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  	}
+				},
+				hint: {
+					text: "For example, 27 3 2024"
+				}
+			}) }}                 
+
+			
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+			
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

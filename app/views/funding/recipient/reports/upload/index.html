@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Upload your reporting spreadsheet" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+      	<p>Opening paragraph could provide list items:</p>    
+      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        	<li>make sure its xyz</li>
+			<li>don’t do abc to the spreadsheet</li>
+      	</ul>
+
+      	<form method="post" action="/report/upload/uploaded" >	  
+
+        	{{ govukFileUpload({
+            	id: "reportUpload",
+            	name: "reportUpload",
+            	hint: {
+              		text: "The selected file must be smaller than 100MB."
+            	},
+            	label: {
+              		text: "Upload your reporting spreadsheet",
+              		classes: "govuk-label govuk-visually-hidden",
+              		isPageHeading: false
+            	}
+          	}) }}
+        
+          	{{ govukButton({
+            	text: "Continue"
+          	}) }}
+
+        </form>
+
+  </div>  
+</div>
+{% endblock %}

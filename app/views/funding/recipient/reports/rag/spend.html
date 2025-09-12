@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+{% set showBackLink = true %}
+
+{% set pageHeading = "What is the spend RAG rating for this project?" %}
+{% set pageSection = "RAG ratings" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+					
+		<!-- <p class="govuk-body">Use the <a href="/report/rag/rag-examples" target="_blank">RAG rating examples (opens in a new tab)</a> to help you complete the ratings as accurately as possible. </p>         -->
+
+		<form method="post" action="/report/rag/delivery" >	  
+
+			{% set greenHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>no rising costs</li>
+				<li>no slippage</li>
+				<li>less than 30% expenditure profiled in final year</li>
+				<li>no use of financial flexibility</li>
+			</ul>
+			{% endset -%}
+
+			{% set amberGreenHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>project progressing but with minor issues</li>
+				<li>issues are within control and there is a mitigation plan in place</li>
+				<li>the appropriate RIBA stage has minor slippage but there is mitigation plan in place</li>
+				<li>there is no additional support required</li>
+			</ul>
+			{% endset -%}
+
+			{% set amberHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>cost increases of 10% to 20% which are manageable</li>
+				<li>a funding gap exists - a source has been identified but not secured</li>
+				<li>less than 30% expenditure profiled in final year</li>
+				<li>there is slippage of 20% to 30% between financial years</li>
+				<li>40% to 50% of expenditure is profiled in the final year</li>
+				<li>the use of flexibility is required but below the threshold</li>
+			  </ul>
+			{% endset -%}
+
+			{% set amberRedHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>the project has stalled for any reason</li>
+				<li>value engineering is required or in progress due to significant increases or over-runs</li>
+				<li>significant additional match funding is required for delivery</li>
+				<li>potential match funding source has been identified but not secured</li>
+			</ul>
+			{% endset -%}
+
+			{% set redHtml %}
+			<p>For example:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>major cost increases over 30% which is unmanageable and there is no plan to resolve the problem</li>
+				<li>major slippage over 40% between financial years</li>
+				<li>over 60% of expenditure is profiled in the final year</li>
+				<li>major movement of funding planned</li>
+				<li>major additional match funding is required to facilitate delivery</li>
+				<li>match funding source not identified</li>
+				<li>call in required</li>
+			</ul>
+			{% endset -%}
+
+			{{ govukRadios({
+				name: "projectRagRatingSpend",
+				id: "projectRagRatingSpend",
+				fieldset: {
+				  legend: {
+					text: "Select an option to update your RIBA reporting stage",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				  }
+				},
+				items: [
+					{ value: "Green", text: "Green", checked: checked("projectRagRatingSpend", "Green"), conditional: { html: greenHtml } },
+					{ value: "Amber/Green", text: "Amber/Green", checked: checked("projectRagRatingSpend", "Amber/Green"), conditional: { html: amberGreenHtml } },
+					{ value: "Amber", text: "Amber", checked: checked("projectRagRatingSpend", "Amber"), conditional: { html: amberHtml } },
+					{ value: "Amber/Red", text: "Amber/Red", checked: checked("projectRagRatingSpend", "Amber/Red"), conditional: { html: amberRedHtml } },
+					{ value: "Red", text: "Red", checked: checked("projectRagRatingSpend", "Red"), conditional: { html: redHtml } }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Continue"
+			}) }}
+
+		</form>
+
+    </div>    
+</div>
+
+{% endblock %}

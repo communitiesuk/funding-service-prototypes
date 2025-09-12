@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you need to add any risks?" %}
+{% set pageSection = "Project risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Add any risks you have faced for your project Growing Community Green Spaces. We use this information to:</p>		
+		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+			<li>see how risks are been managed</li>
+			<li>offer you support</li>
+			<li>learn from previous issues</li>
+		</ul>
+
+		<form method="post" action="/funds/reports/?report-8-status=Completed" >	  
+		
+			{{ govukRadios({		
+				classes: "govuk-radios--inline",		
+				name: "projecRisks",
+				id: "projecRisks",				
+				fieldset: {
+				  legend: {
+					text: "Do you need to add any risks?",
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},				
+				items: [
+				  { value: "Yes~/report/issues-risks/risks/add/", text: "Yes" },
+				  { value: "No", text: "No" }
+				]
+			}) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary",
+				  href: "/funds/reports/?report-8-status=inProgress"
+				}) }} -->
+		  </div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}	
+	</div>
+</div>
+
+{% endblock %}

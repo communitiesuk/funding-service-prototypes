@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "How will you manage the risk?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+
+		{% if data['change'] == "active" %}
+			<form method="post" action="/report/risks/project-risks" >
+				{% include "includes/changeStatus.html" %}				
+		{% else %}	
+			<form method="post" action="/report/risks/add/more" >
+		{% endif %}
+            
+           
+
+			{{ govukCharacterCount({
+				name: "projectRiskMitigation",
+				id: "projectRiskMitigation",
+				maxwords: 100,
+				value: data['projectRiskMitigation'],
+				label: {
+				  text: pageHeading,
+				  classes: "govuk-label--l govuk-visually-hidden",
+				  isPageHeading: false
+				},
+				hint: {
+				  text: "Explain what mitigations you have, or plan to have, to manage the risk"
+				}
+		  }) }}     
+			
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+				
+
+		</form>
+
+  	</div>
+
+</div>
+
+{% endblock %}

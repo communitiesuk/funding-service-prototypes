@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Why is this a risk?" %}
+{% set pageSection = "Risks" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+		{% if data['change'] == "active" %}
+			<form method="post" action="/report/risks/project-risks" >
+				{% include "includes/changeStatus.html" %}				
+		{% else %}	
+			<form method="post" action="/report/risks/add/likelihood" >
+		{% endif %}
+            
+           
+
+			{{ govukCharacterCount({
+				name: "projectRiskOutcome",
+				id: "projectRiskOutcome",
+				maxwords: 100,
+				value: data['projectRiskOutcome'],
+				label: {
+				  text: pageHeading,
+				  classes: "govuk-label--l govuk-visually-hidden",
+				  isPageHeading: false
+				},
+				hint: {
+				  text: "Explain what might go wrong and what the outcome could be"
+				}
+		  }) }}     
+			
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+				
+
+		</form>
+
+  	</div>
+
+</div>
+
+{% endblock %}

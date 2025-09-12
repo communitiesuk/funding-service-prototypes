@@ -1,0 +1,103 @@
+{% extends "layouts/nonav.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+<!--         
+
+	    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Option</dt>
+                <dd class="govuk-summary-list__value">Answer given</dd>
+                <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a></dd>
+            </div>
+        </dl> -->
+		
+
+        {{ govukSummaryList({
+            card: {
+              title: { text: "Report sign off" }
+            },
+            rows: [
+                {
+                    key: { text: "Name" },
+                    value: { html: "Kate Harries" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "age" } ] }
+                },
+                {
+                    key: { text: "Email address" },
+                    value: { html: "kate.harries@authority.gov.uk" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "nationality" } ] }
+                },
+                {
+                    key: { text: "Role" },
+                    value: { html: "Section 151 Officer" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "working situation" } ] } 
+                }
+            ]
+        }) }}
+
+        {% if data['contributingReport'] == "No" %}
+
+        {{ govukSummaryList({
+            card: {
+              title: { text: "Contributing to report" }
+            },
+            rows: [
+                {
+                    key: { text: "Name" },
+                    value: { html: "No one" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "age" } ] }
+                }                
+            ]
+        }) }}
+
+        {% else %}
+
+        {{ govukSummaryList({
+            card: {
+              title: { text: "Contributing to report" }
+            },
+            rows: [
+                {
+                    key: { text: "Name" },
+                    value: { html: "Brian Coult" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "age" } ] }
+                },
+                {
+                    key: { text: "Email address" },
+                    value: { html: "brian.coult@authority.gov.uk" },
+                    actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "nationality" } ] }
+                }                
+            ]
+        }) }}
+
+        {% endif %}
+
+
+
+
+
+	    <form method="post" action="/report/confirmation" >	        			
+        
+            {{ govukButton({
+                text: "Confirm and continue",
+                classes: "govuk-!-margin-top-5"
+            }) }}            
+        	
+		</form>
+
+  	</div>  
+</div>
+
+{% endblock %}

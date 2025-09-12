@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Tell us more about this project challenge" %}
+{% set pageSection = "Project challenges" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+		<form method="post" action="/report/overview/challenges/add/more" >
+
+            {{ govukCharacterCount({
+                name: "projectChallengeDetails",
+                id: "projectChallengeDetails",
+                maxlength: 500,
+                rows: 8,
+                classes: "govuk-!-width-two-thirds",
+                label: {
+                text: "Tell us more about this project challenge",
+                  classes: "govuk-label govuk-visually-hidden",
+                  isPageHeading: true
+                }
+                
+            }) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		    </div>
+
+		</form>
+
+  	</div>
+	<div class="govuk-grid-column-one-third">
+		{% include "includes/reportPeriod.html "%}
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+
+	{{ govukTaskList({
+		idPrefix: "company-details",
+		items: [
+			{ title: { text: "Programme progress", classes: "govuk-link--no-visited-state" }, href: "/funding/recipient/reports/progress/",  status: { tag: { text: "Completed" if data['reportSectionProgress'] == "complete" else "Not started", classes: "govuk-tag--green" if data['reportSectionProgress'] == "complete" else "govuk-tag--blue" } } },
+			{ title: { text: "Project postcodes", classes: "govuk-link--no-visited-state" }, href: "/funding/recipient/reports/locations/", status: { tag: { text: "Completed" if data['reportSectionPostcodes'] == "complete" else "Not started", classes: "govuk-tag--green" if data['reportSectionPostcodes'] == "complete" else "govuk-tag--blue" } } },
+			{ title: { text: "RAG ratings", classes: "govuk-link--no-visited-state" }, href: "/funding/recipient/reports/rag/", status: { tag: { text: "Completed" if data['reportSectionRAG'] == "complete" else "Not started", classes: "govuk-tag--green" if data['reportSectionRAG'] == "complete" else "govuk-tag--blue" } } },
+			{ title: { text: "Risks", classes: "govuk-link--no-visited-state" }, href: "/funding/recipient/reports/risks/", status: { tag: { text: "Completed" if data['reportSectionRisks'] == "complete" else "Not started", classes: "govuk-tag--green" if data['reportSectionRisks'] == "complete" else "govuk-tag--blue" } } }
+			
+		]
+  	}) }}

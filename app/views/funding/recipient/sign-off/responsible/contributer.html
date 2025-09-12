@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% if data['userType'] != "Section151" %}
+{% set showBackLink = true %}
+{% endif %}
+
+{% set pageHeading = "Who will be contributing to the report?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+
+		<form method="post" action="/sign-off/responsible/check-your-answers" >
+		
+		
+		{{ govukInput({
+			label: {
+			  text: "Name",
+			  classes: "govuk-label",
+			  isPageHeading: false
+			},                
+			classes: "govuk-!-width-two-thirds",
+			id: "contributerName",
+			name: "contributerName"
+		}) }}       
+		
+		
+		{{ govukInput({
+			label: {
+			  text: "Email address",
+			  classes: "govuk-label",
+			  isPageHeading: false
+			},                
+			classes: "govuk-!-width-two-thirds",
+			type: "email",
+			id: "contributerEmail",
+			name: "contributerEmail"
+		}) }}  
+
+
+		
+
+		
+			{{ govukButton({
+			  text: "Continue"
+			}) }}	
+
+		</form>
+
+	</div>  
+</div>
+
+{% endblock %}

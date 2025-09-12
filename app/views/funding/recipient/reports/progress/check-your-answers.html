@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}	
+
+
+		
+		
+		<form method="post" action="/funding/recipient/reports/?reportSectionProgress=complete" >            
+		
+			{{ govukSummaryList({
+				classes: "govuk-!-margin-bottom-9",
+				rows: [
+					{ key: { text: "Question 1" }, value: { text: data.progressFinancialDate-year }, actions: { items: [ { href: "#",  text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Question 2" }, value: { text: data.progressActivityDate-year }, actions: { items: [  { href: "#", text: "Change", visuallyHiddenText: "name" } ] } },
+					{ key: { text: "Question 3" }, value: { text: data.progressPracticalDate-year }, actions: { items: [  { href: "#", text: "Change", visuallyHiddenText: "name" } ] } }					
+				]
+			}) }}
+		
+
+
+			{{ govukRadios({
+  name: "haveYouCompletedThisSection",
+  fieldset: {
+    legend: {
+      text: "Have you completed this task?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I’ve completed this task"
+    },
+    {
+      value: "no",
+      text: "No, I’ll come back to it later"
+    }
+  ]
+}) }}
+			
+      
+        	<input type="hidden" name="answers-checked" value="true">
+
+        	{{ govukButton({
+          		text: "Save and continue"
+        	}) }}
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}
+

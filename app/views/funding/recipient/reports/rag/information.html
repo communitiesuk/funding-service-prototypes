@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Is there anything you need to tell us about your ratings?" %}
+{% set pageSection = "RAG ratings" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>You’ve told us your current RAG ratings are:</p>
+		{{ govukSummaryList({
+			rows: [
+			  { key: { text: "Spend" }, value: { text: data['projectRagRatingSpend'] } },
+			  { key: { text: "Delivery" }, value: { text: data['projectRagRatingDelivery'] } }			  
+			]
+		}) }}		      	
+					
+		<form method="post" action="/report/rag/" >	
+						
+			{% set infoHtml %}
+
+				{{ govukCharacterCount({
+					name: "projectRagRatingInfo",
+					id: "projectRagRatingInfo",
+					rows: 6,
+					maxwords: 100,
+					label: {
+						text: "Provide more detail",
+						classes: "govuk-label",
+						isPageHeading: false
+					}					
+				}) }}
+
+			{% endset -%}
+
+			{{ govukRadios({
+				name: "projectRagRatingMoreInfo",
+				fieldset: {
+					legend: {
+						text: "How would you prefer to be contacted?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},  
+				items: [
+					{ value: "Yes", text: "Yes", conditional: { html: infoHtml } },
+					{ value: "No", text: "No" }    
+				]
+			}) }}
+				
+				
+				{{ govukButton({
+				    text: "Continue"
+				}) }}
+
+
+		</form>
+
+    </div>    
+</div>
+
+{% endblock %}

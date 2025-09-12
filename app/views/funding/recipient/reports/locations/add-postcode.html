@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "What are the postcodes for this project?" %}
+{% set pageSection = "Project postcodes" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+			
+        <div class="govuk-inset-text">
+			<p>
+			{% if data['project'] == "1" %}
+				George Elliott Visitor Centre
+			{% elif data['project'] == "2" %}
+				Digital Skills and Innovation Centre
+			{% elif data['project'] == "3" %}
+				The Saints
+			{% elif data['project'] == "4" %}
+				Weddington Road Cycle Scheme
+			{% elif data['project'] == "5" %}
+				Visiting Nuneaton: Changing Perspectives
+			{% endif %}
+			</p>
+            
+        </div>
+
+		<p>If this project has multiple postcodes, enter the postcodes with a comma seperating each one.</p>
+
+        <form method="post" action="/report/locations/postcodes" >
+            
+
+			{% if data['project'] == "1" %}
+
+				{{ govukInput({
+					label: { text: "Title of issue", classes: "govuk-label govuk-visually-hidden", isPageHeading: false },     
+					hint: { text: "For example, AB1D 2EF, WC1 3RJ." },
+					classes: "govuk-!-width-two-thirds",           
+					id: "projectLocation",
+					name: "projectLocation"
+				}) }}			
+
+			{% elif data['project'] == "2" %}
+
+				{{ govukInput({
+					label: { text: "Title of issue", classes: "govuk-label govuk-visually-hidden", isPageHeading: false },     
+					hint: { text: "For example, AB1D 2EF, WC1 3RJ." },
+					classes: "govuk-!-width-two-thirds",           
+					id: "projectLocation2",
+					name: "projectLocation2"
+				}) }}
+
+			{% elif data['project'] == "3" %}
+			
+				{{ govukInput({
+					label: { text: "Title of issue", classes: "govuk-label govuk-visually-hidden", isPageHeading: false },     
+					hint: { text: "For example, AB1D 2EF, WC1 3RJ." },
+					classes: "govuk-!-width-two-thirds",           
+					id: "projectLocation3",
+					name: "projectLocation3"
+				}) }}
+
+			{% elif data['project'] == "4" %}
+
+				{{ govukInput({
+					label: { text: "Title of issue", classes: "govuk-label govuk-visually-hidden", isPageHeading: false },     
+					hint: { text: "For example, AB1D 2EF, WC1 3RJ." },
+					classes: "govuk-!-width-two-thirds",           
+					id: "projectLocation4",
+					name: "projectLocation4"
+				}) }}
+
+			{% elif data['project'] == "5" %}
+			
+				{{ govukInput({
+					label: { text: "Title of issue", classes: "govuk-label govuk-visually-hidden", isPageHeading: false },     
+					hint: { text: "For example, AB1D 2EF, WC1 3RJ." },
+					classes: "govuk-!-width-two-thirds",           
+					id: "projectLocation5",
+					name: "projectLocation5"
+				}) }}
+
+			{% endif %}
+
+			
+            
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Add postcodes"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  	</div>
+
+		</form>
+
+  	</div>	  
+</div>
+
+{% endblock %}

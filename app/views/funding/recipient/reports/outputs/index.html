@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Project outputs" %}
+{% set pageSection = "Outputs" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+		<p>Add the outputs for the project <span class="govuk-!-font-weight-bold">Growing Community Green Spaces</span>. This helps us to:</p>
+		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+			<li>know which outputs you are delivering</li>
+			<li>understand how the funding is being used</li>
+			<li>see how the output is progressing</li>
+		</ul>
+
+		
+		
+		<h2 class="govuk-heading-m">Download all previous output date</h2>
+		<p>This PDF will contain any historical date you have previously submitted for project outputs.</p>
+
+		{{ govukButton({
+			text: "Download previous data",
+			classes: "govuk-button--secondary"
+		  }) }}
+		{{ govukDetails({
+			summaryText: "Downloading this data",
+			text: "To follow"
+		}) }}
+
+
+		<form method="post" action="/funds/reports/?report-10-status=Completed" >	  
+        
+			{% set milestoneOneHtml %}   
+				  
+	
+			{% endset -%} 
+	
+			{% set milestoneTwoHtml %}           
+	
+			{% endset -%} 
+	
+			{% set milestoneThreeHtml %}   
+	
+	
+			{% endset -%} 
+	
+			{{ govukTabs({
+			  items: [           
+				  { label: "Output 1", id: "OutputOne", panel: { html: OutputOneHtml } },
+				  { label: "Output 2", id: "OutputTwo", panel: { html: OutputTwoHtml } },
+				  { label: "Output 3", id: "OutputThree", panel: { html: OutputThreeHtml } }
+			  ]
+		  }) }}
+	
+	
+	
+		  <div class="govuk-button-group">
+			{{ govukButton({
+			  text: "Save"
+			}) }}
+	
+			{{ govukButton({
+			  text: "Save as draft",
+			  classes: "govuk-button--secondary",
+			  href: "/funds/reports/?report-10-status=inProgress"
+			}) }}
+		</div>
+	
+	  </form>
+
+
+
+  	</div>
+	  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Who is submitting this report?" %}
+{% set pageSection = "Submit your report" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+      {{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+            
+      <p>There may be several people contributing to this report. Please select the name of the person who is submitting this report.</p>
+
+
+      <form method="post" action="/funds/reports/?report-13-status=Completed" >	  
+			
+
+        {{ govukSelect({
+          id: "location",
+          name: "location",
+          label: {
+            text: "Select an option to update your RIBA reporting stage",
+            classes: "govuk-visually-hidden"
+          },		
+          classes: "govuk-!-width-two-thirds",
+          items: [
+            {
+            value: "choose",
+            text: "Select a name",
+            selected: true
+            }
+          
+          ]
+          }) }}
+
+
+
+  
+  {{ govukCheckboxes({
+  name: "organisation",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "Organisation",
+      isPageHeading: true,
+      classes: "govuk-visually-hidden"
+    }
+  },
+  items: [
+    {
+      value: "hmrc",
+      text: "I confirm a Section 151 Officer has signed off this report"
+    },
+    {
+      value: "employment-tribunal",
+      text: "I confirm I want to sign off this project and submit the report"
+    }
+    
+  ]
+}) }}
+        
+  
+  
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Confirm and submit this report"
+          }) }}
+  
+          <a class="govuk-link">Cancel</a>
+        </div>
+
+
+
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

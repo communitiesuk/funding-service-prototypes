@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Title of the communication opportunity" %}
+{% set pageSection = "Upcoming communications" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+	
+
+		<form method="post" action="/report/overview/communications/add/details" >
+            
+
+            {{ govukInput({
+                label: {
+                  text: "Title of the communication opportunity",
+                  classes: "govuk-label govuk-visually-hidden",
+                  isPageHeading: false
+                },                
+				classes: "govuk-!-width-two-thirds",
+                id: "projectCommunicationTitle",
+                name: "projectCommunicationTitle"
+            }) }}            
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Save and continue"
+				}) }}
+				<!-- {{ govukButton({
+				  text: "Save as draft",
+				  classes: "govuk-button--secondary"
+				}) }} -->
+		  </div>
+
+		</form>
+
+  	</div>
+	  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

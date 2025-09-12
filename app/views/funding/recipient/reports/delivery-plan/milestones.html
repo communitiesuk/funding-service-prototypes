@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Project milestones" %}
+{% set pageSection = "Delivery plan" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+
+      	<p>For each milestone, add details about:</p>
+      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+        	<li>the status of the milestone</li>
+        	<li>completed and expected completion dates</li>
+        	<li>how the milestone has been progressing, for example, any recent successes</li>
+      	</ul>
+
+        <form method="post" action="/funds/reports/?report-6-status=Completed" >	   
+        
+		{% set milestoneOneHtml %}   
+              
+
+        {% endset -%} 
+
+		{% set milestoneTwoHtml %}           
+
+        {% endset -%} 
+
+		{% set milestoneThreeHtml %}   
+
+
+        {% endset -%} 
+
+        {{ govukTabs({
+          items: [           
+              { label: "Milestone 1", id: "milestoneOne", panel: { html: milestoneOneHtml } },
+              { label: "Milestone 2", id: "milestoneTwo", panel: { html: milestoneTwoHtml } },
+              { label: "Milestone 3", id: "milestoneThree", panel: { html: milestoneThreeHtml } }
+          ]
+      }) }}
+
+
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save"
+        }) }}
+
+        {{ govukButton({
+          text: "Save as draft",
+          classes: "govuk-button--secondary",
+          href: "/funds/reports/?report-6-status=inProgress"
+        }) }}
+    </div>
+
+  </form>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+
+		{% include "includes/reportPeriod.html "%}
+	
+	  </div>
+</div>
+
+{% endblock %}

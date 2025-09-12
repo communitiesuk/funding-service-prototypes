@@ -1,0 +1,23 @@
+<article class="dluhc-ticket-panel" aria-label="Sub navigation 1">                            
+    <section class="dluhc-ticket-panel__content" aria-label="Section 1">
+
+        <p class="govuk-body">Reporting period:
+        <br>{{ data.reportPeriod }}</p>
+            
+        <hr class="govuk-section-break--m">
+        <p class="govuk-body govuk-!-font-size-16 govuk-!-font-weight-bold">Report due by 16th February 2024</p>
+        <p class="govuk-body govuk-!-font-size-16">Last updated on 16th February 2024<br>by Alex Smith</p>
+            
+        <hr class="govuk-section-break--m">
+            
+        {{ govukButton({
+            text: "Download PDF"                
+        }) }}
+            
+        {{ govukDetails({
+            summaryText: "Downloading a PDF",
+            text: "To follow"
+        }) }}
+    
+    </section>
+</article>

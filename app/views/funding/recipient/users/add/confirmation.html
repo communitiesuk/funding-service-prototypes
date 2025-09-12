@@ -1,0 +1,42 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBread = false %}
+{% set showNav = true %}
+
+{% set pageHeading = "User added" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	     
+  
+        {{ govukPanel({
+            titleText: pageHeading            
+          }) }}
+    
+          <p class="govuk-body">We have sent you a confirmation email.</p>
+    
+          <h2 class="govuk-heading-m">What happens next</h2>    
+          <p class="govuk-body">We’ve sent your application to Hackney Electoral Register Office.</p>
+          <p class="govuk-body">They will contact you either to confirm your registration, or to ask for more information.</p>    
+
+
+          <ul class="govuk-list">            
+            <li><a href="#">Add another new user</a></li>
+            <li><a href="#">Go to users</a></li>
+            <li><a href="#">Go to Fund reports</a></li>
+            
+          </ul>
+      
+  </div>  
+</div>
+
+
+
+{% endblock %}

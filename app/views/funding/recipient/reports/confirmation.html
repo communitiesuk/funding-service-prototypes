@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageHeading = "Report sent for review" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+			<h1 class="govuk-panel__title">{{pageHeading}}</h1>
+			<div class="govuk-panel__body">
+				Reporting period<br><strong> {{data.reportPeriod}} </strong>
+			</div>
+		  </div>
+	
+		<p class="govuk-body">We have sent you a confirmation email.</p>	
+		
+		<h2 class="govuk-heading-m">What happens next</h2>	
+		<p class="govuk-body">{{ data.section151Name }}, Section 151 Officer, will need to review and submit the report to {{ data.fundName}} by {{ data.fundDate }}. If there are no problems they can sign off the report and submit it.</p>
+		<p class="govuk-body">You will not be able to edit the report while it’s waiting for review.</p>
+		<p class="govuk-body">If they have any concerns or need you to correct something, they can decline the report and let you know why.</p>		  		
+		<p class="govuk-body">You’ll receive an email to let you know the outcome.</p>
+		<p class="govuk-body"><a href="#" class="govuk-link govuk-link--no-visited-state">Return to reports</a></p>
+
+		<!-- <p class="govuk-body"><a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)</p> -->
+		<p class="govuk-body-s govuk-!-margin-top-9"><a class="govuk-back-link nochevron" href="/emails/reporter/report-submitted">Email sent to reporter</a></p>
+  	</div>  
+</div>
+
+{% endblock %}
