@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 {% set showBread = false %}
@@ -14,12 +14,12 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-  
-    
-            
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
+
+
             <form method="post" action="/users/add/check-your-answers" >
-            
+
                 {{ govukRadios({
                     name: "whereDoYouLive",
                     fieldset: {
@@ -32,12 +32,12 @@
                     items: [
                       { value: "reporter", text: "Reporter" },
                       { value: "sign-off", text: "Sign-off" },
-                      { value: "viewer", text: "Viewer" }                      
+                      { value: "viewer", text: "Viewer" }
                     ]
                   }) }}
-                
-                
-                
+
+
+
 
                 {{ govukButton({
                     text: "Continue"
@@ -46,8 +46,8 @@
             </form>
 
 
-      
-  </div>  
+
+  </div>
 </div>
 
 

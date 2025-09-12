@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,25 +11,25 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		{% if data['change'] == "active" %}
 			<form method="post" action="/report/risks/project-risks" >
-				{% include "includes/changeStatus.html" %}				
-		{% else %}	
+				{% include "includes/changeStatus.html" %}
+		{% else %}
 			<form method="post" action="/report/risks/add/category" >
 		{% endif %}
-            
+
             {{ govukInput({
                 label: {
                   text: "Title of issue",
                   classes: "govuk-label govuk-visually-hidden",
                   isPageHeading: false
-                },     
+                },
 				hint: {
 					text: "For example, 'Building materials - supplier problem'"
 				},
-                classes: "govuk-!-width-two-thirds",           
+                classes: "govuk-!-width-two-thirds",
                 id: "projectRiskTitle",
                 name: "projectRiskTitle"
             }) }}
@@ -47,7 +47,7 @@
 		</form>
 
   	</div>
-	
+
 </div>
 
 {% endblock %}

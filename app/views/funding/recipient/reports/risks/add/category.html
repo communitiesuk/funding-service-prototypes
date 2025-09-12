@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,16 +11,16 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 
 		{% if data['change'] == "active" %}
 			<form method="post" action="/report/risks/project-risks" >
-				{% include "includes/changeStatus.html" %}				
+				{% include "includes/changeStatus.html" %}
 >		{% else %}
 			<form method="post" action="/report/risks/add/issue" >
 		{% endif %}
-            
+
 
             {{ govukCheckboxes({
 				name: "projectRiskCategory",
@@ -60,11 +60,11 @@
 				  { value: "System or IT infrastructure", text: "System or IT infrastructure", checked: checked("projectRiskCategory", "System or IT infrastructure") },
 				  { value: "Other", text: "Other", checked: checked("projectRiskCategory", "Other") }
 				]
-			}) }}           
-			
+			}) }}
+
 			{{ govukButton({
 				text: "Save and continue"
-			}) }}			  	
+			}) }}
 
 		</form>
 

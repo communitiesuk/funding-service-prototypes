@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% if data['userType'] != "Section151" %}
 {% set showBackLink = true %}
@@ -19,23 +19,23 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 		<p>Information about emailing them etc.</p>
 
-		
-		<form method="post" action="/sign-off/responsible/contributing-to-report" >
-		
-		
-			{{ govukRadios({				
-				name: "signOffRole",							
+
+		<form method="post" action="/funding/recipient/sign-off/responsible/contributing-to-report" >
+
+
+			{{ govukRadios({
+				name: "signOffRole",
 				fieldset: {
 				  legend: {
 					text: "Do you want to add any further communications?",
 					isPageHeading: false,
 					classes: "govuk-fieldset__legend govuk-visually-hidden"
 					}
-				},				
+				},
 				items: [
 				  { value: "Section 151 Officer", text: "Section 151 Officer", checked: checked("signOffRole", "Section 151 Officer")  },
 				  { value: "Deputy Section 151 Officer", text: "Deputy Section 151 Officer", checked: checked("signOffRole", "Deputy Section 151 Officer")  },
@@ -43,14 +43,14 @@
 				]
 			}) }}
 
-		
+
 			{{ govukButton({
 			  text: "Continue"
-			}) }}	
+			}) }}
 
 		</form>
 
-	</div>  
+	</div>
 </div>
 
 {% endblock %}

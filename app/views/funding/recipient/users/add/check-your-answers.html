@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 {% set showBread = false %}
@@ -14,16 +14,16 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-  
-    
-            
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
+
+
             <form method="post" action="/users/add/confirmation" >
-            
-        
+
+
                 <p>Summary list of content TBC.</p>
 
-                        
+
                 {{ govukButton({
                     text: "Confirm and add user"
                 }) }}
@@ -31,8 +31,8 @@
             </form>
 
 
-      
-  </div>  
+
+  </div>
 </div>
 
 

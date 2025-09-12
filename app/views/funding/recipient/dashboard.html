@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = false %}
 {% set showNav = true %}
@@ -13,8 +13,8 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}						
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<!-- {% set reportDue %}
 		<p class="govuk-notification-banner__heading">
 			Your report for 'Boddington youth hub’ is due in 10 days.
@@ -36,7 +36,7 @@
 			]
 	  	}) }}
 
-		
+
 		{{ govukSummaryList({
 			card: { title: { html: '<span class="govuk-!-font-size-24">Getting Building Fund</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
 			rows: [
@@ -44,7 +44,7 @@
 			]
 	  	}) }}
 
-		
+
 		{{ govukSummaryList({
 			card: { title: { html: '<span class="govuk-!-font-size-24">Community Renewal Fund</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
 			rows: [
@@ -57,39 +57,39 @@
 		  {{ govukSummaryList({
 			card: { title: { html: '<span class="govuk-!-font-size-24">Gypsy, Roma and Traveller education programme</span>'}, actions: { items: [ { href: "#", classes: "govuk-link--no-visited-state", text: "Reports", visuallyHiddenText: "for Food bank fund" } ] } },
 			rows: [
-				
-				
+
+
 			]
 	  	}) }}
-		
 
 
-		
+
+
 
 		<!-- {{ govukSummaryList({
 			card: { title: { text: "Growing Community Green Spaces project"}, actions: { items: [ { href: "#", text: "Overview", visuallyHiddenText: "of University of Gloucestershire" } ] } },
 			rows: [
-				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
-				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },
+				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },
 				{ key: { text: "Reports due" }, value: { html: "July 2023 to September 2023" }, actions: { items: [ { href: "/funds/reports/", text: "Complete", visuallyHiddenText: "age" } ] } }
-			  	
-			  
+
+
 			]
 	  	}) }} -->
 
 
-<!-- 
+<!--
 		<h2 class="govuk-heading-m">Programme 2</h2>
 
 
 		{{ govukSummaryList({
 			card: { title: { text: "Growing Community Green Spaces project"}, actions: { items: [ { href: "#", text: "Overview", visuallyHiddenText: "of University of Gloucestershire" } ] } },
 			rows: [
-				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
-				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },  
+				{ key: { text: "Contact" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },
+				{ key: { text: "Section 151 officer" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports/", text: "Change", visuallyHiddenText: "age" } ] } },
 				{ key: { text: "Reports due" }, value: { html: "July 2023 to September 2023" }, actions: { items: [ { href: "/funds/reports/", text: "Complete", visuallyHiddenText: "age" } ] } }
-			  	
-			  
+
+
 			]
 	  	}) }} -->
 
@@ -98,9 +98,9 @@
        -->
 
 
-	   
 
-	   
+
+
 
   </div>
 </div>

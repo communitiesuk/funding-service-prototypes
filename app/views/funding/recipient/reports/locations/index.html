@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,8 +11,8 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-		
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<p>We use this page to see how we might be able to give information about the section. For example, you what you might need or things we will ask about:</p>
       	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
         	<li>content TBC</li>
@@ -20,15 +20,15 @@
         	<li>content TBC</li>
 			</ul>
 
-		<form method="post" action="/report/locations/postcodes" >            			
-			
+		<form method="post" action="/report/locations/postcodes" >
+
 			{{ govukButton({
 				text: "Continue"
-			}) }}			
+			}) }}
 
 		</form>
 
-  	</div>	  
+  	</div>
 </div>
 
 {% endblock %}

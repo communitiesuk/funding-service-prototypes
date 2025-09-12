@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,10 +11,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<form method="post" action="/report/issues-risks/risks/add/more" >
-            
+
             {{ govukRadios({
 				name: "projectRiskLikelihoodIssue",
 				id: "projectRiskLikelihoodIssue",
@@ -32,7 +32,7 @@
 				  { value: "Likely", text: "Likely", checked: checked("projectRiskLikelihoodIssue", "Likely") },
 				  { value: "Extremely Likely", text: "Extremely Likely", checked: checked("projectRiskLikelihoodIssue", "Extremely Likely") }
 				]
-			}) }}  
+			}) }}
 
 			<div class="govuk-button-group">
 				{{ govukButton({
@@ -48,7 +48,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

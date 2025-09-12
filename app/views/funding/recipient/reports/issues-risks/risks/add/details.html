@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,10 +11,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<form method="post" action="/report/issues-risks/risks/add/issue" >
-            
+
 
 			{{ govukTextarea({
 				name: "projectIssueDetails",
@@ -27,7 +27,7 @@
 				hint: {
 				  text: "Do not include personal or financial information, like your National Insurance number or credit card details."
 				}
-			}) }}            
+			}) }}
 
 			<div class="govuk-button-group">
 				{{ govukButton({
@@ -43,7 +43,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,20 +11,20 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 		<form method="post" action="/report/issues-risks/issues/add/impact" >
-            
+
             {{ govukInput({
                 label: {
                   text: "Title of issue",
                   classes: "govuk-label govuk-visually-hidden",
                   isPageHeading: false
-                },     
+                },
 				hint: {
 					text: "For example, Limited recruitment opportunities."
 				},
-                classes: "govuk-!-width-two-thirds",           
+                classes: "govuk-!-width-two-thirds",
                 id: "projectIssueTitle",
                 name: "projectIssueTitle"
             }) }}
@@ -43,7 +43,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

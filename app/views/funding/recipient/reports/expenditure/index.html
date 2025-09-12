@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 		<p>Add the expenditure for your project <span class="govuk-!-font-weight-bold">Growing Community Green Spaces</span>. You can see up to 3 previous reporting rounds of data. If you need to see more, you can download all the historical expenditure data in the PDF.</p>
 
@@ -19,7 +19,7 @@
 			summaryText: "How to report your project expenditure",
 			text: "To follow"
 		}) }}
-		
+
 		<h2 class="govuk-heading-m">Download expenditure spreadsheet</h2>
 		<p>This spreadsheet will contain any historical date you have previously submitted, if it exists.</p>
 
@@ -36,7 +36,7 @@
 		<h2 class="govuk-heading-m">Upload your spreadsheet</h2>
 
 
-		<form method="post" action="/funds/reports/?report-9-status=Completed" >	  
+		<form method="post" action="/funds/reports/?report-9-status=Completed" >
 
 		{{ govukFileUpload({
 			id: "file-upload-1",
@@ -47,8 +47,8 @@
 		  }) }}
 
 
-		
-					
+
+
 
 
 			<div class="govuk-button-group">
@@ -77,7 +77,7 @@
 	  <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 

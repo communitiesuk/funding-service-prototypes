@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,27 +11,27 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 
 		<form method="post" action="/funds/reports/?report-7-status=Completed" >
-            
+
             {{ govukRadios({
 				classes: "govuk-radios--inline",
-				name: "projectRisksAddMore",							
+				name: "projectRisksAddMore",
 				fieldset: {
 				  legend: {
 					text: "Do you want to add any further communications?",
 					isPageHeading: false,
 					classes: "govuk-fieldset__legend govuk-visually-hidden"
 					}
-				},				
+				},
 				items: [
 				  { value: "Yes~/report/issues-risks/risks/add/", text: "Yes", checked: checked("projectRisksAddMore", "Yes")  },
 				  { value: "No", text: "No", checked: checked("projectRisksAddMore", "No")  }
 				]
 			}) }}
-            
+
 			<div class="govuk-button-group">
 				{{ govukButton({
 				  text: "Save and continue"
@@ -46,7 +46,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,8 +11,8 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-	
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
 
 		<form method="post" action="/report/overview/challenges/add/details" >
 
@@ -21,7 +21,7 @@
                   text: "Title of the project challenge",
                   classes: "govuk-label govuk-visually-hidden",
                   isPageHeading: false
-                },                
+                },
 				classes: "govuk-!-width-two-thirds",
                 id: "projectChallengeTitle",
                 name: "projectChallengeTitle"
@@ -42,7 +42,7 @@
 
   	</div>
 	<div class="govuk-grid-column-one-third">
-		{% include "includes/reportPeriod.html "%}	
+		{% include "includes/reportPeriod.html "%}
 	</div>
 </div>
 

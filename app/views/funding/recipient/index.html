@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 {% set showNav = true %}
@@ -19,48 +19,48 @@
 	<div class="govuk-grid-column-two-thirds">
 
     	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-		
+
 	</div>
 	<div class="govuk-grid-column-three-quarters">
 
 		<h2 class="govuk-heading-m">Reports due</h2>
-		{{ govukSummaryList({				
-			card: { title: { text: "Due by 10 December 2024" }, actions: { items: [ { href: "/funding/recipient/reports/", classes: "govuk-link--no-visited-state", text: "Start report", visuallyHiddenText: "for this project" } ] } },	
-			rows: [				
-				
-				{ key: { text: "Reporting period" }, value: { html: "1 April 2024 to 30 September 2024" } },				
+		{{ govukSummaryList({
+			card: { title: { text: "Due by 10 December 2024" }, actions: { items: [ { href: "/funding/recipient/reports/", classes: "govuk-link--no-visited-state", text: "Start report", visuallyHiddenText: "for this project" } ] } },
+			rows: [
+
+				{ key: { text: "Reporting period" }, value: { html: "1 April 2024 to 30 September 2024" } },
 				{ key: { text: "Contributors" }, value: { html: "Gemma Currie" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "Change", visuallyHiddenText: "for this project" } ] } },
 				{ key: { text: "Sign-off" }, value: { html: "Kate Harries" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "Change", visuallyHiddenText: "for this project" } ] } }
-				
+
 			]
 	  	}) }}
 
-		  
+
 		  <!-- { key: { text: "Reporting period" }, value: { html: "February 2024 to April 2024" } },	 -->
 
 		  <!-- { key: { text: "Date submitted" }, value: { html: 'Not started' } } -->
 
 		  <h2 class="govuk-heading-m govuk-!-margin-top-9">Submitted reports</h2>
 
-		  {{ govukSummaryList({		
-			card: { title: { text: "Submitted 30 May 2024" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "View report", visuallyHiddenText: "for this project" } ] } },	
-			rows: [				
-				
-				{ key: { text: "Reporting period" }, value: { html: "November 2023 to January 2024" } },				
+		  {{ govukSummaryList({
+			card: { title: { text: "Submitted 30 May 2024" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "View report", visuallyHiddenText: "for this project" } ] } },
+			rows: [
+
+				{ key: { text: "Reporting period" }, value: { html: "November 2023 to January 2024" } },
 				{ key: { text: "Contributors" }, value: { html: "Gemma Currie" } },
 				{ key: { text: "Sign-off" }, value: { html: "Kate Harries" } }
-				
+
 			]
 	  	}) }}
 
-		  {{ govukSummaryList({		
-			card: { title: { text: "Submitted 28 February 2024" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "View report", visuallyHiddenText: "for this project" } ] } },	
-			rows: [				
-				
-				{ key: { text: "Reporting period" }, value: { html: "August 2023 to October 2023" } },				
+		  {{ govukSummaryList({
+			card: { title: { text: "Submitted 28 February 2024" }, actions: { items: [ { href: "/funds/reports", classes: "govuk-link--no-visited-state", text: "View report", visuallyHiddenText: "for this project" } ] } },
+			rows: [
+
+				{ key: { text: "Reporting period" }, value: { html: "August 2023 to October 2023" } },
 				{ key: { text: "Contributors" }, value: { html: "Gemma Currie" } },
 				{ key: { text: "Sign-off" }, value: { html: "Kate Harries" } }
-				
+
 			]
 	  	}) }}
 
@@ -71,7 +71,7 @@
 
 	<div class="govuk-grid-column-full">
 
-		
+
 		<!-- {{ govukTable({
 			caption: "Reports",
 			captionClasses: "govuk-table__caption--m",
@@ -85,7 +85,7 @@
 			rows: [
 				[ { text: "February 2024 to April 2024" }, { text: "Gemma Currie" }, { html: 'Not started' }, { html: '<a href="/funds/reports/">Create report</a>' } ],
 			  	[ { text: "November 2023 to January 2024" }, { text: "Gemma Currie" }, { text: "30 May 2024" }, { html: '<a href="/funds/reports/view">View</a>' } ],
-			  	[ { text: "August 2023 to October 2023"}, { text: "Gemma Currie"}, { text: "28 February 2024"}, { html: '<a href="/funds/reports/view">View</a>' } ]			  			
+			  	[ { text: "August 2023 to October 2023"}, { text: "Gemma Currie"}, { text: "28 February 2024"}, { html: '<a href="/funds/reports/view">View</a>' } ]
 			]
 		  }) }} -->
 

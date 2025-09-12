@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 		<!-- <p>Your current RAG ratings are:</p> -->
 		{{ govukSummaryList({
@@ -21,15 +21,15 @@
 			  { key: { text: "Budget" }, value: { text: data['projectRagRatingBudget'] } },
 			  { key: { text: "Resourcing" }, value: { text: data['projectRagRatingResourcing'] } }
 			]
-		}) }}		      	
+		}) }}
 
 		<!-- {{ govukDetails({
 			summaryText: "Understanding RAG ratings",
 			text: "To follow"
 		}) }} -->
-					
-		<form method="post" action="/funds/reports/?report-3-status=Completed" >	
-						
+
+		<form method="post" action="/funds/reports/?report-3-status=Completed" >
+
 			{% set infoHtml %}
 
 				{{ govukTextarea({
@@ -40,7 +40,7 @@
 						text: "Provide more detail",
 						classes: "govuk-label",
 						isPageHeading: false
-					},					
+					},
 					hint: {
 						text: "Do not include personal or financial information, like your National Insurance number or credit card details."
 					}
@@ -56,15 +56,15 @@
 						isPageHeading: false,
 						classes: "govuk-fieldset__legend govuk-visually-hidden"
 					}
-				},  
+				},
 				items: [
 					{ value: "Yes", text: "Yes", conditional: { html: infoHtml } },
-					{ value: "No", text: "No" }    
+					{ value: "No", text: "No" }
 				]
 			}) }}
-				
+
 			<div class="govuk-button-group">
-				
+
 				{{ govukButton({
 				    text: "Save and continue"
 				}) }}
@@ -72,9 +72,9 @@
 				<!-- {{ govukButton({
 				text: "Save as draft",
 				classes: "govuk-button--secondary",
-				href: "/funds/reports/?report-3-status=inProgress" 
+				href: "/funds/reports/?report-3-status=inProgress"
 				}) }} -->
-			
+
 			</div>
 
 		</form>

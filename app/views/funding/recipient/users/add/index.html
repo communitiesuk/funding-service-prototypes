@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 {% set showBread = false %}
@@ -14,13 +14,13 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
-  
-    
-            
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
+
+
+
             <form method="post" action="/users/add/email" >
-            
-        
+
+
                 {{ govukInput({
                     label: {
                         text: pageHeading,
@@ -30,8 +30,8 @@
                     classes: "govuk-!-width-two-thirds"
                 }) }}
 
-                
-                
+
+
 
                 {{ govukButton({
                     text: "Continue"
@@ -40,8 +40,8 @@
             </form>
 
 
-      
-  </div>  
+
+  </div>
 </div>
 
 

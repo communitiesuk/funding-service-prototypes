@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 
 {% set showBread = true %}
@@ -15,8 +15,8 @@
 	<div class="govuk-grid-column-two-thirds">
 
     	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
-		
-		
+
+
 
 		{% if data['notificationReportDue'] == "Yes" %}
 		{% set html %}
@@ -30,27 +30,27 @@
 
 
 
-		
-	
+
+
 		<!-- <h2 class="govuk-heading-m">Reporting period 1 January 2024 to 30 June 2024</h2> -->
 
-		
 
 
-		{% include "includes/taskList/task-pathfinders.html" %}		
+
+		{% include "includes/taskList/task-pathfinders.html" %}
 
 		<!-- <p class="govuk-body govuk-!-margin-top-7">Content to follow. All content is available under the Open Government Licence v3.0, except where otherwise stated</p>
 		<form method="post" action="/funding/recipient/reports/are-you-sure" >
-		
+
 			{{ govukButton({
-            	text: "Confirm and continue"				
+            	text: "Confirm and continue"
           	}) }}
-		
+
 		</form> -->
 
 
 
-		
+
 		<p class="govuk-body">You need to mark all tasks as complete before you can send your report to Annette Curtain (Section 151 Officer) for sign-off.</p>
 
 
@@ -59,12 +59,12 @@
 		<p class="govuk-body">All tasks are complete. You can now send your report to Annette Curtain (Section 151 Officer) for review and sign-off.</p>
 		<p class="govuk-body">We will send them an email to let them know the report is ready.</p>
 		<p class="govuk-body">You will not be able to make any changes while the report is being reviewed.</p>
-				
-		
-		<form method="post" action="/apply/submit-application?applicationStatus=submitted" >
+
+
+		<form method="post" action="/funding/recipient/reports/confirmation?applicationStatus=submitted" >
 
 			<input type="hidden" id="applicationStatus" name="applicationStatus" value="submitted" />
-						
+
 						{{ govukButton({
 							text: "Confirm and send",
 							classes: "govuk-!-margin-top-3"

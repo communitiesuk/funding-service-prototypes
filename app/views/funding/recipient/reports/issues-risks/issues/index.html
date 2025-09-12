@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/grantRecipient.html" %}
 
 {% set showBackLink = true %}
 
@@ -11,30 +11,30 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}
 
 		<p>Add any issues you have faced for your project Growing Community Green Spaces. We use this information to:</p>
 
-		
+
 		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
 			<li>see how problems get solved</li>
 			<li>offer you support</li>
 			<li>learn from previous issues</li>
 		</ul>
 
-		<form method="post" action="/funds/reports/?report-7-status=Completed" >	  
-		
-			{{ govukRadios({		
-				classes: "govuk-radios--inline",		
+		<form method="post" action="/funds/reports/?report-7-status=Completed" >
+
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
 				name: "projecIssues",
-				id: "projecIssues",				
+				id: "projecIssues",
 				fieldset: {
 				  legend: {
 					text: "Do you need to add any project issues?",
 					isPageHeading: false,
 					classes: "govuk-fieldset__legend govuk-visually-hidden"
 					}
-				},				
+				},
 				items: [
 				  { value: "yes~/report/issues-risks/issues/add/", text: "Yes" },
 				  { value: "no", text: "No" }
@@ -61,7 +61,7 @@
 	  <div class="govuk-grid-column-one-third">
 
 		{% include "includes/reportPeriod.html "%}
-	
+
 	  </div>
 </div>
 
