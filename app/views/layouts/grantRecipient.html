@@ -1,7 +1,5 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
-
-
 {% import "macros/page-title.njk" as macroPageTitle %}
 {% import "macros/page-header.njk" as macroPageHeader %}
 {% import "macros/suggested-page.njk" as macroSuggested %}
@@ -54,45 +52,24 @@
 
 	<!-- Looks to see if signed in -->
 	{% if data['signedIn'] == "yes" %}
-		<!-- Looks to see if its FSD ADmin -->
-		{% if data['authentication'] == "SSO"  %}
 
-			{% if data['navID'] == "addGrant" %}
-				<!-- Not sure what is going here possibly delete -->
-			{% else %}
-				<!-- Service Name and Navigation -->
-				{{ govukServiceNavigation({
-					serviceName: "Deliver grant funding",
-					serviceUrl: "/funding/grants?signedIn=yes",
-					navigation: [
-						
-						{ href: "/funding/grant/details/?notification=", text: "Grant details", active: navID == "grantDetails" },
-						{ href: "/funding/grant/applications/?notification=", text: "Applications", active: navID == "grantApplications" },
-						{ href: "/funding/grant/reports/?notification=", text: "Reports", active: navID == "grantReports" },
-						{ href: "/funding/grant/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
-					],
-					slots: { navigationEnd: navigationEnd }
-				}) }}
-			{% endif %}
-		<!-- User not FSD Admin -->
-		{% else %}		
 
 			{{ govukServiceNavigation({
 				serviceName: "Access grant funding",
 				serviceUrl: "/funding/grants?signedIn=yes",
 				navigation: [
-					
-					{ href: "/funding/grant/details/?notification=", text: "Grant details", active: navID == "grantDetails" },
-					{ href: "/funding/grant/applications/?notification=", text: "Applications", active: navID == "grantApplications" },
-					{ href: "/funding/grant/reports/?notification=", text: "Reports", active: navID == "grantReports" },
-					{ href: "/funding/grant/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
+
+
+
+					{ href: "/funding/recipient/reports/?notification=", text: "Reports", active: navID == "grantReports" },
+					{ href: "/funding/recipient/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
 				]
 			}) }}
 
-		{% endif %}
-	
+
+
 	<!-- Not signed in -->
-	{% else %}		
+	{% else %}
 		{% if data['authentication'] == "SSO"  %}
 			<!-- Service Name and Navigation -->
 			{{ govukServiceNavigation({
@@ -120,8 +97,8 @@
 
 	<!-- Breadcrumb for report -->
 	<!-- {{ govukBreadcrumbs({
-  		items: [    		
-    		{ text: data.reportName, href: "/funding/grant/reports/" },			
+  		items: [
+    		{ text: data.reportName, href: "/funding/grant/reports/" },
     		{ text: "Sections", href: "/funding/grant/reports/sections" },
 			{ text: "Tasks", href: "/funding/grant/reports/tasks" }
   		]
