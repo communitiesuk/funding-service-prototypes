@@ -24,9 +24,7 @@
 			</div> -->
 
 
-      	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-      	<p class="govuk-body-l">Task list will show here for review</p>
-      	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      	{% include "includes/taskList/task-pathfinders.html" %}
 
 		  <p class="govuk-body">You can now:</p>
 
@@ -38,7 +36,7 @@
 
 		<div class="govuk-button-group">
 
-        	<form method="post" action="/sign-off/confirmation" >
+        	<form method="post" action="/funding/recipient/sign-off/confirmation" >
 
 				<input type="hidden" name="reportStatus" id="reportStatus" value="Signed" />
 				{{ govukButton({
@@ -49,7 +47,7 @@
 
 			<!-- Do we need to have this in place -->
 
-        	<form method="post" action="/sign-off/reason-for-decline" >
+        	<form method="post" action="/funding/recipient/sign-off/reason-for-decline" >
 
           		<input type="hidden" name="reportStatus" id="reportStatus" value="Declined" />
 				{{ govukButton({
