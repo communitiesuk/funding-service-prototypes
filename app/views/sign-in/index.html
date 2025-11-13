@@ -37,16 +37,13 @@
 
         {% else %}
 
-            <p class="govuk-body">Enter your email address and we’ll send you a link to sign in.</p>
-            <p class="govuk-body">You’ll need to use your ‘@communities.gov.uk’ email address.</p>
-            <div class="govuk-inset-text">
-                <p class="govuk-body">The link will work once and stop working after 15 minutes.</p>
-            </div>
+            <p class="govuk-body">A service for grant recipients of central government funding to view, sign off and submit reports.</p>
+            <p class="govuk-body">If you do not have access, you can <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/1344" class="govuk-link" rel="noreferrer noopener" target="_blank">request access using the support desk (opens in new tab)</a>.</p>
             
             <form method="post" action="/sign-in/email-sent" >
                 {{ govukInput({
                     label: {
-                        text: "Email address",
+                        text: "Enter email address",
                         classes: "govuk-label",
                         isPageHeading: false
                     },
@@ -57,7 +54,7 @@
                 }) }}
 
                 {{ govukButton({
-                    text: "Request link"
+                    text: "Request sign in link"
                 }) }}
             </form>
 
