@@ -323,6 +323,7 @@
 }
 
 
+
 $govuk-new-typography-scale: true;
 
 .govuk-service-navigation__wrapper{
@@ -336,3 +337,96 @@ border-color: govuk-colour("mid-grey");
   text-align: center;
   font-weight: bold;
 }
+
+@import "sticky-nav";
+
+    .app-pane__body {
+    display: flex;
+    margin-top: -20px;
+    position: relative;
+  }
+
+  /* Black vertical line from top to bottom */
+  .app-pane__body::before {
+    content: '';
+    position: absolute;
+    left: 230px; /* Adjust this value to move the line left/right. Smaller = closer to nav */
+    top: -60px;
+    bottom: -80px;
+    width: 1px;
+    background-color: #0b0c0c;
+  }
+
+  .app-pane__subnav {
+    flex: 0 0 260px;
+    margin-right: 60px; /* Combined with line position = 30px gap between nav and line */
+  }
+
+  .app-pane__content {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .app-subnav {
+    position: sticky;
+    top: 20px;
+  }
+
+  .app-subnav__section {
+    margin-bottom: 30px;
+  }
+
+  .app-subnav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .app-subnav__list-item {
+    margin-bottom: 10px;
+    padding-left: 15px;
+  }
+
+  .app-subnav__list-item--current {
+    border-left: 5px solid #1d70b8;
+    background-color: #f3f2f1;
+    padding-left: 10px;
+  }
+
+  .app-subnav__link {
+    font-size: 16px;
+    line-height: 1.25;
+    text-decoration: none;
+    color: #1d70b8;
+    display: block;
+    padding: 8px 0;
+  }
+
+  .app-subnav__link:hover {
+    text-decoration: underline;
+    color: #003078;
+  }
+
+  .app-subnav__link:visited {
+    color: #4c2c92;
+  }
+
+  .app-subnav__list-item--current .app-subnav__link {
+    font-weight: 700;
+    color: #1d70b8;
+  }
+
+  @media (max-width: 48.0525em) {
+    .app-pane__body {
+      display: block;
+    }
+    
+    .app-pane__subnav {
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    
+    .app-subnav {
+      position: static;
+    }
+  }
