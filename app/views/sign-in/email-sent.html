@@ -18,7 +18,7 @@
 
         {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
-			<p class="govuk-body">We have sent an email to {{ data['gMmagicLinkEmail'] or "test@gm.communities.gov.uk"  }}</p>
+			<p class="govuk-body">We have sent an email to {{ data['gMmagicLinkEmail'] or "((user email))"  }}</p>
 			<div class="govuk-inset-text">
                 <p class="govuk-body">The link will work once and stop working after 15 minutes.</p>
             </div>
