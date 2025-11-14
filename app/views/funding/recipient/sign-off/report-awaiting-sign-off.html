@@ -1,57 +1,75 @@
 {% extends "layouts/grantRecipient.html" %}
 
-{% set showBackLink = true %}
+{% set showBackLink = false %}
+{% set showNav = true %}
+{% set showBread = true %}
+
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Check your answers" %}
-{% set pageSection = "data.fundName" %}
+{% set pageHeading = "Certify report" %}
+{% set pageSection = "data.organisationName" %}
+
+
+
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
-
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
 
-		<form method="post" action="/funding/recipient/reports/?reportSectionProgress=complete" >
+<div class="govuk-width-container">
+  <div class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-third">
-    
-    <div class="app-sticky-nav-container">
-      <nav aria-label="Sections on this page">
-        <ul class="govuk-list">
-          <li><a href="#section-1" class="govuk-link">Section 1</a></li>
-          <li><a href="#section-2" class="govuk-link">Section 2</a></li>
-          <li><a href="#section-3" class="govuk-link">Section 3</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="govuk-grid-column-full">
+        
+        <div class="app-pane__body">
+          
+          <!-- Side Navigation -->
+          <div class="app-pane__subnav">
+            <nav class="app-subnav" aria-label="Section navigation">
+              <ul class="app-subnav__list">
+                <li class="app-subnav__list-item app-subnav__list-item--current" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-1">Review report :  1 January 2025 to 31 March 2025</a>
+                </li>
+                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-2">Programme progress</a>
+                </li>
+                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-3">Programme postcodes</a>
+                </li>
+                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-4">Expenditure</a>
+                </li>
+                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-5">Risks</a>
+                </li>
+                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-6">Sign off and submit
+report</a>
+                </li>
+      
+              </ul>
+            </nav>
+          </div>
 
-  </div>
-  <div class="govuk-grid-column-two-thirds">
+          <!-- Main Content -->
+          <div class="app-pane__content">
+            
+            <h1 class="govuk-heading-xl" id="section-1">Review report: 1 January 2025 to 31 March 2025 </h1>
 
-    <h2 class="govuk-heading-l" id="section-1">Section 1</h2>
-    <p class="govuk-body">[Your content here...]</p>
-    <p class="govuk-body">[Your content here...]</p>
-    
-    <h2 class="govuk-heading-l" id="section-2">Section 2</h2>
-    <p class="govuk-body">[Your content here...]</p>
-    <p class="govuk-body">[Your content here...]</p>
+           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Submission deadline:</span> 10 April 2025</p>
+           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Submitted by:</span> Andy Star</p>
+           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Date submitted for sign off: </span> 5 April 2025</p>
+           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Status:</span> <strong class="govuk-tag govuk-tag--purple">Awaiting sign off</strong></p>
+<br>
+           <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  Download report PDF
+</button>
+            <br><br>
 
-    <h2 class="govuk-heading-l" id="section-3">Section 3</h2>
-    <p class="govuk-body">[Your content here...]</p>
-    <p class="govuk-body">[Your content here...]</p>
-    
-    <p class="govuk-body" style="height: 100vh;">[Extra space to demonstrate scrolling]</p>
-    <p class="govuk-body" style="height: 100vh;">[Extra space to demonstrate scrolling]</p>
-
-  </div>
-</div>
-
-<table class="govuk-table">
+            
+            <table class="govuk-table" id="section-2">
   <caption class="govuk-table__caption govuk-table__caption--m">Programme progress</caption>
   <thead class="govuk-table__head">
 
@@ -104,18 +122,231 @@
 
   </tbody>
 </table>
+            <br><br>
+
+          <table class="govuk-table" id="section-3">
+  <caption class="govuk-table__caption govuk-table__caption--m">Project postcodes</caption>
+  <thead class="govuk-table__head">
+
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Project 1 postcodes</th>
+      <td class="govuk-table__cell">SE16 3LW </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Project 2 postcodes</th>
+      <td class="govuk-table__cell">EC1Y 9AA</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Project 3 postcodes</th>
+      <td class="govuk-table__cell">SE15 5OP</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Project 4 postcodes</th>
+      <td class="govuk-table__cell">WC2E 7NZ</td>
+    </tr>
+ 
+  </tbody>
+</table>
+  <br><br>
 
 
-        	<input type="hidden" name="answers-checked" value="true">
+           <table class="govuk-table" id="section-4">
+  <caption class="govuk-table__caption govuk-table__caption--m">Expenditure</caption>
+  <thead class="govuk-table__head">
 
-        	{{ govukButton({
-          		text: "Save and continue"
-        	}) }}
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Total spend this quarter</th>
+      <td class="govuk-table__cell">£1,500,472 </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Overspend</th>
+      <td class="govuk-table__cell">£200,472</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Reason why spend was more than forecast quarterly spend of £1,300,000</th>
+      <td class="govuk-table__cell">Contractor costs increased since last quarter</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Projected spend next quarter</th>
+      <td class="govuk-table__cell">£1,200,000</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Additional commentary (optional)</th>
+      <td class="govuk-table__cell">Not provided</td>
+    </tr>
 
-		</form>
 
-  	</div>
+  </tbody>
+</table>
+            
+         <br><br>
+            <table class="govuk-table" id="section-5">
+  <caption class="govuk-table__caption govuk-table__caption--m">Risks</caption>
+  <thead class="govuk-table__head">
+
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Risk 1</th>
+      <td class="govuk-table__cell">Understaffing</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Risk description</th>
+      <td class="govuk-table__cell">Delivery team has had shortages in staffing due to extended leave and attrition.</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Risk category</th>
+      <td class="govuk-table__cell">People</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Risk status</th>
+      <td class="govuk-table__cell">New</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Risk to life?</th>
+      <td class="govuk-table__cell">No risk to life</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Current impact score</th>
+      <td class="govuk-table__cell">Very low</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Current likelihood score</th>
+      <td class="govuk-table__cell">Medium</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Current mitigations</th>
+      <td class="govuk-table__cell">We are looking into temporary staff</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Planned mitigations</th>
+      <td class="govuk-table__cell">As above</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Target impact score</th>
+      <td class="govuk-table__cell">Very low</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Target likelihood score</th>
+      <td class="govuk-table__cell">Low</td>
+    </tr>
+
+  </tbody>
+</table>
+<br><br>
+
+              <h2 class="govuk-heading-m" id="section-6">Sign off and submit report</h2>
+           
+             <p class="govuk-body">Sign off and submit the report to ((department)) by ((deadline)).</p>
+   
+             <p class="govuk-body">If you need to decline the report, provide a reason so ((submittor)) can update and resubmit the report.</p>
+         
+   <br>
+    
+            <div class="govuk-button-group">
+  <form action="sign-off" method="post">
+    <button type="submit" class="govuk-button" data-module="govuk-button">
+      Sign off and submit report
+    </button>
+  </form>
+  
+  <form action="decline" method="post">
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Decline sign off
+    </button>
+  </form>
 </div>
 
-{% endblock %}
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<!-- Optional: JavaScript for active state on scroll -->
+<script>
+  var isClickScrolling = false;
+  var scrollTimeout;
+  
+  // Update active navigation item based on scroll position
+  function updateActiveNav() {
+    // Don't update during click-initiated scrolling
+    if (isClickScrolling) return;
+    
+    var sections = document.querySelectorAll('h1[id], h2[id], table[id]');
+    var navItems = document.querySelectorAll('.app-subnav__list-item');
+    
+    var scrollPosition = window.scrollY + 100;
+    
+    sections.forEach(function(section, index) {
+      var sectionTop = section.offsetTop;
+      var sectionBottom = sectionTop + section.offsetHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        navItems.forEach(function(item) {
+          item.classList.remove('app-subnav__list-item--current');
+        });
+        if (navItems[index]) {
+          navItems[index].classList.add('app-subnav__list-item--current');
+        }
+      }
+    });
+  }
+  
+  // Listen for scroll events
+  window.addEventListener('scroll', function() {
+    // Clear any existing timeout
+    clearTimeout(scrollTimeout);
+    
+    // Set a timeout to re-enable auto-updates after scrolling stops
+    scrollTimeout = setTimeout(function() {
+      isClickScrolling = false;
+    }, 100);
+    
+    updateActiveNav();
+  });
+  
+  // Handle clicks on navigation links
+  document.querySelectorAll('.app-subnav__link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      var targetId = this.getAttribute('href').substring(1);
+      var targetSection = document.getElementById(targetId);
+      
+      if (targetSection) {
+        // Set flag to prevent scroll handler from interfering
+        isClickScrolling = true;
+        
+        // Remove active state from all items
+        document.querySelectorAll('.app-subnav__list-item').forEach(function(item) {
+          item.classList.remove('app-subnav__list-item--current');
+        });
+        
+        // Add active state to clicked item
+        this.parentElement.classList.add('app-subnav__list-item--current');
+        
+        // Remove focus from the link to prevent yellow highlight
+        this.blur();
+        
+        // Scroll to the section
+        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Re-enable auto-updates after scroll completes (estimated 1 second for smooth scroll)
+        setTimeout(function() {
+          isClickScrolling = false;
+        }, 1000);
+      }
+    });
+  });
+</script>
+{% endblock %}
