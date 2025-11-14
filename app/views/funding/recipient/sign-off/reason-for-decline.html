@@ -4,8 +4,8 @@
 
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Why have you declined this report?" %}
-{% set pageSection = "data.fundName" %}
+{% set pageHeading = "Why are you declining sign off for the 1 October 2025 to 31 December 2025 report?" %}
+<!-- {% set pageSection = "data.fundName" %} -->
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -13,20 +13,22 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 
-    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageHiddenSection,pageHiddentext,pageSize) }}
 
-      	<p>Tell {{ data.reporterName }} why you’re declining this report. You could include:</p>
-      	<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
-        	<li>details about any corrections needed</li>
-			<li>any support they might need to correct the problem</li>
-      	</ul>
+      	<!-- <p>Tell {{ data.reporterName }} why you’re declining this report. You could include:</p> -->
+      	<!-- <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7"> -->
+        	<!-- <li>details about any corrections needed</li> -->
+			<!-- <li>any support they might need to correct the problem</li> -->
+      	<!-- </ul> -->
+
+		<p>Tell Clarice Stollen why you’re declining sign off so they can update and resubmit the report.</p>
 
       	<form method="post" action="/funding/recipient/sign-off/confirmation" >
 
         	{{ govukCharacterCount({
           		name: "reportReasonDeclined",
           		id: "reportReasonDeclined",
-				maxwords: 300,
+				maxwords: 200,
           		label: {
             		text: "Why have you declined this report",
             		classes: "govuk-label--l govuk-visually-hidden",
@@ -34,9 +36,19 @@
           		}
         	}) }}
 
-          	{{ govukButton({
+          	<!-- {{ govukButton({
             	text: "Continue"
-          	}) }}
+          	}) }} -->
+
+			  {% from "govuk/components/button/macro.njk" import govukButton %}
+
+			  <div class="govuk-button-group">
+				{{ govukButton({
+				  text: "Continue"
+				}) }}
+			  
+				<a class="govuk-link" href="report-awaiting-sign-off.html">Cancel</a>
+			  </div>
 
         </form>
 
