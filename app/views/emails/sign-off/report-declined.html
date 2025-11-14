@@ -2,7 +2,9 @@
 {% set serviceName = "" %}
 
 
-{% set title = 'You declined a report from ' + data.organisationName + '' %}
+<!-- {% set title = 'You declined a report from ' + data.organisationName + '' %} -->
+
+{% set title = 'You declined sign off for a Safer social housing fund report' %}
 
 {% block pageTitle %}
   {{title}} - GOV.UK
@@ -23,11 +25,12 @@
         	<tbody>
 				<tr>
                 	<th class="govuk-table__cell" scope="row">From</th>
-                	<td class="govuk-table__cell">Report Funding Progress</td>
+                	<td class="govuk-table__cell">The Funding Service</td>
               	</tr>                    
             	<tr>
               		<th class="govuk-table__cell" scope="row">To</th>
-              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.section151Email}}</span></td>
+              		<!-- <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.section151Email}}</span></td> -->
+					 <td class="govuk-table__cell"><span class='placeholder-no-brackets'>certifier@alocalcouncil.gov.uk</span></td>
             	</tr>          
           		<tr class="email-message-meta">
             		<th class="govuk-table__cell" scope="row">Subject</th>
@@ -36,22 +39,40 @@
         	</tbody>
       	</table>
       	<div class="email-message-body">
-          <p>You have declined a report for {{ data.fundName }}, sent by {{ data.reporterName}} from {{data.organisationName }}.</p>
+          <!-- <p>You have declined a report for {{ data.fundName }}, sent by {{ data.reporterName}} from {{data.organisationName }}.</p> -->
+		   
+		  <p>You declined sign off for the 1 October 2025 to 31 December 2025 report for Safer social housing fund.</p>
 
     
-          <p>Reporting period: <strong>{{ data.reportPeriod }}</strong></p>
+          <!-- <p>Reporting period: <strong>{{ data.reportPeriod }}</strong></p> -->
           
-    
-          <div class="govuk-inset-text">
-        <p><span class="govuk-!-font-weight-bold">Reason for decline:</span><br>
-        {{ data.reportReasonDeclined or 'You have rated your delivery RAG rating for the Napton village hall restoration project as Red but your comments do not correspond as you have said that delivery is progressing extremely well. Is this a mistake?'  }}</p>
+		  <p>Date declined: 8 January 2026 at 13:05pm
+		  <br>Certifier: Margot Ngozi</p>
+
+          <div class="govuk-body">
+        <p>Reason for declining:</span><br>
+        {{ data.reportReasonDeclined or 'The planned mitigations for the Staffing risk is the same as the current mitigations but we discussed additional planned mitigations which need to be added to the planned mitigation answer.'  }}</p>
         </div>
       
-        <p>{{ data.reporterName}} has been sent an email which includes the reason you gave for declining the report. They will be able to make any corrections and resend for review.</p>
+        <!-- <p>{{ data.reporterName}} has been sent an email which includes the reason you gave for declining the report. They will be able to make any corrections and resend for review.</p> -->
         
-        <h2 class="govuk-heading-m">Get help</h2>	
+
+        <h2 class="govuk-heading-m">What happens next</h2>	
+
+		<p>Clarice Stollen will receive an email with your reason for declining so they can update and resubmit the report.</p>
+
+		<p>You must sign off and submit the report by 14 January 2026.</p>
+		
+		<h2 class="govuk-heading-m">Get help</h2>	
+
+
+        <p>If you need help, <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/1344">contact us through our support desk</a>.</p>
+
+		<p>Monday to Friday, 9am to 5pm (except public holidays).</p>
+
+		<p>The Funding Service team</p>
     
-        <p>If you have any questions or need help, email us at <a href="mailto:fsd.support@communities.gov.uk">fsd.support@communities.gov.uk</a>.</p>
+        <!-- <p>If you have any questions or need help, email us at <a href="mailto:fsd.support@communities.gov.uk">fsd.support@communities.gov.uk</a>.</p> -->
     
     
       	</div>
