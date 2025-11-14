@@ -1,7 +1,7 @@
 {% extends "layouts/email.html" %}
 {% set serviceName = "" %}
 
-{% set title = 'Email: Sign in to design and deliver a grant' %}
+{% set title = 'Email: Sign in to Access grant funding' %}
 
 {% block pageTitle %}
   {{title}} - GOV.UK
@@ -26,7 +26,7 @@
               	</tr>
             	<tr>
               		<th class="govuk-table__cell" scope="row">To</th>
-              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.gMmagicLinkEmail or "test@apply.mhclg.gov.uk"  }}</span></td>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.gMmagicLinkEmail or "user@alocalcouncil.gov.uk"  }}</span></td>
             	</tr>
           		<tr class="email-message-meta">
             		<th class="govuk-table__cell" scope="row">Subject</th>
