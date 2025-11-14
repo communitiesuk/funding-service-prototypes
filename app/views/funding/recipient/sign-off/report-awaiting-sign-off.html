@@ -1,0 +1,121 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+		<form method="post" action="/funding/recipient/reports/?reportSectionProgress=complete" >
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    
+    <div class="app-sticky-nav-container">
+      <nav aria-label="Sections on this page">
+        <ul class="govuk-list">
+          <li><a href="#section-1" class="govuk-link">Section 1</a></li>
+          <li><a href="#section-2" class="govuk-link">Section 2</a></li>
+          <li><a href="#section-3" class="govuk-link">Section 3</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-l" id="section-1">Section 1</h2>
+    <p class="govuk-body">[Your content here...]</p>
+    <p class="govuk-body">[Your content here...]</p>
+    
+    <h2 class="govuk-heading-l" id="section-2">Section 2</h2>
+    <p class="govuk-body">[Your content here...]</p>
+    <p class="govuk-body">[Your content here...]</p>
+
+    <h2 class="govuk-heading-l" id="section-3">Section 3</h2>
+    <p class="govuk-body">[Your content here...]</p>
+    <p class="govuk-body">[Your content here...]</p>
+    
+    <p class="govuk-body" style="height: 100vh;">[Extra space to demonstrate scrolling]</p>
+    <p class="govuk-body" style="height: 100vh;">[Extra space to demonstrate scrolling]</p>
+
+  </div>
+</div>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Programme progress</caption>
+  <thead class="govuk-table__head">
+
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Tell us about your programme’s progress</th>
+      <td class="govuk-table__cell">We have made good progress last quarter with more surveys and safety improvements than all previous quarters. </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Likeliness of completion</th>
+      <td class="govuk-table__cell">Very high</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">July 2026</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Likeliness of completion</th>
+      <td class="govuk-table__cell">Very high</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">March 2026</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Likeliness of completion</th>
+      <td class="govuk-table__cell">High</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">July 2026</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">Low</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Reason for low likeliness of completion</th>
+      <td class="govuk-table__cell">Delivery partners have been dealing with shortages in the area</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">Cannot be provided</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Estimated date of completion</th>
+      <td class="govuk-table__cell">Delivery partner shortages are unlikely to be resolved and there are legal challenges around resolving this that we have no control over.</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+        	<input type="hidden" name="answers-checked" value="true">
+
+        	{{ govukButton({
+          		text: "Save and continue"
+        	}) }}
+
+		</form>
+
+  	</div>
+</div>
+
+{% endblock %}
+

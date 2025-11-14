@@ -1,0 +1,69 @@
+/* * ===============================================
+* 1. THE STICKY BEHAVIOUR & CRITICAL FIX
+* ===============================================
+*/
+
+.app-sticky-nav-container {
+  position: sticky;
+  top: 10px; // How far from the top to "stick"
+}
+
+/* This is the fix for 'position: sticky'
+ * It stops the main wrapper from breaking the effect.
+*/
+.govuk-main-wrapper {
+  overflow: visible !important;
+}
+
+
+/* * ===============================================
+* 2. THE VERTICAL SEPARATOR LINE
+* ===============================================
+*/
+
+/* Add the 1px black border to the right of the nav column */
+.app-sticky-nav-column {
+  border-right: 1px solid $govuk-border-colour;
+  
+  // Adds space between the nav content and the line
+  padding-right: govuk-spacing(6); 
+}
+
+/* Adds space between the line and the main content */
+.app-main-content-column {
+  padding-left: govuk-spacing(6);
+}
+
+
+/* * ===============================================
+* 3. THE SIDE NAVIGATION STYLING (NO GREY BOX)
+* ===============================================
+*/
+
+.app-report-nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-report-nav__item {
+  // A transparent border keeps all items aligned
+  border-left: 4px solid transparent; 
+  padding-left: govuk-spacing(3);
+  margin-bottom: govuk-spacing(2);
+
+  .govuk-link {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+
+/* This just changes the border colour for the active item */
+.app-report-nav__item--active {
+  border-left-color: $govuk-brand-colour; // $govuk-blue
+
+  // Make the active link bold
+  .govuk-link {
+    font-weight: 700;
+  }
+}
