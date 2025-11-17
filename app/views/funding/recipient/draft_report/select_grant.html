@@ -1,0 +1,35 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+
+
+<h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l">
+    Select a grant
+    </label>
+  </h1>
+  <br>
+
+<p class="govuk-body">
+  <a href="reports" class="govuk-link">Better neighbourhoods</a>
+</p>
+<p class="govuk-body">
+ <a href="reports" class="govuk-link">Safer social housing fund</a>
+</p>
+<br><br>
+  	</div>
+</div>
+
+{% endblock %}
+
