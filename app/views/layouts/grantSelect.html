@@ -54,17 +54,7 @@
 	{% if data['signedIn'] == "yes" %}
 
 
-			{{ govukServiceNavigation({
-				serviceName: "Safer social housing fund",
-				serviceUrl: "/funding/grants?signedIn=yes",
-				navigation: [
 
-
-
-					{ href: "/funding/recipient/reports/?notification=", text: "Reports", active: navID == "grantReports" },
-					{ href: "/funding/recipient/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
-				]
-			}) }}
 
 
 
@@ -72,16 +62,10 @@
 	{% else %}
 		{% if data['authentication'] == "SSO"  %}
 			<!-- Service Name and Navigation -->
-			{{ govukServiceNavigation({
-				serviceName: "Deliver grant funding",
-				serviceUrl: "#"
-			}) }}
+	
 		{% else %}
 			<!-- Service Name and Navigation -->
-			{{ govukServiceNavigation({
-				serviceName: "Safer social housing fund",
-				serviceUrl: "#"
-			}) }}
+	
 		{% endif %}
 	{% endif %}
 
