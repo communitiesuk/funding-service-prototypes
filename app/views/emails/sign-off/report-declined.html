@@ -52,7 +52,7 @@
 
           <div class="govuk-body">
         <p>Reason for declining:</span><br>
-        {{ data.reportReasonDeclined or 'The planned mitigations for the Staffing risk is the same as the current mitigations but we discussed additional planned mitigations which need to be added to the planned mitigation answer.'  }}</p>
+        {{ data['more-detail'] or 'The planned mitigations for the Staffing risk is the same as the current mitigations but we discussed additional planned mitigations which need to be added to the planned mitigation answer.'  }}</p>
         </div>
       
         <!-- <p>{{ data.reporterName}} has been sent an email which includes the reason you gave for declining the report. They will be able to make any corrections and resend for review.</p> -->
