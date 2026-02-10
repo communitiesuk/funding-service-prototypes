@@ -1,0 +1,79 @@
+{% extends "layouts/reports.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Uploaded datasets</h1>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header" aria-sort="descending">
+        <a href="#" class="govuk-link govuk-link--no-visited-state" style="white-space: nowrap;">
+          Timestamp <span aria-hidden="true" style="font-size: 0.8em; margin-left: 5px;">▲▼</span>
+        </a>
+      </th>
+      <th scope="col" class="govuk-table__header">
+        <a href="#" class="govuk-link govuk-link--no-visited-state" style="white-space: nowrap;">
+          Event type <span aria-hidden="true" style="font-size: 0.8em; margin-left: 5px;">▲▼</span>
+        </a>
+      </th>
+      <th scope="col" class="govuk-table__header">User</th>
+      <th scope="col" class="govuk-table__header">Model</th>
+      <th scope="col" class="govuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        <a href="#" class="govuk-link">2026-01-22 18:06:41</a>
+      </td>
+      <td class="govuk-table__cell">platform-admin-db</td>
+      <td class="govuk-table__cell">connie.livingston@test.communities.gov.uk</td>
+      <td class="govuk-table__cell">Collection</td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="">View</a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        <a href="#" class="govuk-link">2026-01-21 13:42:12</a>
+      </td>
+      <td class="govuk-table__cell">platform-admin-db</td>
+      <td class="govuk-table__cell">connie.livingston@test.communities.gov.uk</td>
+      <td class="govuk-table__cell">Collection</td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="">View</a></td>
+    </tr>
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        <a href="#" class="govuk-link">2026-02-06 16:31:12</a>
+      </td>
+      <td class="govuk-table__cell">platform-admin-db</td>
+      <td class="govuk-table__cell">tom@test.communities.gov.uk</td>
+      <td class="govuk-table__cell">Collection</td>
+      <td class="govuk-table__cell"><a class="govuk-link" href="view_upload">View</a></td>
+    </tr>
+
+
+  </tbody>
+</table>
+  <form method="post" action="upload">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Upload file
+</button>
+</form>
+
+    </div>
+</div>
+{% endblock %}

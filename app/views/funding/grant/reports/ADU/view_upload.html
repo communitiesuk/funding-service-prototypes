@@ -1,0 +1,211 @@
+{% extends "layouts/reports.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">File record details</span>
+<h1 class="govuk-heading-l">Uploaded data</h1>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Metadata Section (System Context) -->
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          User
+        </dt>
+        <dd class="govuk-summary-list__value">
+          tom@communities.gov.uk
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Timestamp
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2026-02-09 14:35:21.45829
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Source file
+        </dt>
+        <dd class="govuk-summary-list__value">
+          financial-returns-Q4-2025.xlsx<br> <a href="" class="govuk-link">Download<span class="govuk-visually-hidden"> grant recipient</span></a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Event type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          DATA_UPLOAD_ROW_INSERT
+        </dd>
+      </div>
+ <br><br> <form method="post" action="re-upload">
+            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+Re-upload file
+</button>
+</form>
+    </dl>
+
+  </div>
+
+</div>
+
+
+    <!-- Data Table (Extracted Content) -->
+    <h2 class="govuk-heading-m">Extracted data</h2>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Data field</th>
+          <th scope="col" class="govuk-table__header">Grant recipient</th>
+            <th scope="col" class="govuk-table__header">Data </th>
+          <th scope="col" class="govuk-table__header ">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A1</td>
+          <td class="govuk-table__cell">
+            <code class="govuk-!-font-size-16" style="background-color: #f3f2f1; padding: 2px 5px;">Birmingham City Council</code>
+          </td>
+                <td class="govuk-table__cell">
+         <pre><code class="govuk-!-font-size-16" style="display: block; white-space: pre-wrap; background-color: #f3f2f1; padding: 15px;">{
+  "row_index": 14,
+  "status": "VALID",
+  "parsed_data": {
+
+    "capital_allocation": {
+      "value": 4500000.00,
+      "currency": "GBP",
+      "original_cell": "C15"
+    },
+    "revenue_allocation": {
+      "value": 1250000.00,
+      "currency": "GBP",
+      "original_cell": "D15"
+    }
+  },
+  "metadata": {
+    "upload_id": "8f902-b22a-4c11",
+    "mapped_schema_version": "v1.2"
+  }
+}</code></pre>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="update" class="govuk-link">Change<span class="govuk-visually-hidden"> grant recipient</span></a>
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A2</td>
+          <td class="govuk-table__cell">
+            <code class="govuk-!-font-size-16" style="background-color: #f3f2f1; padding: 2px 5px;">Swindon City Council</code>
+          </td>
+                <td class="govuk-table__cell">
+              <pre><code class="govuk-!-font-size-16" style="display: block; white-space: pre-wrap; background-color: #f3f2f1; padding: 15px;">{
+  "row_index": 14,
+  "status": "VALID",
+  "parsed_data": {
+    "capital_allocation": {
+    },
+    "revenue_allocation": {
+      "value": 1250000.00,
+      "currency": "GBP",
+      "original_cell": "D15"
+    }
+  },
+  "metadata": {
+    "upload_id": "8f902-b22a-4c11",
+    "mapped_schema_version": "v1.2"
+  }
+}</code></pre>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> capital allocation</span></a>
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A3</td>
+          <td class="govuk-table__cell">
+            <code class="govuk-!-font-size-16" style="background-color: #f3f2f1; padding: 2px 5px;">York City Council</code>
+          </td>
+                <td class="govuk-table__cell">
+            <pre><code class="govuk-!-font-size-16" style="display: block; white-space: pre-wrap; background-color: #f3f2f1; padding: 15px;">{
+  "row_index": 14,
+  "status": "VALID",
+  "parsed_data": {
+    "capital_allocation": {
+      "value": 4500000.00,
+      "currency": "GBP",
+      "original_cell": "C15"
+    },
+    "revenue_allocation": {
+      "value": 1250000.00,
+      "currency": "GBP",
+      "original_cell": "D15"
+    }
+  },
+  "metadata": {
+    "upload_id": "8f902-b22a-4c11",
+    "mapped_schema_version": "v1.2"
+  }
+}</code></pre>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> revenue allocation</span></a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- Raw Data Section -->
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          View raw data payload
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <pre><code class="govuk-!-font-size-16" style="display: block; white-space: pre-wrap; background-color: #f3f2f1; padding: 15px;">{
+  "row_index": 14,
+  "status": "VALID",
+  "metadata": {
+    "upload_id": "8f902-b22a-4c11",
+    "mapped_schema_version": "v1.2"
+  }
+}</code></pre>
+      </div>
+    </details>
+
+
+</div>
+
+
+
+    </div>
+</div>
+{% endblock %}

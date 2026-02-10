@@ -1,0 +1,89 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Arbitrary reference data upload</h1>
+
+<p class="govuk-body">Some explanation here of what kind things to upload.</p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Existing uploaded datasets
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+  </div>
+</details>
+
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Data name
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value="Uploaded file name">
+</div>
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Collection
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value="Uploaded file collection"> 
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+  <label class="govuk-label" for="event-name">
+    Type of data
+  </label>
+
+    <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact" checked="checked">
+        <label class="govuk-label govuk-radios__label" for="contact">
+         Static
+        </label>
+      </div>
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1">
+        <label class="govuk-label govuk-radios__label" for="contact">
+          Grant recipient level
+        </label>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="file-upload-1">
+    Upload a file
+  </label>
+  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+</div>
+
+  <br>
+  <form method="post" action="map">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Continue and map columns
+</button>
+</form>
+</div>
+</div>
+
+  	</div>
+
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,110 @@
+{% extends "layouts/reports.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Reports</h1>
+
+<p class="govuk-body govuk-!-font-weight-bold">Grant status:    <strong class="govuk-tag govuk-tag--yellow">
+       Onboarding
+        </strong> </p>
+
+       <div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+      Progress to date
+    </h2>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Report status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--yellow">
+            Draft
+          </strong>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Form
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#" class="govuk-link">7 sections</a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reporting period
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Not set
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submission period
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Wednesday 1 April 2026 to Friday 29 May 2026
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submissions
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-!-margin-bottom-0">
+            <li><a class="govuk-link" href="#">0 live submissions</a></li>
+            <li><a class="govuk-link" href="#">1 test submission</a></li>
+          </ul>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Created by
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Jenny.Tong@communities.gov.uk
+        </dd>
+      </div>
+
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Data upload
+        </dt>
+        <dd class="govuk-summary-list__value">
+                <ul class="govuk-list govuk-!-margin-bottom-0">
+            <li><a class="govuk-link" href="uploaded_files">2 files uploaded</a></li>
+          
+          </ul>
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+</div> 
+    </div>
+</div>
+{% endblock %}
