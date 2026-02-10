@@ -70,8 +70,8 @@
             Data type
           </label>
           <select class="govuk-select" id="data-type-recipient" name="data-type-recipient" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select a data type</option>
-            <option value="text">Text</option>
+            <option value="choose">Select a data type</option>
+            <option value="text" selected>Text</option>
             <option value="number">Number</option>
             <option value="decimal">Number with decimals</option>
           </select>
@@ -83,7 +83,7 @@
           <!-- Config Field (Shows ONLY for Decimal) -->
           <div class="govuk-form-group js-config-field" style="display: none;">
             <label class="govuk-label" for="recipient-config">
-              Decimal places
+               Decimal places
             </label>
             <input class="govuk-input govuk-input--width-10" id="recipient-config" name="recipient-config" type="text">
           </div>
@@ -113,15 +113,17 @@
           <label class="govuk-label" for="data-type-capital">
             Data type
           </label>
+          <!-- Pre-selected "Number" -->
           <select class="govuk-select" id="data-type-capital" name="data-type-capital" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select a data type</option>
+            <option value="choose">Select a data type</option>
             <option value="text">Text</option>
-            <option value="number">Number</option>
+            <option value="number" selected>Number</option>
             <option value="decimal">Number with decimals</option>
           </select>
         </div>
 
-        <div class="govuk-inset-text js-conditional-wrapper" style="display: none; margin-top: 10px;">
+        <!-- Visible by default because "Number" is selected -->
+        <div class="govuk-inset-text js-conditional-wrapper" style="display: block; margin-top: 10px;">
           
           <div class="govuk-form-group js-config-field" style="display: none;">
             <label class="govuk-label" for="capital-config">
@@ -130,14 +132,14 @@
             <input class="govuk-input govuk-input--width-10" id="capital-config" name="capital-config" type="text">
           </div>
  <label class="govuk-label" for="revenue-min">Formatting options (optional) </label>
-          <div class="js-min-max-fields" style="display: none; gap: 10px;">
+          <div class="js-min-max-fields" style="display: flex; gap: 10px;">
             <div class="govuk-form-group" style="margin-bottom: 0;">
               <label class="govuk-label" for="capital-min">Prefix</label>
-              <input class="govuk-input govuk-input--width-4" id="capital-min" name="capital-min" type="text">
+              <input class="govuk-input govuk-input--width-4" id="capital-min" name="capital-min" type="text" value="£">
             </div>
             <div class="govuk-form-group" style="margin-bottom: 0;">
               <label class="govuk-label" for="capital-max">Suffix</label>
-              <input class="govuk-input govuk-input--width-4" id="capital-max" name="capital-max" type="text">
+              <input class="govuk-input govuk-input--width-3" id="capital-max" name="capital-max" type="text">
             </div>
           </div>
 
@@ -153,32 +155,33 @@
           <label class="govuk-label" for="data-type-revenue">
             Data type
           </label>
+          <!-- Pre-selected "Number with decimals" -->
           <select class="govuk-select" id="data-type-revenue" name="data-type-revenue" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select a data type</option>
+            <option value="choose">Select a data type</option>
             <option value="text">Text</option>
             <option value="number">Number</option>
-            <option value="decimal">Number with decimals</option>
+            <option value="decimal" selected>Number with decimals</option>
           </select>
         </div>
 
-        <div class="govuk-inset-text js-conditional-wrapper" style="display: none; margin-top: 10px;">
+        <!-- Visible by default because "Decimal" is selected -->
+        <div class="govuk-inset-text js-conditional-wrapper" style="display: block; margin-top: 10px;">
           
-          <div class="govuk-form-group js-config-field" style="display: none;">
+          <div class="govuk-form-group js-config-field" style="display: block;">
             <label class="govuk-label" for="revenue-config">
               Decimal places
             </label>
-            <input class="govuk-input govuk-input--width-10" id="revenue-config" name="revenue-config" type="text">
+            <input class="govuk-input govuk-input--width-10" id="revenue-config" name="revenue-config" type="text" value="2">
           </div>
  <label class="govuk-label" for="revenue-min">Formatting options (optional) </label>
-          <div class="js-min-max-fields" style="display: none; gap: 10px;">
-
+          <div class="js-min-max-fields" style="display: flex; gap: 10px;">
             <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="revenue-min">Prefix </label>
-              <input class="govuk-input govuk-input--width-4" id="revenue-min" name="revenue-min" type="text">
+              <label class="govuk-label" for="revenue-min">Prefix</label>
+              <input class="govuk-input govuk-input--width-4" id="revenue-min" name="revenue-min" type="text" value="£">
             </div>
             <div class="govuk-form-group" style="margin-bottom: 0;">
               <label class="govuk-label" for="revenue-max">Suffix</label>
-              <input class="govuk-input govuk-input--width-4" id="revenue-max" name="revenue-max" type="text">
+              <input class="govuk-input govuk-input--width-4" id="revenue-max" name="revenue-max" type="text" >
             </div>
           </div>
 
@@ -190,9 +193,9 @@
 </table>
 
   <br>
-  <form method="post" action="uploaded_files2">
+  <form method="post" action="view_upload">
             <button type="submit" class="govuk-button" data-module="govuk-button">
-Continue and map columns
+Confirm
 </button>
 </form>
 </div>

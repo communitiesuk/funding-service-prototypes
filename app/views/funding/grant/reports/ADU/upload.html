@@ -17,29 +17,14 @@
 
 <p class="govuk-body">Some explanation here of what kind things to upload.</p>
 
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Existing uploaded datasets
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
-  </div>
-</details>
 
     <div class="govuk-form-group">
   <label class="govuk-label" for="event-name">
-    Data name
+    File name
   </label>
   <input class="govuk-input" id="event-name" name="eventName" type="text">
 </div>
-    <div class="govuk-form-group">
-  <label class="govuk-label" for="event-name">
-    Collection
-  </label>
-  <input class="govuk-input" id="event-name" name="eventName" type="text">
-</div>
+
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
@@ -53,13 +38,20 @@
         <label class="govuk-label govuk-radios__label" for="contact">
          Static
         </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of static data
+        </div>
       </div>
+
 
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1">
         <label class="govuk-label govuk-radios__label" for="contact">
           Grant recipient level
         </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of grant recipient level data
+        </div>
       </div>
 
 

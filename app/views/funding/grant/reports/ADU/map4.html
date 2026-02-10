@@ -1,0 +1,153 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Map data upload columns</h1>
+
+<p class="govuk-body">Some explanation here of what kind things to upload.</p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Snipped of uploaded data
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+         <pre><code class="govuk-!-font-size-16" style="display: block; white-space: pre-wrap; background-color: #f3f2f1; padding: 15px;">{
+  "row_index": 14,
+  "status": "VALID",
+  "parsed_data": {
+
+    "grant recipient": {
+      "value": Milton Keynes Council,
+      "original_cell": "B15"
+    },
+    "capital_allocation": {
+      "value": 4500000.00,
+      "currency": "GBP",
+      "original_cell": "C15"
+    },
+    "revenue_allocation": {
+      "value": 1250000.00,
+      "currency": "GBP",
+      "original_cell": "D15"
+    }
+  },
+  "metadata": {
+    "upload_id": "8f902-b22a-4c11",
+    "mapped_schema_version": "v1.2"
+  }
+}</code></pre>
+  </div>
+</details>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Column name</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Data type</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    
+    <!-- Row 1 -->
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell--middle">grant recipient</td>
+      <td class="govuk-table__cell">
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label" for="data-type-recipient">
+            Data type
+          </label>
+          <select class="govuk-select" id="data-type-recipient" name="data-type-recipient" onchange="this.closest('.govuk-form-group').nextElementSibling.style.display = this.value === 'choose' ? 'none' : 'block';">
+            <option value="choose" selected>Select an option</option>
+            <option value="prefix">Prefix</option>
+            <option value="suffix">Suffix</option>
+          </select>
+        </div>
+        <!-- Hidden field that appears on selection -->
+        <div class="govuk-form-group" style="display: none;">
+          <label class="govuk-label govuk-visually-hidden" for="recipient-config">
+            Configuration for grant recipient
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="recipient-config" name="recipient-config" type="text">
+        </div>
+      </td>
+    </tr>
+
+    <!-- Row 2 -->
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell--middle">capital allocation</td>
+      <td class="govuk-table__cell">
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label" for="data-type-capital">
+            Data type
+          </label>
+          <select class="govuk-select" id="data-type-capital" name="data-type-capital" onchange="this.closest('.govuk-form-group').nextElementSibling.style.display = this.value === 'choose' ? 'none' : 'block';">
+            <option value="choose" selected>Select an option</option>
+            <option value="prefix">Prefix</option>
+            <option value="suffix">Suffix</option>
+          </select>
+        </div>
+        <!-- Hidden field that appears on selection -->
+        <div class="govuk-form-group" style="display: none;">
+          <label class="govuk-label govuk-visually-hidden" for="capital-config">
+            Configuration for capital allocation
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="capital-config" name="capital-config" type="text">
+        </div>
+      </td>
+    </tr>
+
+    <!-- Row 3 -->
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell--middle">revenue allocation</td>
+      <td class="govuk-table__cell">
+        <div class="govuk-form-group govuk-!-margin-bottom-2">
+          <label class="govuk-label" for="data-type-revenue">
+            Data type
+          </label>
+          <select class="govuk-select" id="data-type-revenue" name="data-type-revenue" onchange="this.closest('.govuk-form-group').nextElementSibling.style.display = this.value === 'choose' ? 'none' : 'block';">
+            <option value="choose" selected>Select an option</option>
+            <option value="prefix">Prefix</option>
+            <option value="suffix">Suffix</option>
+          </select>
+        </div>
+        <!-- Hidden field that appears on selection -->
+        <div class="govuk-form-group" style="display: none;">
+          <label class="govuk-label govuk-visually-hidden" for="revenue-config">
+            Configuration for revenue allocation
+          </label>
+          <input class="govuk-input govuk-input--width-10" id="revenue-config" name="revenue-config" type="text">
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+  <br>
+  <form method="post" action="confirmation">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Continue and map columns
+</button>
+</form>
+</div>
+</div>
+
+  	</div>
+
+</div>
+
+{% endblock %}
+
