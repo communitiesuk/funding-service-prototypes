@@ -12,34 +12,20 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">Local Regeneration Fund</span>
-<h1 class="govuk-heading-l">Arbitrary reference data upload</h1>
+<span class="govuk-caption-l">Report name</span>
+<h1 class="govuk-heading-l">Re-upload new data set</h1>
 
-<p class="govuk-body">Some explanation here of what kind things to upload.</p>
+<p class="govuk-body">If you need to replace an existing data set being referenced in the form.</p>
 
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Existing uploaded datasets
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-    We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
-  </div>
-</details>
+
 
     <div class="govuk-form-group">
   <label class="govuk-label" for="event-name">
-    Data name
+    Data set name
   </label>
   <input class="govuk-input" id="event-name" name="eventName" type="text" value="Uploaded file name">
 </div>
-    <div class="govuk-form-group">
-  <label class="govuk-label" for="event-name">
-    Collection
-  </label>
-  <input class="govuk-input" id="event-name" name="eventName" type="text" value="Uploaded file collection"> 
-</div>
+
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
@@ -51,17 +37,23 @@
           <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact" checked="checked">
         <label class="govuk-label govuk-radios__label" for="contact">
-         Static
+         Grant recipient level
         </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of grant recipient level data
+        </div>
       </div>
+
 
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1">
         <label class="govuk-label govuk-radios__label" for="contact">
-          Grant recipient level
+          Other
         </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of other types
+        </div>
       </div>
-
     </div>
   </fieldset>
 </div>

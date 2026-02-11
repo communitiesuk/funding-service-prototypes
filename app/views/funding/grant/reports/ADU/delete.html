@@ -1,0 +1,47 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Report name</span>
+<h1 class="govuk-heading-l">Are you sure you want to delete this file?</h1>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    You are about to delete a data set and you will not be able to undo it
+  </strong>
+</div>
+
+<p class="govuk-body">The following data set will be deleted</p>
+<div class="govuk-inset-text">
+  financial-returns-Q4-2025.xlsx
+</div>
+
+
+
+<br>
+<form method="post" action="uploaded_files4">
+<button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
+ Yes - delete 
+</button>
+</form>
+
+
+  	</div>
+
+</div>
+
+
+{% endblock %}
+

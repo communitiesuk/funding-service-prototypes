@@ -418,6 +418,12 @@ border-color: govuk-colour("mid-grey");
     .app-pane__body {
       display: block;
     }
+
+    .button-group {
+  display: flex;
+  gap: 15px; /* Adjust spacing between buttons as needed */
+  align-items: center;
+}
     
     .app-pane__subnav {
       margin-right: 0;

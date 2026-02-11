@@ -12,7 +12,7 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">Local Regeneration Fund</span>
+<span class="govuk-caption-l">Report name</span>
 <h1 class="govuk-heading-l">Map data upload columns</h1>
 
 <p class="govuk-body">Some explanation here of what kind things to upload.</p>
@@ -72,8 +72,8 @@
           <select class="govuk-select" id="data-type-recipient" name="data-type-recipient" onchange="handleTypeChange(this)">
             <option value="choose" selected>Select a data type</option>
             <option value="text">Text</option>
-            <option value="number">Number</option>
-            <option value="decimal">Number with decimals</option>
+            <option value="number">Whole number</option>
+            <option value="decimal">Decimal number</option>
           </select>
         </div>
         
@@ -116,8 +116,8 @@
           <select class="govuk-select" id="data-type-capital" name="data-type-capital" onchange="handleTypeChange(this)">
             <option value="choose" selected>Select a data type</option>
             <option value="text">Text</option>
-            <option value="number">Number</option>
-            <option value="decimal">Number with decimals</option>
+            <option value="number">Whole number</option>
+            <option value="decimal">Decimal number</option>
           </select>
         </div>
 
@@ -156,8 +156,8 @@
           <select class="govuk-select" id="data-type-revenue" name="data-type-revenue" onchange="handleTypeChange(this)">
             <option value="choose" selected>Select a data type</option>
             <option value="text">Text</option>
-            <option value="number">Number</option>
-            <option value="decimal">Number with decimals</option>
+            <option value="number">Whole number</option>
+            <option value="decimal">Decimal number</option>
           </select>
         </div>
 
@@ -192,11 +192,15 @@
   <br>
   <form method="post" action="uploaded_files2">
             <button type="submit" class="govuk-button" data-module="govuk-button">
-Continue and map columns
+Upload data set
 </button>
 </form>
 </div>
 </div>
+
+<br>
+<p class="govuk-body-xs"><a href="data_warning">(Data missing/wrong symbol page)</a>
+</p>
 
   	</div>
 

@@ -104,3 +104,9 @@
     background: #ff00dd33;
     opacity: 80%;
 }
+
+.button-group {
+  display: flex;
+  gap: 15px; /* Adjust spacing between buttons as needed */
+  align-items: center;
+}

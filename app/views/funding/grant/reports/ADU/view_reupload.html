@@ -30,8 +30,8 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">File record details</span>
-<h1 class="govuk-heading-l">Uploaded data</h1>
+<span class="govuk-caption-l">Report name</span>
+<h1 class="govuk-heading-l">Uploaded data set</h1>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -41,37 +41,29 @@
       
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          User
+          Name
         </dt>
         <dd class="govuk-summary-list__value">
-          tom@communities.gov.uk
+            Platform data
+            <br> <a href="" class="govuk-link">Download data set<span class="govuk-visually-hidden"> grant recipient</span></a>
         </dd>
       </div>
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Timestamp
+          Uploaded by 
         </dt>
         <dd class="govuk-summary-list__value">
-          2026-02-09 14:35:21.45829
+          Tom Owen
         </dd>
       </div>
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Source file
+          Data type
         </dt>
         <dd class="govuk-summary-list__value">
-          financial-returns-Q4-2025.xlsx<br> <a href="" class="govuk-link">Download<span class="govuk-visually-hidden"> grant recipient</span></a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Event type
-        </dt>
-        <dd class="govuk-summary-list__value">
-          DATA_UPLOAD_ROW_INSERT
+          Grant recipient level
         </dd>
       </div>
             <div class="govuk-summary-list__row">
@@ -79,8 +71,7 @@
           Reupload details
         </dt>
         <dd class="govuk-summary-list__value">
-          by Tom <br>
-          on 2026-02-10
+          by Tom Owen on 2026-02-10
         </dd>
       </div>
             <div class="govuk-summary-list__row">
@@ -92,11 +83,25 @@
           
         </dd>
       </div>
- <br><br> <form method="post" action="re-upload">
-            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-Re-upload file
-</button>
-</form>
+ <br><br>
+
+<div style="display: flex; gap: 15px; align-items: center;">
+  
+  <form method="post" action="re-upload">
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" 
+            style="white-space: nowrap; width: auto;">
+      Re-upload data set
+    </button>
+  </form>
+
+  <form method="post" action="delete">
+    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" 
+            style="white-space: nowrap; width: auto;">
+      Delete data set </button>
+  </form>
+  
+</div>
+
     </dl>
 
   </div>
@@ -113,9 +118,9 @@ Re-upload file
           <th scope="col" class="govuk-table__header"><a href="">Data field</a></th>
           <th scope="col" class="govuk-table__header"><a href="">Grant recipient</a></th>
             <th scope="col" class="govuk-table__header"><a href="">Capital allocation</a></th>
-              <th scope="col" class="govuk-table__header"><a href="">Revenue allocation<</a>/th>
+              <th scope="col" class="govuk-table__header"><a href="">Revenue allocation</a>
           
-          <th scope="col" class="govuk-table__header ">Action</th>
+
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -132,9 +137,7 @@ Re-upload file
           £1250000.00
           </td>
               
-          <td class="govuk-table__cell">
-            <a href="update" class="govuk-link">Change<span class="govuk-visually-hidden"> grant recipient</span></a>
-          </td>
+     
         </tr>
 
         <tr class="govuk-table__row">
@@ -149,9 +152,7 @@ Re-upload file
           £1250000.00
           </td>
               
-          <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> capital allocation</span></a>
-          </td>
+   
         </tr>
 
         <tr class="govuk-table__row">
@@ -166,9 +167,7 @@ Re-upload file
           £1250000.00
           </td>
          
-          <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> revenue allocation</span></a>
-          </td>
+    
         </tr>
 
       </tbody>
