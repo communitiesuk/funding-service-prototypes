@@ -1,0 +1,37 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <br>
+          <h1 class="govuk-panel__title">
+            Question added
+          </h1>
+          <br>
+       
+        </div>
+     
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p class="govuk-body">
+          You can view and edit your questions in <a href="rubrick_all" class="govuk-link">the rubrick section</a>.
+        </p>
+
+    
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}
+

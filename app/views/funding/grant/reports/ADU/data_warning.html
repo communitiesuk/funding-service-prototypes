@@ -1,0 +1,109 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Data missing in the file</h1>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+   There are rows with missing data
+  </strong>
+</div>
+
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Data field </th>
+          <th scope="col" class="govuk-table__header">Grant recipient</th>
+            <th scope="col" class="govuk-table__header">
+            Capital allocation</th>
+              <th scope="col" class="govuk-table__header">Revenue allocation</th>
+
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A1</td>
+          <td class="govuk-table__cell">
+           Birmingham City Council
+          </td>
+               <td class="govuk-table__cell">
+            £4500000.00
+          </td>
+           <td class="govuk-table__cell">
+           <strong class="govuk-tag govuk-tag--red">
+          Data missing
+        </strong>
+          </td>
+                
+        
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A2</td>
+          <td class="govuk-table__cell">
+           Swindon City Council
+          </td>
+           <td class="govuk-table__cell">
+           <strong class="govuk-tag govuk-tag--red">
+          Data missing
+        </strong>
+          </td>
+           <td class="govuk-table__cell">
+           £1250000.00
+          </td>
+
+        
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">A3</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--red">
+          Data missing
+        </strong>
+          </td>
+               <td class="govuk-table__cell">
+            £4500000.00
+          </td>
+           <td class="govuk-table__cell">
+          £1250000.00
+          </td>
+  
+    
+        </tr>
+
+      </tbody>
+    </table>
+
+<p class="govuk-body">You can go back and reupload the updated file now, or if you are happy to proceed you can upload the current file</p>
+
+<br>
+  <form method="post" action="upload">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Upload file
+</button>
+</form>
+
+  	</div>
+
+</div>
+
+
+{% endblock %}
+

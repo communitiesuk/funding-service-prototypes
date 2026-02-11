@@ -1,0 +1,68 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+       Questions about this conversation
+      </h1>
+    </legend>
+    <div id="contact-hint" class="govuk-hint">
+ Please answer all the questions as best as you can
+    </div>
+<br>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="width-10">
+    What did you think of AI's performance?
+  </label>
+  <div id="authentication-code-hint" class="govuk-hint">
+    Must be between 1 and 5
+  </div>
+  <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
+</div>
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+    Rationale for the score
+  </label>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+
+
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+   What did you think of AI's knowledge?
+  </label>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+
+  </fieldset>
+
+</div>
+<br>
+  <form method="post" action="question2">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Continue
+</button>
+</form>
+</div>
+
+  	</div>
+
+</div>
+
+{% endblock %}
+
