@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageHeading = "Check data set issues" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -12,14 +12,14 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">Local Regeneration Fund</span>
-<h1 class="govuk-heading-l">Data missing in the file</h1>
+<span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
+<h1 class="govuk-heading-l">Check Outputs data set issues</h1>
 
 <div class="govuk-warning-text">
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-visually-hidden">Warning</span>
-   There are rows with issues
+   There are issues with the data set.
   </strong>
 </div>
 
@@ -27,7 +27,7 @@
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Data field </th>
+          <th scope="col" class="govuk-table__header">Row</th>
           <th scope="col" class="govuk-table__header">Grant recipient</th>
             <th scope="col" class="govuk-table__header">
             Capital allocation</th>
@@ -38,12 +38,12 @@
       <tbody class="govuk-table__body">
         
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">A1</td>
+          <td class="govuk-table__cell">1</td>
           <td class="govuk-table__cell">
            Birmingham City Council
           </td>
                <td class="govuk-table__cell">
-            £4500000.00
+            £4,500,000.00
           </td>
            <td class="govuk-table__cell">
            <strong class="govuk-tag govuk-tag--red">
@@ -55,7 +55,7 @@
         </tr>
 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">A2</td>
+          <td class="govuk-table__cell">2</td>
           <td class="govuk-table__cell">
            Swindon City Council
           </td>
@@ -65,24 +65,24 @@
         </strong>
           </td>
            <td class="govuk-table__cell">
-           £1250000.00
+           £1,250,000.00
           </td>
 
         
         </tr>
 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">A3</td>
+          <td class="govuk-table__cell">3</td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--red">
           Data missing
         </strong>
           </td>
                <td class="govuk-table__cell">
-            £4500000.00
+            £4,500,000.00
           </td>
            <td class="govuk-table__cell">
-          £1250000.00
+          £1,250,000.00
           </td>
   
     
@@ -91,12 +91,12 @@
       </tbody>
     </table>
 
-<p class="govuk-body">You can go back and reupload the updated file now, or if you are happy to proceed you can upload the current file</p>
+<p class="govuk-body">Go back to check the issues or continue to upload.</p>
 
 <br>
   <form method="post" action="upload">
             <button type="submit" class="govuk-button" data-module="govuk-button">
-Upload file
+Continue and upload data set
 </button>
 </form>
 
