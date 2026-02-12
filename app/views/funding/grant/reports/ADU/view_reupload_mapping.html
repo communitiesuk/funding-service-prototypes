@@ -14,6 +14,21 @@
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Success
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <h3 class="govuk-notification-banner__heading">
+      File uploaded
+    </h3>
+    <p class="govuk-body">You can view it in the table below</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
 <span class="govuk-caption-l">Report name</span>
 <h1 class="govuk-heading-l">Uploaded data set</h1>
@@ -23,9 +38,9 @@
 
     <!-- Metadata Section (System Context) -->
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-      
+  
 
-               <div class="govuk-summary-list__row">
+   <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Name
         </dt>
@@ -70,6 +85,16 @@
         </dd>
       </div>
 
+<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reupload details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          by Tom Owen on 2026-02-10
+        </dd>
+      </div>
+
+
   
 
                 <div class="govuk-summary-list__row">
@@ -82,9 +107,10 @@
         </dd>
       </div>
         </dd>
- <br><br> 
+        
 
-
+  
+ <br><br>
 
 <div style="display: flex; gap: 15px; align-items: center;">
   
@@ -116,13 +142,12 @@
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header"><a href="">Data field </a></th>
-          <th scope="col" class="govuk-table__header"><a href=""><a href="">Grant recipient</a></th>
-            <th scope="col" class="govuk-table__header">
-            <a href="">Capital allocation</a></th>
-              <th scope="col" class="govuk-table__header"><a href="">Revenue allocation</a></th>
+          <th scope="col" class="govuk-table__header"><a href="">Data field</a></th>
+          <th scope="col" class="govuk-table__header"><a href="">Grant recipient</a></th>
+            <th scope="col" class="govuk-table__header"><a href="">Capital allocation</a></th>
+              <th scope="col" class="govuk-table__header"><a href="">Revenue allocation</a>
+          
 
-          <th scope="col" class="govuk-table__header ">Action</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -130,56 +155,51 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">A1</td>
           <td class="govuk-table__cell">
-           Birmingham City Council
+          Birmingham City Council
           </td>
                <td class="govuk-table__cell">
-            £4500000.00
+          £4500000.00
           </td>
            <td class="govuk-table__cell">
-            £1250000.00
+          £1250000.00
           </td>
-                
-          <td class="govuk-table__cell">
-            <a href="update" class="govuk-link">Change<span class="govuk-visually-hidden"> grant recipient</span></a>
-          </td>
+              
+     
         </tr>
 
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">A2</td>
           <td class="govuk-table__cell">
-           Swindon City Council
+          Swindon City Council
           </td>
            <td class="govuk-table__cell">
-           £4500000.00
+          £4500000.00
           </td>
            <td class="govuk-table__cell">
-           £1250000.00
+          £1250000.00
           </td>
-
-          <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> capital allocation</span></a>
-          </td>
+              
+   
         </tr>
 
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">A3</td>
           <td class="govuk-table__cell">
-           York City Council
+          York City Council
           </td>
                <td class="govuk-table__cell">
-            £4500000.00
+          £4500000.00
           </td>
            <td class="govuk-table__cell">
           £1250000.00
           </td>
-  
-          <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Change<span class="govuk-visually-hidden"> revenue allocation</span></a>
-          </td>
+         
+    
         </tr>
 
       </tbody>
     </table>
+
 
 
 
