@@ -12,21 +12,6 @@
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-  <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      Success
-    </h2>
-  </div>
-  <div class="govuk-notification-banner__content">
-    <h3 class="govuk-notification-banner__heading">
-      Outputs data set uploaded
-    </h3>
-    <p class="govuk-body">You can now reference Outputs data in the 1 April 2026 to 30 June 2026 grant form. <a class="govuk-link" href="view_upload">View data set</a></p>
-  </div>
-</div>
 
 <span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
 <h1 class="govuk-heading-l">Uploaded data</h1>
@@ -83,7 +68,10 @@
       <td class="govuk-table__cell"><a class="govuk-link" href="">View</a></td>
     </tr>
  <tr class="govuk-table__row">
-        <td class="govuk-table__cell">Outputs</td>
+        <td class="govuk-table__cell">Outputs <strong class="govuk-tag govuk-tag--red">
+          Missing data
+        </strong></td>
+    
       <td class="govuk-table__cell">
         2026-02-20, 10:08:17
       </td>
