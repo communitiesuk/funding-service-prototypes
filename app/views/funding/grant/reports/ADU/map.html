@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageHeading = "Map Outputs data columns" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -17,7 +17,7 @@
 
 <p class="govuk-body">Map the data from each column to set its data type and settings in the grant form.</p>
 
-<details class="govuk-details">
+<!-- <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
       Snippet of uploaded data
@@ -50,12 +50,13 @@
   }
 }</code></pre>
   </div>
-</details>
+</details> -->
 
 <table class="govuk-table">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header govuk-!-width-one-half">Column name</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Example data</th>
       <th scope="col" class="govuk-table__header govuk-!-width-one-half">Data type</th>
     </tr>
   </thead>
@@ -64,6 +65,7 @@
     <!-- Row 1 -->
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell--middle">grant recipient</td>
+      <td class="govuk-table__cell govuk-table__cell--middle">Birmingham City Council, Swindon City Council, York City Council</td>
       <td class="govuk-table__cell">
         <div class="govuk-form-group govuk-!-margin-bottom-2">
           <label class="govuk-label" for="data-type-recipient">
@@ -108,6 +110,7 @@
     <!-- Row 2 -->
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell--middle">capital allocation</td>
+      <td class="govuk-table__cell govuk-table__cell--middle">£4,500,000, £4,500,000, £4,500,000</td>
       <td class="govuk-table__cell">
         <div class="govuk-form-group govuk-!-margin-bottom-2">
           <label class="govuk-label" for="data-type-capital">
@@ -148,6 +151,7 @@
     <!-- Row 3 -->
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell--middle">revenue allocation</td>
+      <td class="govuk-table__cell govuk-table__cell--middle">£1,250,000, £1,250,000, £1,250,000</td>
       <td class="govuk-table__cell">
         <div class="govuk-form-group govuk-!-margin-bottom-2">
           <label class="govuk-label" for="data-type-revenue">
