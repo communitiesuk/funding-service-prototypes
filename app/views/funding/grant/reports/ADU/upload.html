@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageHeading = "Upload new data set" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -15,7 +15,7 @@
 <span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
 <h1 class="govuk-heading-l">Upload new data set</h1>
 
-<p class="govuk-body">Upload data to reference guidance, questions, conditions and validation in grant forms.
+<p class="govuk-body">Upload data to reference in form guidance, questions, conditions and validation.
 </p>
 
 
@@ -23,7 +23,8 @@
   <label class="govuk-label" for="event-name">
     Data set name
   </label>
-  <input class="govuk-input" id="event-name" name="eventName" type="text">
+  <!-- <input class="govuk-input" id="event-name" name="eventName" type="text"> -->
+  <input class="govuk-input govuk-!-width-two-thirds" id="two-thirds" name="twoThirds" type="text">
 </div>
 
 
@@ -50,10 +51,10 @@
         <label class="govuk-label govuk-radios__label" for="contact">
           Other
         </label>
-         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+         <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
           For example, project type
         </div>
-      </div>
+      </div> -->
 
 
 
