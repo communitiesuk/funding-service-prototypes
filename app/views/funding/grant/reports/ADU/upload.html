@@ -31,17 +31,28 @@
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
   <label class="govuk-label" for="event-name">
-    Data level
+    Is this grant recipient level data?
   </label>
 
     <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
         <label class="govuk-label govuk-radios__label" for="contact">
-         Grant recipient
+         Yes, with one row for each grant recipient
         </label>
          <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
           For example, grant allocation
+        </div>
+      </div>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-radios__label" for="contact">
+         Yes, with more than one row for grant recipients
+        </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          For example, project details
         </div>
       </div>
 
@@ -49,12 +60,8 @@
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1">
         <label class="govuk-label govuk-radios__label" for="contact">
-          Other
+          No
         </label>
-         <!-- <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-          For example, project type
-        </div>
-      </div> -->
 
 
 
