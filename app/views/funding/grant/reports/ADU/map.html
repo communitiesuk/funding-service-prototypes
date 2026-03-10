@@ -54,11 +54,13 @@
 
 <table class="govuk-table">
   <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Column name</th>
-      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Example data</th>
-      <th scope="col" class="govuk-table__header govuk-!-width-one-half">Data type</th>
-    </tr>
+<tr class="govuk-table__row">
+  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Column name</th>
+  
+  <th scope="col" class="govuk-table__header govuk-!-width-one-half">Example data</th>
+  
+  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Data type</th>
+</tr>
   </thead>
   <tbody class="govuk-table__body">
     
@@ -68,42 +70,103 @@
       <td class="govuk-table__cell govuk-table__cell--middle">Birmingham City Council, Swindon City Council, York City Council</td>
       <td class="govuk-table__cell">
         <div class="govuk-form-group govuk-!-margin-bottom-2">
-          <label class="govuk-label" for="data-type-recipient">
-            Data type
+     <div class="govuk-radios" data-module="govuk-radios">
+         <label class="govuk-label" for="data-type-capital">
+           Select data type
           </label>
-          <select class="govuk-select" id="data-type-recipient" name="data-type-recipient" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select data type</option>
-            <option value="text">Text</option>
-            <option value="number">Whole number</option>
-            <option value="decimal">Decimal number</option>
-          </select>
+      <div class="govuk-radios__item">
+
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email">
+        <label class="govuk-label govuk-radios__label" for="contact">
+          Text
+        </label>
+      </div>
+    
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-2">
+          Whole number
+        </label>
+      </div>
+      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+      Formatting options (optional)
+    </legend>
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="prefix">
+            Prefix
+          </label>
+          <input class="govuk-input" id="prefix" name="prefix" type="text">
+        </div>
+      </div>
+      
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="suffix">
+            Suffix
+          </label>
+          <input class="govuk-input" id="suffix" name="suffix" type="text">
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
+</div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text" data-aria-controls="conditional-contact-3">
+        <label class="govuk-label govuk-radios__label" for="contact-3">
+          Decimal number
+        </label>
+      </div>
+      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="decimal-places">
+    Decimal places
+  </label>
+  <input class="govuk-input govuk-input--width-10" id="decimal-places" name="decimalPlaces" type="text">
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+      Formatting options (optional)
+    </legend>
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="prefix">
+            Prefix
+          </label>
+          <input class="govuk-input" id="prefix" name="prefix" type="text">
+        </div>
+      </div>
+      
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="suffix">
+            Suffix
+          </label>
+          <input class="govuk-input" id="suffix" name="suffix" type="text">
+        </div>
+      </div>
+    </div>
+    
+  </fieldset>
+</div>
+      </div>
+    </div>
         </div>
         
-        <!-- Wrapper for conditional content (Inset Text style) -->
-        <div class="govuk-inset-text js-conditional-wrapper" style="display: none; margin-top: 10px;">
-          
-          <!-- Config Field (Shows ONLY for Decimal) -->
-          <div class="govuk-form-group js-config-field" style="display: none;">
-            <label class="govuk-label" for="recipient-config">
-              Decimal places
-            </label>
-            <input class="govuk-input govuk-input--width-4" id="recipient-config" name="recipient-config" type="text">
-          </div>
-
-          <!-- Min/Max Fields (Shows for Number AND Decimal) -->
-           <label class="govuk-label" for="revenue-min">Formatting options (optional) </label>
-          <div class="js-min-max-fields" style="display: none; gap: 10px;">
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="recipient-min">Prefix</label>
-              <input class="govuk-input govuk-input--width-4" id="recipient-min" name="recipient-min" type="text">
-            </div>
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="recipient-max">Suffix</label>
-              <input class="govuk-input govuk-input--width-4" id="recipient-max" name="recipient-max" type="text">
-            </div>
-          </div>
-
-        </div>
+    
       </td>
     </tr>
 
@@ -112,39 +175,99 @@
       <td class="govuk-table__cell govuk-table__cell--middle">capital allocation</td>
       <td class="govuk-table__cell govuk-table__cell--middle">£4,500,000, £4,500,000, £4,500,000</td>
       <td class="govuk-table__cell">
-        <div class="govuk-form-group govuk-!-margin-bottom-2">
-          <label class="govuk-label" for="data-type-capital">
-            Data type
-          </label>
-          <select class="govuk-select" id="data-type-capital" name="data-type-capital" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select data type</option>
-            <option value="text">Text</option>
-            <option value="number">Whole number</option>
-            <option value="decimal">Decimal number</option>
-          </select>
-        </div>
-
-        <div class="govuk-inset-text js-conditional-wrapper" style="display: none; margin-top: 10px;">
-          
-          <div class="govuk-form-group js-config-field" style="display: none;">
-            <label class="govuk-label" for="capital-config">
-              Decimal places
-            </label>
-            <input class="govuk-input govuk-input--width-4" id="capital-config" name="capital-config" type="text">
-          </div>
- <label class="govuk-label" for="revenue-min">Formatting options (optional) </label>
-          <div class="js-min-max-fields" style="display: none; gap: 10px;">
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="capital-min">Prefix</label>
-              <input class="govuk-input govuk-input--width-4" id="capital-min" name="capital-min" type="text">
+<div class="govuk-form-group govuk-!-margin-bottom-2">
+  <label class="govuk-label" for="data-type-select-b">
+    Select data type
+  </label>
+  
+  <div class="govuk-radios" data-module="govuk-radios">
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="type-text-b" name="data-type-b" type="radio" value="text">
+      <label class="govuk-label govuk-radios__label" for="type-text-b">
+        Text
+      </label>
+    </div>
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="type-whole-b" name="data-type-b" type="radio" value="whole-number" data-aria-controls="conditional-whole-b">
+      <label class="govuk-label govuk-radios__label" for="type-whole-b">
+        Whole number
+      </label>
+    </div>
+    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-whole-b">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+            Formatting options (optional)
+          </legend>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="prefix-whole-b">
+                  Prefix
+                </label>
+                <input class="govuk-input" id="prefix-whole-b" name="prefix-whole-b" type="text">
+              </div>
             </div>
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="capital-max">Suffix</label>
-              <input class="govuk-input govuk-input--width-4" id="capital-max" name="capital-max" type="text">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="suffix-whole-b">
+                  Suffix
+                </label>
+                <input class="govuk-input" id="suffix-whole-b" name="suffix-whole-b" type="text">
+              </div>
             </div>
           </div>
+        </fieldset>
+      </div>
+    </div>
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="type-decimal-b" name="data-type-b" type="radio" value="decimal-number" data-aria-controls="conditional-decimal-b">
+      <label class="govuk-label govuk-radios__label" for="type-decimal-b">
+        Decimal number
+      </label>
+    </div>
+    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-decimal-b">
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="decimal-places-b">
+          Decimal places
+        </label>
+        <input class="govuk-input govuk-input--width-10" id="decimal-places-b" name="decimalPlaces-b" type="text">
+      </div>
 
-        </div>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+            Formatting options (optional)
+          </legend>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="prefix-decimal-b">
+                  Prefix
+                </label>
+                <input class="govuk-input" id="prefix-decimal-b" name="prefix-decimal-b" type="text">
+              </div>
+            </div>
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="suffix-decimal-b">
+                  Suffix
+                </label>
+                <input class="govuk-input" id="suffix-decimal-b" name="suffix-decimal-b" type="text">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
       </td>
     </tr>
 
@@ -153,39 +276,101 @@
       <td class="govuk-table__cell govuk-table__cell--middle">revenue allocation</td>
       <td class="govuk-table__cell govuk-table__cell--middle">£1,250,000, £1,250,000, £1,250,000</td>
       <td class="govuk-table__cell">
-        <div class="govuk-form-group govuk-!-margin-bottom-2">
-          <label class="govuk-label" for="data-type-revenue">
-            Data type
-          </label>
-          <select class="govuk-select" id="data-type-revenue" name="data-type-revenue" onchange="handleTypeChange(this)">
-            <option value="choose" selected>Select data type</option>
-            <option value="text">Text</option>
-            <option value="number">Whole number</option>
-            <option value="decimal">Decimal number</option>
-          </select>
-        </div>
-
-        <div class="govuk-inset-text js-conditional-wrapper" style="display: none; margin-top: 10px;">
-          
-          <div class="govuk-form-group js-config-field" style="display: none;">
-            <label class="govuk-label" for="revenue-config">
-              Decimal places
-            </label>
-            <input class="govuk-input govuk-input--width-4" id="revenue-config" name="revenue-config" type="text">
-          </div>
- <label class="govuk-label" for="revenue-min">Formatting options (optional) </label>
-          <div class="js-min-max-fields" style="display: none; gap: 10px;">
-
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="revenue-min">Prefix </label>
-              <input class="govuk-input govuk-input--width-4" id="revenue-min" name="revenue-min" type="text">
+      <div class="govuk-form-group govuk-!-margin-bottom-2">
+    <div class="govuk-form-group govuk-!-margin-bottom-2">
+  <label class="govuk-label" for="data-type-capital">
+    Select data type
+  </label>
+  
+  <div class="govuk-radios" data-module="govuk-radios">
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="contact-text" name="contact-type" type="radio" value="text">
+      <label class="govuk-label govuk-radios__label" for="contact-text">
+        Text
+      </label>
+    </div>
+   
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="contact-whole" name="contact-type" type="radio" value="whole-number" data-aria-controls="conditional-contact-whole">
+      <label class="govuk-label govuk-radios__label" for="contact-whole">
+        Whole number
+      </label>
+    </div>
+    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-whole">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+            Formatting options (optional)
+          </legend>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="prefix-whole">
+                  Prefix
+                </label>
+                <input class="govuk-input" id="prefix-whole" name="prefix-whole" type="text">
+              </div>
             </div>
-            <div class="govuk-form-group" style="margin-bottom: 0;">
-              <label class="govuk-label" for="revenue-max">Suffix</label>
-              <input class="govuk-input govuk-input--width-4" id="revenue-max" name="revenue-max" type="text">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="suffix-whole">
+                  Suffix
+                </label>
+                <input class="govuk-input" id="suffix-whole" name="suffix-whole" type="text">
+              </div>
             </div>
           </div>
+        </fieldset>
+      </div>
+    </div>
+    
+    <div class="govuk-radios__item">
+      <input class="govuk-radios__input" id="contact-decimal" name="contact-type" type="radio" value="decimal-number" data-aria-controls="conditional-contact-decimal">
+      <label class="govuk-label govuk-radios__label" for="contact-decimal">
+        Decimal number
+      </label>
+    </div>
+    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-decimal">
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="decimal-places">
+          Decimal places
+        </label>
+        <input class="govuk-input govuk-input--width-10" id="decimal-places" name="decimalPlaces" type="text">
+      </div>
 
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-!-margin-bottom-2">
+            Formatting options (optional)
+          </legend>
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="prefix-decimal">
+                  Prefix
+                </label>
+                <input class="govuk-input" id="prefix-decimal" name="prefix-decimal" type="text">
+              </div>
+            </div>
+            <div class="govuk-grid-column-one-half">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="suffix-decimal">
+                  Suffix
+                </label>
+                <input class="govuk-input" id="suffix-decimal" name="suffix-decimal" type="text">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
         </div>
       </td>
     </tr>

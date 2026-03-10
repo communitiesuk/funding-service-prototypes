@@ -1,0 +1,210 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">Accomodation</h1>
+
+    <!-- Question Group Settings -->
+    <h2 class="govuk-heading-m">Question group settings</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Display
+        </dt>
+        <dd class="govuk-summary-list__value">
+          1 column per page
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> display setting</span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+
+    <!-- Questions -->
+    <h2 class="govuk-heading-m">Columns</h2>
+    <table class="govuk-table govuk-!-margin-bottom-6">
+      <tbody class="govuk-table__body">
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-width-one-half">
+            <a href="edit_column" class="govuk-link">Houses</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+             <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-width-one-half">
+            <a href="#" class="govuk-link">Flats</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Buildings</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+  <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add columns
+    </button>
+  </form>
+    <br> <br>
+
+        <h2 class="govuk-heading-m">Rows</h2>
+    <table class="govuk-table govuk-!-margin-bottom-6">
+      <tbody class="govuk-table__body">
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-width-one-half">
+            <a href="edit_row" class="govuk-link">January</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">February</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">March</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">April</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">May</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+<form method="post" action="row_number" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add rows
+    </button>
+  </form>
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      You cannot add a nested group when display is set to show all questions on the same page.
+    </p>
+
+    <!-- Guidance -->
+    <h2 class="govuk-heading-m">Guidance</h2>
+    <p class="govuk-body">
+      Only add guidance if you need to give a longer explanation of how to answer the question group, or to format your content with paragraphs, headings, lists or links.
+    </p>
+        <form method="post" action="guidance">
+      <!-- Save Button -->
+      <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
+        Add guidance
+      </button>
+  </form>
+
+
+    <!-- Conditions -->
+    <h2 class="govuk-heading-m">Conditions</h2>
+    <p class="govuk-body">
+      Add conditions to only show this question group if the grant recipient has answered one of the other questions in a particular way.
+    </p>
+    <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+      Add condition
+    </button>
+
+     <!-- Validations -->
+      <h2 class="govuk-heading-m">Validations</h2>
+      <p class="govuk-body">
+        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
+      </p>
+      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+        Add validation
+      </button>
+
+        <!-- Autocalc -->
+    <h2 class="govuk-heading-m">Autocalculations</h2>
+    <p class="govuk-body">
+      Add autocalculations to calculate new values based on data input from the grant recipient
+    </p>
+    <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+      Add calculation
+    </button>
+
+    <!-- Manage question group -->
+    <h2 class="govuk-heading-m">Manage question group</h2>
+    <ul class="govuk-list">
+      <li class="govuk-!-margin-bottom-3">
+        <a href="#" class="govuk-link">Change table name</a>
+      </li>
+      <li>
+        <a href="#" class="govuk-link">Delete table</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+{% endblock %}

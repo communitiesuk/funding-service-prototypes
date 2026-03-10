@@ -9,6 +9,17 @@
 
 {% block content %}
 
+<!-- Custom style to force the GOV.UK focus state on non-interactive elements -->
+<style>
+  .custom-focus-target:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 2px #0b0c0c;
+    background-color: #ffdd00;
+  }
+</style>
+
+<!-- ERROR SUMMARY: Only for blocking errors -->
 <div class="govuk-error-summary" data-module="govuk-error-summary">
   <div role="alert">
     <h2 class="govuk-error-summary__title">
@@ -17,10 +28,8 @@
     <div class="govuk-error-summary__body">
       <ul class="govuk-list govuk-error-summary__list">
         <li>
-          <a href="#">Capital allocation for Swindon City Council must be a decimal number</a>
-        </li>
-        <li>
-          <a href="#">Grant recipient missing</a>
+          <!-- Link targets the exact ID of the wrapper -->
+          <a href="#row-2-capital">Capital allocation for Swindon City Council must be a decimal number</a>
         </li>
       </ul>
     </div>
@@ -28,107 +37,99 @@
 </div>
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
-<h1 class="govuk-heading-l">Check Outputs data set issues</h1>
+    <span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
+    <h1 class="govuk-heading-l">Check Outputs data set issues</h1>
 
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-   There are issues with the data set.
-  </strong>
-</div>
-
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        There are issues with the data set. You must fix the errors before uploading, but you can proceed with missing data.
+      </strong>
+    </div>
 
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Row</th>
           <th scope="col" class="govuk-table__header">Grant recipient</th>
-            <th scope="col" class="govuk-table__header">
-            Capital allocation</th>
-              <th scope="col" class="govuk-table__header">Revenue allocation</th>
-
+          <th scope="col" class="govuk-table__header">Capital allocation</th>
+          <th scope="col" class="govuk-table__header">Revenue allocation</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         
+        <!-- Row 1 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">1</td>
           <td class="govuk-table__cell">
-           Birmingham City Council
+            Birmingham City Council
           </td>
-               <td class="govuk-table__cell">
+          <td class="govuk-table__cell">
             £4,500,000.00
           </td>
-           <td class="govuk-table__cell">
-           <strong class="govuk-tag govuk-tag--red">
-          Data missing
-        </strong>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Data missing
+            </strong>
           </td>
-                
-        
         </tr>
 
+        <!-- Row 2 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">2</td>
           <td class="govuk-table__cell">
-           Swindon City Council
-          <!-- </td>
-               <td class="govuk-table__cell">
-            £4,500,000.00
-          </td> -->
-           <td class="govuk-table__cell">
-           <strong class="govuk-tag govuk-tag--red">
-          Incorrect data type
-        </strong>
+            Swindon City Council
           </td>
-           <td class="govuk-table__cell">
-           £1,250,000.00
+          <td class="govuk-table__cell">
+            <!-- ID, tabindex, and custom focus class applied to a wrapper with padding -->
+            <div id="row-2-capital" tabindex="-1" class="custom-focus-target" style="display: inline-block; padding: 4px;">
+              <strong class="govuk-tag govuk-tag--red">
+                Incorrect data type
+              </strong>
+            </div>
           </td>
-
-        
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
         </tr>
 
+        <!-- Row 3 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">3</td>
           <td class="govuk-table__cell">
-            <strong class="govuk-tag govuk-tag--red">
-          Data missing
-        </strong>
+            <strong class="govuk-tag govuk-tag--yellow">
+              Data missing
+            </strong>
           </td>
-               <td class="govuk-table__cell">
-            <strong class="govuk-tag govuk-tag--red">
-          Data missing
-        </strong>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Data missing
+            </strong>
           </td>
-           <td class="govuk-table__cell">
-            <strong class="govuk-tag govuk-tag--red">
-          Data missing
-        </strong>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Data missing
+            </strong>
           </td>
-  
-    
         </tr>
 
       </tbody>
     </table>
 
-<!-- <p class="govuk-body">Go back to check the issues or continue to upload.</p> -->
+    <br>
+    <form method="post" action="upload">
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+         Reupload the file
+        </button>
+        <a class="govuk-link" href="#">Upload a different file</a>
+      </div>
+    </form>
 
-<br>
-  <form method="post" action="upload">
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-Continue and upload data set
-</button>
-</form>
-
-  	</div>
-
+  </div>
 </div>
 
-
 {% endblock %}
-

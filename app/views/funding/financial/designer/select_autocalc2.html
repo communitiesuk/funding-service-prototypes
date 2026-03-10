@@ -1,0 +1,92 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Select a data source" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">Question validation</span>
+            <h1 class="govuk-fieldset__heading">
+              Select a calculation
+            </h1>
+          </legend>
+
+          <div class="govuk-inset-text">
+ From <span class="govuk-body govuk-!-font-weight-bold">Table 1 </span>
+</div>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="data-source-1" name="dataSource" type="radio" value="this-question">
+              <label class="govuk-label govuk-radios__label" for="data-source-1">
+                Sum of columns
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="data-source-2" name="dataSource" type="radio" value="previous-question-this-section">
+              <label class="govuk-label govuk-radios__label" for="data-source-2">
+                Percentage of delivery vs estimation
+              </label>
+            </div>
+            
+        
+            
+  
+ 
+            
+        
+
+        </fieldset>
+      </div>
+<form method="post" action="validation2">
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Select data source
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- GOV.UK Accessible Autocomplete Styles and Scripts -->
+<link rel="stylesheet" href="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.css" />
+<style>
+  /* Ensure the autocomplete wrapper aligns with the standard GOV.UK half-width inputs */
+  .autocomplete__wrapper {
+    max-width: 50%; 
+  }
+  .autocomplete__input, .autocomplete__option {
+    font-family: "GDS Transport", arial, sans-serif;
+    font-size: 19px;
+  }
+</style>
+<script src="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var selectElement = document.querySelector('#calculation-table');
+    if (selectElement) {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: selectElement,
+        minLength: 2, // Starts filtering after 2 characters
+        defaultValue: '',
+        showAllValues: true // Keeps the dropdown arrow so users can still see all options if they prefer
+      });
+    }
+  });
+</script>
+{% endblock %}

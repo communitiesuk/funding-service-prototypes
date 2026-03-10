@@ -1,0 +1,127 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Upload new data set" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">Report name</span>
+    <h1 class="govuk-heading-l">Column C (buildings)</h1>
+
+    <p class="govuk-body">Provide the latest data on spend.</p>
+
+    <!-- Row 1: January -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="cost-january">
+        Row 1 data (January)
+      </label>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10" id="cost-january" name="cost-january" type="text" spellcheck="false" data-month="January">
+      </div>
+      <!-- Inset text hidden by default -->
+      <div class="govuk-inset-text" id="inset-january" style="display: none; margin-top: 15px;">
+        <!-- Content injected via JS -->
+      </div>
+    </div>
+
+    <!-- Row 2: February -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="cost-february">
+        Row 2 data (February)
+      </label>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10" id="cost-february" name="cost-february" type="text" spellcheck="false" data-month="February">
+      </div>
+      <div class="govuk-inset-text" id="inset-february" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <!-- Row 3: March -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="cost-march">
+        Row 3 data (March)
+      </label>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10" id="cost-march" name="cost-march" type="text" spellcheck="false" data-month="March">
+      </div>
+      <div class="govuk-inset-text" id="inset-march" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <!-- Row 4: April -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="cost-april">
+        Row 4 data (April)
+      </label>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10" id="cost-april" name="cost-april" type="text" spellcheck="false" data-month="April">
+      </div>
+      <div class="govuk-inset-text" id="inset-april" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <!-- Row 5: May -->
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="cost-may">
+        Row 5 data (May)
+      </label>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10" id="cost-may" name="cost-may" type="text" spellcheck="false" data-month="May">
+      </div>
+      <div class="govuk-inset-text" id="inset-may" style="display: none; margin-top: 15px;"></div>
+    </div>
+
+    <br>
+    <form method="post" action="cya">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  // Wait for the DOM to load
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Select all our cost inputs
+    const inputs = document.querySelectorAll('input[id^="cost-"]');
+    
+    inputs.forEach(input => {
+      // Listen for keystrokes in the input fields
+      input.addEventListener('input', function() {
+        const month = this.getAttribute('data-month');
+        const valueStr = this.value.replace(/,/g, ''); // Remove commas if user typed them
+        const numericValue = parseFloat(valueStr);
+        const insetDiv = document.getElementById('inset-' + month.toLowerCase());
+
+        // If it's a valid number, calculate and show the inset text
+        if (!isNaN(numericValue) && valueStr.trim() !== '') {
+          // Calculate percentage based on 1000 total
+          let percentage = (numericValue / 1000) * 100;
+          
+          // Format it to drop .0 if it's a whole number (e.g., 10% instead of 10.0%)
+          let formattedPerc = percentage % 1 === 0 ? percentage : percentage.toFixed(1);
+
+          insetDiv.innerHTML = `${month} spend is £${numericValue} and total 2025 is £1000, that is <span class="govuk-body govuk-!-font-weight-bold">${formattedPerc}%</span>`;
+          insetDiv.style.display = 'block';
+        } else {
+          // Hide it if the field is cleared or invalid
+          insetDiv.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+{% endblock %}
