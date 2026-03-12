@@ -31,6 +31,5 @@ jobs:
       - uses: pullpreview/action@v6
         with:
           admins: 'samuelhwilliams,srh-sloan,sfount,marcusher'
-          compose_files: docker-compose.pullpreview.yml
           instance_type: micro
           proxy_tls: web:3014
