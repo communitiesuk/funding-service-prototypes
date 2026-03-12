@@ -1,5 +1,7 @@
 name: PullPreview
 on:
+  schedule:
+    - cron: "30 2 * * *"
   push:
     branches:
       - main
@@ -28,8 +30,11 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/GithubCopilotDeploy
           role-session-name: pullpreview
           aws-region: eu-west-2
-      - uses: pullpreview/action@v6
+      - uses: pullpreview/action@v5
         with:
           admins: 'samuelhwilliams,srh-sloan,sfount,marcusher'
+          compose_files: docker-compose.pullpreview.yml
           instance_type: micro
-          proxy_tls: web:3014
+          always_on: main
+          ttl: infinite
+          pre_script: .pullpreview/setup-pullpreview.sh

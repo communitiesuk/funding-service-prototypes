@@ -1,8 +1,0 @@
-services:
-  web:
-    build: .
-    ports:
-      - "3014"
-    env_file: .env
-    environment:
-      NODE_ENV: production
