@@ -1,7 +1,5 @@
 name: PullPreview
 on:
-  schedule:
-    - cron: "30 2 * * *"
   push:
     branches:
       - main
@@ -35,5 +33,4 @@ jobs:
           admins: 'samuelhwilliams,srh-sloan,sfount,marcusher'
           compose_files: docker-compose.pullpreview.yml
           instance_type: micro
-          ttl: infinite
-          pre_script: .pullpreview/setup-pullpreview.sh
+          proxy_tls: web:3014
