@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Check data set issues" %}
+{% set pageHeading = "Missing data in Outputs data set" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -19,7 +19,7 @@
   }
 </style>
 
-<!-- ERROR SUMMARY: Only for blocking errors -->
+<!-- ERROR SUMMARY: Only for blocking errors
 <div class="govuk-error-summary" data-module="govuk-error-summary">
   <div role="alert">
     <h2 class="govuk-error-summary__title">
@@ -27,26 +27,26 @@
     </h2>
     <div class="govuk-error-summary__body">
       <ul class="govuk-list govuk-error-summary__list">
-        <li>
+        <li> -->
           <!-- Link targets the exact ID of the wrapper -->
-          <a href="#row-2-capital">Capital allocation for Swindon City Council must be a decimal number</a>
+          <!-- <a href="#row-2-capital">Capital allocation for Swindon City Council must be a decimal number</a>
         </li>
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
-    <h1 class="govuk-heading-l">Check Outputs data set issues</h1>
+    <h1 class="govuk-heading-l">Missing data in Outputs data set</h1>
 
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        There are issues with the data set. You must fix the errors before uploading, but you can proceed with missing data.
+        The data set has missing data. Grant recipients with missing data cannot complete the report until the missing data is uploaded.
       </strong>
     </div>
 
@@ -83,13 +83,16 @@
           <td class="govuk-table__cell">
             Swindon City Council
           </td>
-          <td class="govuk-table__cell">
+          <!-- <td class="govuk-table__cell"> -->
             <!-- ID, tabindex, and custom focus class applied to a wrapper with padding -->
-            <div id="row-2-capital" tabindex="-1" class="custom-focus-target" style="display: inline-block; padding: 4px;">
+            <!-- <div id="row-2-capital" tabindex="-1" class="custom-focus-target" style="display: inline-block; padding: 4px;">
               <strong class="govuk-tag govuk-tag--red">
                 Incorrect data type
               </strong>
             </div>
+          </td> -->
+          <td class="govuk-table__cell">
+            £4,500,000.00
           </td>
           <td class="govuk-table__cell">
             £1,250,000.00
@@ -122,10 +125,10 @@
     <br>
     <form method="post" action="upload">
       <div class="govuk-button-group">
-        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-         Reupload the file
+        <button type="submit" class="govuk-button govuk-button--primary" data-module="govuk-button">
+         Continue and upload data set
         </button>
-        <a class="govuk-link" href="#">Upload a different file</a>
+        <a class="govuk-link" href="#">Cancel</a>
       </div>
     </form>
 
