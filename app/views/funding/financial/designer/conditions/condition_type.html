@@ -1,0 +1,90 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What type of condition do you need?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">What type of condition do you need?</h1>
+
+    <!-- Context info -->
+    <dl class="govuk-summary-list govuk-summary-list--no-border govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          This question
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Reason for overspend
+        </dd>
+      </div>
+    </dl>
+
+    <form id="conditionRoutingForm" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">
+            What type of condition do you need?
+          </legend>
+          
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="condition-type-1" name="conditionType" type="radio" value="common" aria-describedby="condition-type-1-hint">
+              <label class="govuk-label govuk-radios__label" for="condition-type-1">
+                Common condition
+              </label>
+              <div id="condition-type-1-hint" class="govuk-hint govuk-radios__hint">
+                If the condition requires referencing answers that are dates, yes or no, selected from a list, greater than or less than or equal to or between another number
+              </div>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="condition-type-2" name="conditionType" type="radio" value="calculated" aria-describedby="condition-type-2-hint">
+              <label class="govuk-label govuk-radios__label" for="condition-type-2">
+                Calculated condition
+              </label>
+              <div id="condition-type-2-hint" class="govuk-hint govuk-radios__hint">
+                If the condition requires adding, subtracting, multiplying and dividing two or more numbers
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+      
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('conditionRoutingForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent standard form submission
+      
+      // Find the selected radio button
+      const selectedOption = document.querySelector('input[name="conditionType"]:checked');
+      
+      if (selectedOption) {
+        // Route based on the value of the selected radio button
+        if (selectedOption.value === 'common') {
+          window.location.href = 'add_condition';
+        } else if (selectedOption.value === 'calculated') {
+          window.location.href = 'condition_calc';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

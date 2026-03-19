@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Add validation" %}
+{% set pageHeading = "Add a condition" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -11,28 +11,33 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">Add validation</h1>
+    <h1 class="govuk-heading-l">Add a condition</h1>
+
+    <h2 class="govuk-heading-m">Condition</h2>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Section
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Table
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Question
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          The question
         </dt>
         <dd class="govuk-summary-list__value">
           January
         </dd>
       </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Depends on the answer to
+        </dt>
+        <dd class="govuk-summary-list__value">
+          How much skills funding did you receive in total during the 2023 to 2024 financial year?
+        </dd>
+      </div>
+
     </dl>
 
-    <form method="post" action="valid_calc" novalidate>
+    <form method="post" action="next-step" novalidate>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -64,22 +69,10 @@
               </label>
             </div>
             
-            <div class="govuk-radios__divider">or</div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-type-4" name="validationType" type="radio" value="calculation" aria-describedby="validation-type-4-hint">
-              <label class="govuk-label govuk-radios__label" for="validation-type-4">
-                Calculation with two or more numbers
-              </label>
-              <div id="validation-type-4-hint" class="govuk-hint govuk-radios__hint">
-                Adding, subtracting, multiplying and dividing
-              </div>
-            </div>
-
           </div>
         </fieldset>
       </div>
-      
+
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
