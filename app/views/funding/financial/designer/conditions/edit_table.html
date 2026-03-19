@@ -75,7 +75,7 @@
       </tbody>
     </table>
 
-
+<form method="post" action="column_number" novalidate>
   <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
       Add columns
     </button>
@@ -159,13 +159,9 @@
     <p class="govuk-body">
       Only add guidance if you need to give a longer explanation of how to answer the question group, or to format your content with paragraphs, headings, lists or links.
     </p>
-        <form method="post" action="guidance">
-      <!-- Save Button -->
-      <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
-        Add guidance
-      </button>
-  </form>
-
+    <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+      Add guidance
+    </button>
 
     <!-- Conditions -->
     <h2 class="govuk-heading-m">Conditions</h2>
@@ -177,16 +173,15 @@
     </button>
 
      <!-- Validations -->
-      <h2 class="govuk-heading-m">Calculated Validations</h2>
+      <h2 class="govuk-heading-m">Validations</h2>
       <p class="govuk-body">
-   Add validations to show an error message if a calculation including two or more answers from the question group does not meet a requirement. 
-<br>
-For example, validation to stop users from entering numbers that add up to more than a required amount.
-
+        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
       </p>
-      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
-        Add calculated validation
-      </button>
+<form method="post" action="add_valid" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add validation
+    </button>
+  </form>
 
         <!-- Autocalc -->
     <h2 class="govuk-heading-m">Autocalculations</h2>

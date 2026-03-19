@@ -14,7 +14,7 @@
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">Accomodation</h1>
 
     <!-- Question Group Settings -->
-    <h2 class="govuk-heading-m">Question group settings</h2>
+    <h2 class="govuk-heading-m">Table settings</h2>
     <dl class="govuk-summary-list govuk-!-margin-bottom-8">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -197,10 +197,14 @@
     </button>
 
      <!-- Validations -->
-      <h2 class="govuk-heading-m">Validations</h2>
+      <h2 class="govuk-heading-m">Calculated Validations</h2>
       <p class="govuk-body">
-        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
+   Add validations to show an error message if a calculation including two or more answers from the question group does not meet a requirement. 
+<br>
+For example, validation to stop users from entering numbers that add up to more than a required amount.
+
       </p>
+
          <table class="govuk-table govuk-!-margin-bottom-6">
       <tbody class="govuk-table__body">
         <!-- Row 1 -->
@@ -219,7 +223,7 @@
         <form method="post" action="validation">
       <!-- Save Button -->
       <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
-        Add validation
+        Add calculated validation
       </button>
   </form>
 
