@@ -15,7 +15,7 @@
 
     <!-- Question type (read-only) -->
     <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Question type</h2>
-    <p class="govuk-body govuk-!-margin-bottom-6">Single line of text</p>
+    <p class="govuk-body govuk-!-margin-bottom-6">Decimal number</p>
 
 
       
@@ -28,9 +28,10 @@
         </h2>
         <div id="question-text-hint" class="govuk-hint">
           The text grant recipients will see on their report
-        </div>   
+        </div>
         <div style="position: relative;">
-          <textarea class="govuk-textarea" id="question-text" name="questionText" rows="3" aria-describedby="question-text-hint" style="padding-bottom: 45px; margin-bottom: 0;">Why did you overspend?</textarea>
+          <textarea class="govuk-textarea" id="question-text" name="questionText" rows="3" aria-describedby="question-text-hint" style="padding-bottom: 45px; margin-bottom: 0;">What is your total forecast spend?
+</textarea>
           <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="position: absolute; bottom: 12px; right: 12px; padding: 4px 10px; font-size: 14px;">
             Reference data
           </button>
@@ -47,9 +48,9 @@
         <div id="question-name-hint" class="govuk-hint">
           A short name for this question that will be used for reference in monitoring reports (use lower-case text)
         </div>
-        <input class="govuk-input" id="question-name" name="questionName" type="text" aria-describedby="question-name-hint" value="reason for overspend">
+        <input class="govuk-input" id="question-name" name="questionName" type="text" aria-describedby="question-name-hint" value="total forecast spend">
       </div>
-
+      
       <!-- Question hint (optional) -->
       <div class="govuk-form-group govuk-!-margin-bottom-8">
         <h2 class="govuk-label-wrapper">
@@ -87,7 +88,7 @@
       </button>
 
       <!-- Validations Section -->
-      <h2 class="govuk-heading-s">Calculated validations</h2>
+      <h2 class="govuk-heading-s">Validations</h2>
       <p class="govuk-body">
         Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
       </p>
@@ -110,7 +111,7 @@
       
 <form method="post" action="add_valid" novalidate>
     <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
-      Add calcualted validation
+      Add validation
     </button>
   </form>
   <br>
