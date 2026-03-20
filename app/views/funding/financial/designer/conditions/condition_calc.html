@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-l">Create calculated validation</h1>
+    <h1 class="govuk-heading-l">Create calculated condition</h1>
 
     <!-- Context info -->
     <dl class="govuk-summary-list govuk-summary-list--no-border govuk-!-margin-bottom-6">
@@ -33,7 +33,13 @@
         </label>
       </h2>
       <p id="calculation-hint" class="govuk-body">
-        Use a calculation to describe a valid answer, starting with referencing this question.
+        Use number question references, calculation symbols and numbers to describe when to show this question to the user.
+<br>
+          <br>
+          For example, if you need to show the question when the capital spend value plus the revenue spend value is more than the funding value, the calculation would be:
+          <br>
+          <br>
+          ((capital spend)) + ((revenue spend)) > ((funding))
       </p>
       
       <div style="position: relative;">
@@ -56,13 +62,7 @@
         </span>
       </summary>
       <div class="govuk-details__text">
-        <p class="govuk-body">For example, if this question asks for the total spend and the answer should equal previous answers for capital spend plus revenue spend, the calculation would be:</p>
-
-        <p class="govuk-body">((total spend)) = ((capital spend)) + ((revenue spend))</p>
-
-        <p class="govuk-body">If the total spend answer does not pass the validation, the user will need to correct their answers to continue.</p>
-
-        <p class="govuk-body govuk-!-font-weight-bold">Equation symbols</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Calculation symbols</p>
         <ul class="govuk-list">
           <li>+  &nbsp;&nbsp;&nbsp;Add two numbers</li><br>
           <li>–   &nbsp;&nbsp;&nbsp;Subtract a number from another number</li><br>
