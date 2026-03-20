@@ -1,0 +1,120 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Edit question" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Edit question</h1>
+
+    <!-- Question type (read-only) -->
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Question type</h2>
+    <p class="govuk-body govuk-!-margin-bottom-6">Single line of text</p>
+
+
+      
+      <!-- Question text -->
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--s" for="question-text">
+            Question text
+          </label>
+        </h2>
+        <div id="question-text-hint" class="govuk-hint">
+          The text grant recipients will see on their report
+        </div>
+        <div style="position: relative;">
+          <textarea class="govuk-textarea" id="question-text" name="questionText" rows="3" aria-describedby="question-text-hint" style="padding-bottom: 45px; margin-bottom: 0;">Why did you overspend?</textarea>
+          <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="position: absolute; bottom: 12px; right: 12px; padding: 4px 10px; font-size: 14px;">
+            Reference data
+          </button>
+        </div>
+      </div>
+
+      <!-- Question name -->
+      <div class="govuk-form-group">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--s" for="question-name">
+            Question name
+          </label>
+        </h2>
+        <div id="question-name-hint" class="govuk-hint">
+          A short name for this question that will be used for reference in monitoring reports (use lower-case text)
+        </div>
+        <input class="govuk-input" id="question-name" name="questionName" type="text" aria-describedby="question-name-hint" value="reason for overspend">
+      </div>
+
+      <!-- Question hint (optional) -->
+      <div class="govuk-form-group govuk-!-margin-bottom-8">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--s" for="question-hint">
+            Question hint (optional)
+          </label>
+        </h2>
+        <div id="question-hint-hint" class="govuk-hint">
+          A single sentence to help someone answer the question, for example, 'Must be between 6 and 8 digits long'
+        </div>
+        <div style="position: relative;">
+          <textarea class="govuk-textarea" id="question-hint" name="questionHint" rows="3" aria-describedby="question-hint-hint" style="padding-bottom: 45px; margin-bottom: 0;"></textarea>
+          <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="position: absolute; bottom: 12px; right: 12px; padding: 4px 10px; font-size: 14px;">
+            Reference data
+          </button>
+        </div>
+      </div>
+
+      <!-- Guidance Section -->
+      <h2 class="govuk-heading-s">Guidance</h2>
+      <p class="govuk-body">
+        Only add guidance if you need to give a longer explanation of how to answer the question, or to format your content with paragraphs, headings, lists or links.
+      </p>
+      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
+        Add guidance
+      </button>
+
+      <!-- Conditions Section -->
+      <h2 class="govuk-heading-s">Conditions</h2>
+      <p class="govuk-body">
+        Add conditions to only show this question if the grant recipient has answered one of the other questions in a particular way.
+      </p>
+<form method="post" action="condition_type" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add condition
+    </button>
+  </form>
+
+      <!-- Validations Section -->
+      <h2 class="govuk-heading-s">Calculated validations</h2>
+      <p class="govuk-body">
+        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
+      </p>
+<form method="post" action="add_valid" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add calcualted validation
+    </button>
+  </form>
+  <br>
+
+      <!-- Save Button -->
+      <div class="govuk-!-margin-bottom-8">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save
+        </button>
+      </div>
+
+      <!-- Manage question Section -->
+      <h2 class="govuk-heading-s">Manage question</h2>
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">Delete this question</a>
+      </p>
+
+
+
+  </div>
+</div>
+{% endblock %}
