@@ -20,7 +20,7 @@
           This question
         </dt>
         <dd class="govuk-summary-list__value">
-          Reason for overspend
+          Total forecast spend
         </dd>
       </div>
     </dl>
@@ -35,7 +35,13 @@
           </label>
         </h2>
         <p id="calculation-hint" class="govuk-body">
-          Use a calculation to describe a valid answer, starting with referencing this question.
+          Use number question references, calculation symbols and numbers to describe what the answer needs to be. Start with referencing this question.
+<br>
+          <br>
+          For example, if this question asks for the total spend and the answer should equal previous answers for capital spend plus revenue spend, the calculation would be: 
+          <br>
+          <br>
+          ((total spend)) = ((capital spend)) + ((revenue spend))
         </p>
         
         <div style="position: relative;">
@@ -54,13 +60,13 @@
           </span>
         </summary>
         <div class="govuk-details__text">
-         <p class="govuk-body">For example, if this question asks for the total spend and the answer should equal previous answers for capital spend plus revenue spend, the calculation would be:</p>
+         <!-- <p class="govuk-body">For example, if this question asks for the total spend and the answer should equal previous answers for capital spend plus revenue spend, the calculation would be:</p>
 
 <p class="govuk-body">((total spend)) = ((capital spend)) + ((revenue spend))</p>
 
-<p class="govuk-body">If the total spend answer does not pass the validation, the user will need to correct their answers to continue.</p>
+<p class="govuk-body">If the total spend answer does not pass the validation, the user will need to correct their answers to continue.</p> -->
 
-<p class="govuk-body govuk-!-font-weight-bold">Equation symbols</p>
+<p class="govuk-body govuk-!-font-weight-bold">Calculation symbols</p>
 <ul class="govuk-list">
 <li>+  &nbsp;&nbsp;&nbsp;Add two numbers</li><br>
 <li>–   &nbsp;&nbsp;&nbsp;Subtract a number from another number</li><br>
@@ -83,7 +89,7 @@
           </label>
         </h2>
         <p id="error-message-hint" class="govuk-body">
-          For example, "Number of households supported cannot be more than number of eligible households".
+          For example, "Total forecast spend cannot be more than capital spend plus revenue spend".
         </p>
         
         <div style="position: relative;">
