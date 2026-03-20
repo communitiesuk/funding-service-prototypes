@@ -28,7 +28,7 @@
         </h2>
         <div id="question-text-hint" class="govuk-hint">
           The text grant recipients will see on their report
-        </div>   
+        </div>
         <div style="position: relative;">
           <textarea class="govuk-textarea" id="question-text" name="questionText" rows="3" aria-describedby="question-text-hint" style="padding-bottom: 45px; margin-bottom: 0;">Why did you overspend?</textarea>
           <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="position: absolute; bottom: 12px; right: 12px; padding: 4px 10px; font-size: 14px;">
@@ -82,15 +82,6 @@
       <p class="govuk-body">
         Add conditions to only show this question if the grant recipient has answered one of the other questions in a particular way.
       </p>
-      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
-        Add condition
-      </button>
-
-      <!-- Validations Section -->
-      <h2 class="govuk-heading-s">Calculated validations</h2>
-      <p class="govuk-body">
-        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
-      </p>
 
          <table class="govuk-table govuk-!-margin-bottom-6">
       <tbody class="govuk-table__body">
@@ -99,15 +90,24 @@
           <td class="govuk-table__cell govuk-!-width-one-half">
             First
           </td>
-          <td class="govuk-table__cell"><a href="valid_calc2" class="govuk-link">The answer must be before ((Financial data monitoring report test -> Forecast delivery -> when)) </a></td>
+          <td class="govuk-table__cell"><a href="valid_calc2" class="govuk-link">"((actual spend on houses)) + ((actual spend flats)) > ((total forecast spend))"</a></td>
 
         </tr>
 
       </tbody>
     </table>
 
+<form method="post" action="condition_type" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Add condition
+    </button>
+  </form>
 
-      
+      <!-- Validations Section -->
+      <h2 class="govuk-heading-s">Calculated validations</h2>
+      <p class="govuk-body">
+        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
+      </p>
 <form method="post" action="add_valid" novalidate>
     <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
       Add calcualted validation

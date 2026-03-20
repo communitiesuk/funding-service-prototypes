@@ -1,0 +1,77 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Select which question's answer to use" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="condition_calc2" novalidate>
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <span class="govuk-caption-l">Question condition</span>
+          <label class="govuk-label govuk-label--l" for="question-autocomplete">
+            Select which question's answer to use
+          </label>
+        </h1>
+        
+        <!-- Standard select to be enhanced with accessible-autocomplete -->
+        <select class="govuk-select govuk-!-width-full" id="question-autocomplete" name="questionAutocomplete">
+          <option value="" selected disabled></option>
+          <option value="q1">How much skills funding did you receive in total during the 2023 to 2024 financial year?</option>
+          <option value="q2">What date did you start spending your skills funding?</option>
+          <option value="q3">Have you spent all of your skills funding?</option>
+          <option value="q4">What date did you spend all of your skills funding?</option>
+          <option value="q5">How much skills funding has been spent as of 31 March 2025?</option>
+          <option value="q6">How much skills funding has been committed to spending, but not yet spent, as of 31 March 2025?</option>
+          <option value="q7">What date do you expect to spend all your skills funding?</option>
+          <option value="q8">What barriers have you faced in spending the skills funding?</option>
+        </select>
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Reference data
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- GOV.UK Accessible Autocomplete Styles and Scripts -->
+<link rel="stylesheet" href="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.css" />
+<style>
+  /* Ensure text matches standard GOV.UK typography inside the autocomplete */
+  .autocomplete__input, .autocomplete__option {
+    font-family: "GDS Transport", arial, sans-serif;
+    font-size: 19px;
+  }
+  
+  /* Ensure long options wrap properly if they exceed the dropdown width */
+  .autocomplete__option {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+</style>
+<script src="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var selectElement = document.querySelector('#question-autocomplete');
+    if (selectElement) {
+      accessibleAutocomplete.enhanceSelectElement({
+        selectElement: selectElement,
+        minLength: 2, // Starts filtering after 2 characters are typed
+        defaultValue: '',
+        showAllValues: true // Keeps the dropdown arrow visible
+      });
+    }
+  });
+</script>
+{% endblock %}
