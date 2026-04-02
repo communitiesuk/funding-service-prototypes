@@ -1,0 +1,157 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Expenditure" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Expenditure</span>
+<h1 class="govuk-heading-l">Check your answers</h1>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      
+
+
+      <!-- Row 2: Q2 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            Forecast spend April to June 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £17,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend July to September 2026</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 3: Q3 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+        Forecast spend July to September 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £14,500
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend October to December 2026</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 4: Q4 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+           Forecast spend October to December 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £20,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend January to March 2027</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+         <!-- Row 5: Q5 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+         Forecast spend January to March 2027
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £20,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend January to March 2027</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+         <!-- Row 6: Q6 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+      Forecast spend on green spaces
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £20,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend January to March 2027</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+         <!-- Row 7: Q7 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+         Forecast spend on community spaces
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £20,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend January to March 2027</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+    </dl>
+
+
+      {{ govukRadios({
+  name: "haveYouCompletedThisSection",
+  fieldset: {
+    legend: {
+      text: "Have you completed this task?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I’ve completed this task"
+    },
+    {
+      value: "no",
+      text: "No, I’ll come back to it later"
+    }
+  ]
+}) }}
+
+    <form method="post" action="sections" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
