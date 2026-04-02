@@ -1,0 +1,160 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Expenditure" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Error Summary -->
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <p class="govuk-body" style="color: #d4351c; font-weight: bold;">
+            Total forecast spend for green spaces, community spaces and sports centres must be the same as total forecast spend for April to June 2026 (£15,000).
+          </p>
+          
+          <p class="govuk-body govuk-!-margin-bottom-1" style="color: #d4351c; font-weight: bold;">
+            In this section:
+          </p>
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#spend-green-spaces">Check your answer for forecast spend on green spaces (£4,500)</a>
+            </li>
+            <li>
+              <a href="#spend-community-spaces">Check your answer for forecast spend on community spaces (£4,500)</a>
+            </li>
+            <li>
+              <a href="#spend-sports-centres">Check your answer for forecast spend on sports centres (£7,000)</a>
+            </li>
+         
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<span class="govuk-caption-l">Expenditure</span>
+<h1 class="govuk-heading-l">Check your answers</h1>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      
+
+
+
+
+
+      <!-- Row 5: Green Spaces (Error state) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0; position: relative;">
+        <!-- Absolute positioned red line -->
+        <div style="position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; background-color: #d4351c;"></div>
+        
+        <p class="govuk-error-message" style="margin-left: 15px; margin-bottom: 10px; text-decoration: underline;" id="spend-green-spaces">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on green spaces
+        </p>
+        
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 15px; box-sizing: border-box;">
+            Forecast spend<br>on green<br>spaces
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £4,500
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="project_forecast_spend_error">
+              Change<span class="govuk-visually-hidden"> forecast spend on green spaces</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 6: Community Spaces (Error state) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0; position: relative;">
+        <!-- Absolute positioned red line -->
+        <div style="position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; background-color: #d4351c;"></div>
+        
+        <p class="govuk-error-message" style="margin-left: 15px; margin-bottom: 10px; text-decoration: underline;" id="spend-community-spaces">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on community spaces
+        </p>
+        
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 15px; box-sizing: border-box;">
+            Forecast spend<br>on community<br>spaces
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £4,500
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="project_forecast_spend_error">
+              Change<span class="govuk-visually-hidden"> forecast spend on community spaces</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 7: Sports Centres (Error state) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0; position: relative;">
+        <!-- Absolute positioned red line -->
+        <div style="position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; background-color: #d4351c;"></div>
+        
+        <p class="govuk-error-message" style="margin-left: 15px; margin-bottom: 10px; text-decoration: underline;" id="spend-sports-centres">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on sports centres
+        </p>
+        
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 15px; box-sizing: border-box;">
+            Forecast spend<br>on<br>sports centres
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £6,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="project_forecast_spend_error">
+              Change<span class="govuk-visually-hidden"> forecast spend on sports centres</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+    </dl>
+
+    
+      {{ govukRadios({
+  name: "haveYouCompletedThisSection",
+  fieldset: {
+    legend: {
+      text: "Have you completed this task?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I’ve completed this task"
+    },
+    {
+      value: "no",
+      text: "No, I’ll come back to it later"
+    }
+  ]
+}) }}
+
+    <form method="post" action="next-step" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
