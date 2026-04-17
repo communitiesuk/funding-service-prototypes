@@ -26,7 +26,7 @@
   <div class="govuk-grid-column-three-quarters">
     
     <!-- Breadcrumbs -->
-    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-6">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
           <a class="govuk-breadcrumbs__link" href="#">Allocations</a>
@@ -35,7 +35,7 @@
           <a class="govuk-breadcrumbs__link" href="#">Allocation form</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="">Submissions</a>
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
         </li>
         <li class="govuk-breadcrumbs__list-item" aria-current="page">
           Glasgow City Council
@@ -43,11 +43,26 @@
       </ol>
     </div>
 
+    <!-- Success Notification Banner -->
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Changes requested on submission. We have sent an email to the grant recipient.
+        </h3>
+      </div>
+    </div>
+
     <!-- Header & Caption -->
     <span class="govuk-caption-xl">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">
       {{ pageHeading }}
-      <span class="govuk-body govuk-!-font-size-19" style="vertical-align: middle; margin-left: 5px;">Submitted</span>
+      <!-- Changed tag to 'Changes requested' and used yellow colour -->
+      <strong class="govuk-tag govuk-tag--yellow" style="vertical-align: middle; margin-left: 5px;">Changes requested</strong>
     </h1>
 
     <!-- Your allocation -->
@@ -89,57 +104,31 @@
       </div>
     </dl>
 
-    <!-- Validate allocation (with radio buttons instead of original validation actions) -->
-    <h2 class="govuk-heading-m">Validate allocation</h2>
-    <p class="govuk-body govuk-!-margin-bottom-6">
-      Review the submission and either validate, request changes, or decline it.
-    </p>
-
-    <form method="post" action="next-step" novalidate>
-      <div class="govuk-form-group govuk-!-margin-bottom-6">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-visually-hidden">
-            Validate allocation options
-          </legend>
-          <div class="govuk-radios" data-module="govuk-radios">
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate">
-              <label class="govuk-label govuk-radios__label" for="validation-action-1">
-                Continue to validate submission
-              </label>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
-              <label class="govuk-label govuk-radios__label" for="validation-action-2">
-                Request changes on submission
-              </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-!-font-weight-bold" for="request-changes-reason">
-                  Why are you requesting changes on the Allocation form submission?
-                </label>
-                <textarea class="govuk-textarea" id="request-changes-reason" name="requestChangesReason" rows="5"></textarea>
-              </div>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline">
-              <label class="govuk-label govuk-radios__label" for="validation-action-3">
-                Decline validation
-              </label>
-            </div>
-
-          </div>
-        </fieldset>
+    <!-- Changes requested section -->
+    <div class="govuk-summary-card govuk-!-margin-bottom-8">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          Changes requested
+        </h2>
       </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              Why are you requesting changes on the Allocation form submission?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              The lead contact name does not match the original application records. Please update the project contact to the current project manager before we can validate this submission.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Save and continue
-      </button>
-    </form>
+    <!-- Back to submissions link -->
+    <p class="govuk-body govuk-!-margin-top-8">
+      <a href="allocations2" class="govuk-link">Back to submissions</a>
+    </p>
 
   </div>
 </div>

@@ -1,0 +1,135 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Submission" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <!-- Left Side Navigation -->
+  <div class="govuk-grid-column-one-quarter">
+    <ul class="govuk-list govuk-!-margin-top-2">
+      <li>
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state" href="#">Grant recipients</a>
+      </li>
+      <li class="govuk-!-margin-top-4">
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state govuk-!-font-weight-bold" href="#">Applications</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="govuk-grid-column-three-quarters">
+    
+    <!-- Breadcrumbs -->
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-6">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Allocations</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Allocation form</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+    <!-- Success Notification Banner -->
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Submission validation declined. We have sent an email to the grant recipient.
+        </h3>
+      </div>
+    </div>
+
+    <!-- Header & Caption -->
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+      <!-- Changed tag to 'Changes requested' and used yellow colour -->
+      <strong class="govuk-tag govuk-tag--red" style="vertical-align: middle; margin-left: 5px;">Declined</strong>
+    </h1>
+
+    <!-- Your allocation -->
+    <h2 class="govuk-heading-m">Your allocation</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Do you want to receive the grant allocation?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Project information -->
+    <h2 class="govuk-heading-m">Project information</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          What is the name of the project?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Name of the project
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Contact information -->
+    <h2 class="govuk-heading-m">Contact information</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          What is the name of the lead contact?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Steven Fountain
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Changes requested section -->
+    <div class="govuk-summary-card govuk-!-margin-bottom-8">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          Reason for declining validation
+        </h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+               Why are you declining validatation for the Allocation form submission?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              The lead contact name does not match the original application records.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Back to submissions link -->
+    <p class="govuk-body govuk-!-margin-top-8">
+      <a href="allocations_decline" class="govuk-link">Back to submissions</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

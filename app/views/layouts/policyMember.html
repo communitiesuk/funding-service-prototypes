@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block header %}
+  <!-- 1. The main black GOV.UK header -->
+  {{ govukHeader({
+    homepageUrl: "#",
+    serviceName: "MHCLG Funding Service",
+    serviceUrl: "#",
+    navigation: [
+      {
+        href: "#",
+        text: "Sign out"
+      }
+    ]
+  }) }}
+
+  <!-- 2. Your custom white secondary navigation bar -->
+  <div class="moj-primary-navigation" style="background-color: white; border-bottom: 1px solid #b1b4b6;">
+    <div class="govuk-width-container">
+      <ul class="moj-primary-navigation__list" style="margin: 0; padding: 15px 0;">
+        <li class="moj-primary-navigation__item">
+          <a class="moj-primary-navigation__link" style="color: #0b0c0c; font-weight: bold;" href="#">Deliver grant funding</a>
+        </li>
+        <li class="moj-primary-navigation__item">
+          <a class="moj-primary-navigation__link" style="color: #1d70b8;" href="#">Recipients</a>
+        </li>
+        <!-- Add the rest of your links here -->
+      </ul>
+    </div>
+  </div>
+{% endblock %}
