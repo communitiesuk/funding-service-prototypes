@@ -1,0 +1,89 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form action="confirm" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Which sections need to be changed or updated?
+            </h1>
+          </legend>
+          
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-people" name="sectionsToChange" type="checkbox" value="people" data-aria-controls="conditional-people">
+              <label class="govuk-label govuk-checkboxes__label" for="section-people">
+                People
+              </label>
+            </div>
+            
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-people">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="people-details">
+                  What changes are needed to People?
+                </label>
+                <textarea class="govuk-textarea" id="people-details" name="peopleDetails" rows="5"></textarea>
+              </div>
+            </div>
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-delivery-plan" name="sectionsToChange" type="checkbox" value="delivery-plan" data-aria-controls="conditional-delivery-plan">
+              <label class="govuk-label govuk-checkboxes__label" for="section-delivery-plan">
+                Delivery plan
+              </label>
+            </div>
+            
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-delivery-plan">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="delivery-plan-details">
+                  What changes are needed to Delivery plan?
+                </label>
+                <textarea class="govuk-textarea" id="delivery-plan-details" name="deliveryPlanDetails" rows="5"></textarea>
+              </div>
+            </div>
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-funding" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-funding">
+              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+                Funding
+              </label>
+            </div>
+            
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-funding">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="funding-details">
+                  What changes are needed to Funding?
+                </label>
+                <textarea class="govuk-textarea" id="funding-details" name="fundingDetails" rows="5"></textarea>
+              </div>
+            </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

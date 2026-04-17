@@ -122,10 +122,12 @@
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
-              <p class="govuk-body">
-                This will be sent to the grant recipient via email
-              </p>
-            
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="request-changes-reason">
+                  Why are you requesting changes on the Allocation form submission?
+                </label>
+                <textarea class="govuk-textarea" id="request-changes-reason" name="requestChangesReason" rows="5"></textarea>
+              </div>
             </div>
             
             <div class="govuk-radios__item">
@@ -168,7 +170,7 @@
         if (selectedOption.value === 'validate') {
           window.location.href = 'confirm_valid';
         } else if (selectedOption.value === 'request-changes') {
-          window.location.href = 'changes';
+          window.location.href = 'confirm';
         } else if (selectedOption.value === 'decline') {
           window.location.href = 'confirm_declined';
         }
