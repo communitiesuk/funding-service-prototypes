@@ -1,0 +1,192 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Submission" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <!-- Left Side Navigation -->
+  <div class="govuk-grid-column-one-quarter">
+    <ul class="govuk-list govuk-!-margin-top-2">
+      <li>
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state" href="#">Grant recipients</a>
+      </li>
+      <li class="govuk-!-margin-top-4">
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state govuk-!-font-weight-bold" href="#">Applications</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="govuk-grid-column-three-quarters">
+    
+    <!-- Breadcrumbs -->
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Allocations</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Allocation form</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+    <!-- Header & Caption -->
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+      <span class="govuk-body govuk-!-font-size-19" style="vertical-align: middle; margin-left: 5px;">Submitted</span>
+    </h1>
+
+    <!-- Your allocation -->
+    <h2 class="govuk-heading-m">Your allocation</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          Do you want to receive the grant allocation?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Project information -->
+    <h2 class="govuk-heading-m">Project information <strong class="govuk-tag govuk-tag--green">
+          Changed
+        </strong></h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          What is the name of the project?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Glasgow council spending <br> <br>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Previous answer
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   Name of the project
+  </div>
+</details>
+
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Contact information -->
+    <h2 class="govuk-heading-m">Contact information</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          What is the name of the lead contact?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Steven Fountain
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Validate allocation -->
+    <h2 class="govuk-heading-m">Validate allocation</h2>
+    <p class="govuk-body govuk-!-margin-bottom-6">
+      Review the submission and either validate, request changes, or decline it.
+    </p>
+
+    <form id="validationRoutingForm" novalidate>
+      <div class="govuk-form-group govuk-!-margin-bottom-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">
+            Validate allocation options
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" data-aria-controls="conditional-validation-action-1">
+              <label class="govuk-label govuk-radios__label" for="validation-action-1">
+                Validate submission
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-1">
+              <p class="govuk-body">
+                You are validating the Allocation form submission for Benches allocated in parks. <br><br> By validating this submission, you confirm that you have reviewed the information provided and it is correct
+              </p>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
+              <label class="govuk-label govuk-radios__label" for="validation-action-2">
+                Request changes on submission
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
+              <p class="govuk-body">
+                This will be sent to the grant recipient via email
+              </p>
+            
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
+              <label class="govuk-label govuk-radios__label" for="validation-action-3">
+                Decline validation
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+                  Why are you declining validatation for the Allocation form submission?
+                </label>
+                <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Confirm
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('validationRoutingForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const selectedOption = document.querySelector('input[name="validationAction"]:checked');
+      
+      if (selectedOption) {
+        if (selectedOption.value === 'validate') {
+          window.location.href = 'confirm_valid';
+        } else if (selectedOption.value === 'request-changes') {
+          window.location.href = 'changes';
+        } else if (selectedOption.value === 'decline') {
+          window.location.href = 'confirm_declined';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

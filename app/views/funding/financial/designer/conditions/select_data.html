@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form method="post" action="previous_section" novalidate>
+  <form id="selectSource" novalidate>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           
@@ -66,4 +66,26 @@
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('selectSource');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent standard form submission
+      
+      // Find the selected radio button
+      const selectedOption = document.querySelector('input[name="dataSource"]:checked');
+      
+      if (selectedOption) {
+        // Route based on the value of the selected radio button
+        if (selectedOption.value === 'previous-question-this-section') {
+          window.location.href = 'previous_section';
+        } else if (selectedOption.value === 'uploaded-dataset') {
+          window.location.href = 'select_dataset';
+        }
+      }
+    });
+  });
+</script>
 {% endblock %}
