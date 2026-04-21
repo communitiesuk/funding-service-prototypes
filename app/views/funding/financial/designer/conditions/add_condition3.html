@@ -15,68 +15,32 @@
 
     <h2 class="govuk-heading-m">Condition</h2>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+    <dl class="govuk-summary-list">
       
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-third">
           The question
         </dt>
         <dd class="govuk-summary-list__value">
-          How much did you spend on houses?
+          Why did you overspend?
         </dd>
       </div>
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Depends on the answer to
+          Depends on
         </dt>
         <dd class="govuk-summary-list__value">
-          (Column A) from capital allocation data set
+<form method="post" action="select_data2" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Reference data
+    </button>
+  </form>
+        </dd>
         </dd>
       </div>
 
     </dl>
-
-    <form method="post" action="edit_question2" novalidate>
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h2 class="govuk-fieldset__heading">
-              What does the answer need to be?
-            </h2>
-          </legend>
-          
-          <div class="govuk-radios" data-module="govuk-radios">
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-type-1" name="validationType" type="radio" value="greater-than">
-              <label class="govuk-label govuk-radios__label" for="validation-type-1">
-                Greater than
-              </label>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-type-2" name="validationType" type="radio" value="less-than">
-              <label class="govuk-label govuk-radios__label" for="validation-type-2">
-                Less than
-              </label>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-type-3" name="validationType" type="radio" value="between">
-              <label class="govuk-label govuk-radios__label" for="validation-type-3">
-                Between
-              </label>
-            </div>
-            
-          </div>
-        </fieldset>
-      </div>
-
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
 
   </div>
 </div>
