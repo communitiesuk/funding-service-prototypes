@@ -1,0 +1,63 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Do you want to receive the grant allocation?" %}
+{% set pageSection = "Your allocation" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
+
+    <form action="allocation_form_ready" method="post" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-!-margin-bottom-6">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+          
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="receive-allocation-1" name="receiveAllocation" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="receive-allocation-1">
+                Yes
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="receive-allocation-2" name="receiveAllocation" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="receive-allocation-2">
+                No
+              </label>
+            </div>
+            
+            <div class="govuk-radios__divider">or</div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="receive-allocation-3" name="receiveAllocation" type="radio" value="more-info">
+              <label class="govuk-label govuk-radios__label" for="receive-allocation-3">
+                More information required
+              </label>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
