@@ -13,22 +13,12 @@
 
     <h1 class="govuk-heading-xl">Check your answers before sending your application</h1>
 
+    <div class="govuk-inset-text">
+      <h2 class="govuk-heading-s">Requested changes</h2>
+      <p class="govuk-body govuk-!-margin-bottom-0">Please change the project name</p>
+    </div>  
+
     <h2 class="govuk-heading-m">Project information</h2>
-
-
-<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-  <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      Requested changes
-    </h2>
-  </div>
-  <div class="govuk-notification-banner__content">
-    <p class="govuk-body">
-     Please change the project name
-    
-    </p>
-  </div>
-</div>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
@@ -46,7 +36,32 @@
       </div>
     </dl>
 
-    <form action="next-step" method="post" novalidate>
+      <div class="govuk-form-group govuk-!-margin-bottom-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Have you completed this section?
+            </h2>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="completed-yes" name="taskCompleted" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="completed-yes">
+                Yes, I’ve completed this section
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="completed-no" name="taskCompleted" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="completed-no">
+                No, I’ll come back to it later
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+<br>
+
+    <form action="" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Save and continue
       </button>
