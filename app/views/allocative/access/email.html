@@ -1,0 +1,68 @@
+{% extends "layouts/email.html" %}
+{% set serviceName = "" %}
+
+{% set title = 'Email: Report is ready to complete' %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="email-message">
+    	<table class="govuk-table email-message-meta">
+        	<tbody>
+				<tr>
+                	<th class="govuk-table__cell" scope="row">From</th>
+                	<td class="govuk-table__cell">The Funding Service</td>
+              	</tr>
+            	<tr>
+              		<th class="govuk-table__cell" scope="row">To</th>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>email address</span></td>
+            	</tr>
+          		<tr class="email-message-meta">
+            		<th class="govuk-table__cell" scope="row">Subject</th>
+					<td class="govuk-table__cell">((is_test_data??TEST: ))((grant_name)) report is ready to complete</td>
+          		</tr>
+        	</tbody>
+      	</table>
+      	<div class="email-message-body">
+
+			<p>Hello,</p>
+
+			<p>Your ((report_name)) report for ((grant_name)) is ready to complete.</p>
+
+			<p>You must submit your report by ((report_deadline)).</p>
+
+            <p>((allows_multiple_submissions??You’ll need to submit information for:))</p>
+
+            <p>((submissions))</p>
+
+            <p>((requires_certification??A certifier will need to sign off your report.))</p>
+
+            <p>You can view who has access to the report on the Team page.</p>
+
+            <p><a href="dashboard">Sign in to access your report</a></p>
+
+			<h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-4">Get help</h2>
+            
+			<p>If you need help or have any questions, <a href="#">contact our support desk</a>.</p>
+
+            <p>Monday to Friday, 9am to 5pm (except public holidays).</p>
+
+            <p>The Funding Service team</p>
+
+      	</div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

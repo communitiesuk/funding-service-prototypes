@@ -1,0 +1,73 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocation form" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back to award</a>
+
+    <h1 class="govuk-heading-xl">Allocation form</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-2">
+      <strong>Submission deadline:</strong> Thursday 30 April 2026
+    </p>
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      <strong>Status:</strong> <strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-1">In progress</strong>
+    </p>
+
+    <!-- Task List represented as a table for consistent styling -->
+    <table class="govuk-table govuk-!-margin-bottom-9">
+      <tbody class="govuk-table__body" style="border-top: 1px solid #b1b4b6;">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="" class="govuk-link">Your allocation</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+         Completed
+          </td>
+        </tr>
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="#" class="govuk-link">Project information</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+               Completed
+          </td>
+        </tr>
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="contact_info" class="govuk-link">Contact information</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+           <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <h2 class="govuk-heading-m">Submit your collection</h2>
+    
+    <p class="govuk-body">
+      Once you've completed your collection, you can submit it to the Ministry of Housing, Communities and Local Government.
+    </p>
+    
+    <form action="confirm" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
+        Continue to submit
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

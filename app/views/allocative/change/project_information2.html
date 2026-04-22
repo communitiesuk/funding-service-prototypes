@@ -1,0 +1,57 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers before sending your application" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Check your answers before sending your application</h1>
+
+    <h2 class="govuk-heading-m">Project information</h2>
+
+
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Requested changes
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-body">
+     Please change the project name
+    
+    </p>
+  </div>
+</div>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          What is the name of the project?
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Project grant allocation
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project_info">
+            Change<span class="govuk-visually-hidden"> name of the project</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    <form action="allocation_form2" method="post" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Team" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Team</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table govuk-!-margin-bottom-8">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Name</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Email</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Permissions</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Steven Applies</td>
+          <td class="govuk-table__cell">steven@glasgow.gov.uk</td>
+          <td class="govuk-table__cell">Can edit and submit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">Changing access and permissions</h2>
+    
+    <p class="govuk-body">
+      To add or remove people and change their permissions, contact us through our <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">support desk (opens in new tab)</a>.
+    </p>
+    
+    <p class="govuk-body">
+      Monday to Friday, 9am to 5pm (except public holidays).
+    </p>
+  </div>
+</div>
+{% endblock %}
