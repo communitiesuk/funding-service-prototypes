@@ -1,4 +1,4 @@
-{% extends "layouts/grantRecipient.html" %}
+{% extends "layouts/access.html" %}
 
 {% set showBackLink = false %}
 
@@ -11,9 +11,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back to award</a>
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back to forms</a>
 
-    <h1 class="govuk-heading-xl">Allocation form</h1>
+    <h1 class="govuk-heading-xl">Validation form</h1>
 
     <p class="govuk-body govuk-!-margin-bottom-2">
       <strong>Submission deadline:</strong> Thursday 30 April 2026
@@ -28,7 +28,7 @@
         
         <tr class="govuk-table__row">
           <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
-            <a href="" class="govuk-link">Your allocation</a>
+            <a href="" class="govuk-link">Validation</a>
           </td>
           <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
             Completed
@@ -56,15 +56,15 @@
       </tbody>
     </table>
 
-    <h2 class="govuk-heading-m">Submit your collection</h2>
+    <h2 class="govuk-heading-m">Submit your form</h2>
     
     <p class="govuk-body">
-      Once you've completed your collection, you can submit it to the Ministry of Housing, Communities and Local Government.
+      Once you've completed your form, you can submit it to the Ministry of Housing, Communities and Local Government.
     </p>
     
     <form action="" method="post" novalidate>
-      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
-        Continue to submit
+      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" disabled aria-disabled="true">
+        Submit your form
       </button>
     </form>
 

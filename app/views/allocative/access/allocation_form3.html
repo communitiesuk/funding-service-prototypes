@@ -1,4 +1,4 @@
-{% extends "layouts/grantRecipient.html" %}
+{% extends "layouts/access.html" %}
 
 {% set showBackLink = false %}
 
@@ -11,9 +11,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back to award</a>
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back to forms</a>
 
-    <h1 class="govuk-heading-xl">Allocation form</h1>
+    <h1 class="govuk-heading-xl">Validation</h1>
 
     <p class="govuk-body govuk-!-margin-bottom-2">
       <strong>Submission deadline:</strong> Thursday 30 April 2026
@@ -56,15 +56,23 @@
       </tbody>
     </table>
 
-    <h2 class="govuk-heading-m">Submit your collection</h2>
+
+    <h2 class="govuk-heading-m">Submit your form to your certifier</h2>
     
     <p class="govuk-body">
-      Once you've completed your collection, you can submit it to the Ministry of Housing, Communities and Local Government.
+      You can submit the form for sign off once it's complete.
     </p>
-    
-    <form action="confirm" method="post" novalidate>
-      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
-        Continue to submit
+        <p class="govuk-body">
+ We'll send the form to Jane Doe. View who has access to the report and their permissions on the <a href=""> Team page</a>.
+
+
+    </p>
+        <p class="govuk-body">
+    You cannot make changes while your form is awaiting sign off.
+    </p>
+    <form action="" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" disabled aria-disabled="true">
+      Submit form to certifier
       </button>
     </form>
 
