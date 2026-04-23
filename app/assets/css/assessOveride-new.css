@@ -110,3 +110,13 @@
   gap: 15px; /* Adjust spacing between buttons as needed */
   align-items: center;
 }
+
+.govuk-highlight {
+  background-color: #fff7bf;
+  padding: 2px 4px;
+}
+
+.govuk-highlight-strong {
+  background-color: #ffdd00;
+  padding: 2px 4px;
+}
