@@ -3,8 +3,8 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Do you want to receive the grant allocation?" %}
-{% set pageSection = "Your allocation" %}
+{% set pageHeading = "Would you like to receive the funding for Safer social housing fund?" %}
+{% set pageSection = "Confirm participation" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 
     <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
 
-    <form action="allocation_form2" method="post" novalidate>
+    <form action="allocation_form3" method="post" novalidate>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           
@@ -40,14 +40,7 @@
               </label>
             </div>
             
-            <div class="govuk-radios__divider">or</div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="receive-allocation-3" name="receiveAllocation" type="radio" value="more-info">
-              <label class="govuk-label govuk-radios__label" for="receive-allocation-3">
-                More information required
-              </label>
-            </div>
+
 
           </div>
         </fieldset>

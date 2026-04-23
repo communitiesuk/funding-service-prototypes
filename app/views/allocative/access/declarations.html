@@ -1,0 +1,100 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Declarations" %}
+{% set pageSection = "Declarations" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
+
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+    </h1>
+
+    <form action="allocation_form_ready" method="post" novalidate>
+      
+  
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend">
+            Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?
+          </legend>
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="mou-yes" name="mou" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="mou-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="mou-no" name="mou" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="mou-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="monitoring-hint">
+          <legend class="govuk-fieldset__legend">
+            Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'x' of the <a href="">prospectus</a>?
+          </legend>
+          <div id="monitoring-hint" class="govuk-hint">
+         
+          </div>
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="monitoring-yes" name="monitoring" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="monitoring-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="monitoring-no" name="monitoring" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="monitoring-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend ">
+            Do you commit to provide safer social housing by 30 April 2029? (optional)
+          </legend>
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="commit-yes" name="commit" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="commit-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="commit-no" name="commit" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="commit-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

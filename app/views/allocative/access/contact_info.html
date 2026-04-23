@@ -3,8 +3,8 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "What is the name of the lead contact?" %}
-{% set pageSection = "Allocation form" %}
+{% set pageHeading = "Who is the main contact?" %}
+{% set pageSection = "People" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -13,15 +13,50 @@
 
     <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
 
-    <form action="allocation_form_ready" method="post" novalidate>
+    <form action="allocation_form2" method="post" novalidate>
       <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-          <span class="govuk-caption-l">Contact information</span>
-          <label class="govuk-label govuk-label--l" for="contact-name">
-            What is the name of the lead contact?
-          </label>
-        </h1>
-        <input class="govuk-input" id="contact-name" name="contactName" type="text" spellcheck="false" autocomplete="name">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+          
+          <div id="contact-hint" class="govuk-hint">
+            This will be the main point of contact for any queries we may have about your submission.
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="full-name">
+              Full name
+            </label>
+            <input class="govuk-input" id="full-name" name="fullName" type="text" autocomplete="name" spellcheck="false">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="role">
+              Role
+            </label>
+            <input class="govuk-input" id="role" name="role" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="email-address">
+              Email address
+            </label>
+            <input class="govuk-input" id="email-address" name="emailAddress" type="email" autocomplete="email" spellcheck="false">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="contact-number">
+              Contact number
+            </label>
+            <input class="govuk-input govuk-input--width-20" id="contact-number" name="contactNumber" type="tel" autocomplete="tel">
+          </div>
+
+        </fieldset>
       </div>
 
       <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
