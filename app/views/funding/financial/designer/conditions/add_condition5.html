@@ -38,7 +38,7 @@
     </dl>
 
 
-    <form method="post" action="select_data2" novalidate>
+    <form method="post" action="edit_question4" novalidate>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -62,12 +62,10 @@
                 </label>
                 <input class="govuk-input govuk-!-width-one-quarter" id="contact-by-email" name="contactByEmail"
                   type="email" spellcheck="false" autocomplete="email">
-                <form method="post" action="" novalidate>
-                  <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
-                    data-module="govuk-button">
-                    Reference data
-                  </button>
-                </form>
+                <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+        formaction="reference_data_route_here">
+  Reference data
+</button>
                 <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                   <div class="govuk-checkboxes__item">
                     <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
@@ -81,7 +79,7 @@
 
 
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone"
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone" checked
                 data-aria-controls="conditional-contact-2">
               <label class="govuk-label govuk-radios__label" for="contact-2">
                 Less than
@@ -94,19 +92,70 @@
       Maximum value
     </label>
 
-    <div style="display: flex; gap: 5px">
-      <input class="govuk-input govuk-!-width-one-quarter"
-             id="contact-by-phone"
-             name="contactByPhone"
-             type="number"
-             spellcheck="false">
+<div style="position: relative; width: 100%; max-width: 200px;">
 
-      <form method="post" action="select_data2" novalidate>
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
-                data-module="govuk-button">
-          Reference data
-        </button>
-      </form>
+  <!-- Highlight layer (behind textarea) -->
+  <div id="highlight-layer"
+       style="
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         padding: 12px;
+         white-space: pre-wrap;
+         border: 2px solid #0b0c0c;
+         border-radius: 4px;
+         background: #fff;
+         font-family: Arial, sans-serif;
+         line-height: 1.4;
+         color: transparent;
+         pointer-events: none;
+         min-height: 80px;
+       ">
+  </div>
+
+  <!-- Editable textarea (transparent so highlight shows through) -->
+  <textarea id="real-textarea"
+            class="govuk-textarea"
+            style="
+              position: relative;
+              background: transparent;
+              color: transparent;
+              caret-color: black;
+              width: 100%;
+              height: 80px;
+              padding: 12px;
+              border: 2px solid transparent;
+              resize: none;
+              overflow: hidden;
+            "
+            oninput="syncHighlight()"
+            spellcheck="false">((Mid-year monitoring -> Expenditure -> actual spend))</textarea>
+
+</div>
+
+<script>
+function syncHighlight() {
+  const ta = document.getElementById('real-textarea');
+  const hl = document.getElementById('highlight-layer');
+
+  // Highlight everything inside (( ... ))
+  const highlighted = ta.value.replace(/\(\((.*?)\)\)/g,
+  '<span style="background-color: #ffdd00; padding: 2px 4px; color: black;">(($1))</span>'
+);
+
+  hl.innerHTML = highlighted;
+}
+
+syncHighlight();
+</script>
+
+
+ <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+        formaction="add_condition4"
+        data-module="govuk-button">
+  Remove data
+</button>
     </div>
 
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
@@ -147,14 +196,12 @@
              id="contact-by-text"
              name="contactByText"
              type="number"
-             spellcheck="false"
+             spellcheck="false">
 
-      <form method="post" action="" novalidate>
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
-                data-module="govuk-button">
-          Reference data
-        </button>
-      </form>
+      <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+        formaction="reference_data_route_here">
+  Reference data
+</button>
     </div>
 
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
@@ -182,14 +229,12 @@
              id="contact-by-text"
              name="contactByText"
              type="number"
-             spellcheck="false"
+             spellcheck="false">
 
-      <form method="post" action="" novalidate>
-        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
-                data-module="govuk-button">
-          Reference data
-        </button>
-      </form>
+<button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+        formaction="reference_data_route_here">
+  Reference data
+</button>
     </div>
 
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
@@ -211,7 +256,7 @@
 </div>
 
 <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
+        Save condition
       </button>
     </form>
 
