@@ -3,8 +3,8 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "What is the name of the project?" %}
-{% set pageSection = "Allocation form" %}
+{% set pageHeading = "Funding activities" %}
+{% set pageSection = "Funding activities" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -13,15 +13,52 @@
 
     <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
 
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+    </h1>
+
     <form action="project_information2" method="post" novalidate>
+      
+
       <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-          <span class="govuk-caption-l">Project information</span>
-          <label class="govuk-label govuk-label--l" for="project-name">
-            What is the name of the project?
-          </label>
-        </h1>
-        <input class="govuk-input" id="project-name" name="projectName" type="text" spellcheck="false" value="Name of the project">
+        <label class="govuk-label" for="funding-amount">
+          How much funding does your organisation need?
+        </label>
+        <div id="funding-amount-hint" class="govuk-hint">
+          Only include this where the amount of funding isn't fixed.
+        </div>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="funding-amount" name="fundingAmount" type="text" spellcheck="false" aria-describedby="funding-amount-hint" value="{{ data['fundingAmount'] or 'Not provided' }}">
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="activities">
+          What activities do you plan to deliver using the funding?
+        </label>
+        <div id="activities-hint" class="govuk-hint">
+          Include some guidance on things to include in this question, e.g. how it align with the programme objectives.
+        </div>
+        <textarea class="govuk-textarea" id="activities2" name="activitiesChanged" rows="5" aria-describedby="activities-hint">{{ data['activities'] or 'Not provided' }}</textarea>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="delivery-plan">
+          Tell us how you plan to deliver safer social housing? (optional)
+        </label>
+        <div id="delivery-plan-hint" class="govuk-hint">
+          Include delivery milestones, when you plan to meet them and how.
+        </div>
+        <textarea class="govuk-textarea" id="delivery-plan" name="deliveryPlan" rows="5" aria-describedby="delivery-plan-hint">{{ data['deliveryPlan'] or 'Not provided' }}</textarea>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label " for="milestones">
+          Tell us what milestones you have in place to deliver your activities by 30 April 2027? (optional)
+        </label>
+
+        <textarea class="govuk-textarea" id="milestones" name="milestones" rows="5" aria-describedby="milestones-hint">{{ data['milestones'] or 'Not provided' }}</textarea>
       </div>
 
       <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">

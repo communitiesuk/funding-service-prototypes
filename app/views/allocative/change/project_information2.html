@@ -11,23 +11,35 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <h1 class="govuk-heading-xl">'Check your answers</h1>
+    <h1 class="govuk-heading-xl">Check your answers</h1>
 
     <div class="govuk-inset-text">
       <h2 class="govuk-heading-s">Requested changes</h2>
-      <p class="govuk-body govuk-!-margin-bottom-0">Please change the project name</p>
-    </div>
+      <p class="govuk-body govuk-!-margin-bottom-0">"Provide a bit more aboute what activities do you plan to deliver using the funding."</p>
+    </div>  
 
     <h2 class="govuk-heading-m">Project information</h2>
-
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          What is the name of the project?
+          How much funding does your organisation need?
         </dt>
         <dd class="govuk-summary-list__value">
-         Project grant allocation
+          £{{ data['fundingAmount'] or 'Not provided' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="">
+            Change<span class="govuk-visually-hidden"> name of the project</span>
+          </a>
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          What activities do you plan to deliver using the funding?
+        </dt>
+        <dd class="govuk-summary-list__value">
+         {{ data['activitiesChanged'] or 'Not provided' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="project_info">
@@ -35,8 +47,33 @@
           </a>
         </dd>
       </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+      Tell us how you plan to deliver safer social housing?
+        </dt>
+        <dd class="govuk-summary-list__value">
+         {{ data['deliveryPlan'] or 'Not provided' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="">
+            Change<span class="govuk-visually-hidden"> name of the project</span>
+          </a>
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Tell us what milestones you have in place to deliver your activities by 30 April 2027?
+        </dt>
+        <dd class="govuk-summary-list__value">
+         {{ data['milestones'] or 'Not provided' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="">
+            Change<span class="govuk-visually-hidden"> name of the project</span>
+          </a>
+        </dd>
+      </div>
     </dl>
-
 
       <div class="govuk-form-group govuk-!-margin-bottom-6">
         <fieldset class="govuk-fieldset">
@@ -61,7 +98,7 @@
           </div>
         </fieldset>
       </div>
-      <br>
+<br>
 
     <form action="allocation_form2" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">

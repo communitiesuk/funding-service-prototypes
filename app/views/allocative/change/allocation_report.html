@@ -30,16 +30,19 @@
             <nav class="app-subnav" aria-label="Section navigation">
               <ul class="app-subnav__list">
                 <li class="app-subnav__list-item app-subnav__list-item--current" style="width: 80%">
-                  <a class="app-subnav__link" href="#section-1">Validation form</a>
+                  <a class="app-subnav__link" href="#section-1">Validation</a>
                 </li>
                 <li class="app-subnav__list-item" style="width: 80%">
-                  <a class="app-subnav__link" href="#section-2">Your validation</a>
+                  <a class="app-subnav__link" href="#section-2">People</a>
                 </li>
                 <li class="app-subnav__list-item" style="width: 80%">
-                  <a class="app-subnav__link" href="#section-3">Project information</a>
+                  <a class="app-subnav__link" href="#section-3">Confirm participation</a>
                 </li>
                 <li class="app-subnav__list-item" style="width: 80%">
-                  <a class="app-subnav__link" href="#section-4">Contact information</a>
+                  <a class="app-subnav__link" href="#section-4">Funding activities</a>
+                </li>
+                                <li class="app-subnav__list-item" style="width: 80%">
+                  <a class="app-subnav__link" href="#section-5">Declarations</a>
                 </li>
                
                 
@@ -51,28 +54,44 @@
           <!-- Main Content -->
           <div class="app-pane__content">
             
-            <h1 class="govuk-heading-xl" id="section-1">Validation form</h1>
+            <h1 class="govuk-heading-xl" id="section-1">Validation</h1>
 
            <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Organisation:</span> Glasgow City Council</p>
-           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Submitted by:</span> Steven Applies</p>
+           <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Submitted by:</span> John Doe</p>
            <p class="govuk-body"><span class="govuk-body govuk-!-font-weight-bold">Date submitted: </span> Friday 24 April 2026</p>
         
 <br>
            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-  Download validation PDF
+Download form PDF
 </button>
             <br><br>
 
             
             <table class="govuk-table" id="section-2">
-  <caption class="govuk-table__caption govuk-table__caption--m">Your validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">People</caption>
   <thead class="govuk-table__head">
 
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-third">Do you want to receive the grant allocation?</th>
-      <td class="govuk-table__cell">Yes</td>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">Full name</th>
+      <td class="govuk-table__cell">{{ data['fullName'] or 'Not provided'}}</td>
+
+    </tr>
+        <tr class="govuk-table__row">
+       <th scope="row" class="govuk-table__header govuk-!-width-one-third">Role</th>
+      <td class="govuk-table__cell">{{ data['role'] or 'Not provided'}}</td>
+
+    </tr>
+        <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header govuk-!-width-one-third">Email address</th>
+      <td class="govuk-table__cell">{{ data['emailAddress'] or 'Not provided'}}</td>
+
+    </tr>
+        <tr class="govuk-table__row">
+         <th scope="row" class="govuk-table__header govuk-!-width-one-third">Contact number</th>
+      <td class="govuk-table__cell">{{ data['contactNumber'] or 'Not provided' }}</td>
+
     </tr>
   
   </tbody>
@@ -80,24 +99,14 @@
             <br><br>
 
           <table class="govuk-table" id="section-3">
-  <caption class="govuk-table__caption govuk-table__caption--m">Project information</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">Confirm participation</caption>
   <thead class="govuk-table__head">
 
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-third">What is the name of the project?</th>
-      <td class="govuk-table__cell">Project grant allocation <br> <br><details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Original response
-    </span> 
-  </summary>
-  <div class="govuk-details__text">
-   Name of the project
-  </div>
-</details></td>
-
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">Would you like to receive the funding for Safer social housing fund?</th>
+      <td class="govuk-table__cell">{{ data['receiveAllocation'] or 'Not provided' }}</td>
     </tr>
 
   </tbody>
@@ -106,14 +115,50 @@
 
 
            <table class="govuk-table" id="section-4">
-  <caption class="govuk-table__caption govuk-table__caption--m">Contact information</caption>
+  <caption class="govuk-table__caption govuk-table__caption--m">Funding activities</caption>
   <thead class="govuk-table__head">
 
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-third">What is the name of the lead contact?</th>
-      <td class="govuk-table__cell">Steven Fountain</td>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">How much funding does your organisation need?</th>
+      <td class="govuk-table__cell">£{{ data['fundingAmount'] or 'Not provided' }}</td>
+    </tr>
+        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">What activities do you plan to deliver using the funding?</th>
+      <td class="govuk-table__cell">{{ data['activitiesChanged'] or 'Not provided' }}</td>
+    </tr>
+        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">Tell us how you plan to deliver safer social housing?
+</th>
+      <td class="govuk-table__cell">{{ data['deliveryPlan'] or 'Not provided' }}</td>
+    </tr>
+        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">Tell us what milestones you have in place to deliver your activities by 30 April 2027?</th>
+      <td class="govuk-table__cell">{{ data['milestones'] or 'Not provided' }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+           <table class="govuk-table" id="section-5">
+  <caption class="govuk-table__caption govuk-table__caption--m">Declarations</caption>
+  <thead class="govuk-table__head">
+
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">How much funding does your organisation need?</th>
+      <td class="govuk-table__cell">{{ data['mou'] or 'Not provided' }}</td>
+    </tr>
+        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">How much funding does your organisation need?</th>
+      <td class="govuk-table__cell">{{ data['monitoring'] or 'Not provided' }}</td>
+    </tr>
+        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-third">How much funding does your organisation need?</th>
+      <td class="govuk-table__cell">{{ data['commit'] or 'Not provided' }}</td>
     </tr>
 
   </tbody>
