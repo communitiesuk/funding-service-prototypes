@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "How much funding does your organisation need?" %}
+{% set pageHeading = " What activities do you plan to deliver using the funding?" %}
 {% set pageSection = "Funding activities" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -12,29 +12,31 @@
   <div class="govuk-grid-column-two-thirds">
 
     <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
-
 <span class="govuk-caption-xl">Funding activities</span>
     <h1 class="govuk-heading-l">
       {{ pageHeading }}
     </h1>
 
-    <form action="project_info2" method="post" novalidate>
+    <form action="allocation_form4" method="post" novalidate>
       
 
-      <div class="govuk-form-group">
-   
-        <div class="govuk-input__wrapper">
-          <div class="govuk-input__prefix" aria-hidden="true">£</div>
-          <input class="govuk-input govuk-input--width-5" id="funding-amount" name="fundingAmount" type="text" spellcheck="false" aria-describedby="funding-amount-hint">
-        </div>
-      </div>
 
+      <div class="govuk-form-group">
+     
+  <p class="govuk-body">Include:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>what the activities are</li>
+    <li>how the activities align with the programme objectives</li>
+      <li>how you will deliver the activities</li>
+</ul>
+        <textarea class="govuk-textarea" id="activities" name="activities" rows="5" aria-describedby="activities-hint"></textarea>
+      </div>
 
       
 
 
       <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
-        Continue
+        Save and continue
       </button>
     </form>
 

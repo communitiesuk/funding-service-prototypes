@@ -14,7 +14,7 @@
     <h1 class="govuk-heading-xl">Check your answers</h1>
 
     <div class="govuk-inset-text">
-      <h2 class="govuk-heading-s">Requested changes</h2>
+            <strong class="govuk-tag govuk-tag--yellow">Changes requested</strong> <br><br>
       <p class="govuk-body govuk-!-margin-bottom-0">"Provide a bit more about what activities do you plan to deliver using the funding."</p>
     </div>  
 
@@ -47,32 +47,8 @@
           </a>
         </dd>
       </div>
-            <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-      Tell us how you plan to deliver safer social housing?
-        </dt>
-        <dd class="govuk-summary-list__value">
-         {{ data['deliveryPlan'] or 'Not provided' }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
-          </a>
-        </dd>
-      </div>
-            <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Tell us what milestones you have in place to deliver your activities by 30 April 2027?
-        </dt>
-        <dd class="govuk-summary-list__value">
-         {{ data['milestones'] or 'Not provided' }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
-          </a>
-        </dd>
-      </div>
+        
+        
     </dl>
 
       <div class="govuk-form-group govuk-!-margin-bottom-6">

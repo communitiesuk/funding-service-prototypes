@@ -15,26 +15,31 @@
 
 <span class="govuk-caption-xl">Declarations</span>
     <h1 class="govuk-heading-l">
-      Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?
+      Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'x' of the prospectus?
     </h1>
 
-    <form action="declarations2" method="post" novalidate>
+<div class="govuk-inset-text">
+<a href="">View the prospectus</a>
+</div>
+
+    <form action="declarations3" method="post" novalidate>
       
   
 
+      
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-    
+        <fieldset class="govuk-fieldset" aria-describedby="monitoring-hint">
+ 
           <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="mou-yes" name="mou" type="radio" value="Yes">
-              <label class="govuk-label govuk-radios__label" for="mou-yes">
+              <input class="govuk-radios__input" id="monitoring-yes" name="monitoring" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="monitoring-yes">
                 Yes
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="mou-no" name="mou" type="radio" value="No">
-              <label class="govuk-label govuk-radios__label" for="mou-no">
+              <input class="govuk-radios__input" id="monitoring-no" name="monitoring" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="monitoring-no">
                 No
               </label>
             </div>
@@ -42,7 +47,6 @@
         </fieldset>
       </div>
 
-   
 
 
       <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
