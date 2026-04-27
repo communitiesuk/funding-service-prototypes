@@ -126,7 +126,16 @@ Download form PDF
     </tr>
         <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header govuk-!-width-one-third">What activities do you plan to deliver using the funding?</th>
-      <td class="govuk-table__cell">{{ data['activitiesChanged'] or 'Not provided' }}</td>
+      <td class="govuk-table__cell">{{ data['activitiesChanged'] or 'Not provided' }} <br><br> <details class="govuk-details"> 
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     Original response
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    {{ data['activities'] or 'Not provided' }}
+  </div>
+</details></td>
     </tr>
       
    
