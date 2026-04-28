@@ -13,42 +13,54 @@
 
     <h1 class="govuk-heading-xl">Check your answers</h1>
 
-    <div class="govuk-inset-text">
+ <div class="govuk-inset-text">
       <strong class="govuk-tag govuk-tag--yellow">Changes requested</strong> <br><br>
       <p class="govuk-body govuk-!-margin-bottom-0">"Provide more detail about what activities you plan to deliver using the funding and specifically how they align with the programme objectives. Also, agreeing to participation in monitoring and evaluation is essential because we need to know how you're spending the funding and the impact it's having."</p>
-    </div>  
+    </div> 
 
-    <h2 class="govuk-heading-m">Project information</h2>
+
+    <h2 class="govuk-heading-m">Confirm participation</h2>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          How much funding does your organisation need?
+          Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?
         </dt>
         <dd class="govuk-summary-list__value">
-          £{{ data['fundingAmount'] or 'Not provided' }}
+          {{ data['mou'] or 'Not provided' }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> funding participation</span>
           </a>
         </dd>
       </div>
             <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          What activities do you plan to deliver using the funding?
+         Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus?
         </dt>
         <dd class="govuk-summary-list__value">
-         {{ data['activities'] or 'Not provided' }}
+          {{ data['monitoringChanged'] or 'Not provided' }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="project_info">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> funding participation</span>
           </a>
         </dd>
       </div>
-
-
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+         Do you commit to provide safer social housing by 30 April 2029?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['commit'] or 'Not provided' }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> funding participation</span>
+          </a>
+        </dd>
+      </div>
     </dl>
 
       <div class="govuk-form-group govuk-!-margin-bottom-6">
@@ -76,7 +88,7 @@
       </div>
 <br>
 
-    <form action="" method="post" novalidate>
+    <form action="allocation_form3" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Save and continue
       </button>
