@@ -1,0 +1,102 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Add a condition" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+    <span class="govuk-caption-xl">Blackpool Borough Council</span>
+    <div class="app-aligned-header-tag govuk-!-margin-bottom-6">
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-0">Submission</h1>  
+    <span class="govuk-body govuk-!-margin-bottom-0">Submitted</span>
+    </div>
+    <form method="post" action="reopen_submission" novalidate>
+<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  Reopen submission
+</button>
+    </form>
+  </div>
+</div>
+
+  <div class="govuk-grid-column-full-width">
+
+    <h2 class="govuk-heading-m">Delivery planning</h2>
+
+    <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      How is your programme progressing?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <p class="govuk-body">Following confirmation Blackpool Council was to be allocated two funding allocations , on the 10th November 2025 , a detailed Paper was taken to the Council Executive with regards to both the Blackpool PiP Programme and PiP Impact Fund, setting out the background to the respective funds, there aims and objectives, requirements for the Council to undertake and proposed approaches.
+</p>
+<p class="govuk-body">The paper was discussed in detail and the Council agreed to accept both funds. With regards to PiP Impact fund specifically an outline list of potential schemes was appended to the report including which themes they would  support.
+</p>
+<p class="govuk-body">The Council approved Council officers to undertake activities to explore these options working with key relevant stakeholders, including the local MP where required.</p>
+
+<p class="govuk-body">The Director of Growth & Prosperity for the Council was appointed as senior lead for the Impact Fund and the established Council Programme Management Office (PMO) appointed to lead on all claims, monitoring and assurance activity with regards to the fund.   A programme level risk register and PSED have been created.</p>
+
+<p class="govuk-body">A project board has been established incorporating key council officers including dedicated project leads for the identified schemes. This has met 4 occasions at the time of this submission.</p>
+
+<p class="govuk-body">There are 9 allocated schemes at this time all led by Council officers.  These vary from public realm schemes, greening and pocket parks, street lighting and wayfinding,  a Museum enhancement, property acquisition/ long lease and conversion to community use and management schemes, and commercial improvement grants.</p>
+
+<p class="govuk-body">Project leads are tasked with currently working their schemes up ASAP with regards to viability, outputs, outcomes, cost plans, milestones  etc working and engaging with local stakeholders where required. Where schemes are confirmed as viable a project risk register and PSED will be provided.</p>
+
+<p class="govuk-body">It is anticipated there may be some schemes which are not deemed viable e.g. a property acquisition scheme and in this case  a number of reserve schemes are already identified if required.</p> 
+
+<p class="govuk-body">There is no concern over defraying the PiP funding by the March 2027 deadline at this stage.</p> 
+
+</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      How have local organisations and communities been involved in the development and delivery of the programme?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <p class="govuk-body"></p>Local organisations and communities have played a central role in shaping the Pride in Place Impact Fund programme. Engagement has taken place through the Discover Ashfield Board, which approved initial allocations in December 2025, ensuring representation from key stakeholders across the district.
+
+<p class="govuk-body">Community input has informed priority areas for investment, including Hucknall, Jacksdale, Selston and Sutton town centre, through ongoing dialogue with parish councils, local businesses, and voluntary sector organisations. Specific examples include:
+</p>
+<p class="govuk-body">* Jacksdale Skatepark: The Parish Council has been developing this project to replace an existing facility over the last few years. They are working with a Nottingham-based skate company, and local young people to ensure the design meets community needs.
+</p>
+<p class="govuk-body">* Community Grant Scheme: Designed in response to feedback from local community organisations struggling to access funding for facility improvements.
+</p>
+<p class="govuk-body">* High Street Regeneration: A targeted shop-front grant scheme will be introduced to support business owners and landlords in priority areas, with the aim of enhancing the appearance of commercial properties and reducing vacancy rates in Sutton Town Centre and Stanton Hill. This initiative is being developed alongside ongoing engagement with local businesses and property owners to ensure alignment with their needs and encourage participation in the scheme.
+</p>
+<p class="govuk-body">* Ongoing feedback from residents in areas of the district which have not benefitted from Future High Streets/Towns Fund/Pride in Place Phase 1 investment. 
+</p>
+<p class="govuk-body">This collaborative approach ensures that the programme reflects local priorities and maximises community benefit.
+</p>
+    </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Are local MPs involved in developing and delivering the programme?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Yes
+    </dd>
+   </div>
+   <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Which country is your programme being delivered in?
+    </dt>
+    <dd class="govuk-summary-list__value">
+      England
+    </dd>
+   </div>
+   </dl>
+   </div>
+   <p class="govuk-body">
+  <a href="monitoring_reports" class="govuk-link">Back to submissions</a>
+</p>
+   </div>
+   </div>
+{% endblock %}
