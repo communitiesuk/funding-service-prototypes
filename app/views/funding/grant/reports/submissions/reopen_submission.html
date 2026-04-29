@@ -1,7 +1,11 @@
 {% extends "layouts/deliver.html" %}
 
 {% set showBackLink = true %}
+{% set backLinkUrl = "/monitoring_reports" %}
 
+{% if showBackLink %}
+  <a href="{{ backLinkUrl }}" class="govuk-back-link">Back</a>
+{% endif %}
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Add a condition" %}
@@ -16,7 +20,7 @@
       <span class="govuk-caption-xl">Blackpool Borough Council</span>
        <h1 class="govuk-label-wrapper">
       <label class="govuk-label govuk-label--l" for="more-detail">
-      Why are you reopening this [report name] submission?
+      Why are you reopening this Mid-year monitoring submission?
       </label>
       </h1>
       <div id="more-detail-hint" class="govuk-hint">

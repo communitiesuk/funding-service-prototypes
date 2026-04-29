@@ -1,0 +1,47 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Add a condition" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Add a condition</h1>
+
+    <h2 class="govuk-heading-m">Condition</h2>
+
+    <dl class="govuk-summary-list">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          The question
+        </dt>
+        <dd class="govuk-summary-list__value">
+          January
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Depends on the answer to
+        </dt>
+        <dd class="govuk-summary-list__value">
+<form method="post" action="select_data" novalidate>
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6" data-module="govuk-button">
+      Reference data
+    </button>
+  </form>
+        </dd>
+        </dd>
+      </div>
+
+    </dl>
+
+  </div>
+</div>
+{% endblock %}
