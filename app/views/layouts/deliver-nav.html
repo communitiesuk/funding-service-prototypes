@@ -12,63 +12,63 @@
 
 <!-- Overides the max width only in assess -->
 {% block stylesheets %}
-  {{ super() }}
-    <link href="/public/css/assessOveride-new.css" rel="stylesheet" type="text/css" />
+{{ super() }}
+<link href="/public/css/assessOveride-new.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block header %}
 
-    <!-- Header -->
-  <header class="govuk-header" data-module="govuk-header">
-    <div class="mhclg-header" data-one-login-header-nav>
-      <div class="mhclg-header__container govuk-width-container">
-        <div class="govuk-header__logo">
-          <a href="/" class="govuk-header__link govuk-header__link--homepage mhclg-header__link--homepage">
-            <img src="/public/images/header-new.png" height="30px">
-          </a>
-          </div>
-        <nav class="mhclg-header__nav">
-          <ul class="mhclg-header__nav__list">
-            <li class="mhclg-header__nav__list-item">
-              <a class="mhclg-header__nav__link" href="/signed-out/?signedIn=no">Sign out</a>
-              </li>
-          </ul>
-          </nav>
+<!-- Header -->
+<header class="govuk-header" data-module="govuk-header">
+  <div class="mhclg-header" data-one-login-header-nav>
+    <div class="mhclg-header__container govuk-width-container">
+      <div class="govuk-header__logo">
+        <a href="/" class="govuk-header__link govuk-header__link--homepage mhclg-header__link--homepage">
+          <img src="/public/images/header-new.png" height="30px">
+        </a>
       </div>
+      <nav class="mhclg-header__nav">
+        <ul class="mhclg-header__nav__list">
+          <li class="mhclg-header__nav__list-item">
+            <a class="mhclg-header__nav__link" href="/signed-out/?signedIn=no">Sign out</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </header>
+  </div>
+</header>
 
-  {{ govukServiceNavigation({
-    serviceName: "Deliver grant funding",
-    serviceUrl: "#",
-    navigation: [
-      { href: "#", text: "Reports", active: navID == "reports" },
- { href: "#", text: "Team", active: navID == "team" },
-            { href: "#", text: "Grant details", active: navID == "grantDetails" }
-    ]
-  }) }}
+{{ govukServiceNavigation({
+serviceName: "Deliver grant funding",
+serviceUrl: "#",
+navigation: [
+{ href: "#", text: "Reports", active: navID == "reports" },
+{ href: "#", text: "Team", active: navID == "team" },
+{ href: "#", text: "Grant details", active: navID == "grantDetails" }
+]
+}) }}
 
 {% endblock %}
 <!-- // header -->
 
 {% block beforeContent %}
-    <!-- Phasebanner -->
-    {{ govukPhaseBanner({
-        tag: { text: "Prototype" },
-        html: 'This is a prototype. It is not a real service.'
-    }) }}
+<!-- Phasebanner -->
+{{ govukPhaseBanner({
+tag: { text: "Prototype" },
+html: 'This is a prototype. It is not a real service.'
+}) }}
 
-    <!-- Back link -->
-    {% if showBackLink != false %}
-    {{ govukBackLink({
-        text: "Back",
-        href: "javascript:history.go(-1)"
-    }) }}
-    {% endif %}
-  <!-- // backlink -->
+<!-- Back link -->
+{% if showBackLink != false %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:history.go(-1)"
+}) }}
+{% endif %}
+<!-- // backlink -->
 
 <!-- Breadcrumbs -->
-  {% block breadcrumbs %}
+{% block breadcrumbs %}
 {% endblock %}
 <!-- // Breadcrumbs -->
 
@@ -83,16 +83,17 @@
 
 {% block footer %}
 
-  {{ govukFooter({
-    meta: {
-      items: [
-        { href: "/manage-prototype/clear-data", text: "Clear data" },
-        { href: "/manage-prototype", text: "Manage prototype" },
-        { href: "#", text: "Show hidden text", attributes: {"data-module": "prototype-reveal-hidden"} },
-        { href: "#", text: "Hide phase banner", attributes: {"data-module": "prototype-toggle-phase-banner"} }
-      ],
-      html: 'Built by the <a href="#" class="govuk-footer__link">Ministry of Housing, Communites & Local Government Funding Service</a>'
-    }
-  }) }}
+{{ govukFooter({
+meta: {
+items: [
+{ href: "/manage-prototype/clear-data", text: "Clear data" },
+{ href: "/manage-prototype", text: "Manage prototype" },
+{ href: "#", text: "Show hidden text", attributes: {"data-module": "prototype-reveal-hidden"} },
+{ href: "#", text: "Hide phase banner", attributes: {"data-module": "prototype-toggle-phase-banner"} }
+],
+html: 'Built by the <a href="#" class="govuk-footer__link">Ministry of Housing, Communites & Local Government Funding
+  Service</a>'
+}
+}) }}
 
 {% endblock %}
