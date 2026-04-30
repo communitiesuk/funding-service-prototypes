@@ -1,12 +1,22 @@
-{% extends "layouts/signedin.html" %}
+{% extends "layouts/deliver-nav.html" %}
 
 {% set showBackLink = false %}
 
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Add a condition" %}
+{% set navID = "reports" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block breadcrumbs %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Reports", href: "/reports" },
+      { text: "Submissions" }
+    ]
+  }) }}
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
