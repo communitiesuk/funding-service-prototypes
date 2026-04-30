@@ -1,12 +1,22 @@
-{% extends "layouts/deliver.html" %}
+{% extends "layouts/deliver-nav.html" %}
 
 {% set showBackLink = false %}
 
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Add a condition" %}
+{% set navID = "reports" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "#" },
+{ text: "Submissions" }
+]
+}) }}
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -15,19 +25,20 @@
     <span class="govuk-caption-xl">Mid-year monitoring</span>
     <h1 class="govuk-heading-l">Monitoring reports</h1>
 
-    <p class="govuk-body">View the information that should have been provided by grant recipients in their monitoring reports.</p>
+    <p class="govuk-body">View the information that should have been provided by grant recipients in their monitoring
+      reports.</p>
 
     <div class="govuk-button-group">
-  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Export as CSV
-  </button>
-  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Export as JSON
-  </button>
-</div>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Export as CSV
+      </button>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Export as JSON
+      </button>
+    </div>
   </div>
 </div>
-  <div class="govuk-grid-column-full-width"></div>
+<div class="govuk-grid-column-full-width"></div>
 <table class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--m"></caption>
   <thead class="govuk-table__head">
@@ -39,48 +50,54 @@
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Ashfield District Council</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Ashfield District Council</a>
+      </td>
       <td class="govuk-table__cell govuk-table__cell--text"><strong class="govuk-tag">
-  In progress
-</strong></td>
+          In progress
+        </strong></td>
       <td class="govuk-table__cell govuk-table__cell--text">22 April 2026</td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Barking and Dagenham London Borough</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Barking and Dagenham London
+          Borough</a></td>
       <td class="govuk-table__cell govuk-table__cell--text"><strong class="govuk-tag govuk-tag--grey">
-  Not started
-</strong></td>
+          Not started
+        </strong></td>
       <td class="govuk-table__cell govuk-table__cell--text"></td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Barnsley Metropolitan Borough Council</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Barnsley Metropolitan Borough
+          Council</a></td>
       <td class="govuk-table__cell govuk-table__cell--text"><strong class="govuk-tag">
-  In progress
-</strong></td>
+          In progress
+        </strong></td>
       <td class="govuk-table__cell govuk-table__cell--text">27 April 2026</td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Birmingham City Council</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Birmingham City Council</a>
+      </td>
       <td class="govuk-table__cell govuk-table__cell--text"><strong class="govuk-tag govuk-tag--grey">
-  Not started
-</strong></td>
+          Not started
+        </strong></td>
       <td class="govuk-table__cell govuk-table__cell--text"></td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Blackburn with Darwen Borough Council</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="#" class="govuk-link">Blackburn with Darwen Borough
+          Council</a></td>
       <td class="govuk-table__cell govuk-table__cell--text"><strong class="govuk-tag govuk-tag--grey">
-  Not started
-</strong></td>
+          Not started
+        </strong></td>
       <td class="govuk-table__cell govuk-table__cell--text"></td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell--text"><a href="submission" class="govuk-link">Blackpool Borough Council</a></td>
+      <td class="govuk-table__cell govuk-table__cell--text"><a href="submission" class="govuk-link">Blackpool Borough
+          Council</a></td>
       <td class="govuk-table__cell govuk-table__cell--text">Submitted</td>
       <td class="govuk-table__cell govuk-table__cell--text">20 April 2026</td>
     </tr>
   </tbody>
 </table>
 
-  </div>
+</div>
 </div>
 {% endblock %}

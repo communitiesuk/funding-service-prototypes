@@ -1,94 +1,114 @@
-{% extends "layouts/deliver.html" %}
+{% extends "layouts/deliver-nav.html" %}
 
 {% set showBackLink = false %}
 
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Add a condition" %}
+{% set navID = "reports" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "#" },
+{ text: "Submissions", href: "/funding/grant/reports/submissions/monitoring_reports" },
+{ text: "Blackpool Borough Council" }
+]
+}) }}
+{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
 
     <span class="govuk-caption-xl">Blackpool Borough Council</span>
-    
+
     <div class="app-aligned-header-tag govuk-!-margin-bottom-6">
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-0">Submission</h1>  
-    <span class="govuk-body govuk-!-margin-bottom-0">Submitted</span>
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-0">Submission</h1>
+      <span class="govuk-body govuk-!-margin-bottom-0">Submitted</span>
     </div>
     <form method="post" action="reopen_submission" novalidate>
-<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-  Reopen submission
-</button>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Reopen submission
+      </button>
     </form>
   </div>
 </div>
 
-  <div class="govuk-grid-column-full-width">
+<div class="govuk-grid-column-full-width">
 
-    <h2 class="govuk-heading-m">Delivery planning</h2>
+  <h2 class="govuk-heading-m">Delivery planning</h2>
 
-    <dl class="govuk-summary-list">
+  <dl class="govuk-summary-list">
     <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      How is your programme progressing?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      <p class="govuk-body">The Council has approved officers to undertake activities to work with key relevant stakeholders including the local MP to progress the themes agreed.
-</p>
-<p class="govuk-body">The paper was discussed in detail and the Council agreed to accept both funds. With regards to PiP Impact fund specifically an outline list of potential schemes was appended to the report including which themes they would  support.
-</p>
-<p class="govuk-body">We have senior buy in from the Director of Growth who is responsible for our risk register and issues log. The officers on the programme have a biweekly meeting with the Director to update on progress, risks and issues.</p>
+      <dt class="govuk-summary-list__key">
+        How is your programme progressing?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p class="govuk-body">The Council has approved officers to undertake activities to work with key relevant
+          stakeholders including the local MP to progress the themes agreed.
+        </p>
+        <p class="govuk-body">The paper was discussed in detail and the Council agreed to accept both funds. With
+          regards to PiP Impact fund specifically an outline list of potential schemes was appended to the report
+          including which themes they would support.
+        </p>
+        <p class="govuk-body">We have senior buy in from the Director of Growth who is responsible for our risk register
+          and issues log. The officers on the programme have a biweekly meeting with the Director to update on progress,
+          risks and issues.</p>
 
-<p class="govuk-body">We have started making progress on all themes and spend is on track with no concerns about under or overspend.</p>
+        <p class="govuk-body">We have started making progress on all themes and spend is on track with no concerns about
+          under or overspend.</p>
 
-</dd>
+      </dd>
     </div>
     <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      How have local organisations and communities been involved in the development and delivery of the programme?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      <p class="govuk-body"></p>We have engaged local organisations who have shaped the programme and its ways of working.
+      <dt class="govuk-summary-list__key">
+        How have local organisations and communities been involved in the development and delivery of the programme?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p class="govuk-body"></p>We have engaged local organisations who have shaped the programme and its ways of
+        working.
 
-<p class="govuk-body">Our consultation and town hall, completed in February 2026 and March 2026 respectively, helped prioritise key areas of work, including:
-</p>
-<p class="govuk-body">* Blackpool Terrace
-</p>
-<p class="govuk-body">* Sea Gardens
+        <p class="govuk-body">Our consultation and town hall, completed in February 2026 and March 2026 respectively,
+          helped prioritise key areas of work, including:
+        </p>
+        <p class="govuk-body">* Blackpool Terrace
+        </p>
+        <p class="govuk-body">* Sea Gardens
 
-</p>
-<p class="govuk-body">* Lancashire View
-</p>
-<p class="govuk-body">* Gull Yards
-</p>
-<p class="govuk-body">In each of these areas, we're working with contacts representing the community. Our contacts are invited to give us regular feedback and updates.
-</p>
-    </dd>
+        </p>
+        <p class="govuk-body">* Lancashire View
+        </p>
+        <p class="govuk-body">* Gull Yards
+        </p>
+        <p class="govuk-body">In each of these areas, we're working with contacts representing the community. Our
+          contacts are invited to give us regular feedback and updates.
+        </p>
+      </dd>
     </div>
     <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Are local MPs involved in developing and delivering the programme?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Yes
-    </dd>
-   </div>
-   <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Which country is your programme being delivered in?
-    </dt>
-    <dd class="govuk-summary-list__value">
-      England
-    </dd>
-   </div>
-   </dl>
-   </div>
-   <p class="govuk-body">
+      <dt class="govuk-summary-list__key">
+        Are local MPs involved in developing and delivering the programme?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        Yes
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Which country is your programme being delivered in?
+      </dt>
+      <dd class="govuk-summary-list__value">
+        England
+      </dd>
+    </div>
+  </dl>
+</div>
+<p class="govuk-body">
   <a href="monitoring_reports" class="govuk-link">Back to submissions</a>
 </p>
-   </div>
-   </div>
+</div>
+</div>
 {% endblock %}

@@ -1,54 +1,54 @@
-{% extends "layouts/deliver.html" %}
+{% extends "layouts/deliver-nav.html" %}
 
 {% set showBackLink = true %}
-{% set backLinkUrl = "/monitoring_reports" %}
 
-{% if showBackLink %}
-  <a href="{{ backLinkUrl }}" class="govuk-back-link">Back</a>
-{% endif %}
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Add a condition" %}
+{% set navID = "reports" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
+
+
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5"> 
-   <div class="govuk-form-group">
+  <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+    <div class="govuk-form-group">
       <form method="post" action="submission_reopened" novalidate>
-      <span class="govuk-caption-xl">Blackpool Borough Council</span>
-       <h1 class="govuk-label-wrapper">
-      <label class="govuk-label govuk-label--l" for="more-detail">
-      Why are you reopening this Mid-year monitoring submission?
-      </label>
-      </h1>
-      <div id="more-detail-hint" class="govuk-hint">
-       We will send an email with your reason for reopening to: 
-       <br>
-       </div>
-       <ul class="govuk-hint govuk-list govuk-list--bullet">
-        <li>Rami Thayer (rami.thayer@blackpool.gov.uk)</li>
-        <li>Justine McCormack (justine.mccormack@blackpool.gov.uk)</li>
-        <li>Georgia White (georgia.white@blackpool.gov.uk)</li>
-      </ul>
-      </div>
-     <textarea class="govuk-textarea govuk-!-margin-bottom-0 govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
-  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
-    You have 100 words remaining
-  </div>
-   <div class="govuk-button-group govuk-!-margin-top-5">
-  <button type="submit" class="govuk-button" data-module="govuk-button">
-    Reopen submission
-  </button>
-  <a class="govuk-link" href="submission">Cancel</a>
-</div>
-    </form>
+        <span class="govuk-caption-xl">Blackpool Borough Council</span>
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="more-detail">
+            Why are you reopening this Mid-year monitoring submission?
+          </label>
+        </h1>
+        <div id="more-detail-hint" class="govuk-hint">
+          We will send an email with your reason for reopening to:
+          <br>
+        </div>
+        <ul class="govuk-hint govuk-list govuk-list--bullet">
+          <li>Rami Thayer (rami.thayer@blackpool.gov.uk)</li>
+          <li>Justine McCormack (justine.mccormack@blackpool.gov.uk)</li>
+          <li>Georgia White (georgia.white@blackpool.gov.uk)</li>
+        </ul>
     </div>
-
+    <textarea class="govuk-textarea govuk-!-margin-bottom-0 govuk-js-character-count" id="with-hint" name="withHint"
+      rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+    <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+      You have 100 words remaining
+    </div>
+    <div class="govuk-button-group govuk-!-margin-top-5">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Reopen submission
+      </button>
+      <a class="govuk-link" href="submission">Cancel</a>
+    </div>
+    </form>
   </div>
+
+</div>
 </div>
 
-  
+
 
 {% endblock %}
