@@ -1,0 +1,123 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Forms" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-7">
+      <strong>Grant status:</strong> <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-1">Live</strong>
+    </p>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application form</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Report status</dt>
+            <dd class="govuk-summary-list__value">
+              <strong class="govuk-tag govuk-tag--green">Open</strong>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Form</dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">5 sections</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Uploaded data sets</dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">0 data sets</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Reporting period</dt>
+            <dd class="govuk-summary-list__value">Not set</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Submission period</dt>
+            <dd class="govuk-summary-list__value">Tuesday 7 April 2026 to Tuesday 7 July 2026</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Submissions</dt>
+            <dd class="govuk-summary-list__value">
+              <p><a href="allocations" class="govuk-link">8 live submissions</a><br></p>
+             <p> <a href="#" class="govuk-link">4 test submissions</a></p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Created by</dt>
+            <dd class="govuk-summary-list__value">Hayley.Heaton@communities.gov.uk</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card govuk-!-margin-bottom-9">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Validation form</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Report status</dt>
+            <dd class="govuk-summary-list__value">
+              <strong class="govuk-tag govuk-tag--grey">Closed</strong>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Form</dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">2 sections</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Uploaded data sets</dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">0 data sets</a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Reporting period</dt>
+            <dd class="govuk-summary-list__value">Not set</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Submission period</dt>
+            <dd class="govuk-summary-list__value">Wednesday 17 December 2025 to Friday 30 January 2026</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Submissions</dt>
+            <dd class="govuk-summary-list__value">
+              <p><a href="#" class="govuk-link">27 live submissions</a><br></p>
+            <p>  <a href="#" class="govuk-link">7 test submissions</a></p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Created by</dt>
+            <dd class="govuk-summary-list__value">Hayley.Heaton@communities.gov.uk</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <form action="add-form" method="post" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Add Form
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

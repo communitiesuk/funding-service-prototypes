@@ -1,9 +1,9 @@
-{% extends "layouts/grantRecipient.html" %}
+{% extends "layouts/deliver-grant" %}
 
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Allocations" %}
+{% set pageHeading = "Forms" %}
 {% set pageSection = "Allocation form" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -16,7 +16,7 @@
         <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state" href="#">Grant recipients</a>
       </li>
       <li class="govuk-!-margin-top-4">
-        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state govuk-!-font-weight-bold" href="#">Applications</a>
+        <a class="govuk-link govuk-link--no-underline govuk-link--no-visited-state govuk-!-font-weight-bold" href="#">Forms</a>
       </li>
     </ul>
   </div>
@@ -38,62 +38,9 @@
     <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
     <p class="govuk-body">
-      Review the form submitted by each grant recipient to validate if they meet the conditions. You can also export the data of all the forms.
+   View forms submitted by organisations in the pre-award stage. You can also export all data from the forms.
       
     </p>
-
-
-
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header govuk-!-width-one-half">Grant recipient</th>
-          <th scope="col" class="govuk-table__header">Status</th>
-          <th scope="col" class="govuk-table__header">Last updated</th>
-                   <th scope="col" class="govuk-table__header"></th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Bolton Metropolitan Borough Council</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
-          <td class="govuk-table__cell"></td>
-               <td class="govuk-table__cell"></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Denbighshire County Council</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
-          <td class="govuk-table__cell"></td>
-               <td class="govuk-table__cell"></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">
-           Glasgow City Council
-          </td>
-          <td class="govuk-table__cell">Submitted</td>
-          <td class="govuk-table__cell">20 March 2026</td>
-               <td class="govuk-table__cell"> <a href="submission" class="govuk-link">Review</a></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Melton Borough Council</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
-          <td class="govuk-table__cell"></td>
-               <td class="govuk-table__cell"></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Stevenage Borough Council</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
-          <td class="govuk-table__cell"></td>
-               <td class="govuk-table__cell"></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Wyre Forest District Council</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
-          <td class="govuk-table__cell"></td>
-               <td class="govuk-table__cell"></td>
-        </tr>
-      </tbody>
-    </table>
 
         <div class="govuk-button-group govuk-!-margin-bottom-6">
       <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
@@ -103,6 +50,60 @@
         Export as JSON
       </button>
     </div>
+
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-half">Organisation name</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Last updated</th>
+                   
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Bolton Metropolitan Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+              
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Denbighshire County Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+           <a href="submission">Glasgow City Council</a>
+          </td>
+          <td class="govuk-table__cell">Submitted</td>
+          <td class="govuk-table__cell">20 March 2026</td>
+              
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Melton Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+              
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Stevenage Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+             
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Wyre Forest District Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+               
+        </tr>
+      </tbody>
+    </table>
+
+
 
   </div>
 </div>
