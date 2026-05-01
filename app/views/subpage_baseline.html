@@ -1,0 +1,75 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Original baseline journey (November 2025)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+	
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Status
+    </dt>
+    <dd class="govuk-summary-list__value">
+       <strong class="govuk-tag govuk-tag--green">
+          Released
+        </strong>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      User
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Grant policy team member
+    </dd>
+  </div>
+		</dl>
+
+			<p class="govuk-body">
+  <a href="/funding/financial/designer/conditions/edit_question3" class="govuk-link">Original baseline journey</a>
+</p>
+			<p>This was the baseline journey designed and released in November 2025. </p>
+
+		<p>The service helps grant teams deliver and manage grant funding. </p>
+					<p>The prototype illustrates: </p>
+<ul class="govuk-list govuk-list--bullet">
+				<li>setting up the grant and adding information, such as grant name and type </li>
+				<li>designing and publishing prospectuses </li>
+				<li>creating forms to collect information pre-award (business case, application) </li>
+				<li>creating forms to collect information post-award (monitoring funding progress) </li>
+				<li>assessing grant applications </li>
+				<li>viewing monitoring data  </li>
+				<li>payment integration with SAP </li>
+			</ul>  
+		<p class="govuk-body">This journey was tested with users ...</p>
+
+	
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+				<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+				<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+					<p><a href="#" class="govuk-link">User research</a></p>
+					<p><a href="#" class="govuk-link">Design X</a></p>
+					<p><a href="#" class="govuk-link">Design Y</a></p>
+					<p><a href="#" class="govuk-link">Design Z</a></p>
+
+			</div>
+</div>
+
+{% endblock %}

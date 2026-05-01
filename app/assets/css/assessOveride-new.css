@@ -126,3 +126,9 @@
     gap: .5em;
     display: flex;
 }
+
+.app-aligned-header-tag-high {
+    align-items: baseline;
+    gap: .5em;
+    display: flex;
+}

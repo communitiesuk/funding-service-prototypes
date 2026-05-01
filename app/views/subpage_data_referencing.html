@@ -1,0 +1,69 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Data referencing (March 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+	
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Status
+    </dt>
+    <dd class="govuk-summary-list__value">
+       <strong class="govuk-tag govuk-tag--yellow">
+          In development
+        </strong>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      User
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Form designer
+    </dd>
+  </div>
+		</dl>
+			<p class="govuk-body">
+  <a href="/funding/financial/designer/conditions/edit_question3" class="govuk-link">Data referencing journey</a>
+</p>
+		<p>This functionality allows a form designer to reference data that has previously been uploaded to the service as a CSV.</p>
+
+					<p>The prototype illustrates: </p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>adding a condition (without a calculation)</li>
+				<li>referencing data in a data set that has been uploaded</li>
+				<li>selecting a column from the data set</li>
+				<li>defining the condition (greater than, less than or between)</li>
+				<li>saving the condition</li>
+			</ul>  
+		<p class="govuk-body">This journey has not yet been tested with users but will be tested as part of upcoming rounds.</p>
+
+	
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+				<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+				<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+					<p><a href="#" class="govuk-link">User research on data referencing</a></p>
+					<p><a href="#" class="govuk-link">Design history on data referencing</a></p>
+
+			</div>
+</div>
+
+{% endblock %}
