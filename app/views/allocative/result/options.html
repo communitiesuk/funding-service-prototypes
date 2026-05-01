@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Review allocation" %}
+{% set pageHeading = "Review submission" %}
 {% set pageSection = "Glasgow City Council" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -40,7 +40,7 @@
     <!-- Validate allocation -->
 
     <p class="govuk-body govuk-!-margin-bottom-6">
-      Review the submission and either validate, request changes, or decline it.
+      Review the submission and either approve, request changes, or reject it.
     </p>
 
     <form id="validationRoutingForm" novalidate>
@@ -54,7 +54,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" data-aria-controls="conditional-validation-action-1">
               <label class="govuk-label govuk-radios__label" for="validation-action-1">
-                Validate submission
+                Approve submission
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-1">
@@ -139,13 +139,13 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
               <label class="govuk-label govuk-radios__label" for="validation-action-3">
-                Decline validation
+               Reject validation
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
-                  Why are you declining validatation for the Allocation form submission?
+                  Why are you rejecting validatation for the Allocation form submission?
                 </label>
                 <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
               </div>
