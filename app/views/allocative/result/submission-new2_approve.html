@@ -128,13 +128,39 @@
       </ol>
     </div>
 
+   <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+   <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+         Submission approved. We have sent an email to the grant recipient.
+        </h3>
+      </div>
+    </div>
 
 
     <!-- Header & Caption -->
     <span class="govuk-caption-xl">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">
       {{ pageHeading }}
-      <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2" style="vertical-align: middle;">Submitted</strong>
+       <strong class="govuk-tag govuk-tag--green" style="vertical-align: middle; margin-left: 5px;">Approved</strong>
     </h1>
 
          <h2 class="govuk-heading-l" id="section-1">Details</h2>
@@ -166,11 +192,7 @@
       </div>
     </dl>
 
-       <form action="options" method="post" novalidate>
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Review submission
-</button>
-</form>
+       
 <br>
 
     <!-- Tabs Component -->
@@ -188,6 +210,11 @@
         <li class="govuk-tabs__list-item">
           <a class="govuk-tabs__tab" href="#timeline">
             Timeline
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#Actions">
+            Actions
           </a>
         </li>
       </ul>
@@ -315,6 +342,16 @@
         <h2 class="govuk-heading-l">Timeline</h2>
         
         <ol class="app-timeline">
+             <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Submission approved  <strong class="govuk-tag govuk-tag--green" style="vertical-align: middle; margin-left: 5px;">Approved</strong></h2>
+            <p class="govuk-body app-timeline__date">
+              <time datetime="2020-07-15">11 May 2026</time>
+            </p>
+            <p class="govuk-body app-timeline__description">
+             The submission was approved 
+            </p>
+          </li>
+
    <li class="app-timeline__item">
             <h2 class="govuk-heading-m app-timeline__title">Submission submitted by Glasgow City Council <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2" style="vertical-align: middle;">Submitted</strong></h2>
             <p class="govuk-body app-timeline__date">
@@ -348,6 +385,20 @@
         </ol>
 
       </div>
+
+      <!-- Review TAB (Hidden by default) -->
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="Actions" style="border: none; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+            <h2 class="govuk-heading-l">Actions</h2>
+        
+        <h3 class="govuk-heading-m">No actions available</h3>
+        <p class="govuk-body">As a decision has been made, there are currently no actions available</p>
+        
+
+
+
+
+      </div>
+
 
     </div>
 

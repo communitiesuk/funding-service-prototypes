@@ -128,13 +128,25 @@
       </ol>
     </div>
 
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Submission validation rejected. We have sent an email to the grant recipient.
+        </h3>
+      </div>
+    </div>
 
 
     <!-- Header & Caption -->
     <span class="govuk-caption-xl">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">
       {{ pageHeading }}
-      <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2" style="vertical-align: middle;">Submitted</strong>
+      <strong class="govuk-tag govuk-tag--red" style="vertical-align: middle; margin-left: 5px;">Rejected</strong>
     </h1>
 
          <h2 class="govuk-heading-l" id="section-1">Details</h2>
@@ -315,6 +327,26 @@
         <h2 class="govuk-heading-l">Timeline</h2>
         
         <ol class="app-timeline">
+                  <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Submission rejected   <strong class="govuk-tag govuk-tag--red" style="vertical-align: middle; margin-left: 5px;">Rejected</strong></h2>
+            <p class="govuk-body app-timeline__date">
+              <time datetime="2020-07-15">11 May 2026</time>
+            </p>
+            <p class="govuk-body app-timeline__description">
+             The submission was rejected <br>
+             <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Rejection details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    Information was not detailed
+  </div>
+</details>
+            </p>
+          </li>
+
    <li class="app-timeline__item">
             <h2 class="govuk-heading-m app-timeline__title">Submission submitted by Glasgow City Council <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2" style="vertical-align: middle;">Submitted</strong></h2>
             <p class="govuk-body app-timeline__date">
