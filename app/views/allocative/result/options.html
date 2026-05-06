@@ -54,7 +54,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" data-aria-controls="conditional-validation-action-1">
               <label class="govuk-label govuk-radios__label" for="validation-action-1">
-                Approve submission
+                Mark as approved
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-1">
@@ -66,7 +66,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
               <label class="govuk-label govuk-radios__label" for="validation-action-2">
-                Request changes on submission
+                Request changes
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
@@ -74,7 +74,7 @@
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
     <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
-                  Which sections need to be changed or updated?
+                  Which sections need to be changed?
                 </label>
           </legend>
           
@@ -127,8 +127,11 @@
 
       <div class="govuk-form-group">
   <label class="govuk-label" for="more-detail">
-   Please provide more details about changes needed
+   Provide details about the changes needed
   </label>
+    <div id="event-name-hint" class="govuk-hint">
+    This will be visible to any user from Glasgow City Council with access to the form
+  </div>
   <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
 </div>
  </div>
@@ -139,7 +142,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
               <label class="govuk-label govuk-radios__label" for="validation-action-3">
-               Reject validation
+               Mark as rejected
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
