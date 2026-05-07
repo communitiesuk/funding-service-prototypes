@@ -40,7 +40,7 @@
     <!-- Validate allocation -->
 
     <p class="govuk-body govuk-!-margin-bottom-6">
-    Mark this submission as approved or rejected.
+ This will used for internal records and only be visible to users within the Ministry of Housing, Communities and Local Government</p>
 
     <form id="validationRoutingForm" novalidate>
       <div class="govuk-form-group govuk-!-margin-bottom-6">
@@ -53,7 +53,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" data-aria-controls="conditional-validation-action-1">
               <label class="govuk-label govuk-radios__label" for="validation-action-1">
-                Approve submission
+                Mark as approved
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-1">
@@ -91,7 +91,7 @@
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
               <label class="govuk-label govuk-radios__label" for="validation-action-3">
-                Reject validation
+                Mark as rejected
               </label>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
@@ -99,6 +99,9 @@
                 <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
                   Why are you rejecting validatation for the Allocation form submission?
                 </label>
+                <div id="event-name-hint" class="govuk-hint">
+This will used for internal records and only be visible to users within the Ministry of Housing, Communities and Local Government
+  </div>
                 <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
               </div>
             </div>
