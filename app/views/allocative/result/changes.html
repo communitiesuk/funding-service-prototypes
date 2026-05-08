@@ -12,7 +12,21 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
-    <form action="submission-new2_request" method="post" novalidate>
+  <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+    
+    <form action="submission-new2_request#timeline" method="post" novalidate>
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
@@ -51,8 +65,8 @@
   <div class="govuk-checkboxes__divider">or</div>
 
         <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="section-all" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-all">
-              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+              <input class="govuk-checkboxes__input" id="section-none" name="sectionsToChange" type="checkbox" value="none" data-behaviour="exclusive">
+              <label class="govuk-label govuk-checkboxes__label" for="section-none">
                 No specific section
               </label>
             </div>
@@ -83,4 +97,34 @@
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Exclusive Checkbox Logic for "No specific section"
+    const noneCheckbox = document.getElementById('section-none');
+    const otherCheckboxes = document.querySelectorAll('input[name="sectionsToChange"]:not(#section-none)');
+
+    if (noneCheckbox && otherCheckboxes.length > 0) {
+      // When "None" is checked, uncheck all others
+      noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+        }
+      });
+
+      // When any other checkbox is checked, uncheck "None"
+      otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            noneCheckbox.checked = false;
+          }
+        });
+      });
+    }
+
+  });
+</script>
 {% endblock %}

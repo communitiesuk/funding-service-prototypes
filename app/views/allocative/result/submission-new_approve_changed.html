@@ -128,31 +128,17 @@
       </ol>
     </div>
 
-    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-          Success
-        </h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <h3 class="govuk-notification-banner__heading">
-         Changes have been requested
-        </h3>
-        <p class="govuk-body">We've emailed Glasgow City Council to let them know what changes have been requested.</p>
-      </div>
-    </div>
 
 
     <!-- Header & Caption -->
     <span class="govuk-caption-l">{{ pageSection }}</span>
     <h1 class="govuk-heading-l">
       {{ pageHeading }}
-       <strong class="govuk-tag govuk-tag--yellow">Changes requested</strong>
+      <strong class="govuk-tag govuk-tag--green" style="display: inline-block; vertical-align: middle; margin-left: 5px; white-space: nowrap; padding-right: 15px;">Marked as approved</strong>
     </h1>
 
-        
 
-
+ 
     <dl class="govuk-summary-list govuk-!-margin-bottom-7" style="border-top: 1px solid #b1b4b6;">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-!-width-one-third">
@@ -190,9 +176,7 @@
             
     </dl>
 
-       
-<br>
-
+    
     <!-- Tabs Component -->
     <div class="govuk-tabs" data-module="govuk-tabs">
       <h2 class="govuk-tabs__title">
@@ -210,7 +194,6 @@
             Timeline
           </a>
         </li>
-    
       </ul>
 
       <!-- ANSWERS TAB (Visible by default) -->
@@ -244,7 +227,7 @@
               </nav>
             </div>
           </div>
-
+ 
           <!-- Main Content for Answers (Right Column) -->
           <div class="govuk-grid-column-three-quarters">
             
@@ -298,8 +281,23 @@
                   <td class="govuk-table__cell">£{{ data['fundingAmount'] or '1,500,000' }}</td>
                 </tr>
                 <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">What activities do you plan to deliver using the funding?</th>
-                  <td class="govuk-table__cell">{{ data['activities'] or 'We plan to retrofit 500 properties with updated fire safety doors and improved alarm systems.' }}</td>
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">What activities do you plan to deliver using the funding? </th>
+                  <td class="govuk-table__cell">
+<strong class="govuk-tag">
+  Changed
+</strong> <br> <br>
+After reconsideration, we now plan to retrofit 750 properties with updated fire safety doors and improved alarm systems. <br> <br>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     Original response
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+     {{ data['activities'] or 'We plan to retrofit 500 properties with updated fire safety doors and improved alarm systems.' }}
+  </div>
+</details>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -313,8 +311,25 @@
                   <td class="govuk-table__cell">{{ data['mou'] or 'Yes' }}</td>
                 </tr>
                 <tr class="govuk-table__row">
+
+
+
+
                   <th scope="row" class="govuk-table__header govuk-!-width-one-third">Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus?</th>
-                  <td class="govuk-table__cell">{{ data['monitoring'] or 'Yes' }}</td>
+                  <td class="govuk-table__cell"><strong class="govuk-tag">
+  Changed
+</strong> <br> <br>
+Yes <br> <br>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     Original response
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    No
+  </div>
+</details></td>
                 </tr>
                 <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header govuk-!-width-one-third">Do you commit to provide safer social housing by 30 April 2029?</th>
@@ -336,7 +351,23 @@
         <h2 class="govuk-heading-m">Timeline</h2>
         
         <ol class="app-timeline">
-                            <li class="app-timeline__item">
+           <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Submission marked as approved <span class="govuk-hint">by MHCLG</span>  </h2>
+            <p class="govuk-body-s">
+              <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> 31 May 2026</time>
+            </p>
+            <p class="govuk-body app-timeline__description">
+   
+            </p>
+          </li>
+            <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Changes submitted <span class="govuk-hint">by Glasgow City Council</span> </h2>
+            <p class="govuk-body-s">
+              <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 May 2026</time>
+            </p>
+
+          </li>
+             <li class="app-timeline__item">
             <h2 class="govuk-heading-m app-timeline__title">Changes requested <span class="govuk-hint">by MHCLG</span></td></h2>
             <p class="govuk-body-s">
               <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 11 May 2026</time>
@@ -358,8 +389,7 @@ Also, agreeing to participation in monitoring and evaluation is essential becaus
 </details>
             </p>
           </li>
-
- <li class="app-timeline__item">
+  <li class="app-timeline__item">
             <h2 class="govuk-heading-m app-timeline__title">Form completed and sent for certification  <span class="govuk-hint">by Glasgow City Council</span> </h2>
             <p class="govuk-body-s"> 
               <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026</time> 
@@ -405,8 +435,6 @@ Also, agreeing to participation in monitoring and evaluation is essential becaus
         </ol>
 
       </div>
-
-  
 
     </div>
 

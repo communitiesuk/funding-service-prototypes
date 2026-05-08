@@ -30,8 +30,8 @@
     </div>
 
     <!-- Header & Caption -->
-    <span class="govuk-caption-xl">{{ pageSection }}</span>
-    <h1 class="govuk-heading-xl">
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">
       {{ pageHeading }}
     
     </h1>
@@ -52,16 +52,12 @@
           <div class="govuk-radios" data-module="govuk-radios">
             
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" data-aria-controls="conditional-validation-action-1">
+              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" >
               <label class="govuk-label govuk-radios__label" for="validation-action-1">
                 Mark as approved
               </label>
             </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-1">
-              <p class="govuk-body">
-                You are validating the Allocation form submission for Benches allocated in parks. <br><br> By validating this submission, you confirm that you have reviewed the information provided and it is correct
-              </p>
-            </div>
+          
             
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
@@ -104,18 +100,18 @@
               </label>
             </div>
 
-                        <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="section-funding" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-funding">
-              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-declarations" name="sectionsToChange" type="checkbox" value="declarations">
+              <label class="govuk-label govuk-checkboxes__label" for="section-declarations">
                 Declarations
               </label>
             </div>
             
-  <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__divider">or</div>
 
-        <div class="govuk-checkboxes__item">
-              <input class="govuk-checkboxes__input" id="section-all" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-all">
-              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-none" name="sectionsToChange" type="checkbox" value="none" data-behaviour="exclusive">
+              <label class="govuk-label govuk-checkboxes__label" for="section-none">
                 No specific section
               </label>
             </div>
@@ -148,7 +144,7 @@
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
-                  Why are you rejecting validatation for the Allocation form submission?
+                  Why are you marking this submission as rejected?
                 </label>
                 <div id="event-name-hint" class="govuk-hint">
 This will used for internal records and only be visible to users within the Ministry of Housing, Communities and Local Government
@@ -160,17 +156,46 @@ This will used for internal records and only be visible to users within the Mini
           </div>
         </fieldset>
       </div>
-
+<div class="govuk-button-group">
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Confirm
       </button>
     </form>
-
+    <p class="govuk-body">
+   <a href="submission-new" class="govuk-link">Cancel</a>
+</p>
+</div>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Exclusive Checkbox Logic for "No specific section"
+    const noneCheckbox = document.getElementById('section-none');
+    const otherCheckboxes = document.querySelectorAll('input[name="sectionsToChange"]:not(#section-none)');
+
+    if (noneCheckbox && otherCheckboxes.length > 0) {
+      // When "None" is checked, uncheck all others
+      noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+        }
+      });
+
+      // When any other checkbox is checked, uncheck "None"
+      otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            noneCheckbox.checked = false;
+          }
+        });
+      });
+    }
+
+    // 2. Form Routing Logic
     const form = document.getElementById('validationRoutingForm');
     
     form.addEventListener('submit', function(event) {
@@ -180,11 +205,11 @@ This will used for internal records and only be visible to users within the Mini
       
       if (selectedOption) {
         if (selectedOption.value === 'validate') {
-          window.location.href = 'submission-new_approve';
+          window.location.href = 'submission-new_approve#timeline';
         } else if (selectedOption.value === 'request-changes') {
-          window.location.href = 'submission-new_request';
+          window.location.href = 'submission-new_request#timeline';
         } else if (selectedOption.value === 'decline') {
-          window.location.href = 'submission-new_declined';
+          window.location.href = 'submission-new_declined#timeline';
         }
       }
     });
