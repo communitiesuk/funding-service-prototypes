@@ -446,6 +446,13 @@ Also, agreeing to participation in monitoring and evaluation is essential becaus
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('validationRoutingForm');
     
     if(form) {
