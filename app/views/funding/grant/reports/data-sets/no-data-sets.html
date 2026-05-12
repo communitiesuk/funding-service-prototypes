@@ -1,7 +1,7 @@
 {% extends "layouts/deliver-nav.html" %}
 
 {% set navID = 'reports' %}
-{% set showBackLink = true %}
+{% set showBackLink = false %}
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Reports" %}
@@ -11,11 +11,20 @@
 
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "#" },
+{ text: "Data sets" }
+]
+}) }}
+{% endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-<span class="govuk-caption-l">[Report name]</span>
+<span class="govuk-caption-l">Mid-year monitoring</span>
 <h1 class="govuk-heading-l">Uploaded data sets</h1>
 
  <details class="govuk-details">
@@ -30,7 +39,7 @@
   <li><a class="govuk-link" href="">Download the data set template (CSV)</li></a> with grant recipients listed</li>
   <li>Name the columns to describe the data in it, for example, "Funding"</li>
   <li>Add the data to the CSV</li>
-  <li>Map the CSV columns and upload the data set</li>
+  <li>Format the data columns and upload the data set</li>
 </ol>
 
   </div>
