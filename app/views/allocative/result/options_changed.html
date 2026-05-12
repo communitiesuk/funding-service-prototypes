@@ -44,26 +44,22 @@
     </p>
 
     <form id="validationRoutingForm" novalidate>
-      <div class="govuk-form-group govuk-!-margin-bottom-6">
+     <div class="govuk-form-group govuk-!-margin-bottom-6">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-visually-hidden">
             Validate allocation options
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
             
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" >
-              <label class="govuk-label govuk-radios__label" for="validation-action-1">
-                Mark as approved
-              </label>
-            </div>
-          
-            
-            <div class="govuk-radios__item">
+
+      <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
               <label class="govuk-label govuk-radios__label" for="validation-action-2">
                 Request changes
               </label>
+              <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+            This will send an email to the organisation with the details of the changes needed
+        </div>
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
                  <div class="govuk-form-group">
@@ -122,33 +118,46 @@
 <br>
 
       <div class="govuk-form-group">
-  <label class="govuk-label" for="more-detail">
-   Provide details about the changes needed
+  <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+   Tell Glasgow City Council about the changes needed
   </label>
-    <div id="event-name-hint" class="govuk-hint">
-    This will be visible to any user from Glasgow City Council with access to the form
-  </div>
+ 
   <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
 </div>
  </div>
 
             
             </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" >
+              <label class="govuk-label govuk-radios__label" for="validation-action-1">
+                Mark as approved
+              </label>
+              <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             This is for internal records only and we won't email the organisation about the decision
+        </div>
+            </div>
+          
+            
+    
             
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
               <label class="govuk-label govuk-radios__label" for="validation-action-3">
                Mark as rejected
               </label>
+               <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             This is for internal records only and we won't email the organisation about the decision
+        </div>
+             
             </div>
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
                   Why are you marking this submission as rejected?
                 </label>
-                <div id="event-name-hint" class="govuk-hint">
-This will used for internal records and only be visible to users within the Ministry of Housing, Communities and Local Government
-  </div>
+               
                 <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
               </div>
             </div>
