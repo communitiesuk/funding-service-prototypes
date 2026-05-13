@@ -1,11 +1,11 @@
 {% extends "layouts/deliver-nav.html" %}
-{% set navID = 'reports' %}
 
+{% set navID = 'reports' %}
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Reports" %}
-{% set pageHeading = "Format Grant allocation number columns" %}
+{% set pageHeading = "Format Grant allocation data" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -15,12 +15,9 @@
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">Mid-year monitoring</span>
-    <h1 class="govuk-heading-l">Format Grant allocation number columns</h1>
+    <h1 class="govuk-heading-l">Format Grant allocation data</h1>
 
-    <p class="govuk-body">Format the data set&#8217;s number columns as they should appear in the form.</p>
-
-    <p class="govuk-body">For example, adding the "£" prefix and using 2 decimal places will so data in a number column
-      appears as £100.00.</p>
+    <p class="govuk-body">Select the data type for each column in the data set.</p>
 
 
     <table class="govuk-table">
@@ -34,7 +31,15 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        </td>
+
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell--middle">Grant recipient</td>
+          <td class="govuk-table__cell govuk-table__cell--middle">Birmingham City Council, Swindon City Council, York
+            City Council</td>
+          <td class="govuk-table__cell">
+            Text
+          </td>
         </tr>
 
         <!-- Row 2 -->
@@ -42,24 +47,7 @@
           <td class="govuk-table__cell govuk-table__cell--middle">Capital allocation</td>
           <td class="govuk-table__cell govuk-table__cell--middle">£4,500,000, £4,500,000, £4,500,000</td>
           <td class="govuk-table__cell">
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="width-10">
-                Prefix (optional)
-              </label>
-              <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-            </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="width-10">
-                Suffix (optional)
-              </label>
-              <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-            </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="width-10">
-                Decimal places
-              </label>
-              <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-            </div>
+            Decimal
           </td>
         </tr>
 
@@ -68,39 +56,40 @@
           <td class="govuk-table__cell govuk-table__cell--middle">Revenue allocation</td>
           <td class="govuk-table__cell govuk-table__cell--middle">£1,250,000, £1,250,000, £1,250,000</td>
           <td class="govuk-table__cell">
+            Decimal
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell--middle">Top up allocation</td>
+          <td class="govuk-table__cell govuk-table__cell--middle">£1,250,000, £1,250,000, £1,250,000</td>
+          <td class="govuk-table__cell">
             <div class="govuk-form-group govuk-!-margin-bottom-2">
               <div class="govuk-form-group">
-                <label class="govuk-label" for="width-10">
-                  Prefix (optional)
+                <label class="govuk-label" for="sort">
+                  Select data type
                 </label>
-                <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-              </div>
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="width-10">
-                  Suffix (optional)
-                </label>
-                <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
-              </div>
-              <div class="govuk-form-group">
-                <label class="govuk-label" for="width-10">
-                  Decimal places
-                </label>
-                <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
+                <select class="govuk-select" id="sort" name="sort">
+                  <option value="published" selected>Select data type</option>
+                  <option value="updated">Text</option>
+                  <option value="views">Whole number</option>
+                  <option value="comments">Decimal</option>
+                </select>
               </div>
             </div>
           </td>
         </tr>
-
       </tbody>
     </table>
 
     <br>
-    <form method="post" action="upload-success">
+    <form method="post" action="replace-format-numbers">
       <div class="govuk-button-group">
         <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue and upload data set
+          Continue
         </button>
-        <a class="govuk-link" href="no-data-sets">Cancel</a>
+        <a class="govuk-link" href="view-data-set">Cancel</a>
       </div>
     </form>
   </div>
@@ -109,10 +98,6 @@
 <br>
 <!-- <p class="govuk-body-xs"><a href="data_warning">(Data missing/wrong symbol page)</a>
 </p> -->
-
-</div>
-
-</div>
 
 <script>
   function handleTypeChange(select) {

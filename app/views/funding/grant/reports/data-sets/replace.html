@@ -14,7 +14,7 @@
     <div class="govuk-grid-column-full">
 
 <span class="govuk-caption-l">Mid-year monitoring</span>
-<h1 class="govuk-heading-l">Replace Outputs data set</h1>
+<h1 class="govuk-heading-l">Replace Grant allocation data set</h1>
 
 <p class="govuk-body">You can replace a data set if the data types, column names and number of columns are the same.</p>
 
@@ -33,6 +33,20 @@
 
 
 <div class="govuk-form-group">
+     
+  <label class="govuk-label" for="two-thirds">
+    Data set name
+  </label>
+
+  <input
+    class="govuk-input govuk-!-width-two-thirds"
+    id="two-thirds"
+    name="twoThirds"
+    type="text"
+    value="Grant allocation">
+    </div>
+
+<div class="govuk-form-group">
   <label class="govuk-label" for="file-upload-1">
     Upload a file
   </label>
@@ -44,12 +58,12 @@
 </div>
 
   <br>
-  <form method="post" action="view-data-set-replaced">
+  <form method="post" action="replace-format">
 <div class="govuk-button-group">
   <button type="submit" class="govuk-button" data-module="govuk-button">
     Replace data set
   </button>
-  <a class="govuk-link" href="#">Cancel</a>
+  <a class="govuk-link" href="view-data-set">Cancel</a>
 </div>
 </form>
 </div>
