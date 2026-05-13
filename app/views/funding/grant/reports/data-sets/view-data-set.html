@@ -16,7 +16,7 @@
 items: [
 { text: "Reports", href: "#" },
 { text: "Data sets", href: "#" },
-{ text: "[Name of data set]" }
+{ text: "Grant allocation" }
 ]
 }) }}
 {% endblock %}
@@ -27,7 +27,7 @@ items: [
 
     <span class="govuk-caption-l">Mid-year monitoring</span>
     <!-- <h1 class="govuk-heading-l">Uploaded data set</h1> -->
-    <h1 class="govuk-heading-l">Outputs data set</h1>
+    <h1 class="govuk-heading-l">Grant allocation data set</h1>
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
@@ -80,7 +80,7 @@ items: [
   <form method="post" action="replace">
     <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" 
             style="white-space: nowrap; width: auto;">
-      Reupload data set
+      Replace data set
     </button>
   </form>
 
@@ -107,14 +107,10 @@ items: [
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header"><a href="">Row</a></th>
-          <th scope="col" class="govuk-table__header"><a href=""><a href="">Grant recipient</a></th>
-          <th scope="col" class="govuk-table__header">
-            <a href="">Capital allocation</a>
-          </th>
-          <th scope="col" class="govuk-table__header"><a href="">Revenue allocation</a></th>
-
-
+          <th scope="col" class="govuk-table__header">Organisation ID</th>
+          <th scope="col" class="govuk-table__header">Grant recipient</th>
+          <th scope="col" class="govuk-table__header">Capital allocation</th>
+          <th scope="col" class="govuk-table__header">Revenue allocation</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -165,6 +161,134 @@ items: [
 
       </tbody>
     </table>
+
+     <!-- MOJ Table with same number of columns -->
+
+<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+  <table class="govuk-table">
+          <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Organisation ID</th>
+          <th scope="col" class="govuk-table__header">Grant recipient</th>
+          <th scope="col" class="govuk-table__header">Capital allocation</th>
+          <th scope="col" class="govuk-table__header">Revenue allocation</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">1</td>
+          <td class="govuk-table__cell">
+            Birmingham City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">2</td>
+          <td class="govuk-table__cell">
+            Swindon City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">3</td>
+          <td class="govuk-table__cell">
+            York City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+        </tr>
+
+      </tbody>
+  </table>
+
+
+    <!-- MOJ Table with extra column -->
+
+<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+  <table class="govuk-table">
+          <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Organisation ID</th>
+          <th scope="col" class="govuk-table__header">Grant recipient</th>
+          <th scope="col" class="govuk-table__header">Capital allocation</th>
+          <th scope="col" class="govuk-table__header">Revenue allocation</th>
+          <th scope="col" class="govuk-table__header">Another column</th>
+
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">1</td>
+          <td class="govuk-table__cell">
+            Birmingham City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+          <td class="govuk-table__cell">
+            Some extremely wide content to make the table scroll
+          </td>
+
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">2</td>
+          <td class="govuk-table__cell">
+            Swindon City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+<td class="govuk-table__cell">
+            Some extremely wide content to make the table scroll
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">3</td>
+          <td class="govuk-table__cell">
+            York City Council
+          </td>
+          <td class="govuk-table__cell">
+            £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
+          </td>
+<td class="govuk-table__cell">
+            Some extremely wide content to make the table scroll
+          </td>
+
+        </tr>
+
+      </tbody>
+  </table>
+</div>
 
 
 
