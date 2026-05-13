@@ -5,7 +5,7 @@
 
 {% set pageSize = "l" %}
 {% set pageHeading = "Reports" %}
-{% set pageHeading = "Map Outputs data columns" %}
+{% set pageHeading = "Format Grant allocation number columns" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -15,9 +15,11 @@
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">Mid-year monitoring</span>
-    <h1 class="govuk-heading-l">Map Outputs number columns</h1>
+    <h1 class="govuk-heading-l">Format Grant allocation number columns</h1>
 
-    <p class="govuk-body">Map the data from each column to set its data type and settings in the grant form.</p>
+    <p class="govuk-body">Format the data set&#8217;s number columns as they should appear in the form.</p>
+    
+    <p class="govuk-body">For example, adding the "£" prefix and using 2 decimal places will so data in a number column appears as £100.00.</p>
 
 
     <table class="govuk-table">
@@ -33,7 +35,7 @@
       <tbody class="govuk-table__body">
 
         <!-- Row 1 -->
-        <tr class="govuk-table__row">
+        <!-- <tr class="govuk-table__row">
           <td class="govuk-table__cell govuk-table__cell--middle">grant recipient</td>
           <td class="govuk-table__cell govuk-table__cell--middle">Birmingham City Council, Swindon City Council, York
             City Council</td>
@@ -57,7 +59,7 @@
               <input class="govuk-input govuk-input--width-10" id="width-10" name="width10" type="text">
             </div>
   </div>
-</div>
+</div> -->
 
 
 </td>
@@ -124,7 +126,7 @@
 <form method="post" action="upload-success">
   <div class="govuk-button-group">
     <button type="submit" class="govuk-button" data-module="govuk-button">
-      Continue
+      Continue and upload data set
     </button>
     <a class="govuk-link" href="#">Cancel</a>
   </div>
@@ -133,8 +135,8 @@
 </div>
 
 <br>
-<p class="govuk-body-xs"><a href="data_warning">(Data missing/wrong symbol page)</a>
-</p>
+<!-- <p class="govuk-body-xs"><a href="data_warning">(Data missing/wrong symbol page)</a>
+</p> -->
 
 </div>
 
