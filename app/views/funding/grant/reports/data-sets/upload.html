@@ -17,14 +17,18 @@
     <span class="govuk-caption-l">Mid-year monitoring</span>
     <h1 class="govuk-heading-l">Upload new data set</h1>
 
-    <p class="govuk-body">Upload data to reference in form guidance, questions, conditions and validation.
-    </p>
-
+    <p class="govuk-body">Check the <a class="govuk-link" href="">grant recipients</a> have been set up before uploading a data set. The grant recipients will be reflected in the <a class="govuk-link" href="">data set template (CSV)</a>.
+    </p> 
+    
+    <p class="govuk-body">Missing or incorrect data can be replaced later.</p>
 
     <div class="govuk-form-group">
       <label class="govuk-label" for="event-name">
         Data set name
       </label>
+      <!-- <div id="event-name-hint" class="govuk-hint">
+        What users will see in an error message
+      </div> -->
       <!-- <input class="govuk-input" id="event-name" name="eventName" type="text"> -->
       <input class="govuk-input govuk-!-width-two-thirds" id="two-thirds" name="twoThirds" type="text">
     </div>
@@ -40,11 +44,28 @@
       </div>
     </div>
 
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          What file types can I upload?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+
+        <p class="govuk-body">You can upload the following file types:</p>
+    
+    <ul class="govuk-list govuk-list govuk-list--bullet">
+      <li>CSV</li>
+    </ul>
+    
+      </div>
+    </details> 
+
     <br>
     <form method="post" action="map">
       <div class="govuk-button-group">
   <button type="submit" class="govuk-button" data-module="govuk-button">
-    Continue and map columns
+    Continue and format data
   </button>
   <a class="govuk-link" href="#">Cancel</a>
 </div>
