@@ -4,7 +4,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Reupload Outputs data set" %}
+{% set pageHeading = "Replace Grant allocation data set" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -16,36 +16,25 @@
 <span class="govuk-caption-l">Mid-year monitoring</span>
 <h1 class="govuk-heading-l">Replace Grant allocation data set</h1>
 
-<p class="govuk-body">Upload a file to replace an existing data set.</p>
+<p class="govuk-body">Upload a file to replace the existing data set.</p>
 
-<!-- <p>If you are removing a column, you need to remove any references from guidance, questions, conditions and validation first. You can then replace the data set file and create the references again.</p> -->
-
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    If you are removing a column, you need to remove any references from guidance, questions, conditions and validation first. You can then replace the data set file and create the references again.
-  </strong>
-</div>
+<!-- <p>To remove a column from the existing data set, remove any references from guidance, questions, conditions and validation first. You can then replace the data set file and create the references again.</p>
   
-  <p>To change existing data types or formatting, you will need to delete the data set and upload the file as a new data set.</p>
+  <p>To change existing data types or formatting, you need to delete the data set instead and upload the file as a new data set.</p> -->
 
-<!-- <details class="govuk-details">
+<details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
-      Changing data set columns
+      If you are removing or changing columns
     </span>
   </summary>
   <div class="govuk-details__text">
-    <p>If you are removing a column, you need to remove any references from guidance, questions, conditions and validation first.</p>
+    <p>To remove a column from the existing data set, remove any references from guidance, questions, conditions and validation first. You can then replace the data set file and create the references again.</p>
     
-    <p>You can add additional columns to the data set.</p>
-    
-    <p>If you need to changehave already created references to the existing data set, you need to remove all existing references from all guidance, questions, conditions and validation before deleting the data set.</p>
+    <p>To change existing column names, data types or formatting, you need to delete the data set instead and upload the file as a new data set.</p>
 
-    <p>You can then upload the new data set and recreate the references.</p>
   </div>
-</details> -->
+</details>
 
 
 <div class="govuk-form-group">
@@ -73,11 +62,15 @@
   </div>
 </div>
 
+<p class="govuk-body">
+  Only CSV (.csv) files can be uploaded for data sets.
+</p>
+
   <br>
   <form method="post" action="replace-format">
 <div class="govuk-button-group">
   <button type="submit" class="govuk-button" data-module="govuk-button">
-    Replace data set
+    Check and replace data set
   </button>
   <a class="govuk-link" href="view-data-set">Cancel</a>
 </div>
