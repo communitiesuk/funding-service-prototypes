@@ -76,13 +76,13 @@ items: [
 
 
           <div style="display: flex; gap: 15px; align-items: center;">
-            
-  <form method="post" action="replace">
-    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" 
-            style="white-space: nowrap; width: auto;">
-      Replace data set
-    </button>
-  </form>
+
+            <form method="post" action="replace">
+              <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                style="white-space: nowrap; width: auto;">
+                Replace data set
+              </button>
+            </form>
 
             <form method="post" action="delete">
               <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button"
@@ -98,204 +98,64 @@ items: [
 
     </div>
 
-
-    <!-- Data Table (Extracted Content) -->
+    <!-- MOJ Table with same number of columns -->
     <h2 class="govuk-heading-m">Data columns</h2>
 
+    <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Organisation ID</th>
+            <th scope="col" class="govuk-table__header">Grant recipient</th>
+            <th scope="col" class="govuk-table__header">Capital allocation</th>
+            <th scope="col" class="govuk-table__header">Revenue allocation</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">1</td>
+            <td class="govuk-table__cell">
+              Birmingham City Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
 
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Organisation ID</th>
-          <th scope="col" class="govuk-table__header">Grant recipient</th>
-          <th scope="col" class="govuk-table__header">Capital allocation</th>
-          <th scope="col" class="govuk-table__header">Revenue allocation</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
+          </tr>
 
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">1</td>
-          <td class="govuk-table__cell">
-            Birmingham City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">2</td>
+            <td class="govuk-table__cell">
+              Swindon City Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">3</td>
+            <td class="govuk-table__cell">
+              York City Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
 
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">2</td>
-          <td class="govuk-table__cell">
-            Swindon City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">3</td>
-          <td class="govuk-table__cell">
-            York City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-
-
-        </tr>
-
-      </tbody>
-    </table>
-
-     <!-- MOJ Table with same number of columns -->
-
-<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
-  <table class="govuk-table">
-          <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Organisation ID</th>
-          <th scope="col" class="govuk-table__header">Grant recipient</th>
-          <th scope="col" class="govuk-table__header">Capital allocation</th>
-          <th scope="col" class="govuk-table__header">Revenue allocation</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">1</td>
-          <td class="govuk-table__cell">
-            Birmingham City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">2</td>
-          <td class="govuk-table__cell">
-            Swindon City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">3</td>
-          <td class="govuk-table__cell">
-            York City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-        </tr>
-
-      </tbody>
-  </table>
-
-
-    <!-- MOJ Table with extra column -->
-
-<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
-  <table class="govuk-table">
-          <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Organisation ID</th>
-          <th scope="col" class="govuk-table__header">Grant recipient</th>
-          <th scope="col" class="govuk-table__header">Capital allocation</th>
-          <th scope="col" class="govuk-table__header">Revenue allocation</th>
-          <th scope="col" class="govuk-table__header">Another column</th>
-
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">1</td>
-          <td class="govuk-table__cell">
-            Birmingham City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-          <td class="govuk-table__cell">
-            Some extremely wide content to make the table scroll
-          </td>
-
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">2</td>
-          <td class="govuk-table__cell">
-            Swindon City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-<td class="govuk-table__cell">
-            Some extremely wide content to make the table scroll
-          </td>
-        </tr>
-
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">3</td>
-          <td class="govuk-table__cell">
-            York City Council
-          </td>
-          <td class="govuk-table__cell">
-            £4,500,000.00
-          </td>
-          <td class="govuk-table__cell">
-            £1,250,000.00
-          </td>
-<td class="govuk-table__cell">
-            Some extremely wide content to make the table scroll
-          </td>
-
-        </tr>
-
-      </tbody>
-  </table>
-</div>
-
-
-
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
-
-</div>
 </div>
 {% endblock %}
