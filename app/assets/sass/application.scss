@@ -434,9 +434,3 @@ border-color: govuk-colour("mid-grey");
       position: static;
     }
   }
-
-@import "moj-scrollable-pane";
-
-.moj-scrollable-pane table {
-  width: max-content;
-}

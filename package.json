@@ -6,11 +6,13 @@
   },
   "dependencies": {
     "@govuk-prototype-kit/common-templates": "2.0.1",
+    "@ministryofjustice/frontend": "^8.0.1",
     "@x-govuk/govuk-prototype-components": "^5.0.1",
     "@x-govuk/govuk-prototype-filters": "2.0.0",
-    "govuk-frontend": "5.11.1",
+    "govuk-frontend": "^5.11.1",
     "govuk-notifications": "^1.0.10",
     "govuk-prototype-kit": "13.18.0",
+    "moment": "^2.30.1",
     "radio-button-redirect": "^1.2.0"
   }
 }
