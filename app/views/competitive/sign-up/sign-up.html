@@ -1,0 +1,39 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "What is your email address?" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="sign-up_details" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <span class="govuk-caption-l">{{ pageSection }}</span>
+          <label class="govuk-label govuk-label--xl" for="email">
+            {{ pageHeading }}
+          </label>
+        </h1>
+        
+        <div id="email-hint" class="govuk-hint">
+          We will use this to send you a confirmation link to register your organisation.
+        </div>
+        
+        <input class="govuk-input govuk-!-width-two-thirds" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

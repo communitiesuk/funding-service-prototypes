@@ -1,0 +1,103 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Safer social housing fund" %}
+{% set pageSection = "Find a grant" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body govuk-body-l">
+      The Safer social housing fund is a scheme designed to test different ways of improving social housing safety and infrastructure in England. It supports local authorities, charities, and voluntary sector organisations to deal with critical housing safety issues.
+    </p>
+
+    <div class="govuk-inset-text">
+      <p class="govuk-body">
+        <strong>Opening date:</strong> 1 August 2026, 12:01am (Midnight)<br>
+        <strong>Closing date:</strong> 31 March 2029, 11:59pm (Midnight)
+      </p>
+    </div>
+
+    <a href="eligibility" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+      Start new application
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#summary">
+            Summary
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#eligibility">
+            Eligibility
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#objectives">
+            Objectives
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#how-to-apply">
+            How to apply
+          </a>
+        </li>
+      </ul>
+
+      <div class="govuk-tabs__panel" id="summary">
+        <h2 class="govuk-heading-l">Summary</h2>
+        <p class="govuk-body">
+          Funding from the scheme can go towards a range of measures including infrastructure improvements, new safety installations, and long-term maintenance planning. The guidance sets out the aims of the fund in detail including eligibility and application details.
+        </p>
+      </div>
+
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="eligibility">
+        <h2 class="govuk-heading-l">Eligibility</h2>
+        <p class="govuk-body">This fund is competitive and open to people and organisations in England who manage specific social housing portfolios. You can apply if you are a:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Local Authority (LA)</li>
+          <li>Charity</li>
+          <li>Voluntary and Community Sector Organisation (VCSE)</li>
+          <li>Business operating within the housing sector</li>
+        </ul>
+        <p class="govuk-body">
+          To take part in the scheme, the buildings you manage must meet the criteria outlined in the technical prospectus. Your grant application must have a minimum funding request value of £500.
+        </p>
+      </div>
+
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="objectives">
+        <h2 class="govuk-heading-l">Objectives</h2>
+        <p class="govuk-body">
+          The main objectives of the fund are to successfully expand on the limited support available, to gather vital knowledge to support a nationwide rollout, and to ultimately increase funding accessibility to as many types of organisations as possible.
+        </p>
+      </div>
+
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="how-to-apply">
+        <h2 class="govuk-heading-l">How to apply</h2>
+        <p class="govuk-body">You will need to complete the following steps to apply for this grant:</p>
+        <ol class="govuk-list govuk-list--number">
+          <li><strong>Register your organisation:</strong> Click the 'Start new application' button above to provide details about your organisation type.</li>
+          <li><strong>Eligibility check:</strong> You will be taken through a short, automated check to ensure your organisation is eligible to receive MHCLG funding.</li>
+          <li><strong>Make a full application:</strong> If you meet the criteria, you will be given access to the full application form in the Access Grant Funding service where you can save your progress and submit your answers.</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

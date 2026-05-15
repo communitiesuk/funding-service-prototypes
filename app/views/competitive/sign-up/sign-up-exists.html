@@ -1,0 +1,39 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Your organisation is already registered" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      An account has already been registered for an organisation using the same email domain as yours.
+    </p>
+
+    <p class="govuk-body">
+      To apply for the Safer social housing fund, you must be added to this existing account.
+    </p>
+
+    <h2 class="govuk-heading-m">What you need to do</h2>
+
+    <p class="govuk-body">
+      Contact your local administrator or the person who manages grant applications for your organisation. Ask them to sign in to the Access Grant Funding service and add you to the team.
+    </p>
+
+
+      <p class="govuk-body"><a href="https://www.find-government-grants.service.gov.uk/"  data-module="govuk-button">
+        Back to Find another grant
+      </a></p>
+ 
+
+  </div>
+</div>
+{% endblock %}
