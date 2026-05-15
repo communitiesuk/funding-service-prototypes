@@ -4,7 +4,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Missing data in Grant allocation data set" %}
+{% set pageHeading = "Reviewing missing data in Grant allocation data set" %}
 {% set pageSection = "data.fundName" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -41,13 +41,13 @@
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">Mid-year monitoring</span>
-    <h1 class="govuk-heading-l">Missing data in Grant allocation data set</h1>
+    <h1 class="govuk-heading-l">Review missing data in Grant allocation data set</h1>
 
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        The data set has missing data. Grant recipients with missing data cannot complete the report until the missing data is uploaded.
+        Grant recipients will not be able to complete the report until their missing data is uploaded. You can replace the data set file to update it later.
       </strong>
     </div>
 
@@ -76,6 +76,9 @@
           </td>
           <td class="govuk-table__cell">
             £4,500,000.00
+          </td>
+          <td class="govuk-table__cell">
+            £1,250,000.00
           </td>
         </tr>
       </tbody>
