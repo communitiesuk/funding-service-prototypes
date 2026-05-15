@@ -1,0 +1,179 @@
+{% extends "layouts/deliver-nav.html" %}
+{% set navID = 'reports' %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "reports-missing-data" },
+{ text: "Data sets", href: "#" },
+{ text: "Grant allocation" }
+]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+    <span class="govuk-caption-l">Mid-year monitoring</span>
+    <!-- <h1 class="govuk-heading-l">Uploaded data set</h1> -->
+    <h1 class="govuk-heading-l">Grant allocation data set</h1>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <!-- Metadata Section (System Context) -->
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Uploaded by
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Tom Owen
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date and time uploaded
+            </dt>
+            <dd class="govuk-summary-list__value">
+              10 May 2026 at 3:41pm
+            </dd>
+          </div>
+
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Uploaded file
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Q1_26_grant_allocation_data_v1.csv
+              <br> <a href="" class="govuk-link">Download uploaded file (CSV &ndash; 100KB)<span
+                  class="govuk-visually-hidden"> grant recipient</span></a>
+            </dd>
+          </div>
+          </dd>
+
+
+
+
+        </dl>
+
+
+ <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+   This data set has missing data. Grant recipients may be blocked from completing the form.
+  </strong>
+</div>
+
+          <p>
+            <a class="govuk-link" href="#">Download the latest data set template (CSV)</a> to update and replace this data set.
+          </p>
+
+      </div>
+
+    </div>
+
+   
+
+
+          <div style="display: flex; gap: 15px; align-items: center;">
+
+            <form method="post" action="replace">
+              <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                style="white-space: nowrap; width: auto;">
+                Replace data set
+              </button>
+            </form>
+
+            <form method="post" action="delete">
+              <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button"
+                style="white-space: nowrap; width: auto;">
+                Delete data set </button>
+            </form>
+
+          </div>
+
+    <!-- MOJ Table with same number of columns -->
+    <h2 class="govuk-heading-m">Data columns</h2>
+
+    <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Organisation ID</th>
+            <th scope="col" class="govuk-table__header">Grant recipient</th>
+            <th scope="col" class="govuk-table__header">Capital allocation</th>
+            <th scope="col" class="govuk-table__header">Revenue allocation</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">N09000002</td>
+            <td class="govuk-table__cell">
+              Armagh City, Banbridge and Craigavon Borough Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">E08000025</td>
+            <td class="govuk-table__cell">
+              Birmingham City Council
+            </td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--orange">
+                Data missing
+              </strong>
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">E06000030</td>
+            <td class="govuk-table__cell">
+Swindon Borough Council            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+
+
+</div>
+</div>
+{% endblock %}
