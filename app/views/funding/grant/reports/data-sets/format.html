@@ -33,12 +33,13 @@
       <tbody class="govuk-table__body">
 
         <!-- Row 1 -->
+         <!--
         <tr class="govuk-table__row">
           <td class="govuk-table__cell govuk-table__cell--middle">Grant recipient</td>
           <td class="govuk-table__cell govuk-table__cell--middle">
-            <p>Birmingham City Council</p>
-            <p>Swindon City Council</p>
-            <p>York City Council</p>
+            Birmingham City Council
+            <br>Swindon City Council
+            <br>York City Council
             </td>
           <td class="govuk-table__cell">
             <div class="govuk-form-group govuk-!-margin-bottom-2">
@@ -48,15 +49,16 @@
                 </label>
                 <select class="govuk-select" id="sort" name="sort">
                   <option value="published" selected>Select data type</option>
-                  <option value="updated">Text</option>
+                  <option value="comments">Money</option>
+                  <option value="comments">Decimal number</option>
                   <option value="views">Whole number</option>
-                  <option value="comments">Decimal</option>
+                  <option value="updated">Text</option>
                 </select>
               </div>
             </div>
           </td>
         </tr>
-
+-->
         <!-- Row 2 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell govuk-table__cell--middle">Capital allocation</td>
@@ -71,9 +73,10 @@
                 </label>
                 <select class="govuk-select" id="sort" name="sort">
                   <option value="published" selected>Select data type</option>
-                  <option value="updated">Text</option>
+                  <option value="comments">Money</option>
+                  <option value="comments">Decimal number</option>
                   <option value="views">Whole number</option>
-                  <option value="comments">Decimal</option>
+                  <option value="updated">Text</option>
                 </select>
               </div>
             </div>
@@ -83,7 +86,10 @@
         <!-- Row 3 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell govuk-table__cell--middle">Revenue allocation</td>
-          <td class="govuk-table__cell govuk-table__cell--middle">£1,250,000, £1,250,000, £1,250,000</td>
+          <td class="govuk-table__cell govuk-table__cell--middle">
+            £1,250,000
+            <br>£1,250,000
+            <br>£1,250,000</td>
           <td class="govuk-table__cell">
             <div class="govuk-form-group govuk-!-margin-bottom-2">
               <div class="govuk-form-group">
@@ -92,9 +98,10 @@
                 </label>
                 <select class="govuk-select" id="sort" name="sort">
                   <option value="published" selected>Select data type</option>
-                  <option value="updated">Text</option>
+                  <option value="comments">Money</option>
+                  <option value="comments">Decimal number</option>
                   <option value="views">Whole number</option>
-                  <option value="comments">Decimal</option>
+                  <option value="updated">Text</option>
                 </select>
               </div>
             </div>
@@ -105,7 +112,7 @@
     </table>
 
     <br>
-    <form method="post" action="format-numbers">
+    <form method="post" action="upload-success">
       <div class="govuk-button-group">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue
