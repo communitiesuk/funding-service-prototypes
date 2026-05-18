@@ -51,7 +51,7 @@
       </strong>
     </div>
 
-    <table class="govuk-table">
+    <table class="govuk-table govuk-!-margin-bottom-9">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Organisation ID</th>
@@ -64,15 +64,15 @@
         
         <!-- Row 1 -->
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">E08000025</td>
+          <td class="govuk-table__cell">E08000025
+          </td>
           <td class="govuk-table__cell">
             Birmingham City Council
           </td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--orange">
               Data missing
-            </strong>
-            
+            </strong>  
           </td>
           <td class="govuk-table__cell">
             £4,500,000.00
@@ -84,16 +84,42 @@
       </tbody>
     </table>
 
-    <br>
-    <form method="post" action="format-missing-data">
-      <div class="govuk-button-group">
+     <form method="post" action="upload-success-missing-data">
+    <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Do you want to upload the file with missing data?
+      </h2>
+    </legend>
+    <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changedName" name="changedName" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="changedName">
+          Yes, I'll update the missing data later
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changedName-2" name="changedName" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="changedName-2">
+          No, cancel data set upload
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-button-group">
         <button type="submit" class="govuk-button govuk-button--primary" data-module="govuk-button">
-         Continue and upload data set
+         Continue
         </button>
-        <a class="govuk-link" href="missing-data">Cancel</a>
       </div>
     </form>
-
+</form>
+    <!--
+   
+      
+  -->
   </div>
 </div>
 
