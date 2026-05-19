@@ -434,3 +434,9 @@ border-color: govuk-colour("mid-grey");
       position: static;
     }
   }
+
+  .app-tag--wide {
+  display: inline-block;   // tags are inline by default
+  max-width: 200px;        // or max-width / width
+  text-align: center;      // optional
+}

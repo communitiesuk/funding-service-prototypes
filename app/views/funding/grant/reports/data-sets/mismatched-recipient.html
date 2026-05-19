@@ -41,47 +41,36 @@
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">Mid-year monitoring</span>
-    <h1 class="govuk-heading-l">Review missing data in Grant allocation data set</h1>
+    <h1 class="govuk-heading-l">Review recipient data that does not match in Grant allocation data set</h1>
 
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-visually-hidden">Warning</span>
-        Grant recipients will not be able to complete the report until their missing data is uploaded. You can replace
-        the data set file to update it later.
-      </strong>
-    </div>
+    <p class="govuk-body">Review the information in the table below. If the name in the uploaded data set is referring to the same organisation as our name, continue to upload your data.
+    </p> 
 
     <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Organisation ID</th>
-            <th scope="col" class="govuk-table__header">Grant recipient</th>
-            <th scope="col" class="govuk-table__header">Capital allocation</th>
-            <th scope="col" class="govuk-table__header">Revenue allocation</th>
+            <th scope="col" class="govuk-table__header">Name in uploaded data set</th>
+            <th scope="col" class="govuk-table__header">Our name</th>
+            <th scope="col" class="govuk-table__header">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
 
           <!-- Row 1 -->
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">E08000025</td>
+            <td class="govuk-table__cell">E08000000</td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--red app-tag--wide">
-                Grant recipient missing
-              </strong>
+              Birmingham CC
+            </td>
+            <td class="govuk-table__cell">
               Birmingham City Council
             </td>
             <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--orange">
-                Data missing
-              </strong>
-            </td>
-            <td class="govuk-table__cell">
-              <strong class="govuk-tag govuk-tag--orange">
-                Data missing
-              </strong>
+              <strong class="govuk-tag govuk-tag--yellow">
+              Review
+            </strong> 
             </td>
           </tr>
         </tbody>
