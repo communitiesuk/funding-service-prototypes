@@ -1,0 +1,103 @@
+{% extends "layouts/nonav.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Open the report for submissions" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+{% if pageCaption %}
+<span class="govuk-caption-{{ pageSize }}">{{ pageCaption }}</span>
+{% endif %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <span class="govuk-caption-l">[Grant name]</span>
+                    <h1 class="govuk-fieldset__heading">
+                        Opening the report for submissions
+                    </h1>
+                </legend>
+                <p class="govuk-body"> Opening the report will allow grant recipients to start making submissions.
+                </p>
+                <div class="govuk-inset-text">
+                    Once the report is live, grant recipients will be able to access it and begin submitting their data.
+                </div>
+                <p class="govuk-body">
+                    Confirm the following before opening the report for submissions: </p>
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality" name="nationality" type="checkbox"
+                            value="british" aria-describedby="nationality-item-hint">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality">
+                            It is correct that this grant has <strong>grant recipients set up</strong> and the grant
+                            team has reviewed this
+                        </label>
+
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                            value="irish">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                            It is correct that this grant has <strong>3 grant recipient users</strong> set up and the
+                            grant team has reviewed this
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                            value="irish">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                            The privacy policy has been set up </label>
+                    </div>
+                                        <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                            value="irish">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                            It is correct that the report has certification <strong>enabled</strong> </label>
+                    </div>
+                                        <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                            value="irish">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                            The submission dates are <strong>1st July 2025</strong> until <strong>30th June 2027</strong>
+                        </label>
+                    </div>
+                                        <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-2" name="nationality" type="checkbox"
+                            value="irish">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-2">
+                            It is correct that multiple submissions is <strong>disabled</strong></label>
+                    </div>
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="nationality-3" name="nationality" type="checkbox"
+                            value="other">
+                        <label class="govuk-label govuk-checkboxes__label" for="nationality-3">
+                            It is correct that there is missing data for <strong>3 grant recipients</strong> (Bristol City Council, Colchester City Council and Reigate & Banstead Borough Council)
+                        </label>
+                        <!--
+                        <div id="nationality-3-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                            Bristol City Council, Colchester City Council and Reigate & Banstead Borough Council
+                        </div>
+                    -->
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <form method="post" action="">
+            {{ govukButton({
+            text: "Open report for submission"
+            }) }}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
