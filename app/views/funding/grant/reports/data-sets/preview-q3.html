@@ -1,0 +1,49 @@
+{% extends "layouts/preview.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+<form method="post" action="preview-q4">
+    <span class="govuk-caption-l">Expenditure</span>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">[Question 3 content]</h1>
+
+<div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    [Label content]
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text">
+</div>
+
+
+
+    <button class="govuk-button govuk-button--primary" data-module="govuk-button">
+Continue
+    </button>
+
+    </div>
+</form>
+         <!-- Inset text -->
+<div class="govuk-inset-text">
+      This question references 'Allocation data' in the <a class="govuk-link" href="#">'Grant allocation' data set</a>.
+</div>
+
+</div>
+</div>
+{% endblock %}

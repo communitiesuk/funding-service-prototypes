@@ -444,3 +444,13 @@ border-color: govuk-colour("mid-grey");
 .hide-move {
   visibility: hidden;
 }
+
+.preview-bar {
+border-color: govuk-colour("mid-grey");
+    background-color: govuk-colour("orange");
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  height: 50px;
+  line-height: 50px;
+}

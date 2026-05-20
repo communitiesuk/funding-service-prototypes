@@ -1,0 +1,95 @@
+{% extends "layouts/preview.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <span class="govuk-caption-l">Expenditure</span>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Check your answers</h1>
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              [Question 1 content]
+            </dt>
+            <dd class="govuk-summary-list__value">
+              [Question 1 answer]
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="preview-q1">
+                Change<span class="govuk-visually-hidden"> [Question 1 content]</span>
+              </a>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              [Question 2 content]
+            </dt>
+            <dd class="govuk-summary-list__value">
+              [Question 2 answer]
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="preview-q2">
+                Change<span class="govuk-visually-hidden"> [Question 2 content]</span>
+              </a>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              [Question 3 content]
+            </dt>
+            <dd class="govuk-summary-list__value">
+              [Question 3 answer]
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="preview-q3">
+                Change<span class="govuk-visually-hidden"> [Question 3 content]</span>
+              </a>
+
+            </div>
+</dl>
+
+<form method="post" action="preview-submit"> 
+    
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">Have you completed this section?</h2>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+          Yes, I've completed this section
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+          No, I'll come back to it later
+        </label>
+      </div>      
+    </div>
+  </fieldset>
+</div>
+<button class="govuk-button govuk-button--primary" data-module="govuk-button">
+Save and continue
+    </button>
+</form>
+
+</div>
+</div>
+{% endblock %}
