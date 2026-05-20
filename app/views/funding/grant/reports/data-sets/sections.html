@@ -1,13 +1,21 @@
 {% extends "layouts/deliver-nav.html" %}
 {% set navID = 'reports' %}
 
-{% set showBackLink = true %}
+{% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "Financial data monitoring report test" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "reports-missing-data" },
+{ text: "Mid-year monitoring" }
+]
+}) }}
 
+{% endblock %}
 {% block content %}
 <div class="govuk-grid-row">
   
@@ -32,7 +40,7 @@
         <!-- Row 1 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
-            <a href="section1" class="govuk-link">Contact details</a>
+            <a href="#" class="govuk-link">Contact details</a>
           </td>
           <td class="govuk-table__cell">3 questions</td>
           <td class="govuk-table__cell govuk-!-text-align-right">
@@ -45,9 +53,9 @@
         <!-- Row 2 -->
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Expenditure</a>
+            <a href="section-expenditure" class="govuk-link">Expenditure</a>
           </td>
-          <td class="govuk-table__cell">6 questions</td>
+          <td class="govuk-table__cell">3 questions</td>
           <td class="govuk-table__cell govuk-!-text-align-right">
             <a href="#" class="govuk-link">Move up</a> 
             <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
