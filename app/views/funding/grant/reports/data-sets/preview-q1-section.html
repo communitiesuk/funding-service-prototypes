@@ -11,35 +11,17 @@
 
 {% block content %}
 
-
-
 <div class="govuk-grid-row">
   
   <!-- Left Main Column -->
   <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="preview-q2">
 
-     <!-- Notification banner 
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-  <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      Important
-    </h2>
-  </div>
-  <div class="govuk-notification-banner__content">
-    <p class="govuk-notification-banner__heading">
-      This question references 'Allocation data' in the 
-      <a class="govuk-notification-banner__link" href="#">'Grant allocation' data set</a>.
-    </p>
-  </div>
-</div>
--->
-<form method="post" action="preview-q3-section">
-    
-  <div class="govuk-form-group">
+     <div class="govuk-form-group">
   <h1 class="govuk-label-wrapper">
     <span class="govuk-caption-l">Expenditure</span>
     <label class="govuk-label govuk-label--l" for="cost">
-      What was your actual revenue spend before 1 April 2026?
+      What was your actual capital spend before 1 April 2026?
     </label>
   </h1>
 
@@ -48,12 +30,11 @@
     <input class="govuk-input govuk-input--width-10" id="cost" name="cost" type="text">
   </div>
 </div>
-
-
     <button class="govuk-button govuk-button--primary" data-module="govuk-button">
 Continue
     </button>
 
+    </div>
   </form>
 </div>
 </div>

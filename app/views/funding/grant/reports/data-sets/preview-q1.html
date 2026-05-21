@@ -15,18 +15,21 @@
   
   <!-- Left Main Column -->
   <div class="govuk-grid-column-two-thirds">
-    <form method="post" action="preview-q2">
+    <form method="post" action="preview-q2-section">
 
+     <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
     <span class="govuk-caption-l">Expenditure</span>
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">[Question 1 content]</h1>
+    <label class="govuk-label govuk-label--l" for="cost">
+      What was your actual capital spend before 1 April 2026?
+    </label>
+  </h1>
 
-<div class="govuk-form-group">
-  <label class="govuk-label" for="event-name">
-    [Label content]
-  </label>
-  <input class="govuk-input" id="event-name" name="eventName" type="text">
+  <div class="govuk-input__wrapper">
+    <div class="govuk-input__prefix" aria-hidden="true">£</div>
+    <input class="govuk-input govuk-input--width-10" id="cost" name="cost" type="text">
+  </div>
 </div>
-
     <button class="govuk-button govuk-button--primary" data-module="govuk-button">
 Continue
     </button>
