@@ -1,4 +1,4 @@
-{% extends "layouts/access.html" %}
+{% extends "layouts/grantNoSignin.html" %}
 
 {% set showBackLink = true %}
 
@@ -22,29 +22,65 @@
             What type of organisation are you registering?
           </legend>
           <div class="govuk-radios" data-module="govuk-radios">
+            
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="local-authority">
+              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="local-authority" data-aria-controls="conditional-org-type-1">
               <label class="govuk-label govuk-radios__label" for="org-type-1">
                 Local Authority (LA)
               </label>
             </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-1">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="la-code">
+                  Local Authority code
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="la-code" name="laCode" type="text" spellcheck="false">
+              </div>
+            </div>
+
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="charity">
+              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="charity" data-aria-controls="conditional-org-type-2">
               <label class="govuk-label govuk-radios__label" for="org-type-2">
                 Registered charity
               </label>
             </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-2">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="charity-number">
+                  Charity Commission number
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="charity-number" name="charityNumber" type="text" spellcheck="false">
+              </div>
+            </div>
+
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="vcse">
+              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="vcse" data-aria-controls="conditional-org-type-3">
               <label class="govuk-label govuk-radios__label" for="org-type-3">
                 Voluntary and Community Sector Organisation (VCSE)
               </label>
             </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="vcse-number">
+                  Organisation registration number (if applicable)
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="vcse-number" name="vcseNumber" type="text" spellcheck="false">
+              </div>
+            </div>
+
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="business">
+              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="business" data-aria-controls="conditional-org-type-4">
               <label class="govuk-label govuk-radios__label" for="org-type-4">
                 Business operating within the housing sector
               </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-4">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="company-number">
+                  Companies House registration number
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="company-number" name="companyNumber" type="text" spellcheck="false">
+              </div>
             </div>
            
           </div>

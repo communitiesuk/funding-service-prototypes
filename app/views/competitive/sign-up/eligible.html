@@ -1,4 +1,4 @@
-{% extends "layouts/access.html" %}
+{% extends "layouts/grantNoSignin.html" %}
 
 {% set showBackLink = true %}
 
@@ -18,27 +18,19 @@
   Based on your answers, your organisation meets the requirements to apply for the Safer social housing fund.
 </div>
 
-    <h2 class="govuk-heading-m">Already have an account?</h2>
-    <p class="govuk-body">
-      If you or your organisation have used the Access Grant Funding service before, you can sign in to start your application immediately.
-    </p>
-    
-    <form action="" method="post" novalidate>
-      <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
-        Sign in
-      </button>
-    </form>
-
-    <h2 class="govuk-heading-m">Don't have an account?</h2>
+  
     <p class="govuk-body">
       You will need to register your organisation to create an account. To complete this step, you will need your:
     </p>
     <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-      <li>organisation's legal name and registered address</li>
+      <li>organisation's legal name</li>
+            <li>to know your organisation type (for example, local authority, registered charity, or business)</li>
       <li>Charity Commission number (if you are a registered charity)</li>
       <li>Companies House registration number (if you are a business)</li>
       <li>lead contact details</li>
     </ul>
+
+
 
     <form action="email-sent" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
