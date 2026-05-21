@@ -19,6 +19,18 @@ items: [
 {% block content %}
 <div class="govuk-grid-row">
   
+  <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Important
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-notification-banner__heading">
+      You've been returned to the form builder
+    </p>
+  </div>
+</div>
   <!-- Left Main Column -->
   <div class="govuk-grid-column-three-quarters">
 
@@ -100,11 +112,11 @@ items: [
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="border-top: 2px solid #005a9c;">
     
     <h2 class="govuk-heading-s govuk-!-margin-bottom-4">Actions</h2>
-   <form method="post" action="add-reference-data"> 
+    
     <button class="govuk-button govuk-button--secondary govuk-!-width-full govuk-!-margin-bottom-4" data-module="govuk-button">
       Preview report
     </button>
-   </form>
+
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">

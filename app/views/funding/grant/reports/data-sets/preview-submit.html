@@ -1,0 +1,72 @@
+{% extends "layouts/preview.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Mid-year monitoring</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-4">
+      <strong>Status:</strong> <tag class="govuk-tag govuk-tag--blue">Ready to submit</tag>
+    </p> 
+
+    <ul class="govuk-task-list">
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+            Contact details
+          </a>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-1-status">
+          Completed
+        </div>
+      </li>
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            Expenditure
+          </a>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-1-status">
+          Completed
+        </div>
+      </li>
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#"
+            aria-describedby="company-details-3-hint company-details-3-status">
+            Project details
+          </a>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-1-status">
+          Completed
+        </div>
+      </li>
+    </ul>
+
+    <form method="post" action="return-to-builder">
+
+      <p class="govuk-body">You must complete all sections before you can submit.</p>
+      <button class="govuk-button govuk-button--primary" data-module="govuk-button">
+        Submit
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
