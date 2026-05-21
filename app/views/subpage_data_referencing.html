@@ -6,7 +6,7 @@
 {% set showBackApplicationsOverview = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Data referencing (March 2026)" %}
+{% set pageHeading = "Data referencing (March to May 2026)" %}
 {% set pageSection = "Prototype" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -15,55 +15,103 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
 
-	
+
 		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
 
+		<!--Summary information-->
+
 		<dl class="govuk-summary-list">
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      Status
-    </dt>
-    <dd class="govuk-summary-list__value">
-       <strong class="govuk-tag govuk-tag--yellow">
-          In development
-        </strong>
-    </dd>
-  </div>
-  <div class="govuk-summary-list__row">
-    <dt class="govuk-summary-list__key">
-      User
-    </dt>
-    <dd class="govuk-summary-list__value">
-      Form designer
-    </dd>
-  </div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						In development
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Form designer
+				</dd>
+			</div>
 		</dl>
-			<p class="govuk-body">
-  <a href="/funding/financial/designer/conditions/edit_question3" class="govuk-link">Data referencing journey</a>
-</p>
-		<p>This functionality allows a form designer to reference data that has previously been uploaded to the service as a CSV.</p>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journeys</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+		<p class="govuk-body">These journeys were tested with form designers when originally designed [in March 2026?]
+			and briefly before release in May 2026. We identified areas for potential future improvement and will
+			monitor these after release. </p>
+		</p>
+		<p class="govuk-body">In the prototype, the report is called 'Mid-year monitoring' and the data set is called
+			'Grant Allocation'.</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets" class="govuk-link">Upload a first data set</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/view-data-set" class="govuk-link">Replace a data set</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets-missing-data" class="govuk-link">Upload a data set
+				that has missing data</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets-missing-data" class="govuk-link">Upload a data set
+				that has a missing recipient</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/financial/designer/conditions/edit_question3" class="govuk-link">Reference an uploaded
+				data set
+			</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/report-missing-data" class="govuk-link">Preview a whole report
+			</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/section-expenditure" class="govuk-link">Preview a section (of a report)
+			</a>
+		</p>
+		<h2 class="govuk-heading-m">Next steps</h2>
+		<p class="govuk-body">To monitor after release:</p>
 
-					<p>The prototype illustrates: </p>
-			<ul class="govuk-list govuk-list--bullet">
-				<li>adding a condition (without a calculation)</li>
-				<li>referencing data in a data set that has been uploaded</li>
-				<li>selecting a column from the data set</li>
-				<li>defining the condition (greater than, less than or between)</li>
-				<li>saving the condition</li>
-			</ul>  
-		<p class="govuk-body">This journey has not yet been tested with users but will be tested as part of upcoming rounds.</p>
-
-	
+		<ul class="govuk-list govuk-list--bullet">
+			<li>How does the 'Format data' page perform with real data sets? Would radios be more user-friendly and more
+				accessible than select components?</li>
+			<li>How many columns and how many rows do real data sets have? What is the impact on the 'View data set'
+				page?</li>
+			<li>How are data types and data formatting (prefixes, suffixes and decimals) used with real data? </li>
+			<li>On the 'Format data' page, how do form designers use the 'Example data' column?</li>
+			<li>On the 'View data set' page, consider adding the report status.</li>
+			<li>What is the overall experience like for form designers uploading CSVs like with real data sets? Would it
+				help to be able to set up the schema in the service before uploading CSV data?</li>
+			<li>What is the overall experience like for correcting data? Would it help to be able to correct individual
+				values in the service without having to replace CSV data?</li>
+		</ul>
 	</div>
 
 
 	<div class="govuk-grid-column-one-third">
-				<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
-				<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-					<p><a href="#" class="govuk-link">User research on data referencing</a></p>
-					<p><a href="#" class="govuk-link">Design history on data referencing</a></p>
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1776853103960/485de9968a4fe3f409abe5b874e3c66dc139cdd7"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Data referencing Mural board (opens in new
+				tab)</a></p>
 
-			</div>
+	</div>
 </div>
 
 {% endblock %}
