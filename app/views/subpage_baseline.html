@@ -40,7 +40,14 @@
 		</dl>
 
 			<p class="govuk-body">
-  <a href="/sign-in" class="govuk-link">Original baseline journey</a>
+  <form method="post" action="/sign-in/" >
+				<input type="hidden" name="fundingService" id="fundingService" value="deliver" />
+				<input type="hidden" name="authentication" id="authentication" value="SSO" />
+				{{ govukButton({
+					text: "Original baseline journey",
+					classes: "govuk-!-margin-top-3"
+				}) }}
+			</form>
 </p>
 			<p>This was the baseline journey designed and released in November 2025. </p>
 
