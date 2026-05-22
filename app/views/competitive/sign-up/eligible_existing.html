@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "You are eligible to apply" %}
+{% set pageHeading = "Your organisation is already registered" %}
 {% set pageSection = "Safer social housing fund" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -13,24 +13,30 @@
 
     <span class="govuk-caption-l">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
-    <div class="govuk-inset-text">
-      Based on your answers, your organisation meets the requirements to apply for the Safer social housing fund.
-    </div>
   
     <p class="govuk-body">
       The email address you provided is already associated with an organisation registered in the Access Grant Funding service.
     </p>
 
+    <div class="govuk-inset-text">
+      Registered organisation: <strong>Glasgow City Council</strong>
+    </div>
+
     <p class="govuk-body">
-      You do not need to register a new account. To start an application for this grant, you must sign in using your existing details.
+      You do not need to register a new account. Sign in using your existing details to start your application.
     </p>
 
-    <form action="sign-in" method="post" novalidate>
+    <form action="dashboard" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Sign in
       </button>
     </form>
+<br>
+    <h2 class="govuk-heading-m">If this organisation is incorrect</h2>
+
+    <p class="govuk-body">
+      If you are not part of the organisation listed above, you must <a href="#" class="govuk-link">contact the support team</a> to resolve the issue before continuing.
+    </p>
 
   </div>
 </div>

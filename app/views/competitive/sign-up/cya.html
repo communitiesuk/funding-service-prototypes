@@ -4,7 +4,7 @@
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "Check your answers before registering" %}
-{% set pageSection = "Safer social housing fund" %}
+{% set pageSection = "Sign-up" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -36,7 +36,20 @@
           Organisation name
         </dt>
         <dd class="govuk-summary-list__value">
-          Example Housing Charity
+          Housing Charity
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="sign-up_details">
+            Change<span class="govuk-visually-hidden"> organisation name</span>
+          </a>
+        </dd>
+      </div>
+          <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Domain link
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="sign-up_details">
@@ -45,6 +58,8 @@
         </dd>
       </div>
     </dl>
+
+
 
     <h2 class="govuk-heading-m">Now register your organisation</h2>
 
