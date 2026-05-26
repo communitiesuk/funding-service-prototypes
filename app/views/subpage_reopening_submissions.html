@@ -1,0 +1,88 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Reopening submissions (April to May 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--green">
+						Released
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Grant policy team member
+				</dd>
+			</div>
+		</dl>
+		<!--Background-->
+		<h2 class="govuk-heading-m">Background to this work</h2>
+		<p class="govuk-body">This journey was designed and developed following issues where grant recipients had submitted monitoring reports with mistakes and were then unable to make changes to the report. </p>
+		</p>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journeys</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+		<p class="govuk-body">This journey enables a grant team policy member to find a submitted monitoring report and reopen it on behalf of the grant recipient so that they can correct and resubmit it. This was not tested formally with grant team policy members but is a small change that we expect to be intuitive and we will monitor usage.
+			As part of the design and development, we discussed areas for potential future improvement around this functionality, listed under 'Next steps'.</p>
+		</p>
+
+		
+		<h2 class="govuk-heading-m">Next steps</h2>
+		<p class="govuk-body">To monitor after release:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Consider adding other report statuses, e.g. 'Resubmitted' to help grant teams see submissions that have been reopened.</li>
+            <li>Consider whether the Submissions page should have a 'Back to top' link.</li>
+            <li>Monitor word counter on 'Why are you reopening this submission?' pageto see how many words users when reopening a submission.</li>
+			<li>Consider whether we should include role names as well as email addresses on 'Why are you reopening this submission?' page.</li>
+			<li>Consider whether submissions should show who submitted and certified the report.</li>
+		    <li>Monitor whether the existing support desk options are sufficient to cover queries related to reopened submissions (we expect most requests to be submitted under 'Completing or submitting a report').</li>
+		</ul>
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1773416328762/4aec37f95b97bfb49e8d955593f738e8da3f5236"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Reopening submissions Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}
