@@ -66,11 +66,11 @@
 
     <!-- Back link -->
     {% if showBackLink != false %}
-        {{ govukBackLink({
-            href: "#",
-            text: "Back"
-        }) }}
-    {% endif %}
+  {{ govukBackLink({
+      href: "javascript:history.back()",
+      text: "Back"
+  }) }}
+{% endif %}
 
 {% endblock %}
 
