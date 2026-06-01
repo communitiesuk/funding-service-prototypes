@@ -26,167 +26,169 @@ items: [
   <div class="govuk-grid-column-two-thirds">
 
     <!-- Error - cannot delete data set-->
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-  <div class="govuk-notification-banner__header">
-    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      Error
-    </h2>
-  </div>
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+      data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Error
+        </h2>
+      </div>
 
-  <div class="govuk-notification-banner__content">
-    <p class="govuk-notification-banner__heading">
-      You cannot delete this data set because it's referenced in the form. You need to remove form references to:
-    </p>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-notification-banner__heading">
+        <h3 class="govuk-notification-banner__heading">
+          You cannot delete this data set because it's referenced in the form. You need to remove form references to:
+        </h3>
 
-        <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">column 'Capital allocation' from validation for 'How much was your total capital spend?'</a>
-    </p>
-        <p class="govuk-notification-banner__heading">
-<a class="govuk-notification-banner__link" href="#">column 'Capital allocation' in a condition for 'Why was there capital underspend?'</a>
-    </p>
-        <p class="govuk-notification-banner__heading">
-<a class="govuk-notification-banner__link" href="#">column 'Capital allocation' in 'What was your total spend?'</a>    </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>column 'Capital allocation' from validation for 'How much was your total capital spend?'</a>
+          </li>
 
-  </div>
-</div>
+          <li>column 'Capital allocation' in a condition for 'Why was there capital underspend?'</a>
+          </li>
+          <li>column 'Capital allocation' in 'What was your total spend?'</li>
+          </p>
+
+      </div>
+    </div>
 
 
     <!-- <h1 class="govuk-heading-l">Uploaded data set</h1> -->
     <span class="govuk-caption-l">Mid-year monitoring</span>
     <h1 class="govuk-heading-l">Grant allocation data set</h1>
 
-   
-
-        <!-- Metadata Section (System Context) -->
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Uploaded by
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Tom Owen
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date and time uploaded
-            </dt>
-            <dd class="govuk-summary-list__value">
-              10 May 2026 at 3:41pm
-            </dd>
-          </div>
 
 
+    <!-- Metadata Section (System Context) -->
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Uploaded file
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Q1_26_grant_allocation_data_v1.csv
-              <br> <a href="" class="govuk-link">Download uploaded file (CSV &ndash; 100KB)<span
-                  class="govuk-visually-hidden"> grant recipient</span></a>
-            </dd>
-          </div>
-          </dd>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded by
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Tom Owen
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date and time uploaded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          10 May 2026 at 3:41pm
+        </dd>
+      </div>
 
 
 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded file
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Q1_26_grant_allocation_data_v1.csv
+          <br> <a href="" class="govuk-link">Download uploaded file (CSV &ndash; 100KB)<span
+              class="govuk-visually-hidden"> grant recipient</span></a>
+        </dd>
+      </div>
+      </dd>
 
 
-          <br><br>
 
 
 
-          <div style="display: flex; gap: 15px; align-items: center;">
+      <br><br>
 
-            <form method="post" action="replace">
-              <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
-                style="white-space: nowrap; width: auto;">
-                Replace data set
-              </button>
-            </form>
 
-            <form method="post" action="">
-              <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button"
-                style="white-space: nowrap; width: auto;">
-                Delete data set </button>
-            </form>
 
-          </div>
+      <div style="display: flex; gap: 15px; align-items: center;">
 
-        </dl>
+        <form method="post" action="replace">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+            style="white-space: nowrap; width: auto;">
+            Replace data set
+          </button>
+        </form>
+
+        <form method="post" action="">
+          <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button"
+            style="white-space: nowrap; width: auto;">
+            Delete data set </button>
+        </form>
 
       </div>
 
-    </div>
+    </dl>
 
-    <!-- MOJ Table with same number of columns -->
-    <h2 class="govuk-heading-m">Data columns</h2>
-
-    <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Organisation ID</th>
-            <th scope="col" class="govuk-table__header">Grant recipient</th>
-            <th scope="col" class="govuk-table__header">Capital allocation</th>
-            <th scope="col" class="govuk-table__header">Revenue allocation</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              N09000002
-            </td>
-            <td class="govuk-table__cell">
-              Armagh City, Banbridge and Craigavon Borough Council
-            </td>
-            <td class="govuk-table__cell">
-              £4,500,000.00
-            </td>
-            <td class="govuk-table__cell">
-              £1,250,000.00
-            </td>
-
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              E08000025
-            </td>
-            <td class="govuk-table__cell">
-              Birmingham City Council
-            </td>
-            <td class="govuk-table__cell">
-              £4,500,000.00
-            </td>
-            <td class="govuk-table__cell">
-              £1,250,000.00
-            </td>
-          </tr>
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              E06000030
-            </td>
-            <td class="govuk-table__cell">
-              Swindon Borough Council
-            </td>
-            <td class="govuk-table__cell">
-              £4,500,000.00
-            </td>
-            <td class="govuk-table__cell">
-              £1,250,000.00
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
   </div>
+
+</div>
+
+<!-- MOJ Table with same number of columns -->
+<h2 class="govuk-heading-m">Data columns</h2>
+
+<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Organisation ID</th>
+        <th scope="col" class="govuk-table__header">Grant recipient</th>
+        <th scope="col" class="govuk-table__header">Capital allocation</th>
+        <th scope="col" class="govuk-table__header">Revenue allocation</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          N09000002
+        </td>
+        <td class="govuk-table__cell">
+          Armagh City, Banbridge and Craigavon Borough Council
+        </td>
+        <td class="govuk-table__cell">
+          £4,500,000.00
+        </td>
+        <td class="govuk-table__cell">
+          £1,250,000.00
+        </td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          E08000025
+        </td>
+        <td class="govuk-table__cell">
+          Birmingham City Council
+        </td>
+        <td class="govuk-table__cell">
+          £4,500,000.00
+        </td>
+        <td class="govuk-table__cell">
+          £1,250,000.00
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          E06000030
+        </td>
+        <td class="govuk-table__cell">
+          Swindon Borough Council
+        </td>
+        <td class="govuk-table__cell">
+          £4,500,000.00
+        </td>
+        <td class="govuk-table__cell">
+          £1,250,000.00
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
 </div>
 {% endblock %}

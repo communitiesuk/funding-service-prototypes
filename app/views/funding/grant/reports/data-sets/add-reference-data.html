@@ -22,84 +22,101 @@ items: [
 
   <!-- Left Main Column -->
   <div class="govuk-grid-column-two-thirds">
-<div class="govuk-inset-text">
-  You have previously entered data for this preview.
-  <a class="govuk-link" href="add-reference-data?clear=true">Reset this data</a>
-</div>
+   
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Add reference data to preview Mid-year monitoring report</h1>
 
     <p class="govuk-body govuk-!-margin-bottom-4">
       To preview this form, you'll need to provide test data for the form to reference. </p>
-<form method="post" action="preview-q1">
+    <form method="post" action="preview-q1">
 
+      <!--Capital allocation-->
 
-    <h2 class="govuk-heading-m">Capital allocation</h2>
-    <div class="govuk-form-group">
-      <label class="govuk-label for=" cost">
-        What is the capital allocation?
-      </label>
-      <p class="govuk-hint">
-        (Question 1) must be greater than capital allocation in (data set) to show the question group (question group
-        name 1) </p>
-      <div class="govuk-input__wrapper">
-        <div class="govuk-input__prefix" aria-hidden="true">£</div>
-        <input 
-        class="govuk-input govuk-input--width-10" 
-        id="capital-allocation" 
-        name="capitalAllocation" 
-        type="text" spellcheck="false"
-          value="{{ data['capitalAllocation'] }}"
-        >
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Capital allocation</h2>
+      <div class="govuk-form-group">
+        <label class="govuk-label for=" cost">
+          What is the capital allocation?
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="capital-allocation" name="capitalAllocation" type="text"
+            spellcheck="false" value="{{ data['capitalAllocation'] }}">
+        </div>
       </div>
-    </div>
 
-    <h2 class="govuk-heading-m">Revenue allocation</h2>
- <div class="govuk-form-group">
-      <label class="govuk-label for=" cost">
-        What is the revenue allocation?
-      </label>
-      <p class="govuk-hint">
-        (Question 2) must be less than capital allocation in (data set) to show the question group (question group name)  </p>
-      <div class="govuk-input__wrapper">
-        <div class="govuk-input__prefix" aria-hidden="true">£</div>
-        <input 
-        class="govuk-input govuk-input--width-10" 
-        id="revenue-allocation" 
-        name="revenueAllocation" 
-        type="text" 
-        spellcheck="false"
-                  value="{{ data['revenueAllocation'] }}"
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How capital allocation is used
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list govuk-list--bullet">
+            <li> In 'How much was your capital spend?' the answer must be less than or equal to 'Capital allocation'
+            </li>
+            <li> In 'Capital category spend': spend must be less than or equal to Capital allocation</li>
+          </ul>
+        </div>
+      </details>
 
-        >
+      <!--Revenue allocation-->
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Revenue allocation</h2>
+      <div class="govuk-form-group">
+        <label class="govuk-label for=" cost">
+          What is the revenue allocation?
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="revenue-allocation" name="revenueAllocation" type="text"
+            spellcheck="false" value="{{ data['revenueAllocation'] }}">
+        </div>
       </div>
-    </div>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How revenue allocation is used
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list govuk-list--bullet">
+            <li>'Why did you overspend your revenue allocation?' is shown if answer to 'How much was your revenue
+              spend?' is more than 'Revenue allocation'</li>
+          </ul>
+        </div>
+      </details>
 
+  <!--Funded staff (FTE)-->
 
-    <h2 class="govuk-heading-m">Funded staff (FTE)</h2>
- <div class="govuk-form-group">
-  <label class="govuk-label" for="one-quarter">
-    What is the funded (FTE)?
-  </label>
-  <input 
-  class="govuk-input govuk-!-width-one-quarter" 
-  id="fte" 
-  name="fte" 
-  type="text" 
-  value="{{ data['fte'] }}"
-  >
-</div>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Funded staff (FTE)</h2>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="one-quarter">
+          What is the funded (FTE)?
+        </label>
+        <input class="govuk-input govuk-!-width-one-quarter" id="fte" name="fte" type="text" value="{{ data['fte'] }}">
+      </div>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How funded staff (FTE) is used
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ul class="govuk-list govuk-list--bullet">
+            <li>In 'Forecast staff funded in FTE', the answer must be greater than or equal to 'Staff funded in FTE'</li>
+          </ul>
+        </div>
+      </details>
 
-    <button class="govuk-button govuk-button--primary" data-module="govuk-button">
-      Continue to preview
-    </button>
+     <div class="govuk-button-group govuk-!-margin-top-9">
+      <button class="govuk-button govuk-button--primary" data-module="govuk-button">
+        Continue to preview
+      </button>
+      <a class="govuk-link" href="sections">Cancel</a>
+      </div>
+    </form>
 
-   
-</form>
-
-
+    <p class="govuk-body govuk-!-margin-top-5">
+  <a href="#" class="govuk-link">Clear data</a>
+</p>
   </div>
-
-
-
 </div>
 {% endblock %}
