@@ -26,7 +26,7 @@
               	</tr>
             	<tr>
               		<th class="govuk-table__cell" scope="row">To</th>
-              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.email or "user@example.com"  }}</span></td>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['email-check'] or "user@alocalcouncil.gov.uk"  }}</span></td>
             	</tr>
           		<tr class="email-message-meta">
             		<th class="govuk-table__cell" scope="row">Subject</th>
@@ -44,7 +44,7 @@
 			
 			<p>Click the link below to confirm your email address and continue your registration.</p>
 
-			<p><a href="sign-up_details">Confirm your email address</a></p>
+			<p><a href="eligibility">Confirm your email address</a></p>
 
 			<div class="govuk-inset-text">
 				<p>This link will work once and expires in 15 minutes.</p>
@@ -64,7 +64,7 @@
 
 	<p class="govuk-body-s govuk-footer__link govuk-!-margin-top-5"><a href="eligible_existing">Org already exists</a></p>
 
-		<p class="govuk-body-s govuk-footer__link govuk-!-margin-top-5"><a href="eligible_existing_applying">Org already exists and is applying</a></p>
+	
 
 
 
