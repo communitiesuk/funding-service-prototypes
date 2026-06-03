@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "You are not eligible for this grant" %}
+{% set pageHeading = "You are not eligible to apply" %}
 {% set pageSection = "Safer social housing fund" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -11,33 +11,23 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <span class="govuk-caption-l">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
     <p class="govuk-body">
-      Your answers show that your organisation does not meet the requirements for the Safer social housing fund.
+      Based on your answers, you’re not eligible to apply for the Safer social housing fund.
     </p>
 
-    <p class="govuk-body">To apply for this grant, you must:</p>
-
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-      <li>be applying on behalf of a Local Authority, registered charity, VCSE, or a business operating in the housing sector</li>
-      <li>manage properties located in England</li>
-      <li>be applying for a minimum funding value of £500</li>
-    </ul>
-
-    <h2 class="govuk-heading-m">If you think you are eligible</h2>
-    
     <p class="govuk-body">
-      If you made a mistake answering the questions, you can <a href="eligibility" class="govuk-link">go back and check your eligibility again</a>.
+      You cannot complete an application form for this grant. You can review the eligibility criteria in the <a href="#" class="govuk-link">prospectus</a> and <a href="#" class="govuk-link">find other government grants</a>.
     </p>
 
-  <form id="eligibilityForm" novalidate>
-  	   <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
-        Find another grant
+    <form action="/" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Exit
       </button>
-  </form>
+    </form>
    
-
   </div>
 </div>
 {% endblock %}

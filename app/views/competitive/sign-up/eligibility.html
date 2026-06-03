@@ -2,105 +2,59 @@
 
 {% set showBackLink = true %}
 
-{% set pageSize = "xl" %}
-{% set pageHeading = "Check if your organisation is eligible" %}
-{% set pageSection = "Safer social housing fund" %}
+{% set pageHeading = "What is your organisation type?" %}
+{% set pageSection = "Eligibility" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">{{ pageSection }}</span>
-    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
-
     <form id="eligibilityForm" novalidate>
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            What type of organisation are you applying on behalf of?
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
           </legend>
+
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="local-authority">
+              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="charity">
               <label class="govuk-label govuk-radios__label" for="org-type-1">
-                Local Authority (LA)
+                Charity
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="charity">
+              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="limited-company">
               <label class="govuk-label govuk-radios__label" for="org-type-2">
-                Registered charity
+                Limited company
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="vcse">
+              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="local-authority">
               <label class="govuk-label govuk-radios__label" for="org-type-3">
-                Voluntary and Community Sector Organisation (VCSE)
+                Local authority
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="business">
+              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="local-planning-authority">
               <label class="govuk-label govuk-radios__label" for="org-type-4">
-                Business operating within the housing sector
+                Local planning authority
               </label>
             </div>
-            <div class="govuk-radios__divider">or</div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-5" name="orgType" type="radio" value="none">
+              <input class="govuk-radios__input" id="org-type-5" name="orgType" type="radio" value="other">
               <label class="govuk-label govuk-radios__label" for="org-type-5">
-                None of the above
+                Other
               </label>
             </div>
           </div>
-        </fieldset>
-      </div>
-
-      <div class="govuk-form-group govuk-!-margin-top-6">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            Are the properties you manage located in England?
-          </legend>
-          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="location-yes" name="location" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="location-yes">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="location-no" name="location" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="location-no">
-                No
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-
-      <div class="govuk-form-group govuk-!-margin-top-6">
-        <fieldset class="govuk-fieldset" aria-describedby="funding-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            Is your grant application for a minimum funding value of £500?
-          </legend>
-          <div id="funding-hint" class="govuk-hint">
-            You cannot apply if your required funding is less than £500.
-          </div>
-          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="funding-yes" name="funding" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="funding-yes">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="funding-no" name="funding" type="radio" value="no">
-              <label class="govuk-label govuk-radios__label" for="funding-no">
-                No
-              </label>
-            </div>
-          </div>
+          
         </fieldset>
       </div>
 
@@ -121,19 +75,15 @@
       event.preventDefault();
       
       const orgType = document.querySelector('input[name="orgType"]:checked');
-      const location = document.querySelector('input[name="location"]:checked');
-      const funding = document.querySelector('input[name="funding"]:checked');
       
-      // Check if all questions have been answered to prevent errors
-      if (orgType && location && funding) {
-        if (orgType.value === 'none' || location.value === 'no' || funding.value === 'no') {
+      if (orgType) {
+        if (orgType.value === 'other') {
+          // Route to not eligible if 'Other' is selected
           window.location.href = 'not-eligible';
         } else {
-          window.location.href = 'eligible';
+          // Route to the next step of the eligibility check
+          window.location.href = 'eligibility2'; 
         }
-      } else {
-        // Route to eligible if questions are skipped
-        window.location.href = 'eligible';
       }
     });
   });

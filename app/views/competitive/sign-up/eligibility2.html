@@ -1,0 +1,71 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Do you have 3 years' experience in the housing sector?" %}
+{% set pageSection = "Eligibility" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form id="eligibilityForm" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="experience-yes" name="experience" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="experience-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="experience-no" name="experience" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="experience-no">
+                No
+              </label>
+            </div>
+          </div>
+          
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('eligibilityForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const experience = document.querySelector('input[name="experience"]:checked');
+      
+      if (experience) {
+        if (experience.value === 'yes') {
+          window.location.href = 'eligibility3';
+        } else if (experience.value === 'no') {
+          window.location.href = 'not-eligible';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

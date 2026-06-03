@@ -1,0 +1,71 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Are the properties you manage located in England?" %}
+{% set pageSection = "Eligibility" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form id="eligibilityForm" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-yes" name="location" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="location-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-no" name="location" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="location-no">
+                No
+              </label>
+            </div>
+          </div>
+          
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('eligibilityForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const location = document.querySelector('input[name="location"]:checked');
+      
+      if (location) {
+        if (location.value === 'yes') {
+          window.location.href = 'eligible';
+        } else if (location.value === 'no') {
+          window.location.href = 'not-eligible';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}
