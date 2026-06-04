@@ -1,4 +1,4 @@
-{% extends "layouts/grantNoSignin.html" %}
+{% extends "layouts/access.html" %}
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
@@ -10,10 +10,10 @@
 <div class="govuk-breadcrumbs govuk-!-margin-bottom-7">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Reports</a>
+      <a class="govuk-breadcrumbs__link" href="#">Forms</a>
     </li>
     <li class="govuk-breadcrumbs__list-item" aria-current="page">
-      Validation form
+      Application
     </li>
   </ol>
 </div>
@@ -22,13 +22,13 @@
   
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">Validation form</h1>
+    <h1 class="govuk-heading-xl">Application</h1>
 
     <p class="govuk-body govuk-!-margin-bottom-2">
-      <strong>Submission period:</strong> Not set
+      <strong>Submission deadline:</strong> 28 June 2026
     </p>
     <p class="govuk-body govuk-!-margin-bottom-8">
-      <strong>Report status:</strong> <strong class="govuk-tag govuk-tag--yellow govuk-!-margin-left-1">Draft</strong>
+      <strong>Report status:</strong>   <strong class="govuk-tag govuk-tag--grey">Not started</strong>
     </p>
 
     <h2 class="govuk-heading-l">Sections</h2>
@@ -75,6 +75,11 @@
       </tbody>
     </table>
 
+       <p class="govuk-body">
+      You can <a href="preview" class="govuk-link">view and print all the questions.</a>
+    </p>
+
+
     <h2 class="govuk-heading-m">Submit your form to your certifier</h2>
     
     <p class="govuk-body">
@@ -96,22 +101,7 @@
 
   </div>
 
-  <div class="govuk-grid-column-one-quarter">
-    <div style="border-top: 2px solid #005a9c; padding-top: 15px;">
-      
 
-      <h2 class="govuk-heading-m">Form overview</h2>
-<p class="govuk-body">
- You can view all the questions you will be asked.
-</p>
-
-<p class="govuk-body">
-  <a href="preview" class="govuk-link">View and print all questions</a>
-</p>
-
-
-    </div>
-  </div>
 
 </div>
 {% endblock %}

@@ -3,8 +3,8 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Do you want to link this email domain to your organisation?" %}
-{% set pageSection = "Sign-up" %}
+{% set pageHeading = "Allowing other people to join your organisation" %}
+{% set pageSection = "Sign up" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -17,28 +17,31 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      Anyone with a @{{ emailDomain }} email address can be added to your organisation in this service.
+    </p>
+
+    <p class="govuk-body">
+      This will happen automatically when they sign in for the first time if you allow them to.
+    </p>
+
+    <p class="govuk-body">
+      If you choose not to allow this, you'll need to add other people to your organisation manually.
+    </p>
+
     <form action="cya" method="post" novalidate>
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="domain-hint domain-inset">
+      <div class="govuk-form-group govuk-!-margin-top-6">
+        <fieldset class="govuk-fieldset">
           
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <span class="govuk-caption-l">{{ pageSection }}</span>
-            <h1 class="govuk-fieldset__heading">
-               Do you want anyone with a @{{ emailDomain }} email to be added to your organisation automatically?
-            </h1>
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you want other people to join your organisation automatically?
           </legend>
           
-          <div id="domain-hint" class="govuk-hint">
-    This will happen automatically when the person tries to sign in to the service
-          </div>
-
-    <!--       <div id="domain-inset" class="govuk-inset-text">
-            {# 3. Output the domain with the @ symbol prepended #}
-            <strong>@{{ emailDomain }}</strong>
-          </div> -->
-          
-          <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="link-domain-yes" name="linkDomain" type="radio" value="Yes">
               <label class="govuk-label govuk-radios__label" for="link-domain-yes">

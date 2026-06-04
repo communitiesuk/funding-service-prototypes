@@ -1,10 +1,10 @@
-{% extends "layouts/grantNoSignin.html" %}
+{% extends "layouts/access.html" %}
 
 {% set showBackLink = true %}
 
 {% set pageSize = "allocation_form" %}
-{% set pageHeading = "Overview of the form" %}
-{% set pageSection = "Validation form" %}
+{% set pageHeading = "View all questions" %}
+{% set pageSection = "Application" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
