@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Your organisation is already registered" %}
+{% set pageHeading = "You are eligible to apply" %}
 {% set pageSection = "Safer social housing fund" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -12,7 +12,11 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">{{ pageSection }}</span>
-    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+    <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      Based on your answers, you’re eligible to apply for the Safer social housing fund.
+    </p>
   
     <p class="govuk-body">
       The email address you provided is already associated with an organisation registered in the Access Grant Funding service.

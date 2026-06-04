@@ -22,7 +22,7 @@
           Organisation type
         </dt>
         <dd class="govuk-summary-list__value">
-          Registered charity
+          {{ data['orgType'] or "Registered Charity"  }} <br> {{ data['laCode'] or data['charityNumber'] or data['vcseNumber'] or data['companyNumber'] or  "5322532"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="sign-up_details">
@@ -36,7 +36,7 @@
           Organisation name
         </dt>
         <dd class="govuk-summary-list__value">
-          Housing Charity
+          {{ data['orgName'] or "Housing Charity"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="sign-up_details">
@@ -49,7 +49,7 @@
           Domain link
         </dt>
         <dd class="govuk-summary-list__value">
-          Yes
+          {{ data['linkDomain'] or "Yes"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="sign-up_details">

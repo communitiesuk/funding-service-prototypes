@@ -8,6 +8,12 @@
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
+
+{# 1. Define the email #}
+{% set emailAddress = data['email-check'] or "user@alocalcouncil.gov.uk" %}
+{# 2. Split it at the '@' and grab the second part (the domain) #}
+{% set emailDomain = emailAddress.split('@')[1] %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -28,18 +34,19 @@
           </div>
 
           <div id="domain-inset" class="govuk-inset-text">
-            <strong>{{ data.emailDomain | default("@mycharity.org.uk") }}</strong>
+            {# 3. Output the domain with the @ symbol prepended #}
+            <strong>@{{ emailDomain }}</strong>
           </div>
           
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="link-domain-yes" name="linkDomain" type="radio" value="yes">
+              <input class="govuk-radios__input" id="link-domain-yes" name="linkDomain" type="radio" value="Yes">
               <label class="govuk-label govuk-radios__label" for="link-domain-yes">
                 Yes
               </label>
             </div>
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="link-domain-no" name="linkDomain" type="radio" value="no">
+              <input class="govuk-radios__input" id="link-domain-no" name="linkDomain" type="radio" value="No">
               <label class="govuk-label govuk-radios__label" for="link-domain-no">
                 No
               </label>
