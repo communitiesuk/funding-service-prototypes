@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "What is your email address?" %}
+{% set pageHeading = "Enter your work email address" %}
 {% set pageSection = "Safer social housing fund" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -22,7 +22,7 @@
         </h1>
         
         <div id="email-hint" class="govuk-hint">
-          We will use this to send you a confirmation link to register your organisation.
+       You will need to verify your email address. We will only use your email address if you are eligible to apply.
         </div>
         
         <input class="govuk-input govuk-!-width-two-thirds" id="email" name="email-check" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
