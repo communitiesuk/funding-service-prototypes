@@ -1,0 +1,33 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+{% import "macros/suggested-page.njk" as macroSuggested %}
+{% import "macros/current-page.njk" as macroCurrent %}
+{% import "macros/page-pagination.njk" as macroPagePagination %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Sorry, the report is unavailable</h1>
+        <p class="govuk-body">
+            You cannot access this report right now. You will be able to access it later.        </p>
+        <p class="govuk-body">
+          If you need help, <a class="govuk-link" href="#">contact the support desk</a>  (available Monday to Friday, 9am to 5pm, except public holidays).
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
