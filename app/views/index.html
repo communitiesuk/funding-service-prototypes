@@ -39,6 +39,12 @@
 		<p>A form designer can upload, replace and reference a data set.</p>
 
 		<div class="app-aligned-header-tag-high govuk-!-margin-top-7">
+			<h3 class="govuk-heading-s"><a href="subpage_allocative_review" class="govuk-link">Reviewing an application (allocative)</a></h3>
+			<strong class="govuk-tag govuk-tag--yellow">In development </strong>
+		</div>
+		<p>Caseworker can review an application, approve, reject or request changes.</p>
+
+		<div class="app-aligned-header-tag-high govuk-!-margin-top-7">
 			<h3 class="govuk-heading-s"><a href="/subpage_reopening_submissions" class="govuk-link">Reopening submissions (April to May 2026)</a></h3>
 			<strong class="govuk-tag govuk-tag--green">Released </strong>
 		</div>
@@ -67,15 +73,25 @@
 			<li>reporting on the progress of their funded programmes and projects </li>
 		</ul>
 
-		<form method="post" action="/sign-in/">
-			<input type="hidden" name="fundingService" id="fundingService" value="access" />
-			<input type="hidden" name="authentication" id="authentication" value="Magic link" />
-			{{ govukButton({
-			text: "Continue",
-			classes: "govuk-!-margin-top-3"
-			}) }}
-		</form>
+<div class="app-aligned-header-tag-high govuk-!-margin-top-5">
+			<h3 class="govuk-heading-s"><a href="subpage_allocative_application" class="govuk-link">Review an application (allocative)</a></h3>
+			<strong class="govuk-tag govuk-tag--yellow">In development </strong>
+		</div>
+		
+
+		<div class="app-aligned-header-tag-high govuk-!-margin-top-5">
+			<h3 class="govuk-heading-s"><a href="/sign-in/" class="govuk-link">Legacy version</a></h3>
+		<strong class="govuk-tag govuk-tag--green">Released </strong>
+		</div>
+
+
+		
+
+
+
 		{% endset %}
+
+
 
 		{% set serviceApplyHtml %}
 		<!-- Current apply for a grant service -->
@@ -92,6 +108,8 @@
 			}) }}
 		</form>
 		{% endset %}
+
+
 
 		{% set serviceAssessHtml %}
 		<!-- Current assess applications service -->
