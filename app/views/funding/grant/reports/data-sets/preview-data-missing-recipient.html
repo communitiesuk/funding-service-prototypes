@@ -20,12 +20,12 @@
     <p class="govuk-body">Preview the data set with the formatting you have applied.
     </p>
 
-    <form method="post" action="upload-success">
+    <form method="post" action="upload-success-missing-data">
       <div class="govuk-button-group govuk-!-margin-bottom-9">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Upload data set
         </button>
-        <a class="govuk-link" href="no-data-sets">Cancel</a>
+        <a class="govuk-link" href="no-data-sets-missing-data">Cancel</a>
       </div>
     </form>
 
@@ -61,27 +61,11 @@
             British pounds, 2 decimal places, prefix: £
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            [Column name]
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Whole number, suffix: kg
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            [Column name]
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Decimal, 2 decimal places
-          </dd>
-        </div>
       </dl>
     </div>
   </details>
 
-      <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+     <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -94,9 +78,7 @@
         <tbody class="govuk-table__body">
 
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              N09000002
-            </td>
+            <td class="govuk-table__cell">N09000002</td>
             <td class="govuk-table__cell">
               Armagh City, Banbridge and Craigavon Borough Council
             </td>
@@ -106,31 +88,32 @@
             <td class="govuk-table__cell">
               £1,250,000.00
             </td>
-
           </tr>
 
           <tr class="govuk-table__row">
+            <td class="govuk-table__cell">E08000025</td>
             <td class="govuk-table__cell">
-              E08000025
-            </td>
-            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--red app-tag--wide govuk-!-margin-top-1 govuk-!-margin-bottom-1">
+                Grant recipient missing
+              </strong>
               Birmingham City Council
             </td>
             <td class="govuk-table__cell">
-              £4,500,000.00
+              <strong class="govuk-tag govuk-tag--orange">
+                Data missing
+              </strong>
             </td>
             <td class="govuk-table__cell">
-              £1,250,000.00
+              <strong class="govuk-tag govuk-tag--orange">
+                Data missing
+              </strong>
             </td>
           </tr>
 
           <tr class="govuk-table__row">
+            <td class="govuk-table__cell">E06000030</td>
             <td class="govuk-table__cell">
-              E06000030
-            </td>
-            <td class="govuk-table__cell">
-              Swindon Borough Council
-            </td>
+              Swindon Borough Council </td>
             <td class="govuk-table__cell">
               £4,500,000.00
             </td>
@@ -142,6 +125,7 @@
         </tbody>
       </table>
     </div>
+</div>
 </div>
 
 {% endblock %}

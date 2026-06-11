@@ -20,12 +20,12 @@
     <p class="govuk-body">Preview the data set with the formatting you have applied.
     </p>
 
-    <form method="post" action="upload-success">
+    <form method="post" action="upload-success-replace">
       <div class="govuk-button-group govuk-!-margin-bottom-9">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Upload data set
         </button>
-        <a class="govuk-link" href="no-data-sets">Cancel</a>
+        <a class="govuk-link" href="view-data-set">Cancel</a>
       </div>
     </form>
 
@@ -63,25 +63,17 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            [Column name]
+            Funded staff (FTE)
           </dt>
           <dd class="govuk-summary-list__value">
-            Whole number, suffix: kg
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            [Column name]
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Decimal, 2 decimal places
+            Decimal, 1 decimal place
           </dd>
         </div>
       </dl>
     </div>
   </details>
 
-      <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+<div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -89,6 +81,7 @@
             <th scope="col" class="govuk-table__header">Grant recipient</th>
             <th scope="col" class="govuk-table__header">Capital allocation</th>
             <th scope="col" class="govuk-table__header">Revenue allocation</th>
+            <th scope="col" class="govuk-table__header">Funded staff (FTE)</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -106,6 +99,9 @@
             <td class="govuk-table__cell">
               £1,250,000.00
             </td>
+            <td class="govuk-table__cell">
+              3
+            </td>
 
           </tr>
 
@@ -122,6 +118,9 @@
             <td class="govuk-table__cell">
               £1,250,000.00
             </td>
+            <td class="govuk-table__cell">
+              6.5
+            </td>
           </tr>
 
           <tr class="govuk-table__row">
@@ -129,7 +128,7 @@
               E06000030
             </td>
             <td class="govuk-table__cell">
-              Swindon Borough Council
+              Swindon City Council
             </td>
             <td class="govuk-table__cell">
               £4,500,000.00
@@ -137,11 +136,16 @@
             <td class="govuk-table__cell">
               £1,250,000.00
             </td>
+            <td class="govuk-table__cell">
+              4.5
+            </td>
+
           </tr>
 
         </tbody>
       </table>
     </div>
+</div>
 </div>
 
 {% endblock %}
