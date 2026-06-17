@@ -22,77 +22,72 @@ items: [
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Mid-year monitoring</span>
+    <h1 class="govuk-heading-l">Uploaded data sets</h1>
 
-        <span class="govuk-caption-l">Mid-year monitoring</span>
-        <h1 class="govuk-heading-l">Grant allocation data sets</h1>
+    <p class="govuk-body">Upload data to reference in guidance, questions, conditions and validation.</p>
 
-        <p class="govuk-body
+    <p class="govuk-body">You can replace uploaded data sets to update missing or incorrect data.</p>
 
-<span class="govuk-caption-l">Mid-year monitoring</span>
-<h1 class="govuk-heading-l">Uploaded data sets</h1>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Uploading a data set
+        </span>
+      </summary>
+      <div class="govuk-details__text">
 
-<p class="govuk-body">Upload data to reference in guidance, questions, conditions and validation.</p>
+        <ol class="govuk-list govuk-list--number">
+          <li>Check the <a class="govuk-link" href="">grant recipients</a> are set up to make sure they will be in the
+            data set template.</li>
+          <li><a class="govuk-link" href="">Download the data set template (CSV).</li></a></li>
+          <li>Name each column to describe the data in it, for example, "Funding".</li>
+          <li>Upload the new data set by naming and formatting the data set.</li>
+        </ol>
 
-<p class="govuk-body">You can replace uploaded data sets to update missing or incorrect data.</p>
-
- <details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Uploading a data set
-    </span>
-  </summary>
-  <div class="govuk-details__text">
-
-<ol class="govuk-list govuk-list--number">
-  <li>Check the <a class="govuk-link" href="">grant recipients</a> are set up to make sure they will be in the data set template.</li>
-  <li><a class="govuk-link" href="">Download the data set template (CSV).</li></a></li>
-  <li>Name each column to describe the data in it, for example, "Funding".</li>
-  <li>Upload the new data set by naming and formatting the data set.</li>
-</ol>
-
+      </div>
+    </details>
   </div>
-</details> 
-</div>
-<div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-full">
 
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Data set</th>
-      <!-- <th scope="col" class="govuk-table__header" aria-sort="descending"> -->
-        <!-- <a href="#" class="govuk-link govuk-link--no-visited-state" style="white-space: nowrap;">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Data set</th>
+          <!-- <th scope="col" class="govuk-table__header" aria-sort="descending"> -->
+          <!-- <a href="#" class="govuk-link govuk-link--no-visited-state" style="white-space: nowrap;">
           Date and time <span aria-hidden="true" style="font-size: 0.8em; margin-left: 5px;">▲▼</span>
         </a> -->
-      <!-- </th> -->
-      <th scope="col" class="govuk-table__header">Time and date</th>
+          <!-- </th> -->
+          <th scope="col" class="govuk-table__header">Time and date</th>
 
-      <th scope="col" class="govuk-table__header">Uploaded by</th>
+          <th scope="col" class="govuk-table__header">Uploaded by</th>
 
-      <!-- <th scope="col" class="govuk-table__header">View data set</th>
+          <!-- <th scope="col" class="govuk-table__header">View data set</th>
     </tr> -->
-  </thead>
-  <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell">There are no data sets uploaded for this report</td>  
-            <!-- <td class="govuk-table__cell">Grant allocations</td> -->
-      <td class="govuk-table__cell">
-        
-      </td>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">There are no data sets uploaded for this report</td>
+          <!-- <td class="govuk-table__cell">Grant allocations</td> -->
+          <td class="govuk-table__cell">
 
-      <td class="govuk-table__cell"></td>
+          </td>
 
-      <!-- <td class="govuk-table__cell"><a class="govuk-link" href="">View</a></td> -->
-    </tr>
-  </tbody>
-</table>
-<br>
-  <form method="post" action="upload-missing-recipient">
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-Upload new data set
-</button>
-</form>
+          <td class="govuk-table__cell"></td>
 
-    </div>
+          <!-- <td class="govuk-table__cell"><a class="govuk-link" href="">View</a></td> -->
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <form method="post" action="upload-missing-recipient">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Upload new data set
+      </button>
+    </form>
+
+  </div>
 </div>
 {% endblock %}
