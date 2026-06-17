@@ -13,12 +13,14 @@ const reportsRoutes = require('./routes/reports')
 const sectionsRoutes = require('./routes/sections')
 const tasksRoutes = require('./routes/tasks')
 const questionsRoutes = require('./routes/questions')
+const datasetRoutes = require('./routes/datasets')
 
 // Use the feature routes
 router.use(reportsRoutes)
 router.use(sectionsRoutes)
 router.use(tasksRoutes)
 router.use(questionsRoutes)
+router.use(datasetRoutes)
 
 // Breadcrumbs helper (kept here as it's used across multiple features)
 function buildBreadcrumbs(req, currentPage) {
