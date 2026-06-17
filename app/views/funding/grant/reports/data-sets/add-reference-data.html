@@ -19,8 +19,7 @@
 
     <p class="govuk-body govuk-!-margin-bottom-4">
       Add test data to use when previewing this form. </p>
-    <form method="post" action="preview-q1">
-
+<form id="test-data-form" method="post" action="preview-q1">
       <!--Capital allocation-->
 
      <div class="govuk-form-group">
@@ -32,7 +31,7 @@
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
           <input class="govuk-input govuk-input--width-10" id="capital-allocation" name="capitalAllocation" type="text"
-            spellcheck="false" value="">
+            spellcheck="false" value="{{ data.capitalAllocation | default('') }}">
         </div>
       </div>
 
@@ -61,7 +60,7 @@
         <div class="govuk-input__wrapper">
           <div class="govuk-input__prefix" aria-hidden="true">£</div>
           <input class="govuk-input govuk-input--width-10" id="revenue-allocation" name="revenueAllocation" type="text"
-            spellcheck="false" value="">
+            spellcheck="false" value="{{ data.revenueAllocation | default('') }}">
         </div>
       </div>
       <details class="govuk-details">
@@ -86,7 +85,7 @@
           Staff funded in FTE
         </label>
         </h2>
-        <input class="govuk-input govuk-!-width-one-quarter" id="fte" name="fte" type="text" value="">
+        <input class="govuk-input govuk-!-width-one-quarter" id="fte" name="fte" type="text" value="{{ data.fte | default('') }}">
       </div>
       <details class="govuk-details">
         <summary class="govuk-details__summary">
@@ -109,9 +108,12 @@
       </div>
     </form>
 
-    <p class="govuk-body govuk-!-margin-top-5">
-  <a href="#" class="govuk-link">Clear test data</a>
+   <p class="govuk-body govuk-!-margin-top-5">
+  <a href="#" id="clear-test-data" class="govuk-link">Clear test data</a>
 </p>
   </div>
 </div>
+
+
 {% endblock %}
+
