@@ -1,0 +1,142 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Approve or reject submission" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+
+  <!-- Main Content Area -->
+  <div class="govuk-grid-column-three-quarters">
+    
+    <!-- Breadcrumbs -->
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+    <!-- Header & Caption -->
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+    
+    </h1>
+
+
+    <!-- Validate allocation -->
+
+    <p class="govuk-body govuk-!-margin-bottom-6">
+  This is for internal records only and we won't email the organisation about the decision</p>
+
+    <form id="validationRoutingForm" novalidate>
+      <div class="govuk-form-group govuk-!-margin-bottom-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">
+            Validate allocation options
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" >
+              <label class="govuk-label govuk-radios__label" for="validation-action-1">
+                Mark as approved
+              </label>
+            </div>
+           
+            
+        
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
+                 <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+                  Why are you declining validatation for the Allocation form submission?
+                </label>
+          </legend>
+          
+   
+        </fieldset>
+     
+<br>
+
+      <div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+   Please provide more details about changes needed
+  </label>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+ </div>
+
+            
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
+              <label class="govuk-label govuk-radios__label" for="validation-action-3">
+                Mark as rejected
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+                  Why are you marking this submission as rejected?
+                </label>
+                
+                <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+<div class="govuk-button-group">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Confirm
+      </button>
+    </form>
+    <p class="govuk-body">
+   <a href="submission-new2" class="govuk-link">Cancel</a>
+</p>
+</div>
+  </div>
+</div>
+
+
+      
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('validationRoutingForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const selectedOption = document.querySelector('input[name="validationAction"]:checked');
+      
+      if (selectedOption) {
+        if (selectedOption.value === 'validate') {
+          window.location.href = 'submission-new2_approve#timeline';
+        } else if (selectedOption.value === 'request-changes') {
+          window.location.href = 'confirm';
+        } else if (selectedOption.value === 'decline') {
+          window.location.href = 'submission-new2_reject#timeline';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

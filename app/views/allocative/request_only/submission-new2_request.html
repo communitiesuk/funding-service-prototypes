@@ -1,0 +1,509 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Submission" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<!-- Custom CSS to recreate the HMRC Timeline Pattern and Sticky Nav -->
+<style>
+  /* --- Timeline Styles --- */
+  .app-timeline {
+    margin: 30px 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .app-timeline__item {
+    position: relative;
+    padding-left: 25px; /* Creates the space between the vertical line and the text */
+    margin-bottom: 40px;
+  }
+  
+  .app-timeline__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -40px; /* Extends down to connect to the next item */
+    left: 0;
+    width: 4px;
+    background-color: #1d70b8; /* Standard GOV.UK blue */
+  }
+  
+  .app-timeline__item:last-child::before {
+    bottom: 0;
+  }
+
+  .app-timeline__item::after {
+    content: "";
+    position: absolute;
+    top: 12px; /* Aligns vertically with the middle of the H2 */
+    left: 0;   /* Starts AT the vertical line */
+    width: 15px; /* Points INWARD (rightwards) towards the text */
+    height: 4px;
+    background-color: #1d70b8;
+  }
+
+  .app-timeline__title {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  .app-timeline__date {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #505a5f;
+  }
+  
+  .app-timeline__description {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* --- Sticky Side Navigation Styles without pane borders --- */
+  .app-subnav__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .app-subnav__list-item {
+    margin-bottom: 5px;
+  }
+
+  .app-subnav__link {
+    text-decoration: none;
+    color: #1d70b8;
+    display: block;
+    padding: 5px 0;
+    font-family: "GDS Transport", arial, sans-serif;
+  }
+
+  .app-subnav__link:hover {
+    text-decoration: underline;
+  }
+
+  .app-subnav__list-item--current .app-subnav__link {
+    font-weight: bold;
+    color: #0b0c0c;
+    text-decoration: none;
+    border-left: 4px solid #1d70b8;
+    padding-left: 10px;
+    margin-left: -14px; /* Pulls text back into alignment */
+  }
+
+  /* Force the grid row to use flexbox on desktop so columns are equal height, allowing the inner div to stick */
+  @media (min-width: 40.0625em) {
+    .flex-row-desktop {
+      display: flex;
+    }
+    .sticky-nav-wrapper {
+      position: sticky;
+      top: 30px;
+    }
+  }
+</style>
+
+<div class="govuk-grid-row">
+
+  <!-- Main Content Area -->
+  <div class="govuk-grid-column-full">
+    
+    <!-- Breadcrumbs -->
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+         Changes have been requested
+        </h3>
+        <p class="govuk-body">We've emailed Glasgow City Council to let them know what changes have been requested.</p>
+      </div>
+    </div>
+
+
+    <!-- Header & Caption -->
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+       <strong class="govuk-tag govuk-tag--yellow">Changes requested</strong>
+    </h1>
+
+        
+
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-7" style="border-top: 1px solid #b1b4b6;">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+      Organisation
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Glasgow City Council
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+      Grant name
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Safer social housing
+        </dd>
+      </div>
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+      Report name
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Validation form
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted by
+        </dt>
+        <dd class="govuk-summary-list__value">
+          John Doe
+          on Friday 24 April 2026
+        </dd>
+      </div>
+            
+    </dl>
+
+       
+<br>
+
+    <!-- Tabs Component -->
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <!-- Default selected tab -->
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#answers">
+           Form response
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#timeline">
+            Timeline
+          </a>
+        </li>
+    
+      </ul>
+
+      <!-- ANSWERS TAB (Visible by default) -->
+      <div class="govuk-tabs__panel" id="answers" style="border: none; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        
+        <!-- Standard Grid Row transformed into a flex container for stickiness -->
+        <div class="govuk-grid-row flex-row-desktop">
+          
+          <!-- Sticky Side Navigation (Left Column) -->
+          <div class="govuk-grid-column-one-quarter">
+            <div class="sticky-nav-wrapper">
+              <nav aria-label="Section navigation">
+                <ul class="app-subnav__list govuk-!-font-size-16">
+                  <li class="app-subnav__list-item app-subnav__list-item--current">
+                    <a class="app-subnav__link" href="#section-1">Form response</a>
+                  </li>
+                  <li class="app-subnav__list-item">
+                    <a class="app-subnav__link" href="#section-2">People</a>
+                  </li>
+                  <li class="app-subnav__list-item">
+                    <a class="app-subnav__link" href="#section-3">Confirm participation</a>
+                  </li>
+                  <li class="app-subnav__list-item">
+                    <a class="app-subnav__link" href="#section-4">Funding activities</a>
+                  </li>
+                  <li class="app-subnav__list-item">
+                    <a class="app-subnav__link" href="#section-5">Declarations</a>
+                  </li>
+                
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Main Content for Answers (Right Column) -->
+          <div class="govuk-grid-column-three-quarters">
+            
+            <h2 class="govuk-heading-m" id="section-1">Form response</h2>
+<p class="govuk-body">View all responses to the Validation form provided by Glasgow City Council.</p>
+          
+            <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Download responses as PDF
+            </button>
+            <br><br>
+
+            <table class="govuk-table" id="section-2">
+              <caption class="govuk-table__caption govuk-table__caption--m">People</caption>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Full name</th>
+                  <td class="govuk-table__cell">{{ data['fullName'] or 'Steven Fountain'}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Role</th>
+                  <td class="govuk-table__cell">{{ data['role'] or 'Project Manager'}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Email address</th>
+                  <td class="govuk-table__cell">{{ data['emailAddress'] or 'steven.fountain@example.gov.uk'}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Contact number</th>
+                  <td class="govuk-table__cell">{{ data['contactNumber'] or '07700 900 123' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br><br>
+
+            <table class="govuk-table" id="section-3">
+              <caption class="govuk-table__caption govuk-table__caption--m">Confirm participation</caption>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Would you like to receive the funding for Safer social housing fund?</th>
+                  <td class="govuk-table__cell">{{ data['receiveAllocation'] or 'Yes' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br><br>
+
+            <table class="govuk-table" id="section-4">
+              <caption class="govuk-table__caption govuk-table__caption--m">Funding activities</caption>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">How much funding does your organisation need?</th>
+                  <td class="govuk-table__cell">£{{ data['fundingAmount'] or '1,500,000' }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">What activities do you plan to deliver using the funding?</th>
+                  <td class="govuk-table__cell">{{ data['activities'] or 'We plan to retrofit 500 properties with updated fire safety doors and improved alarm systems.' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br><br>
+
+            <table class="govuk-table" id="section-5">
+              <caption class="govuk-table__caption govuk-table__caption--m">Declarations</caption>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?</th>
+                  <td class="govuk-table__cell">{{ data['mou'] or 'Yes' }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus?</th>
+                  <td class="govuk-table__cell">{{ data['monitoring'] or 'Yes' }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header govuk-!-width-one-third">Do you commit to provide safer social housing by 30 April 2029?</th>
+                  <td class="govuk-table__cell">{{ data['commit'] or 'Yes' }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br><br>
+
+         
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TIMELINE TAB (Hidden by default) -->
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="timeline" style="border: none; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <h2 class="govuk-heading-m">Timeline</h2>
+        
+        <ol class="app-timeline">
+                            <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Changes requested <span class="govuk-hint">by MHCLG</span></td></h2>
+            <p class="govuk-body-s">
+              <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">Kate Smith</span> on 11 May 2026</time>
+            </p>
+            <p class="govuk-body app-timeline__description">
+             
+             <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Change request details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p><span class="govuk-body govuk-!-font-weight-bold">Sections selected</span>: Funding activites; Declarations.</p>
+       <p><span class="govuk-body govuk-!-font-weight-bold">Comment left</span>: Provide more detail about what activities you plan to deliver using the funding and specifically how they align with the programme objectives.
+
+Also, agreeing to participation in monitoring and evaluation is essential because we need to know how you're spending the funding and the impact it's having.</p>
+  </div>
+</details>
+            </p>
+          </li>
+
+ <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Form completed and sent for certification  <span class="govuk-hint">by Glasgow City Council</span> </h2>
+            <p class="govuk-body-s"> 
+              <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026</time> 
+                <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Certifiers
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <p>jane.doe@glasgow.gov.uk</p>
+    <p>danny.smith@glasgow.gov.uk</p>
+    <p>jane.jones@glasgow.gov.uk</p>
+    <p>susan.davies@glasgow.gov.uk</p>
+       
+</details>
+            </p>
+
+          </li>
+
+          <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Invite to form sent <span class="govuk-hint">to Glasgow City Council</span></h2>
+            <p class="govuk-body-s">
+              <time datetime="2020-07-15"><span class="govuk-body-s govuk-!-font-weight-bold">Kate Smith</span> on 17 April 2026</time> 
+              <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Invite email recipients
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>john.doe@glasgow.gov.uk</p>
+       
+</details>
+            </p>
+
+          </li>
+
+
+          <li class="app-timeline__item">
+            <h2 class="govuk-heading-m app-timeline__title">Form launched <span class="govuk-hint">by MHCLG</span></h2>
+            <p class="govuk-body-s">
+              <time datetime="2020-07-14"><span class="govuk-body-s govuk-!-font-weight-bold">Kate Smith</span> on 14 April 2026</time>
+            </p>
+          </li>
+        </ol>
+
+      </div>
+
+  
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash) {
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('validationRoutingForm');
+    
+    if(form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const selectedOption = document.querySelector('input[name="validationAction"]:checked');
+        
+        if (selectedOption) {
+          if (selectedOption.value === 'validate') {
+            window.location.href = 'confirm_valid';
+          } else if (selectedOption.value === 'request-changes') {
+            window.location.href = 'changes';
+          } else if (selectedOption.value === 'decline') {
+            window.location.href = 'confirm_declined';
+          }
+        }
+      });
+    }
+
+    // Sticky side navigation logic
+    var isClickScrolling = false;
+    var scrollTimeout;
+    
+    function updateActiveNav() {
+      if (isClickScrolling) return;
+      
+      var sections = document.querySelectorAll('#answers h2[id], #answers table[id]');
+      var navItems = document.querySelectorAll('.app-subnav__list-item');
+      var scrollPosition = window.scrollY + 100;
+      
+      sections.forEach(function(section, index) {
+        var sectionTop = section.offsetTop;
+        var sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          navItems.forEach(function(item) {
+            item.classList.remove('app-subnav__list-item--current');
+          });
+          if (navItems[index]) {
+            navItems[index].classList.add('app-subnav__list-item--current');
+          }
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        isClickScrolling = false;
+      }, 100);
+      updateActiveNav();
+    });
+    
+    document.querySelectorAll('.app-subnav__link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        var targetId = this.getAttribute('href').substring(1);
+        var targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          isClickScrolling = true;
+          
+          document.querySelectorAll('.app-subnav__list-item').forEach(function(item) {
+            item.classList.remove('app-subnav__list-item--current');
+          });
+          
+          this.parentElement.classList.add('app-subnav__list-item--current');
+          this.blur();
+          
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          setTimeout(function() {
+            isClickScrolling = false;
+          }, 1000);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

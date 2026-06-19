@@ -1,0 +1,128 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+  <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+    
+    <form action="submission-new2_request#timeline" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Which sections need to be changed?
+            </h1>
+          </legend>
+          
+ <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-people" name="sectionsToChange" type="checkbox" value="people" data-aria-controls="conditional-people">
+              <label class="govuk-label govuk-checkboxes__label" for="section-people">
+                People
+              </label>
+            </div>
+            
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-delivery-plan" name="sectionsToChange" type="checkbox" value="delivery-plan" data-aria-controls="conditional-delivery-plan">
+              <label class="govuk-label govuk-checkboxes__label" for="section-delivery-plan">
+                Confirm participation
+              </label>
+            </div>
+            
+    
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-funding" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-funding">
+              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+                Funding activities
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-declarations" name="sectionsToChange" type="checkbox" value="declarations">
+              <label class="govuk-label govuk-checkboxes__label" for="section-declarations">
+                Declarations
+              </label>
+            </div>
+            
+           
+        </fieldset>
+     
+<br><br>
+      <div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+  Tell Glasgow City Council about the changes needed
+  </label>
+    <div id="event-name-hint" class="govuk-hint">
+    This will be visible to any user from Glasgow City Council with access to the form
+  </div>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+ </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Exclusive Checkbox Logic for "No specific section"
+    const noneCheckbox = document.getElementById('section-none');
+    const otherCheckboxes = document.querySelectorAll('input[name="sectionsToChange"]:not(#section-none)');
+
+    if (noneCheckbox && otherCheckboxes.length > 0) {
+      // When "None" is checked, uncheck all others
+      noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+        }
+      });
+
+      // When any other checkbox is checked, uncheck "None"
+      otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            noneCheckbox.checked = false;
+          }
+        });
+      });
+    }
+
+  });
+</script>
+{% endblock %}

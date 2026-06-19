@@ -1,0 +1,128 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Submissions" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+
+
+  <div class="govuk-grid-column-three-quarters">
+    
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Submissions
+        </li>
+      </ol>
+    </div>
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+   View forms submitted by organisations in the pre-award stage. You can also export all data from the forms.
+      
+    </p>
+
+        <div class="govuk-button-group govuk-!-margin-bottom-6">
+      <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Export as CSV
+      </button>
+      <button type="button" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Export as JSON
+      </button>
+    </div>
+
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-half">Organisation name</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Last updated</th>
+                   
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Adur District Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Allerdale Borough Council</a></td>
+          <td class="govuk-table__cell">Submitted</td>
+          <td class="govuk-table__cell">12 Feb 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Amber Valley Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Awaiting sign off</strong></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Arun District Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">In progress</strong></td>
+          <td class="govuk-table__cell">01 Mar 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Ashfield District Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Changes requested</strong></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Ashford Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green" style="display: inline-block; vertical-align: middle; margin-left: 0px; white-space: nowrap; padding-right: 15px;">Marked as complete</strong></td>
+          <td class="govuk-table__cell">28 Jan 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Babergh District Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Marked as rejected</strong></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Barnsley Metropolitan Borough Council</a></td>
+          <td class="govuk-table__cell">Submitted with changes</td>
+          <td class="govuk-table__cell">05 Mar 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Barrow-in-Furness Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"></td>
+        </tr>
+       
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Gedling Borough Council</a></td>
+          <td class="govuk-table__cell">Submitted</td>
+          <td class="govuk-table__cell">18 Mar 2026</td>
+        </tr>
+  <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+           <a href="submission-new2">Glasgow City Council</a>
+          </td>
+          <td class="govuk-table__cell">Submitted</td>
+          <td class="govuk-table__cell">20 March 2026</td> 
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#">Gosport Borough Council</a></td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">In progress</strong></td>
+          <td class="govuk-table__cell">25 Feb 2026</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="">Gravesham Borough Council</a></td>
+          <td class="govuk-table__cell">Submitted</td>
+          <td class="govuk-table__cell">06 Mar 2026</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+{% endblock %}

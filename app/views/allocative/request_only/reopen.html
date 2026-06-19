@@ -1,0 +1,89 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+    
+    <form method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Why do you want to reopen this submission?
+            </h1>
+          </legend>
+          
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <!-- Value is set to the target URL -->
+              <input class="govuk-radios__input" id="reopen-type-1" name="reopenType" type="radio" value="reopen2">
+              <label class="govuk-label govuk-radios__label" for="reopen-type-1">
+                General reopening
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <!-- Value is set to the target URL -->
+              <input class="govuk-radios__input" id="reopen-type-2" name="reopenType" type="radio" value="changes">
+              <label class="govuk-label govuk-radios__label" for="reopen-type-2">
+                Request changes
+              </label>
+            </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', function(event) {
+      const selectedOption = document.querySelector('input[name="reopenType"]:checked');
+      
+      if (selectedOption) {
+        // Update the form's action attribute to the chosen destination ("reopen2" or "changes")
+        form.action = selectedOption.value;
+      } else {
+        // Prevent form submission if no option is selected
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+{% endblock %}
