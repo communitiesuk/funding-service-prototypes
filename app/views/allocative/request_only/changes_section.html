@@ -1,6 +1,6 @@
 {% extends "layouts/deliver-grant" %}
 
-{% set showBackLink = true %}
+{% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "Allocations" %}
@@ -11,32 +11,45 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+    
     <form method="post" novalidate>
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <span class="govuk-caption-l">Glasgow City Council</span>
             <h1 class="govuk-fieldset__heading">
-             Are you requesting changes to Validation form submission?
+             Do these changes relate to specific sections? 
             </h1>
           </legend>
           
           <div class="govuk-radios" data-module="govuk-radios">
             
             <div class="govuk-radios__item">
-              <!-- Value swapped to target "changes" -->
-              <input class="govuk-radios__input" id="reopen-type-1" name="reopenType" type="radio" value="changes_specific">
+              <!-- Value is set to the target URL -->
+              <input class="govuk-radios__input" id="reopen-type-1" name="reopenType" type="radio" value="reopen2">
               <label class="govuk-label govuk-radios__label" for="reopen-type-1">
                 Yes
               </label>
             </div>
             
             <div class="govuk-radios__item">
-              <!-- Value swapped to target "reopen2" -->
-              <input class="govuk-radios__input" id="reopen-type-2" name="reopenType" type="radio" value="reopen2">
+              <!-- Value is set to the target URL -->
+              <input class="govuk-radios__input" id="reopen-type-2" name="reopenType" type="radio" value="changes">
               <label class="govuk-label govuk-radios__label" for="reopen-type-2">
-                No, just allow changes
+                No
               </label>
             </div>
             
@@ -64,7 +77,7 @@
       const selectedOption = document.querySelector('input[name="reopenType"]:checked');
       
       if (selectedOption) {
-        // Update the form's action attribute to the chosen destination ("changes" or "reopen2")
+        // Update the form's action attribute to the chosen destination ("reopen2" or "changes")
         form.action = selectedOption.value;
       } else {
         // Prevent form submission if no option is selected

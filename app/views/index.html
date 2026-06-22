@@ -88,9 +88,63 @@
 		
 
 
-
 		{% endset %}
 
+		{% set changeRequestHtml %}
+		<!-- Assess service -->
+		<h2 class="govuk-heading-m">New change request MVP</h2>
+	<!-- 	<p>A service for current and potential grant recipients to access grant funding. This could include: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding information pre-award, such as an application form, benchmarking data or a business case </li>
+			<li>reporting on the progress of their funded programmes and projects </li>
+		</ul> -->
+
+
+
+<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
+			<h3 class="govuk-heading-s">Reopen/request changes (Deliver)</h3>
+		</div>
+				<div>	
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="allocative/request_only/submission-new2" class="govuk-link">Reopen/request changes</a></li>
+</ul>
+</div>
+<br>
+<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
+			<h3 class="govuk-heading-s">Action request/reopening (Access)</h3>
+					</div>
+
+					<div>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="allocative/change_mvp/email" class="govuk-link">Changes requested - Sections</a></li>
+  <li><a href="allocative/change_mvp/email2" class="govuk-link">Changes requested - Sections + Certification</a></li>
+  <li><a href="allocative/change_mvp/email3" class="govuk-link">Changes requested - General</a></li>
+  <li><a href="allocative/change_mvp/email_reopened" class="govuk-link">Reopened</a></li>
+</ul>
+</div>
+<br>
+<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
+			<h3 class="govuk-heading-s">Viewing changes (Deliver)</h3>
+					</div>
+
+					<div>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="allocative/request_only/submission-new_changed" class="govuk-link">View changes</a></li>
+ 
+</ul>
+</div>
+
+		</div>
+
+		
+
+	
+
+
+		
+
+
+		{% endset %}
 
 
 		{% set serviceApplyHtml %}
@@ -135,7 +189,8 @@
 		{{ govukTabs({
 		items: [
 		{ label: "Deliver grant funding", id: "service-deliver-funding", panel: { html: serviceDeliverFundingHtml } },
-		{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } }
+		{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } },
+		{ label: "New change request MVP", id: "change-request", panel: { html: changeRequestHtml } }
 
 		]
 		}) }}

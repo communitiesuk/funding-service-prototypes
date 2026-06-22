@@ -1,0 +1,73 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Glasgow City Council" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Forms</h1>
+
+
+
+    <h2 class="govuk-heading-l">Grant funding</h2>
+    
+    <p class="govuk-body">
+View and complete forms related to grant funding before it’s awarded, such as application forms.
+    </p>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table govuk-!-margin-top-6">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Form name</th>
+          <th scope="col" class="govuk-table__header">Due date</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Action</span></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+    
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Validation</td>
+          <td class="govuk-table__cell">30 April 2026</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Changes requested</strong></td>
+          <td class="govuk-table__cell"><a href="allocation_form" class="govuk-link">Continue form</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+        <h2 class="govuk-heading-l">Monitoring reports</h2>
+    
+    <p class="govuk-body">
+ View and complete monitoring reports if you have been successful for grant funding.
+    </p>
+
+    <p class="govuk-body">
+ No monitoring reports available to complete.
+    </p>
+
+
+
+
+
+
+  </div>
+</div>
+{% endblock %}
