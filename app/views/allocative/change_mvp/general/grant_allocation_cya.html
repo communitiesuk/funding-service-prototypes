@@ -13,37 +13,27 @@
 
     <h1 class="govuk-heading-xl">Check your answers</h1>
 
-    <h2 class="govuk-heading-m">Project information</h2>
+          <div class="govuk-inset-text">
+      <strong class="govuk-tag govuk-tag--yellow">Changes requested</strong> <br><br>
+      <p class="govuk-body govuk-!-margin-bottom-0">Fix typos</p>
+    </div>  
+
+    <h2 class="govuk-heading-m">Confirm participation</h2>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          How much funding does your organisation need?
+          Would you like to receive the funding for Safer social housing fund?
         </dt>
         <dd class="govuk-summary-list__value">
-          £{{ data['fundingAmount'] or 'Not provided' }}
+          {{ data['receiveAllocation'] or 'Not provided' }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> funding participation</span>
           </a>
         </dd>
       </div>
-            <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          What activities do you plan to deliver using the funding?
-        </dt>
-        <dd class="govuk-summary-list__value">
-         {{ data['activities'] or 'Not provided' }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="project_info">
-            Change<span class="govuk-visually-hidden"> name of the project</span>
-          </a>
-        </dd>
-      </div>
-
-
     </dl>
 
       <div class="govuk-form-group govuk-!-margin-bottom-6">
@@ -71,7 +61,7 @@
       </div>
 <br>
 
-    <form action="" method="post" novalidate>
+    <form action="allocation_form11" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Save and continue
       </button>
