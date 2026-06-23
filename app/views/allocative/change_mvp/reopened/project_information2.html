@@ -23,7 +23,7 @@
           How much funding does your organisation need?
         </dt>
         <dd class="govuk-summary-list__value">
-          £{{ data['fundingAmount'] or 'Not provided' }}
+          £{{ data['fundingAmount'] or '' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="">
@@ -36,7 +36,7 @@
           What activities do you plan to deliver using the funding?
         </dt>
         <dd class="govuk-summary-list__value">
-         {{ data['activitiesChanged'] or 'Not provided' }}
+         {{ data['activitiesChanged'] or '' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="project_info">

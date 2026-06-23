@@ -26,7 +26,7 @@
           Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['mou'] or 'Not provided' }}
+          {{ data['mou'] or '' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -39,7 +39,7 @@
          Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus?
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['monitoring'] or 'Not provided' }}
+          {{ data['monitoring'] or '' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="declarations2">
@@ -52,7 +52,7 @@
          Do you commit to provide safer social housing by 30 April 2029?
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['commit'] or 'Not provided' }}
+          {{ data['commit'] or '' }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
