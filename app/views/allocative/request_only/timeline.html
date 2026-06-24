@@ -128,20 +128,6 @@
       </ol>
     </div>
 
-    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-          Success
-        </h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <h3 class="govuk-notification-banner__heading">
-         Submission reopened for changes
-        </h3>
-        <p class="govuk-body">We've emailed Glasgow City Council to tell them the submission's been reopened and they can make changes.</p>
-      </div>
-    </div>
-
 
     <!-- Header & Caption -->
     <span class="govuk-caption-l">{{ pageSection }}</span>
@@ -320,138 +306,136 @@
         </div>
 
       </div>
-<div class="govuk-grid-column-two-thirds">
+
       <!-- TIMELINE TAB (Hidden by default) -->
-      <!-- Updated entirely with events from the PDF status examples -->
+      <!-- Completely updated with the exact events from the screenshot -->
       <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="timeline" style="border: none; padding-left: 0; padding-right: 0; padding-bottom: 0;">
-        <h2 class="govuk-heading-m">Timeline</h2>
-        
-        <ol class="app-timeline">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            
+            <h2 class="govuk-heading-m">Timeline</h2>
+            
+            <ol class="app-timeline">
 
-          <!-- Example 8: Reopened -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Reopened for changes <span class="govuk-hint">by MHCLG</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-            <div class="app-timeline__description">
-              <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    Reason for reopening
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <p class="govuk-body">Requested by grant recipient to update funding activities.</p>
+              <!-- Event 1: 12 June 2026 -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form signed off and submitted to MHCLG <span class="govuk-hint">by Glasgow City Council</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Luke Barry</span> on 12 June 2026
+                </p>
+              </li>
+
+              <!-- Event 2: 10 June 2026 -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form submitted for certification <span class="govuk-hint">by Glasgow City Council</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Amy Schrute</span> on 10 June 2026
+                </p>
+                <div class="app-timeline__description">
+                  <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Certifiers
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>Luke Barry (luke.barry@glasgow.com)</li>
+                      </ul>
+                    </div>
+                  </details>
                 </div>
-              </details>
-            </div>
-          </li>
+              </li>
 
-          <!-- Example 7: Changes requested -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Changes requested <span class="govuk-hint">by MHCLG</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-            <div class="app-timeline__description">
-              <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    Change request details
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                  <p class="govuk-body"><strong>Sections:</strong> Funding activities, Declarations</p>
-                  <p class="govuk-body"><strong>Comment:</strong> Please provide further alignment with programme objectives.</p>
+              <!-- Event 3: 6 May 2026 -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Changes requested <span class="govuk-hint">by MHCLG</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Jeff McCloud</span> on 6 May 2026
+                </p>
+                <div class="app-timeline__description">
+                  <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Change request details
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <p class="govuk-body"><strong>Sections:</strong> Finance</p>
+                      <p class="govuk-body"><strong>Comment:</strong> We have reviewed your submission and note that the values entered in the “forecast” section total £1.8M. You will need to revisit your figures in this section, making sure that forecast amounts do not exceed £1.5M in total. We have reopened your report to allow these revisions to be made. Once these amendments have been made, please resubmit your report.</p>
+                    </div>
+                  </details>
                 </div>
-              </details>
-            </div>
-          </li>
+              </li>
 
-          <!-- Example 6: Signed off and submitted -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form/report signed off and submitted to MHCLG <span class="govuk-hint">by Glasgow City Council</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-          </li>
+              <!-- Event 4: 28 April 2026 (Submitted) -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form signed off and submitted to MHCLG <span class="govuk-hint">by Glasgow City Council</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Luke Barry</span> on 28 April 2026
+                </p>
+              </li>
 
-          <!-- Example 5: Declined by certifier -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form/report declined by certifier <span class="govuk-hint">by Glasgow City Council</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-          </li>
-
-          <!-- Example 4: Submitted to gov department (no cert required) -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form/report submitted to MHCLG <span class="govuk-hint">by Glasgow City Council</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-          </li>
-
-          <!-- Example 3: Sent for certification -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form submitted for certification <span class="govuk-hint">by Glasgow City Council</span></h2>
-            <p class="govuk-body-s app-timeline__date"> 
-              <span class="govuk-body-s govuk-!-font-weight-bold">John Doe</span> on 28 April 2026
-            </p>
-            <div class="app-timeline__description">
-              <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    Certifiers
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                
-                  <ul class="govuk-list govuk-list--bullet">
-               <li>   certifier@organisation.com</li>
-                </ul>
+              <!-- Event 5: 28 April 2026 (Sent for cert) -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form submitted for certification <span class="govuk-hint">by Glasgow City Council</span></h2>
+                <p class="govuk-body-s app-timeline__date"> 
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Amy Schrute</span> on 28 April 2026
+                </p>
+                <div class="app-timeline__description">
+                  <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Certifiers
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>Luke Barry (luke.barry@glasgow.com)</li>
+                      </ul>
+                    </div>
+                  </details>
                 </div>
-              </details>
-            </div>
-          </li>
+              </li>
 
-          <!-- Example 2: Access link emailed -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form/report access link emailed <span class="govuk-hint">by MHCLG</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">Kate Smith</span> on 14 April 2026
-            </p>
-            <div class="app-timeline__description">
-              <details class="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    Access link emailed to
-                  </span>
-                </summary>
-                <div class="govuk-details__text">
-                    <ul class="govuk-list govuk-list--bullet">
-                  <li>dataprovider@organisation.com</li>
-                  <li>dataprovider2@organisation.com <span class="govuk-hint">(failed/could not send)</span></li>
-                </ul>
+              <!-- Event 6: 16 December 2025 (Link emailed) -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form access link emailed <span class="govuk-hint">by MHCLG</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Christian Bentley</span> on 16 December 2025
+                </p>
+                <div class="app-timeline__description">
+                  <details class="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Email recipients
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>Amy Schrute (amy.schrute@glasgow.gov.uk)</li>
+                        <li>Kim Watt (kim.watt@glasgow.gov.uk)</li>
+                        <li>Kirsty Nolan (kirsty.l.nolan@glasgow.gov.uk)</li>
+                        <li>Sharon Bright (sharon.bright@glasgow.gov.uk)</li>
+                      </ul>
+                    </div>
+                  </details>
                 </div>
-              </details>
-            </div>
-          </li>
+              </li>
 
-          <!-- Example 1: Opened -->
-          <li class="app-timeline__item">
-            <h2 class="govuk-heading-m app-timeline__title">Form/report opened <span class="govuk-hint">by MHCLG</span></h2>
-            <p class="govuk-body-s app-timeline__date">
-              <span class="govuk-body-s govuk-!-font-weight-bold">Kate Smith</span> on 14 April 2026
-            </p>
-          </li>
+              <!-- Event 7: 16 December 2025 (Opened) -->
+              <li class="app-timeline__item">
+                <h2 class="govuk-heading-m app-timeline__title">Form opened <span class="govuk-hint">by MHCLG</span></h2>
+                <p class="govuk-body-s app-timeline__date">
+                  <span class="govuk-body-s govuk-!-font-weight-bold">Christian Bentley</span> on 16 December 2025
+                </p>
+              </li>
 
-        </ol>
+            </ol>
 
+          </div>
+        </div>
       </div>
-
-    </div>
 
     </div>
 
