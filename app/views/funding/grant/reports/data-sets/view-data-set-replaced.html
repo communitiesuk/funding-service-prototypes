@@ -23,8 +23,25 @@ items: [
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
+ <div class="govuk-notification-banner govuk-notification-banner--success" role="alert"
+      aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
 
+ 
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Grant allocation data set replaced
+        </h3>
+        <p class="govuk-body">You can now reference the latest Grant allocation data in the Mid-year monitoring form.</p>
+      </div>
+    </div>
+    </div>
+ <div class="govuk-grid-column-full">
     <span class="govuk-caption-l">Mid-year monitoring</span>
     <!-- <h1 class="govuk-heading-l">Uploaded data set</h1> -->
     <h1 class="govuk-heading-l">Grant allocation data set</h1>
