@@ -3,8 +3,8 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Check your answers before registering" %}
-{% set pageSection = "Sign-up" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Organisation details" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -14,7 +14,6 @@
     <span class="govuk-caption-l">{{ pageSection }}</span>
     <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-    <h2 class="govuk-heading-m">Organisation details</h2>
 
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
@@ -70,7 +69,7 @@ By submitting these details you are confirming that they are correct.
     <form action="dashboard-confirmed" method="post" novalidate>
       <input type="hidden" name="answers-checked" value="true">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-        Accept and sign up
+       Create account 
       </button>
     </form>
 
