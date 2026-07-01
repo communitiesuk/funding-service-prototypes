@@ -91,13 +91,7 @@
               </label>
             </div>
 
-      <!-- Option 9 -->
-<div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-9" name="orgType" type="radio" value="other">
-              <label class="govuk-label govuk-radios__label" for="org-type-9">
-                Other
-              </label>
-            </div>
+
           </div>
 
         </fieldset>
@@ -123,8 +117,14 @@
       const orgType = document.querySelector('input[name="orgType"]:checked');
       
       if (orgType) {
-        if (orgType.value === 'other') {
-          // Route to not eligible if 'Other' is selected
+        // Check if the selected value matches any of the non-eligible options
+        if (
+          orgType.value === 'Community interest company' || 
+          orgType.value === 'Company limited by guarantee' || 
+          orgType.value === 'Local authority' || 
+          orgType.value === 'Unincorporated community group, organisation or association'
+        ) {
+          // Route to not eligible
           window.location.href = 'not-eligible';
         } else {
           // Route to the next step of the eligibility check
