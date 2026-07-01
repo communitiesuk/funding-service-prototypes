@@ -1,0 +1,86 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Copying a report or form (July 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						Draft
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Form designer
+				</dd>
+			</div>
+		</dl>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journey</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/copying/grants" class="govuk-link">Copy an existing report</a>
+		</p>
+		<p class="govuk-body">This journey is an draft draft state and has not been tested with form designers. </p>
+		</p>
+		<p class="govuk-body">In the prototype, the grant is an active grant called 'Local Authority Housing Fund'.</p>
+		
+		
+<!--
+		<h2 class="govuk-heading-m">Next steps</h2>
+		<p class="govuk-body">To monitor after release:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>How does the 'Format data' page perform with real data sets? Would radios be more user-friendly and more
+				accessible than select components?</li>
+			
+		</ul>
+		-->
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1782729418837/93ac3a14528526548c4e208a1f7ff77fe500892e"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Copying a report or form Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}
