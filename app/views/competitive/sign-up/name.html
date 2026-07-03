@@ -1,0 +1,42 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "What is the name of your organisation?" %}
+{% set pageSection = "Organisation details" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <div class="govuk-form-group">
+     <span class="govuk-caption-l">{{ pageSection }}</span>
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="event-name">
+      What is your name?
+    </label>
+  </h1>
+<!--   <div id="event-name-hint" class="govuk-hint">
+    Enter the official registered name of your organisation
+  </div> -->
+    <form action="sign-up_details" method="post" novalidate>
+ 
+
+      <div class="govuk-form-group govuk-!-margin-top-6">
+
+        
+    
+        <input class="govuk-input" id="your-name" name="yourName" type="text" spellcheck="false" aria-describedby="org-name-hint">
+      </div>
+<br>
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

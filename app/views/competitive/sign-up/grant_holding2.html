@@ -1,0 +1,43 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Apply for the Safer social housing fund" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+    <p class="govuk-body">
+      Use this service to check if your organisation is eligible and register to apply for the Safer social housing fund.
+    </p>
+
+    <p class="govuk-body">
+      You will need to complete a short eligibility check before you can register your organisation and start your application. 
+    </p>
+
+       <p class="govuk-body">
+      If you pass the eligibility check and do not already have an account, you will be asked to set up your organisation's profile.
+    </p>
+
+
+    
+
+    <a href="email" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+      Start now
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+
+  </div>
+</div>
+{% endblock %}

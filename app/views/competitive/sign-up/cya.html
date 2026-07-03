@@ -18,19 +18,18 @@
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Organisation type
+          Your name
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['orgType'] or "Registered Charity"  }} <br> {{ data['laCode'] or data['charityNumber'] or data['vcseNumber'] or data['companyNumber'] or  "5322532"  }}
+          {{ data['yourName'] or "John Smith"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="sign-up_details">
-            Change<span class="govuk-visually-hidden"> organisation type</span>
+          <a class="govuk-link" href="">
+            Change<span class="govuk-visually-hidden"> your name</span>
           </a>
         </dd>
       </div>
-      
-      <div class="govuk-summary-list__row">
+       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Organisation name
         </dt>
@@ -38,11 +37,26 @@
           {{ data['orgName'] or "Housing Charity"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="sign-up_details">
+          <a class="govuk-link" href="">
             Change<span class="govuk-visually-hidden"> organisation name</span>
           </a>
         </dd>
       </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Organisation type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['orgType'] or "Registered Charity"  }} <br> {{ data['laCode'] or data['charityNumber'] or data['vcseNumber'] or data['companyNumber'] or  "5322532"  }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="">
+            Change<span class="govuk-visually-hidden"> organisation type</span>
+          </a>
+        </dd>
+      </div>
+      
+     
           <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Do you want others to join your organisation automatically?
@@ -51,7 +65,7 @@
           {{ data['linkDomain'] or "Yes"  }}
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="sign-up_details">
+          <a class="govuk-link" href="">
             Change<span class="govuk-visually-hidden"> organisation name</span>
           </a>
         </dd>
