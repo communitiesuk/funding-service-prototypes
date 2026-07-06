@@ -1,10 +1,10 @@
-{% extends "layouts/deliver-nav-updated.html" %}
+{% extends "layouts/deliver-nav-forms.html" %}
 
-{% set navID = 'reports' %}
+{% set navID = 'pre-award' %}
 {% set showBackLink = false %}
 
 {% set pageSize = "l" %}
-{% set pageHeading = "Reports" %}
+{% set pageHeading = "Pre-award" %}
 {% set pageSection = '' + data['grantName'] + '' %}
 {% set pageHiddentext = "yes" %}
 {% set pageNested = "yes" %}
@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-full">
 
 <span class="govuk-caption-l">Local Authority Housing Fund</span>
-<h1 class="govuk-heading-l">Reports</h1>
+<h1 class="govuk-heading-l">Forms</h1>
 
 <p class="govuk-body govuk-!-font-weight-bold">Grant status:    <strong class="govuk-tag govuk-tag--green">
        Live
@@ -25,8 +25,7 @@
        <div class="govuk-summary-card">
   <div class="govuk-summary-card__title-wrapper">
     <h2 class="govuk-summary-card__title">
-      Round 4
-    </h2>
+Application form    </h2>
   
   </div>
   <div class="govuk-summary-card__content">
@@ -60,15 +59,6 @@
                 <ul class="govuk-list govuk-!-margin-bottom-0">
             <li><a class="govuk-link" href="#">1 data set</a></li>
           </ul>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Reporting period
-        </dt>
-        <dd class="govuk-summary-list__value">
-         Wednesday 1 April 2026 to Sunday 31 May 2026
         </dd>
       </div>
 
@@ -109,11 +99,9 @@
     <form method="post" action="create-report">
 
 <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-  Create another report
+  Create another form
 </button>
     </form>
-
-    <p class="govuk-body govuk-!-margin-top-9"><a href="forms" class="govuk-link">See forms example</a></p>
     </div>
 </div>
 {% endblock %}
