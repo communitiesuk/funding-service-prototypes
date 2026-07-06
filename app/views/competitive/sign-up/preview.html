@@ -3,8 +3,8 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "allocation_form" %}
-{% set pageHeading = "View all questions" %}
-{% set pageSection = "Application" %}
+{% set pageHeading = "All questions" %}
+{% set pageSection = "Application form" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
     <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
       <form action="" method="post" novalidate>
         <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          Save as PDF
+          Download as PDF
         </button> 
       </form>
 <br>
