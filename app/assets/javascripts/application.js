@@ -88,6 +88,3 @@ window.GOVUKPrototypeKit.documentReady(() => {
     }
     setTogglePhaseBannerText(togglePhaseBannerElement);
 })
-
-import MOJFrontend from '@ministryofjustice/frontend/moj/all.js'
-MOJFrontend.initAll()
