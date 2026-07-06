@@ -1,0 +1,82 @@
+{#
+  GOV.UK Select with Search component.
+
+  Lifted from funding-service (which vendored it from the exemplar in xgovuk-flask-admin,
+  based on the select-with-search component from govuk_publishing_components:
+  https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/_select_with_search.html.erb)
+
+  Uses Choices.js for progressive enhancement (see app/assets/javascripts/components/select-with-search.js).
+
+  Usage:
+
+    {% from "macros/select-with-search.njk" import selectWithSearch %}
+
+    {{ selectWithSearch({
+      id: "organisation",
+      name: "organisation",
+      label: { text: "Select an organisation", classes: "govuk-label--l", isPageHeading: true },
+      hint: { text: "Start typing to search the list" },
+      items: [
+        { value: "", text: "" },
+        { value: "birmingham", text: "Birmingham City Council", attributes: { "data-hint": "West Midlands" } }
+      ]
+    }) }}
+
+  Params (a subset of govukSelect, plus extras):
+    id, name          - required
+    multiple          - set true for a multi-select
+    label             - { text, classes, isPageHeading }
+    hint              - { text }
+    errorMessage      - { text }
+    items             - [{ value, text, selected, attributes }]; an item attribute of
+                        data-hint renders hint text below that option in the dropdown.
+                        Include an empty first item ({ value: "", text: "" }) to get a
+                        placeholder ("Select one" / "Select all that apply").
+    attributes        - extra attributes for the <select>
+#}
+
+{% macro selectWithSearch(params) %}
+<div
+  class="govuk-form-group{% if params.errorMessage %} govuk-form-group--error{% endif %} gem-c-select-with-search">
+  {% set labelHtml %}
+    <label class="govuk-label{% if params.label.classes %}{{ " " + params.label.classes }}{% endif %}" for="{{ params.id }}" id="{{ params.id }}-label"> {{ params.label.text }} </label>
+  {% endset %}
+  {# Nunjucks (unlike Jinja2) does not mark block-set captures as safe, so pipe
+     through `safe` to stop the label markup being escaped on output. #}
+  {% if params.label.isPageHeading %}
+    <h1 class="govuk-label-wrapper">{{ labelHtml | safe }}</h1>
+  {% else %}
+    {{ labelHtml | safe }}
+  {% endif %}
+
+  {% if params.hint %}
+    <div id="{{ params.id }}-hint" class="govuk-hint">{{ params.hint.text }}</div>
+  {% endif %}
+
+  {% if params.errorMessage %}
+    <p id="{{ params.id }}-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> {{ params.errorMessage.text }}</p>
+  {% endif %}
+
+  <select
+    class="govuk-select{% if params.errorMessage %} govuk-select--error{% endif %}"
+    id="{{ params.id }}"
+    name="{{ params.name }}"
+    {% if params.multiple %}multiple{% endif %}
+    data-module="select-with-search"
+    {% if params.hint %}aria-describedby="{{ params.id }}-hint{% if params.errorMessage %} {{ params.id }}-error{% endif %}"{% elif params.errorMessage %}aria-describedby="{{ params.id }}-error"{% endif %}
+    {% for attr, value in params.attributes %}
+      {# Skip 'multiple' as it's already handled above #}
+      {% if attr != 'multiple' %}
+        {% if value == attr %}
+          {{ attr }}
+        {% else %}
+          {{ attr }}="{{ value }}"
+        {% endif %}
+      {% endif %}
+    {% endfor %}>
+    {% for item in params.items %}
+      <option value="{{ item.value }}" {% if item.selected %}selected{% endif %}{% for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor %}>{{ item.text }}</option>
+    {% endfor %}
+  </select>
+</div>
+{% endmacro %}

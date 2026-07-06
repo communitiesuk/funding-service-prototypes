@@ -3,6 +3,8 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
+import selectWithSearch from './components/select-with-search.js'
+
 function setToggleVisuallyHiddenText(el) {
     if (localStorage.getItem('prototype-reveal-hidden') === 'true') {
         el.textContent = 'Hide visually revealed';
@@ -45,6 +47,12 @@ function togglePhaseBanner() {
 window.GOVUKPrototypeKit.documentReady(() => {
   // Add JavaScript here
     "use strict";
+
+    document
+        .querySelectorAll('[data-module="select-with-search"]')
+        .forEach((element) => {
+            selectWithSearch(element);
+        });
 
     const toggleVisuallyHiddenElement = document.querySelector('[data-module="prototype-reveal-hidden"]');
     toggleVisuallyHiddenElement.addEventListener('click', (e) => {
