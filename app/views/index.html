@@ -45,10 +45,16 @@
 		<p>A form designer can upload, replace and reference a data set.</p>
 
 		<div class="app-aligned-header-tag-high govuk-!-margin-top-7">
-			<h3 class="govuk-heading-s"><a href="subpage_allocative_review" class="govuk-link">Reviewing an application (allocative)</a></h3>
+			<h3 class="govuk-heading-s"><a href="subpage_allocative_review" class="govuk-link">Reviewing a submission (June 2026)</a></h3>
 			<strong class="govuk-tag govuk-tag--yellow">In development </strong>
 		</div>
 		<p>Caseworker can review an application, approve, reject or request changes.</p>
+
+			<div class="app-aligned-header-tag-high govuk-!-margin-top-7">
+			<h3 class="govuk-heading-s"><a href="/allocative/request_only/timeline#timeline" class="govuk-link">All events (June 2026)</a></h3>
+			<strong class="govuk-tag govuk-tag--yellow">In development </strong>
+		</div>
+		<p>Viewing timeline events</p>
 
 		<div class="app-aligned-header-tag-high govuk-!-margin-top-7">
 			<h3 class="govuk-heading-s"><a href="/subpage_reopening_submissions" class="govuk-link">Reopening submissions (April to May 2026)</a></h3>
@@ -86,7 +92,7 @@
 		
 
 <div class="app-aligned-header-tag-high govuk-!-margin-top-5">
-			<h3 class="govuk-heading-s"><a href="subpage_allocative_application" class="govuk-link">Work on an application (allocative)</a></h3>
+			<h3 class="govuk-heading-s"><a href="subpage_allocative_application" class="govuk-link">Making changes to a submission (June 2026)</a></h3>
 			<strong class="govuk-tag govuk-tag--yellow">In development </strong>
 		</div>
 		
@@ -100,74 +106,6 @@
 		
 
 
-		{% endset %}
-
-		{% set changeRequestHtml %}
-		<!-- Assess service -->
-		<h2 class="govuk-heading-m">New change request MVP</h2>
-	<!-- 	<p>A service for current and potential grant recipients to access grant funding. This could include: </p>
-		<ul class="govuk-list govuk-list--bullet">
-			<li>adding information pre-award, such as an application form, benchmarking data or a business case </li>
-			<li>reporting on the progress of their funded programmes and projects </li>
-		</ul> -->
-
-
-
-<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
-			<h3 class="govuk-heading-s">Reopen/request changes (Deliver)</h3>
-		</div>
-				<div>	
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="allocative/request_only/submission-new2" class="govuk-link">Reopen/request changes</a></li>
-</ul>
-</div>
-<br>
-<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
-			<h3 class="govuk-heading-s">Action request/reopening (Access)</h3>
-					</div>
-
-					<div>
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="allocative/change_mvp/email" class="govuk-link">Changes requested - Sections</a></li>
-  <li><a href="allocative/change_mvp/email2" class="govuk-link">Changes requested - Sections + Certification</a></li>
-  <li><a href="allocative/change_mvp/email3" class="govuk-link">Changes requested - General</a></li>
-  <li><a href="allocative/change_mvp/email_reopened" class="govuk-link">Reopened</a></li>
-</ul>
-</div>
-<br>
-<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
-			<h3 class="govuk-heading-s">Viewing changes (Deliver)</h3>
-					</div>
-
-					<div>
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="allocative/request_only/submission-new_changed" class="govuk-link">View changes</a></li>
-   <li><a href="allocative/request_only/submission-new_changed_reopened" class="govuk-link">Resubmitted after reopened</a></li>
-  <ul class="govuk-list govuk-list--bullet">
-
- 
-</ul>
-</div>
-<br>
-<div class="app-aligned-header-tag-high govuk-!-margin-top-10">
-			<h3 class="govuk-heading-s">Timeline view</h3>
-					</div>
-
-					<div>
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="allocative/request_only/timeline#timeline" class="govuk-link">All events</a></li>
- 
-</ul>
-</div>
-
-		</div>
-
-		
-
-	
-
-
-		
 
 
 		{% endset %}
@@ -215,9 +153,7 @@
 		{{ govukTabs({
 		items: [
 		{ label: "Deliver grant funding", id: "service-deliver-funding", panel: { html: serviceDeliverFundingHtml } },
-		{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } },
-		{ label: "New change request MVP", id: "change-request", panel: { html: changeRequestHtml } }
-
+		{ label: "Access grant funding", id: "service-access-funding", panel: { html: serviceAccessFundingHtml } }
 		]
 		}) }}
 
