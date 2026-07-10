@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Would you like to approve or reject this submission?" %}
+{% set pageHeading = "Would you like to mark this submission as approved or rejected?" %}
 {% set pageSection = "Glasgow City Council" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -24,7 +24,7 @@
     </h1>
 
   <div id="event-name-hint" class="govuk-hint govuk-!-margin-bottom-6">
-    This is for internal records only and we won't email the organisation about the decision
+    We'll save this for internal records only and won't email anyone at Glasgow City Council
   </div>
     <!-- Validate allocation -->
 
@@ -62,10 +62,10 @@
            Why are you marking this submission as rejected?
             </label>
 
- <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
+ <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
    <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
   <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 250 characters
+    You can enter up to 200 characters
   </div>
 </div>
             </div>
@@ -75,7 +75,7 @@
       </div>
 <div class="govuk-button-group">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-        Confirm
+  Confirm and submit decision
       </button>
     </form>
     <p class="govuk-body">
