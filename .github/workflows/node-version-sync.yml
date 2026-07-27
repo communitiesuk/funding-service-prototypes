@@ -1,0 +1,32 @@
+name: Node version sync
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  node-version-sync:
+    name: Devcontainer and Dockerfile use the same Node version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare Node major versions
+        run: |
+          dockerfile_version=$(sed -n -E 's/^FROM node:([0-9]+).*/\1/p' Dockerfile)
+          devcontainer_version=$(sed -n -E 's/.*"image": *"mcr\.microsoft\.com\/devcontainers\/javascript-node:([0-9]+).*/\1/p' .devcontainer/devcontainer.json)
+
+          echo "Dockerfile:        node ${dockerfile_version:-<not found>}"
+          echo "devcontainer.json: node ${devcontainer_version:-<not found>}"
+
+          if [ -z "$dockerfile_version" ] || [ -z "$devcontainer_version" ]; then
+            echo "::error::Could not extract a Node major version from the Dockerfile and/or .devcontainer/devcontainer.json — if the image lines changed shape, update this check to match"
+            exit 1
+          fi
+
+          if [ "$dockerfile_version" != "$devcontainer_version" ]; then
+            echo "::error::Node versions are out of sync: Dockerfile uses node ${dockerfile_version}, .devcontainer/devcontainer.json uses node ${devcontainer_version}. Update both to the same major version."
+            exit 1
+          fi
+
+          echo "In sync (node ${dockerfile_version})"
