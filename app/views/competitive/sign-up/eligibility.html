@@ -43,55 +43,27 @@
 
             <!-- Option 3 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="Community interest company" data-aria-controls="conditional-org-type-3">
+              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="Registered charity" data-aria-controls="conditional-org-type-3">
               <label class="govuk-label govuk-radios__label" for="org-type-3">
-                Community interest company
+                Registered charity
               </label>
             </div>
-         
-
+          
             <!-- Option 4 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="Company limited by guarantee" data-aria-controls="conditional-org-type-4">
+              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="Scottish charitable incorporated organisation" data-aria-controls="conditional-org-type-4">
               <label class="govuk-label govuk-radios__label" for="org-type-4">
-                Company limited by guarantee
+                Scottish charitable incorporated organisation
               </label>
             </div>
         
             <!-- Option 5 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-5" name="orgType" type="radio" value="Local authority">
+              <input class="govuk-radios__input" id="org-type-5" name="orgType" type="radio" value="My organisation type is not listed" data-aria-controls="conditional-org-type-">
               <label class="govuk-label govuk-radios__label" for="org-type-5">
-                Local authority
+                My organisation type is not listed
               </label>
             </div>
-
-            <!-- Option 6 -->
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-6" name="orgType" type="radio" value="Registered charity" data-aria-controls="conditional-org-type-6">
-              <label class="govuk-label govuk-radios__label" for="org-type-6">
-                Registered charity
-              </label>
-            </div>
-          
-            <!-- Option 7 -->
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-7" name="orgType" type="radio" value="Scottish charitable incorporated organisation" data-aria-controls="conditional-org-type-7">
-              <label class="govuk-label govuk-radios__label" for="org-type-7">
-                Scottish charitable incorporated organisation
-              </label>
-            </div>
-         
-
-            <!-- Option 8 -->
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-8" name="orgType" type="radio" value="Unincorporated community group, organisation or association">
-              <label class="govuk-label govuk-radios__label" for="org-type-8">
-                Unincorporated community group, organisation or association
-              </label>
-            </div>
-
-
           </div>
 
         </fieldset>
@@ -119,10 +91,7 @@
       if (orgType) {
         // Check if the selected value matches any of the non-eligible options
         if (
-          orgType.value === 'Community interest company' || 
-          orgType.value === 'Company limited by guarantee' || 
-          orgType.value === 'Local authority' || 
-          orgType.value === 'Unincorporated community group, organisation or association'
+          orgType.value === 'My organisation type is not listed' 
         ) {
           // Route to not eligible
           window.location.href = 'not-eligible';
