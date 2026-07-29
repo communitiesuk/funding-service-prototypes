@@ -10,7 +10,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form id="eligibilityForm" novalidate>
+    <!-- Added method="post" so the Prototype Kit can capture the data -->
+    <form id="eligibilityForm" method="post" novalidate>
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           
@@ -25,25 +26,24 @@
             
             <!-- Option 1 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="Charitable incorporated organisation" data-aria-controls="conditional-org-type-1">
+              <!-- Changed name="orgType" to name="orgType1" -->
+              <input class="govuk-radios__input" id="org-type-1" name="orgType1" type="radio" value="Charitable incorporated organisation" data-aria-controls="conditional-org-type-1">
               <label class="govuk-label govuk-radios__label" for="org-type-1">
                 Charitable incorporated organisation
               </label>
             </div>
             
-
             <!-- Option 2 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="Community benefit society or co-operative" data-aria-controls="conditional-org-type-2">
+              <input class="govuk-radios__input" id="org-type-2" name="orgType1" type="radio" value="Community benefit society or co-operative" data-aria-controls="conditional-org-type-2">
               <label class="govuk-label govuk-radios__label" for="org-type-2">
                 Community benefit society or co-operative
               </label>
             </div>
          
-
             <!-- Option 3 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="Registered charity" data-aria-controls="conditional-org-type-3">
+              <input class="govuk-radios__input" id="org-type-3" name="orgType1" type="radio" value="Registered charity" data-aria-controls="conditional-org-type-3">
               <label class="govuk-label govuk-radios__label" for="org-type-3">
                 Registered charity
               </label>
@@ -51,7 +51,7 @@
           
             <!-- Option 4 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="Scottish charitable incorporated organisation" data-aria-controls="conditional-org-type-4">
+              <input class="govuk-radios__input" id="org-type-4" name="orgType1" type="radio" value="Scottish charitable incorporated organisation" data-aria-controls="conditional-org-type-4">
               <label class="govuk-label govuk-radios__label" for="org-type-4">
                 Scottish charitable incorporated organisation
               </label>
@@ -59,7 +59,8 @@
         
             <!-- Option 5 -->
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="org-type-5" name="orgType" type="radio" value="My organisation type is not listed" data-aria-controls="conditional-org-type-">
+              <!-- Also fixed the missing '5' in data-aria-controls here -->
+              <input class="govuk-radios__input" id="org-type-5" name="orgType1" type="radio" value="My organisation type is not listed" data-aria-controls="conditional-org-type-5">
               <label class="govuk-label govuk-radios__label" for="org-type-5">
                 My organisation type is not listed
               </label>
@@ -68,7 +69,6 @@
 
         </fieldset>
       </div>
-
 
       <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
         Continue
@@ -86,19 +86,18 @@
     form.addEventListener('submit', function(event) {
       event.preventDefault();
       
-      const orgType = document.querySelector('input[name="orgType"]:checked');
+      // Updated to target name="orgType1"
+      const orgType = document.querySelector('input[name="orgType1"]:checked');
       
       if (orgType) {
-        // Check if the selected value matches any of the non-eligible options
-        if (
-          orgType.value === 'My organisation type is not listed' 
-        ) {
-          // Route to not eligible
-          window.location.href = 'not-eligible';
+        if (orgType.value === 'My organisation type is not listed') {
+          // Set form action and submit so data is saved before routing
+          form.action = 'not-eligible';
         } else {
-          // Route to the next step of the eligibility check
-          window.location.href = 'eligibility2'; 
+          // Set form action and submit so data is saved before routing
+          form.action = 'eligibility2'; 
         }
+        form.submit();
       }
     });
   });
