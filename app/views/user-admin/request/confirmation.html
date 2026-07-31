@@ -1,0 +1,49 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Request completed" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Request completed
+      </h1>
+      <div class="govuk-panel__body">
+        Your reference number<br><strong>{{ data['reference'] or "1234" }}</strong>
+      </div>
+    </div>
+
+    <p class="govuk-body">
+      We've received your request for Access grant funding.
+    </p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      We'll send you an email if your request has been approved.
+    </p>
+
+    <p class="govuk-body">
+      If someone at your organisation needs to review your request, this may take longer.
+    </p>
+
+    <h2 class="govuk-heading-m">Get help</h2>
+
+    <p class="govuk-body">
+      If you have problems, <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">request access using the Support Desk (opens in new tab)</a>.
+    </p>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="#" class="govuk-link">Back to Access grant funding</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}
