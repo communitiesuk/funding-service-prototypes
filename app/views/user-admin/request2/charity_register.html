@@ -1,0 +1,75 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Is your charity registered on the Charity Commission?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form id="charity-registered-form" action="#" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="charity-registered-hint">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Is your charity registered on the Charity Commission?
+            </h1>
+          </legend>
+
+          <div id="charity-registered-hint" class="govuk-hint">
+            If your charity is on the <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">Charity Commission's register (opens in new tab)</a>, you can search the register in the service to confirm your organisation details
+          </div>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="charity-registered-yes" name="charityRegistered" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="charity-registered-yes">
+                Yes
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="charity-registered-no" name="charityRegistered" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="charity-registered-no">
+                No
+              </label>
+            </div>
+
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+
+<!-- Script to handle conditional routing based on radio selection -->
+<script>
+  document.getElementById('charity-registered-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop standard form submission
+    
+    const selectedRadio = document.querySelector('input[name="charityRegistered"]:checked');
+    
+    if (selectedRadio) {
+      if (selectedRadio.value === 'yes') {
+        window.location.href = 'search_charity_register';
+      } else if (selectedRadio.value === 'no') {
+        window.location.href = 'support_desk';
+      }
+    }
+  });
+</script>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layouts/grantNoSignin.html" %}
 {% set serviceName = "" %}
 
-{% set title = 'Email: Could not add team member' %}
+{% set title = 'Email: Review access request' %}
 
 {% block pageTitle %}
   {{title}} - GOV.UK
@@ -26,26 +26,26 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>h.solo@millennium.gov.uk</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['adminEmail'] or "l.organa@bolton.gov.uk" }}</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
-              <td class="govuk-table__cell">Could not add team member</td>
+              <td class="govuk-table__cell">Review access request</td>
             </tr>
           </tbody>
         </table>
-        
         <div class="email-message-body">
 
-          <p>Hi Han,</p>
+          <p>Hi Leia,</p>
       
-          <p>We could not add Leia Organa to Millennium Council's Safer social housing fund because the email address used to request access does not exist:</p>
+          <p>You've received a request to join Blaenau-gwent's Safer social housing fund.</p>
           
-          <p>leia.orgono@millennium.gov.uk</p>
+          <div class="govuk-inset-text">
+            Full name: Leia Organa<br>
+            Email address: l.organa@bolton.gov.uk
+          </div>
 
-          <p>Check the email address and try again.</p>
-
-          <p><a href="#">Sign in to Access grant funding</a></p>
+          <p><a href="review-request">Review the request in Access grant funding</a></p>
 
           <h2 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-6">Get help</h2>
           
@@ -57,6 +57,14 @@
 
         </div>
     </div>
+
+
+
+  
+
+
+
+
 
   </div>
 </div>
