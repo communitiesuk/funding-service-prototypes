@@ -1,0 +1,113 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Search results" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="results" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="company-search">
+            Search results
+          </label>
+        </h1>
+        
+        <div id="company-search-hint" class="govuk-hint">
+          Search by chairty name or number
+        </div>
+        
+        <input class="govuk-input" id="company-search" name="charitySearch" type="text" aria-describedby="company-search-hint" value="{{ data['charitySearch'] or 'REDCROSS' }}">
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Search
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <p class="govuk-body">
+      10,000 search results
+    </p>
+
+    <!-- Results converted to a GOV.UK Table as requested -->
+    <table class="govuk-table govuk-!-margin-bottom-8">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Company name</th>
+          <th scope="col" class="govuk-table__header">Charity number</th>
+          <th scope="col" class="govuk-table__header">Registered address</th>
+          <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Action</span></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ (data['charitySearch'] or 'REDCROSS') | upper }} HOMELESSNESS ACTION</td>
+          <td class="govuk-table__cell">04678916</td>
+          <td class="govuk-table__cell">Flat 2 Redcross Court, Redcross Street, Bristol, England, BS2 0BA</td>
+          <td class="govuk-table__cell">
+            <a href="grant_select3" class="govuk-link">Select<span class="govuk-visually-hidden"> {{ (data['companySearch'] or 'REDCROSS') | upper }} HOMELESSNESS ACTION</span></a>
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"> HOMELESSNESS {{ (data['charitySearch'] or 'REDCROSS') | upper }} </td>
+          <td class="govuk-table__cell">14246742</td>
+          <td class="govuk-table__cell">3 Hanham Hall Whittucks Road, Hanham, Bristol, England, BS15 3FR</td>
+          <td class="govuk-table__cell">
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> {{ (data['companySearch'] or 'REDCROSS') | upper }} VILLAGE MANAGEMENT COMPANY LIMITED</span></a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- GOV.UK Pagination -->
+    <nav class="govuk-pagination" aria-label="Pagination">
+      <ul class="govuk-pagination__list">
+        <li class="govuk-pagination__item govuk-pagination__item--current">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">1</a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">2</a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">3</a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 4">4</a>
+        </li>
+        <li class="govuk-pagination__item">
+          <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+        </li>
+      </ul>
+      <div class="govuk-pagination__next">
+        <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+          <span class="govuk-pagination__link-title">
+            Next<span class="govuk-visually-hidden"> page</span>
+          </span>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+            <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+          </svg>
+        </a>
+      </div>
+    </nav>
+
+  </div>
+</div>
+{% endblock %}

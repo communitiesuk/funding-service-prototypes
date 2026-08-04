@@ -11,7 +11,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="#" method="post" novalidate>
+    <form action="charity_results" method="post" novalidate>
       
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper">
@@ -20,7 +20,12 @@
           </label>
         </h1>
         
-        <input class="govuk-input" id="company-search" name="companySearch" type="text" placeholder="Search by company name or number">
+ <div id="company-search-hint" class="govuk-hint">
+          Search by company name or number
+        </div>
+        
+        
+        <input class="govuk-input" id="company-search" name="charitySearch" type="text">
       </div>
 
       <button type="submit" class="govuk-button" data-module="govuk-button">
