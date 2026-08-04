@@ -15,7 +15,7 @@
       Confirm your details are correct
     </h1>
 
-    <!-- Standard GOV.UK Check Your Answers component -->
+    <!-- Standard GOV.UK Check Your Answers component with actions -->
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       
       <div class="govuk-summary-list__row">
@@ -24,6 +24,11 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {{ data['localAuthority'] or "Millennium Council" }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> local authority or organisation name</span>
+          </a>
         </dd>
       </div>
 
@@ -34,6 +39,11 @@
         <dd class="govuk-summary-list__value">
           {{ data['fullName'] or "Leia Organa" }}
         </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
       </div>
 
       <div class="govuk-summary-list__row">
@@ -43,6 +53,11 @@
         <dd class="govuk-summary-list__value">
           {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
         </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> email address</span>
+          </a>
+        </dd>
       </div>
 
       <div class="govuk-summary-list__row">
@@ -51,6 +66,11 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {{ data['grantSelect'] or "Safer social housing fund" }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> grant</span>
+          </a>
         </dd>
       </div>
 
