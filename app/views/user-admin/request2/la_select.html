@@ -1,5 +1,7 @@
 {% extends "layouts/access.html" %}
 
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
@@ -11,40 +13,39 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="cya" method="post" novalidate>
+    <form action="grant_select" method="post" novalidate>
       
-      <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--l" for="local-authority">
-            Which local authority are you requesting access for?
-          </label>
-        </h1>
-        
-        <!-- Standard Select: This will be enhanced into a type-ahead by the script below -->
-        <select class="govuk-select" id="local-authority" name="localAuthority">
-          <option value="" selected disabled>Select a local authority</option>
-          <option value="aberdeen">Aberdeen City Council</option>
-          <option value="birmingham">Birmingham City Council</option>
-          <option value="bristol">Bristol City Council</option>
-          <option value="camden">Camden Council</option>
-          <option value="cardiff">Cardiff Council</option>
-          <option value="cornwall">Cornwall Council</option>
-          <option value="edinburgh">City of Edinburgh Council</option>
-          <option value="glasgow">Glasgow City Council</option>
-          <option value="leeds">Leeds City Council</option>
-          <option value="liverpool">Liverpool City Council</option>
-          <option value="manchester">Manchester City Council</option>
-          <option value="millennium">Millennium Council</option>
-          <option value="newcastle">Newcastle City Council</option>
-          <option value="nottingham">Nottingham City Council</option>
-          <option value="sheffield">Sheffield City Council</option>
-          <option value="southwark">Southwark Council</option>
-          <option value="westminster">Westminster City Council</option>
-          <!-- Note: You can paste the full list of ~300+ UK local authorities here -->
-        </select>
-      </div>
+      {{ selectWithSearch({
+        id: "local-authority",
+        name: "localAuthority",
+        label: {
+          text: "Which local authority are you requesting access for?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        items: [
+          { value: "", text: "Select a local authority" },
+          { value: "aberdeen", text: "Aberdeen City Council" },
+          { value: "birmingham", text: "Birmingham City Council" },
+          { value: "bristol", text: "Bristol City Council" },
+          { value: "camden", text: "Camden Council" },
+          { value: "cardiff", text: "Cardiff Council" },
+          { value: "cornwall", text: "Cornwall Council" },
+          { value: "edinburgh", text: "City of Edinburgh Council" },
+          { value: "glasgow", text: "Glasgow City Council" },
+          { value: "leeds", text: "Leeds City Council" },
+          { value: "liverpool", text: "Liverpool City Council" },
+          { value: "manchester", text: "Manchester City Council" },
+          { value: "millennium", text: "Millennium Council" },
+          { value: "newcastle", text: "Newcastle City Council" },
+          { value: "nottingham", text: "Nottingham City Council" },
+          { value: "sheffield", text: "Sheffield City Council" },
+          { value: "southwark", text: "Southwark Council" },
+          { value: "westminster", text: "Westminster City Council" }
+        ]
+      }) }}
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
         Continue
       </button>
       
@@ -52,18 +53,4 @@
 
   </div>
 </div>
-
-<!-- Progressive enhancement: Converts the select above into a GOV.UK autocomplete type-ahead -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var selectElement = document.querySelector('#local-authority');
-    if (selectElement && window.accessibleAutocomplete) {
-      window.accessibleAutocomplete.enhanceSelectElement({
-        selectElement: selectElement,
-        showAllValues: true,
-        defaultValue: ''
-      });
-    }
-  });
-</script>
 {% endblock %}

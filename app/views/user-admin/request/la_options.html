@@ -1,0 +1,80 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Select the local authority you're requesting access to" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form id="la-request-form" action="#" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select the local authority you're requesting access to
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="la-request-eastbourne" name="localAuthority" type="radio" value="eastbourne">
+              <label class="govuk-label govuk-radios__label" for="la-request-eastbourne">
+                Eastbourne Borough Council
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="la-request-lewes" name="localAuthority" type="radio" value="lewes">
+              <label class="govuk-label govuk-radios__label" for="la-request-lewes">
+                Lewes District Council
+              </label>
+            </div>
+
+            <div class="govuk-radios__divider">or</div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="la-request-none" name="localAuthority" type="radio" value="none">
+              <label class="govuk-label govuk-radios__label" for="la-request-none">
+                None of the above
+              </label>
+            </div>
+
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+
+<!-- Script to handle conditional routing based on radio selection -->
+<script>
+  document.getElementById('la-request-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop standard form submission
+    
+    const selectedRadio = document.querySelector('input[name="localAuthority"]:checked');
+    
+    if (selectedRadio) {
+      if (selectedRadio.value === 'none') {
+        window.location.href = 'la_select';
+      } else {
+        window.location.href = 'grant_select';
+      }
+    }
+  });
+</script>
+{% endblock %}

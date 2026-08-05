@@ -1,5 +1,5 @@
 {% extends "layouts/access.html" %}
-
+{% from "macros/select-with-search.njk" import selectWithSearch %}
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
@@ -13,29 +13,30 @@
 
     <form action="cya" method="post" novalidate>
       
-      <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--l" for="grant-select">
-            Which grant are you requesting access to?
-          </label>
-        </h1>
-        
-        <select class="govuk-select" id="grant-select" name="grantSelect">
-          <option value="" selected disabled>Select a grant</option>
-          <option value="brownfield-land-release-fund">Brownfield Land Release Fund</option>
-          <option value="community-renewal-fund">Community Renewal Fund</option>
-          <option value="disabled-facilities-grant">Disabled Facilities Grant</option>
-          <option value="future-high-streets-fund">Future High Streets Fund</option>
-          <option value="green-homes-grant">Green Homes Grant</option>
-          <option value="levelling-up-fund">Levelling Up Fund</option>
-          <option value="safer-social-housing-fund">Safer social housing fund</option>
-          <option value="towns-fund">Towns Fund</option>
-          <option value="transforming-cities-fund">Transforming Cities Fund</option>
-          <option value="uk-shared-prosperity-fund">UK Shared Prosperity Fund</option>
-        </select>
-      </div>
+      {{ selectWithSearch({
+        id: "grant-select",
+        name: "grantSelect",
+        label: {
+          text: "Which grant are you requesting access to?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        items: [
+          { value: "", text: "Select a grant" },
+          { value: "brownfield-land-release-fund", text: "Brownfield Land Release Fund" },
+          { value: "community-renewal-fund", text: "Community Renewal Fund" },
+          { value: "disabled-facilities-grant", text: "Disabled Facilities Grant" },
+          { value: "future-high-streets-fund", text: "Future High Streets Fund" },
+          { value: "green-homes-grant", text: "Green Homes Grant" },
+          { value: "levelling-up-fund", text: "Levelling Up Fund" },
+          { value: "safer-social-housing-fund", text: "Safer social housing fund" },
+          { value: "towns-fund", text: "Towns Fund" },
+          { value: "transforming-cities-fund", text: "Transforming Cities Fund" },
+          { value: "uk-shared-prosperity-fund", text: "UK Shared Prosperity Fund" }
+        ]
+      }) }}
 
-      <button type="submit" class="govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
         Continue
       </button>
       
