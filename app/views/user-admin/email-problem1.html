@@ -39,7 +39,7 @@
 
           <p>Hi Magdalena,</p>
       
-          <p>We could not add {{ data['fullName'] if data['fullName'] else 'Luke Garner'}} ({{ data['emailAddress'] }}) to Hastings Borough Council's Safer social housing fund because the email address used to request access does not exist:</p>
+          <p>We could not add {{ data['fullName'] if data['fullName'] else 'Lukas Garner'}} ({{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}) to Hastings Borough Council's Safer social housing fund because the email address used to request access does not exist:</p>
           
           <div class="govuk-inset-text">
 {{ data['emailAddress'].split(' ')[0] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}</div>
