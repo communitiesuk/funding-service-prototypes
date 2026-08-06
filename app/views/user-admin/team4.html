@@ -12,7 +12,6 @@
   <div class="govuk-grid-column-full">
     
 
-
     <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
       <div class="govuk-notification-banner__header">
         <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
@@ -21,10 +20,10 @@
       </div>
       <div class="govuk-notification-banner__content">
         <h3 class="govuk-notification-banner__heading">
-          Team member added
+          Team member removed
         </h3>
         <p class="govuk-body">
-          {{ data['fullName'] if data['fullName'] else 'Lukas Garner'}} ({{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}) can now edit and submit for Hastings Borough Council's Safer social housing fund. We have emailed them a link to Access grant funding.
+          Shayne Boyle (sboyle@hastings.gov.uk) has been removed from Safer social housing fund.
         </p>
       </div>
     </div>
@@ -71,16 +70,7 @@
             <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> Suzana Brzezicki</span></a>
           </td>
         </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Shayne Boyle</td>
-          <td class="govuk-table__cell">sboyle@hastings.gov.uk</td>
-          <td class="govuk-table__cell">Can edit and submit</td>
-          <td class="govuk-table__cell">
-            <a href="user_remove2" class="govuk-link">Remove<span class="govuk-visually-hidden"> Shayne Boyle</span></a>
-          </td>
-        </tr>
-
-        <!-- Dynamically Added User from add_user page -->
+        
       
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['fullName'] if data['fullName'] else 'Lukas Garner' }}</td>
@@ -110,19 +100,6 @@
     </p>
 
 
-    <br>
-    <p class="govuk-body-xs">
-      <a href="email-added" class="govuk-link" target="_blank" rel="noreferrer noopener">(View confirmation email)</a>
-    </p>
-        <p class="govuk-body-xs">
-      <a href="email-problem1" class="govuk-link" target="_blank" rel="noreferrer noopener">(View email problem 1)</a>
-    </p>
-     <p class="govuk-body-xs">
-      <a href="email-problem2" class="govuk-link" target="_blank" rel="noreferrer noopener">(View email problem 2)</a>
-    </p>
   </div>
 </div>
 {% endblock %}
-
-
-
