@@ -1,0 +1,37 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "You are eligible to apply" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <div class="govuk-inset-text">
+      Based on your answers, your organisation meets the requirements to apply for the Safer social housing fund.
+    </div>
+  
+    <p class="govuk-body">
+      The email address you provided is already associated with an organisation registered in the Access Grant Funding service.
+    </p>
+
+    <p class="govuk-body">
+      You do not need to register a new account. To start an application for this grant, you must sign in using your existing details.
+    </p>
+
+    <form action="sign-in" method="post" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Sign in
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

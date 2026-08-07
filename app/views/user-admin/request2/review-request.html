@@ -1,4 +1,4 @@
-{% extends "layouts/grantNoSignin.html" %}
+{% extends "layouts/access_teams" %}
 
 {% set showBackLink = false %}
 
@@ -16,12 +16,12 @@
     </h1>
 
     <p class="govuk-body">
-      Review this request to edit and submit for Blaenau-gwent's Safer social housing fund.
+      Review this request to edit and submit for Blaenau-gwent's {{ data['grantSelect'] or "Safer social housing fund" }}.
     </p>
 
     <div class="govuk-inset-text">
-      Full name: Leia Organa<br>
-      Email address: l.organa@bolton.gov.uk
+      Full name: {{ data['fullName'] or "Leia Organa" }}<br>
+      Email address:      {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
     </div>
 
     <form id="review-request-form" action="#" method="post" novalidate>
@@ -31,7 +31,7 @@
           
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h2 class="govuk-fieldset__heading">
-              Do you want Leia Organa to join your team?
+              Do you want {{ data['fullName'] or "Leia Organa" }} to join your team?
             </h2>
           </legend>
 
