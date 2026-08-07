@@ -1,4 +1,7 @@
 {% extends "layouts/grantNoSignin.html" %}
+
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
@@ -74,6 +77,25 @@
       </div>
 
     </dl>
+
+
+ {{ selectWithSearch({
+        id: "local-authority",
+        name: "localAuthority",
+        label: {
+          text: "Which local authority are you requesting access for?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        items: [
+          { value: "", text: "Select a validation" },
+         { value: "Validation 1", text: "Validation 1", attributes: { "data-hint": "validation stuff" } },
+          { value: "Validation 2", text: "Validation 2", attributes: { "data-hint": "dfsfds" } },
+          { value: "Validation 3", text: "Validation 3", attributes: { "data-hint": "dfs" } }
+         
+        ]
+      }) }}
+
 
     <form action="confirmation" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
