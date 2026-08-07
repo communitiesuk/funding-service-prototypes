@@ -12,7 +12,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-l">
-      Review Leia Organa's access request
+      Review {{ data['fullName'] or "Leia Organa" }}'s access request
     </h1>
 
     <p class="govuk-body">
@@ -21,7 +21,7 @@
 
     <div class="govuk-inset-text">
       Full name: {{ data['fullName'] or "Leia Organa" }}<br>
-      Email address:      {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
+      Email address: {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
     </div>
 
     <form id="review-request-form" action="#" method="post" novalidate>
