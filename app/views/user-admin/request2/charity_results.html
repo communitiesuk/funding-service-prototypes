@@ -22,7 +22,7 @@
         </h1>
         
         <div id="company-search-hint" class="govuk-hint">
-          Search by chairty name or number
+          Search by charity name or number
         </div>
         
         <input class="govuk-input" id="company-search" name="charitySearch" type="text" aria-describedby="company-search-hint" value="{{ data['charitySearch'] or 'REDCROSS' }}">
@@ -41,7 +41,7 @@
   <div class="govuk-grid-column-full">
 
     <p class="govuk-body">
-      10,000 search results
+      6 search results
     </p>
 
     <!-- Results converted to a GOV.UK Table as requested -->
@@ -57,27 +57,63 @@
       <tbody class="govuk-table__body">
         
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ (data['charitySearch'] or 'REDCROSS') | upper }} HOMELESSNESS ACTION</td>
-          <td class="govuk-table__cell">04678916</td>
-          <td class="govuk-table__cell">Flat 2 Redcross Court, Redcross Street, Bristol, England, BS2 0BA</td>
+          <td class="govuk-table__cell">DARTFORD ALMSHOUSE CHARITY</td>
+          <td class="govuk-table__cell">210339</td>
+          <td class="govuk-table__cell">Flat 1, Loam Court, Meadowside, Dartford, DA1 2RY</td>
           <td class="govuk-table__cell">
-            <a href="grant_select3" class="govuk-link">Select<span class="govuk-visually-hidden"> {{ (data['companySearch'] or 'REDCROSS') | upper }} HOMELESSNESS ACTION</span></a>
+            <a href="grant_select3" class="govuk-link">Select<span class="govuk-visually-hidden"> DARTFORD ALMSHOUSE CHARITY</span></a>
           </td>
         </tr>
 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"> HOMELESSNESS {{ (data['charitySearch'] or 'REDCROSS') | upper }} </td>
-          <td class="govuk-table__cell">14246742</td>
-          <td class="govuk-table__cell">3 Hanham Hall Whittucks Road, Hanham, Bristol, England, BS15 3FR</td>
+          <td class="govuk-table__cell">DARTFORD DISTRICT SCOUT COUNCIL</td>
+          <td class="govuk-table__cell">303367</td>
+          <td class="govuk-table__cell">Scout Association, Scout Hall, 7 Broomhill Road, DARTFORD, DA1 3HT</td>
           <td class="govuk-table__cell">
-            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> {{ (data['companySearch'] or 'REDCROSS') | upper }} VILLAGE MANAGEMENT COMPANY LIMITED</span></a>
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> DARTFORD DISTRICT SCOUT COUNCIL</span></a>
+          </td>
+        </tr>
+
+                <tr class="govuk-table__row">
+          <td class="govuk-table__cell">HEALTHY LIVING CENTRE DARTFORD</td>
+          <td class="govuk-table__cell">1142458</td>
+          <td class="govuk-table__cell">Tree Estate Community Centre, Cedar Road, DARTFORD, Kent, England, DA1 2RS</td>
+          <td class="govuk-table__cell">
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> HEALTHY LIVING CENTRE DARTFORD</span></a>
+          </td>
+        </tr>
+
+                <tr class="govuk-table__row">
+          <td class="govuk-table__cell">DARTFORD GRAMMAR SCHOOL</td>
+          <td class="govuk-table__cell">307836</td>
+          <td class="govuk-table__cell">DARTFORD GRAMMAR SCHOOL, WEST HILL, DARTFORD, DA1 2HW</td>
+          <td class="govuk-table__cell">
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> DARTFORD GRAMMAR SCHOOL</span></a>
+          </td>
+        </tr>
+
+                <tr class="govuk-table__row">
+          <td class="govuk-table__cell">DARTFORD ARTS CENTRE</td>
+          <td class="govuk-table__cell">1082004</td>
+          <td class="govuk-table__cell">SHEPHERDS LANE, WEST HILL, DARTFORD, KENT, DA1 2JZ</td>
+          <td class="govuk-table__cell">
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> DARTFORD ARTS CENTRE</span></a>
+          </td>
+        </tr>
+
+                <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Gateway Church - Dartford</td>
+          <td class="govuk-table__cell">1148119</td>
+          <td class="govuk-table__cell">Gateway Church - Dartford, Cobden House, 43 Spital Street, Dartford, Kent, DA1 2DR</td>
+          <td class="govuk-table__cell">
+            <a href="" class="govuk-link">Select<span class="govuk-visually-hidden"> Gateway Church - Dartford</span></a>
           </td>
         </tr>
 
       </tbody>
     </table>
 
-    <!-- GOV.UK Pagination -->
+    <!-- GOV.UK Pagination 
     <nav class="govuk-pagination" aria-label="Pagination">
       <ul class="govuk-pagination__list">
         <li class="govuk-pagination__item govuk-pagination__item--current">
@@ -107,6 +143,7 @@
         </a>
       </div>
     </nav>
+    -->
 
   </div>
 </div>
