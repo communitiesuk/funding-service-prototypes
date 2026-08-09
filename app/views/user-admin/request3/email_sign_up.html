@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['email'] or "l.organa@alocalcouncil.gov.uk"  }}</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['email'] or "unknownuser@company.com"  }}</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
@@ -36,19 +36,13 @@
         </table>
         <div class="email-message-body">
 
-          <p>Hi Leia,</p>
+          <p>Hello,</p>
       
-          <p>You requested link to sign in to Access grant funding but you need to verify your email address first.</p>
+          <p>You cannot sign in to Access grant funding because there is no account for your email ({{ data['email'] or "unknownuser@company.com"  }}).</p>
           
-          <p><a href="no_access">Verify email address</a></p>
+         
 
-          <div class="govuk-inset-text">
-            <p>The link will work once and stop working after 15 minutes.</p>
-          </div>
-
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-1">If your link has expired</h2>
-
-          <p>If the link has expired, you can <a href="#">request a new link</a>.</p>
+          <p>If someone in your organisation has access, they can add you or you can <a href="#">request access</a>.</p>
 
           <h2 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-6">Get help</h2>
           
