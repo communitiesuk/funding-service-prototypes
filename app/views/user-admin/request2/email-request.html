@@ -1,7 +1,7 @@
 {% extends "layouts/grantNoSignin.html" %}
 {% set serviceName = "" %}
 
-{% set title = 'Email: Review access request' %}
+{% set title = 'Email: You now have access' %}
 
 {% block pageTitle %}
   {{title}} - GOV.UK
@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>existing_user@hastings.gov.uk</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['emailAddress'] or "newuser@company.com" }}</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
@@ -36,16 +36,20 @@
         </table>
         <div class="email-message-body">
 
-          <p>Hi Leia,</p>
+          <p>Hello,</p>
       
-          <p>You've received a request to join Blaenau-gwent's {{ data['grantSelect'] or "Safer social housing fund" }}.</p>
+          <p>You've received a request to join Castle Housing Limited's Safer social housing fund.</p>
           
+          <p><a href="#">Sign in to Access grant funding</a></p>
+
           <div class="govuk-inset-text">
             Full name:  {{ data['fullName'] or "Leia Organa" }}<br>
             Email address:  {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
           </div>
 
           <p><a href="review-request">Review the request in Access grant funding</a></p>
+
+         
 
           <h2 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-6">Get help</h2>
           
@@ -61,8 +65,6 @@
 
 
   
-
-
 
 
 

@@ -1,7 +1,7 @@
 {% extends "layouts/grantNoSignin.html" %}
 {% set serviceName = "" %}
 
-{% set title = 'Email: You now have access' %}
+{% set title = 'Email: Review access request' %}
 
 {% block pageTitle %}
   {{title}} - GOV.UK
@@ -26,23 +26,21 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data['emailAddress'] or "user@blaenau-gwent.gov.uk" }}</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>newuser@company.com</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
-              <td class="govuk-table__cell">You now have access</td>
+              <td class="govuk-table__cell">You can sign in to Access grant funding</td>
             </tr>
           </tbody>
         </table>
         <div class="email-message-body">
 
-          <p>Hello,</p>
+          <p>Hi Leia,</p>
       
-          <p>You now have access Blaenau-gwent's Safer social housing fund.</p>
+          <p>You now have access to Castle Housing Limited's {{ data['grantSelect'] or "Safer social housing fund" }}.</p>
           
-          <p><a href="#">Sign in to Access grant funding</a></p>
-
-          <div class="govuk-inset-text">
+           <div class="govuk-inset-text">
             <p>The link will work once and stop working after 15 minutes.</p>
           </div>
 
@@ -64,6 +62,8 @@
 
 
   
+
+
 
 
 
