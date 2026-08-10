@@ -30,7 +30,7 @@
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
-              <td class="govuk-table__cell">Team access email not sent</td>
+              <td class="govuk-table__cell">Team access email failed</td>
             </tr>
           </tbody>
         </table>
@@ -40,9 +40,10 @@
       
           <p>We could not email {{ data['fullName'] if data['fullName'] else 'Lukas Garner' }} ({{ data['emailAddress'].split(' ')[0] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}) about access to Hastings Borough Council's Safer social housing fund.</p>
           
-          <p>They may need to check their spam folder.</p>
+          <p>They may still be able to sign in to Access grant funding using the link: <a href="#">https://funding.communities.gov.uk/request-a-link-to-sign-in</a></p>
 
-          <p><a href="#">Sign in to Access grant funding</a></p>
+          <p>If they do not receive a sign in link, they may need to resolve their inbox issue to unblock our emails.</p>
+
 
           <h2 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-margin-top-6">Get help</h2>
           
