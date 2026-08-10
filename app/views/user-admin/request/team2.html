@@ -72,7 +72,7 @@
           </td>
         </tr>
 
-        <!-- Dynamically Added User from add_user page -->
+          <!-- Dynamically Added User from add_user page -->
         {% if data['fullName'] %}
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">{{ data['fullName' or "Lukas Garner"] }}</td>
@@ -83,6 +83,8 @@
           </td>
         </tr>
         {% endif %}
+
+       
         
       </tbody>
     </table>
