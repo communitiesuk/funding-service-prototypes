@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>existing_user@hastings.gov.uk</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>existinguser@hastings.gov.uk</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
@@ -36,13 +36,13 @@
         </table>
         <div class="email-message-body">
 
-          <p>Hi Leia,</p>
+          <p>Hello,</p>
       
           <p>You've received a request to join Hastings Borough Council's {{ data['grantSelect'] or "Safer social housing fund" }}.</p>
           
           <div class="govuk-inset-text">
-            Full name:  {{ data['fullName'] or "Leia Organa" }}<br>
-            Email address:  {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
+            Full name:  {{ data['fullName'] or "Lukas Garner" }}<br>
+            Email address:  {{ data['emailAddress'] or "lgarner@hastings.gov.uk" }}
           </div>
 
           <p><a href="review-request">Review the request in Access grant funding</a></p>
