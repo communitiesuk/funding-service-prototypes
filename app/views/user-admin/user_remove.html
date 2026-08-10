@@ -1,4 +1,5 @@
-{% extends "layouts/access.html" %}
+{% extends "layouts/access2.html" %}
+{% set navID = 'grantUsers' %}
 
 {% set showBackLink = true %}
 
@@ -16,13 +17,13 @@
     </h1>
 
     <p class="govuk-body">
-      Shayne Boyle (sboyle@hastings.gov.uk) will lose access to edit and submit for Hastings Borough Council's Safer Social Housing Fund.
+      Shayne Boyle (sboyle@hastings.gov.uk) will lose access to Hastings Borough Council's Safer Social Housing Fund.
     </p>
 
     <form action="team3" method="post" novalidate>
       <div class="govuk-button-group govuk-!-margin-top-6">
         <button type="submit" class="govuk-button" data-module="govuk-button">
-          Remove team member
+          Confirm and remove member
         </button>
         <a class="govuk-link" href="team">Cancel</a>
       </div>
