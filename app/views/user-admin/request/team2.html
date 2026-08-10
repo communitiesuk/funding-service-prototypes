@@ -24,7 +24,7 @@
           Team member added
         </h3>
         <p class="govuk-body">
-          {{ data['fullName'] }} ({{ data['emailAddress'] }}) can now edit and submit for Hastings Borough Council's Safer social housing fund. We've emailed them a link to Access grant funding.
+          {{ data['fullName'] or "Lukas Garner"}} ({{ data['emailAddress'] or "lgarner@hastings.gov.uk"}}) can now edit and submit for Hastings Borough Council's Safer social housing fund. We've emailed them a link to Access grant funding.
         </p>
       </div>
     </div>
@@ -75,8 +75,8 @@
         <!-- Dynamically Added User from add_user page -->
         {% if data['fullName'] %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ data['fullName'] }}</td>
-          <td class="govuk-table__cell">{{ data['emailAddress'] }}</td>
+          <td class="govuk-table__cell">{{ data['fullName' or "Lukas Garner"] }}</td>
+          <td class="govuk-table__cell">{{ data['emailAddress'] or "lgarner@hastings.gov.uk"}}</td>
           <td class="govuk-table__cell">Can edit and submit</td>
           <td class="govuk-table__cell">
             <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> {{ data['fullName'] }}</span></a>

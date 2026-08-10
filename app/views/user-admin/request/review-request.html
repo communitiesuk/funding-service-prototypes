@@ -3,7 +3,7 @@
 {% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Review Leia Organa's access request" %}
+{% set pageHeading = "Review Lukas Garner's access request" %}
 {% set pageSection = "" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -12,7 +12,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-l">
-      Review {{ data['fullName'] or "Leia Organa" }}'s access request
+      Review {{ data['fullName'] or "Lukas Garner" }}'s access request
     </h1>
 
     <p class="govuk-body">
@@ -20,8 +20,8 @@
     </p>
 
     <div class="govuk-inset-text">
-      Full name: {{ data['fullName'] or "Leia Organa" }}<br>
-      Email address: {{ data['emailAddress'] or "l.organa@millennium.gov.uk" }}
+      Full name: {{ data['fullName'] or "Lukas Garner" }}<br>
+      Email address: {{ data['emailAddress'] or "lgarner@hastings.gov.uk" }}
     </div>
 
     <form id="review-request-form" action="#" method="post" novalidate>
@@ -31,7 +31,7 @@
           
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h2 class="govuk-fieldset__heading">
-              Do you want {{ data['fullName'] or "Leia Organa" }} to join your team?
+              Do you want {{ data['fullName'] or "Lukas Garner" }} to join your team?
             </h2>
           </legend>
 
