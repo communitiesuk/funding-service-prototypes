@@ -1,0 +1,42 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantUsers' %}
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Add grant team member" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+
+	    <div class="govuk-grid-column-two-thirds">
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+            <form method="post" action="/funding/grant/users/?notification=userAdded" >
+
+
+                <p>Summary list of content TBC.</p>
+
+
+                {{ govukButton({
+                    text: "Confirm and add user"
+                }) }}
+
+            </form>
+
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{# Selection question type configuration - FIXED #}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Selection options
+        </legend>
+        
+        {{ govukRadios({
+            name: "selectionType",
+            items: [
+                { value: "radio", text: "Radio buttons (single choice)", hint: {
+                    text: "Users can select only one option"
+                } },
+                { value: "checkbox", text: "Checkboxes (multiple choice)", hint: {
+                    text: "Users can select multiple options"
+                } }
+            ],
+            value: questionData.selectionType if questionData else data.selectionType
+        }) }}
+
+        <!-- {{ govukRadios({
+            name: "selectionLayout",
+            items: [
+                { value: "stacked", text: "Stacked (vertical)", hint: {
+                    text: "Options appear one below the other (recommended)"
+                } },
+                { value: "inline", text: "Inline (horizontal)", hint: {
+                    text: "Options appear side by side (only for short options)"
+                } }
+            ],
+            value: questionData.selectionLayout if questionData else data.selectionLayout
+        }) }}
+
+        {{ govukRadios({
+            name: "selectionSize",
+            items: [
+                { value: "regular", text: "Regular size" },
+                { value: "small", text: "Small size", hint: {
+                    text: "More compact appearance"
+                } }
+            ],
+            value: questionData.selectionSize if questionData else data.selectionSize
+        }) }} -->
+
+        <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="selectionOptions">
+                Options (one per line)
+            </label>
+            <div class="govuk-hint">
+                Enter each option on a new line                
+            </div>
+            <textarea class="govuk-textarea" id="selectionOptions" name="selectionOptions" rows="5">{{ questionData.selectionOptions if questionData else data.selectionOptions }}</textarea>
+        </div>
+
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="includeOtherOption" name="includeOtherOption" type="checkbox" value="true"{% if (questionData.includeOtherOption if questionData else data.includeOtherOption) %} checked{% endif %} data-aria-controls="conditional-includeOtherOption">
+                <label class="govuk-label govuk-checkboxes__label" for="includeOtherOption">
+                    Include other option with text input
+                </label>                
+            </div>
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-includeOtherOption">
+                {{ govukInput({
+                    label: {
+                        text: "Enter content to be used for other option",
+                        classes: "govuk-label--s"
+                    },
+                    hint: {
+                        text: "If left blank, it will default to Other."
+                    },
+                    classes: "govuk-input--width-20",
+                    id: "otherOptionText",
+                    name: "otherOptionText",
+                    value: questionData.otherOptionText if questionData else data.otherOptionText
+                }) }}
+            </div>
+        </div>
+    </fieldset>
+</div>

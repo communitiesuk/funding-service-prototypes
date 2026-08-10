@@ -1,0 +1,13 @@
+{% macro updateButton (
+    buttonContent = "",
+    returnURL = "",      
+    data = {}
+) %}
+    <div class="govuk-button-group">
+        {{ govukButton({
+            text: "Update {{ buttonContent }}"
+        }) }}
+        <a class="govuk-link" href="{{ returnURL }}">Cancel</a>				 
+    </div>
+
+{% endmacro %}

@@ -1,0 +1,64 @@
+{% extends "layouts/preview.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+<form method="post" action="preview-check-answers-section">
+    <fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <h1 class="govuk-fieldset__heading">
+      <span class="govuk-caption-l">Expenditure</span>
+      Do you have any match funding?
+    </h1>
+  </legend>
+
+  <div class="govuk-radios govuk-!-margin-bottom-6" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+          No
+        </label>
+      </div>
+  </div>
+</fieldset>
+
+
+
+
+    <button class="govuk-button govuk-button--primary" data-module="govuk-button">
+Continue
+    </button>
+
+    </div>
+</form>
+         <!-- Inset text 
+<div class="govuk-inset-text">
+      This question references 'Allocation data' in the <a class="govuk-link" href="#">'Grant allocation' data set</a>.
+</div>
+-->
+</div>
+</div>
+{% endblock %}

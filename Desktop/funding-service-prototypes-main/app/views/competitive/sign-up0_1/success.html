@@ -1,0 +1,41 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Organisation registration complete" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Organisation registration complete
+      </h1>
+      <div class="govuk-panel__body">
+        Your registration reference<br><strong>SSHF-8024-X</strong>
+      </div>
+    </div>
+
+    <p class="govuk-body">
+      We have sent you a confirmation email with your registration details.
+    </p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      You can now sign in to your new account to start your application for the Safer social housing fund. 
+    </p>
+
+    <form action="sign-in" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Sign in to your account
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

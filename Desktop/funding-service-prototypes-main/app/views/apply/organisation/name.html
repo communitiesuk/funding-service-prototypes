@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What is the name of your organisation?" %}
+    {% set pageSection = "Organisation information" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Organisation name" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-hint">This is the legal registered name of your organisation.</p>
+
+        {% if data['linkStatus'] == "change" %}
+            <form method="post" action="/apply/organisation/check-your-answers?linkStatus=" >
+        {% else %}
+            <form method="post" action="/apply/organisation/project-sponsor" >
+        {% endif %}
+
+            <!-- Session information to say section started - but not completed -->
+            {% if not data.section2_1 %}
+            <input type="hidden" id="section2_1" name="section2_1" value="Started" />
+            {% endif %}
+
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-label govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_organisationName",
+                name: "2_1_organisationName",
+                value: data['2_1_organisationName']
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+      	{% else %}
+        	{{ macroSuggested.pageSuggested(url) }}
+      	{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

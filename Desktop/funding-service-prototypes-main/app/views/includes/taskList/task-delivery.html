@@ -1,0 +1,17 @@
+<h2 class="govuk-heading-m">Delivery plan</h2>
+<ul class="govuk-task-list">
+	<li class="govuk-task-list__item govuk-task-list__item--with-link">
+		<div class="govuk-task-list__name-and-hint">
+			<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/report/delivery-plan/milestones" aria-describedby="report-details-6-status">Project milestones</a>
+	  	</div>
+	  	<div class="govuk-task-list__status" id="report-details-6-status">			
+			{% if data['report-6-status'] == "Completed" %}
+				Completed
+			{% elif data['report-6-status'] == "inProgress" %}
+				<strong class="govuk-tag govuk-tag--light-blue">In progress</strong>
+			{% else %}
+				<strong class="govuk-tag govuk-tag--blue">Not yet started</strong>
+			{% endif %}
+		</div>
+	</li>	
+  </ul>

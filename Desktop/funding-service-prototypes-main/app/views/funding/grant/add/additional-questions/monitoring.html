@@ -1,0 +1,55 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Will you need to collect monitoring data?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['change'] == "yes" %}
+            <form method="post" action="/funding/grant/add/summary">
+				<input type="hidden" name="change" id="change" value="" />
+      	{% else %}
+            <form method="post" action="/funding/grant/add/primary-contact-details">
+        {% endif %}
+
+            {{ govukRadios({
+                classes: "govuk-radios--inline",
+                name: "grant-monitoring",
+                fieldset: {
+                    legend: {
+                        text: pageHeading,
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                    }
+                },
+                items: [
+                    { value: "Yes", text: "Yes" },
+                    { value: "No", text: "No" }
+                ]
+            }) }}
+
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

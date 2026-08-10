@@ -1,0 +1,152 @@
+
+		<h2 class="govuk-heading-l">Unscored</h2>
+		<p>Use for due diligence checks.</p>
+		<p>			<a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/organisation/" aria-describedby="organisation-information-status">Organisation information</a></p>
+		<!-- <ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-link--no-visited-state" href="/apply/organisation/" aria-describedby="organisation-information-status">Organisation information</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="organisation-information-status">
+				</div>
+			</li>
+		</ul> -->
+
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+		<h2 class="govuk-heading-l">Declarations</h2>
+		<p>Review against legal and policy requirements.</p>
+		<p><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/declarations/" aria-describedby="declarations-status">Declarations</a></p>
+
+
+
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+
+		<h2 class="govuk-heading-l govuk-!-margin-top-9">Scored</h2>
+		<p class="govuk-body govuk-!-margin-bottom-7">Assess all responses under each sub criteria.</p>
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Your skills and experience</h2>
+		<p class="govuk-body"><span class="govuk-!-font-weight-bold">50%</span> of overall score.</p>
+
+		<table class="govuk-table">
+			<caption class="govuk-table__caption govuk-visually-hidden">Your skills and experience</caption>
+
+			<thead class="govuk-table__head">
+			  <tr class="govuk-table__row">
+				<th scope="col" class="govuk-table__header govuk-!-width-one-half">Assessment sub criteria</th>
+				<th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__cell--numeric">Score out of 5</th>
+				<th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__cell--numeric">Status</th>
+			  </tr>
+			</thead>
+			<tbody class="govuk-table__body">
+			  <tr class="govuk-table__row">
+				<td scope="row" class="govuk-table__cell">
+					<a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/skills-and-experience/" aria-describedby="your-skills-and-experience-status">Your skills and experience</a>
+				</td>
+				<td class="govuk-table__cell govuk-table__cell--numeric"></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">
+					{% if data['section3_1'] == "scored" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_1'] == "no") or ( data['section3_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</td>
+			  </tr>
+			  <tr class="govuk-table__row">
+				<td scope="row" class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/roles-and-recruitment/" aria-describedby="roles-and-recruitment-status">Roles and recruitment</a></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric"></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">
+					{% if data['section3_1'] == "scored" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_1'] == "no") or ( data['section3_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</td>
+			  </tr>
+			  <tr class="govuk-table__row">
+				<th scope="row" class="govuk-table__cell">Total criteria score</th>
+				<td class="govuk-table__cell"> </td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">0 of 10</td>
+			  </tr>
+			</tbody>
+		</table>
+
+
+
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">About your project</h2>
+		<p class="govuk-body"><span class="govuk-!-font-weight-bold">50%</span> of overall score.</p>
+
+
+		  <table class="govuk-table">
+			<caption class="govuk-table__caption govuk-visually-hidden">Your skills and experience</caption>
+
+			<thead class="govuk-table__head">
+			  <tr class="govuk-table__row">
+				<th scope="col" class="govuk-table__header govuk-!-width-one-half">Assessment sub criteria</th>
+				<th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__cell--numeric">Score out of 5</th>
+				<th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__cell--numeric">Status</th>
+			  </tr>
+			</thead>
+			<tbody class="govuk-table__body">
+			  <tr class="govuk-table__row">
+				<td scope="row" class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/engaging-digital-planning/" aria-describedby="engaging-the-community-status">Engaging the ODP community</a></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric"></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">
+					{% if data['section4_1'] == "scored" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_1'] == "no") or ( data['section4_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</td>
+			  </tr>
+			  <tr class="govuk-table__row">
+				<td scope="row" class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/engaging-the-organisation/" aria-describedby="engaging-the-organisation-status">Engaging the organisation</a></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric"></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">
+					{% if data['section4_2'] == "scored" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_2'] == "no") or ( data['section4_2'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</td>
+			  </tr>
+			  <tr class="govuk-table__row">
+				<td scope="row" class="govuk-table__cell"><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/dataset-information/" aria-describedby="dataset-information-status">Dataset information</a></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric"></td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">
+					{% if data['section4_3'] == "scored" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_3'] == "no") or ( data['section4_3'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</td>
+			  </tr>
+			  <tr class="govuk-table__row">
+				<th scope="row" class="govuk-table__cell">Total criteria score</th>
+				<td class="govuk-table__cell"> </td>
+				<td class="govuk-table__cell govuk-table__cell--numeric">0 of 15</td>
+			  </tr>
+			</tbody>
+		</table>

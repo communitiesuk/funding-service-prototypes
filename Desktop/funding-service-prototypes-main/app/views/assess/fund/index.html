@@ -1,0 +1,295 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Active assessments" %}
+{% set pageSection = '' + data.fundName + ' Fund - ' + data.fundRound + '' %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+	{% if data['version'] == "suggested" %}
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+
+				{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+			</div>
+
+			<div class="govuk-grid-column-full">
+
+
+						{% set pastDayHtml %}
+
+					<h2 class="govuk-heading-l">All assessments</h2>
+
+					{% include "/assess/includes/search_and_filter.html" %}
+
+					{{ govukTable({
+						head: [
+							{ text: "Reference" },
+							{ html: '<a href="#">Project name</a>' },
+							{ html: '<a href="#">Funding requested</a>' },
+							{ html: '<a href="#">Asset type</a>' },
+							{ html: '<a href="#">Location</a>' },
+							{ html: '<a href="#">Tags</a>' },
+							{ html: '<a href="#">Status</a>' },
+							{ html: '<a href="#">Assigned to</a>' },
+							{ html: '<a href="#">Date submitted</a>' }
+						],
+						rows: [
+							[
+								{ text: "IQPIJK" },
+								{ html: '<a href="/assess/fund/application/">Sneaker Politics</a>' },
+								{ text: "£0.00" },
+								{ text: "" },
+								{ text: "Not Available" },
+								{ text: "-" },
+								{ html: '<strong class="govuk-tag">Not Started</strong>' },
+								{ text: "-" },
+								{ text: "13/12/2024 at 17:28" }
+							],
+							[
+								{ text: "ZWNEHL" },
+								{ html: '<a href="/assess/fund/application/">E07000038</a>' },
+								{ text: "£0.00" },
+								{ text: "" },
+								{ text: "Not Available" },
+								{ text: "-" },
+								{ html: '<strong class="govuk-tag">Not Started</strong>' },
+								{ text: "-" },
+								{ text: "13/12/2024 at 17:28" }
+							]
+
+
+						]
+					}) }}
+
+				{% endset -%}
+
+
+				{% set pastWeekHtml %}
+
+					<h2 class="govuk-heading-l">Assigned to you</h2>
+					{% include "/assess/includes/search_and_filter.html" %}
+
+					<p class="govuk-body govuk-!-font-weight-bold">No matching results.</p>
+					<p class="govuk-body">Improve your results by:</p>
+					<ul class="govuk-list govuk-list--bullet">
+						<li>removing filters</li>
+						<li>double-checking your spelling</li>
+					</ul>
+
+				{% endset -%}
+
+				{% set pastMonthHtml %}
+
+					<h2 class="govuk-heading-l">Reporting to you</h2>
+					{% include "/assess/includes/search_and_filter.html" %}
+
+					<p class="govuk-body govuk-!-font-weight-bold">No matching results.</p>
+					<p class="govuk-body">Improve your results by:</p>
+					<ul class="govuk-list govuk-list--bullet">
+						<li>removing filters</li>
+						<li>double-checking your spelling</li>
+					</ul>
+
+				{% endset -%}
+
+
+
+			{{ govukTabs({
+				items: [
+				{
+					label: "All applications",
+					id: "past-day",
+					panel: {
+					html: pastDayHtml
+					}
+				},
+				{
+					label: "Assigned to you (0)",
+					id: "past-week",
+					panel: {
+					html: pastWeekHtml
+					}
+				},
+				{
+					label: "Reporting to you (0)",
+					id: "past-month",
+					panel: {
+					html: pastMonthHtml
+					}
+				}
+
+				]
+			}) }}
+
+				<!-- Switcher between current and suggested changes -->
+				{% include "/assess/includes/version-switch.html" %}
+
+			
+			</div>
+		</div>
+
+    {% else %}
+
+<div class="govuk-width-container">
+	{{ govukBackLink({
+		text: "Back to assessment landing",
+		href: "javascript:history.go(-1)"
+	}) }}
+
+	<div class="govuk-!-display-inline-block float-right govuk-!-margin-top-3 nag">
+		<a href="/assess/help">Get help</a>  <a href="#">Log out</a>
+	</div>
+</div>
+
+<div class="x-govuk-masthead">
+	<div class="govuk-width-container">
+
+      	<div class="govuk-grid-row">
+        	<div class="govuk-grid-column-two-thirds-from-desktop">
+          		<h1 class="x-govuk-masthead__title">{{ pageHeading }}</h1>
+				<div class="lead-dashboard-stat">
+					<p id="lead-dashboard-stat-assessments-total">2</p>
+				  	<p>Assessments</p>
+				</div>
+          		<p class="x-govuk-masthead__description govuk-!-font-size-36 govuk-!-font-weight-bold">All active assessments</p>
+          		<p class="x-govuk-masthead__description"><span class="govuk-!-font-weight-bold">Fund:</span> {{ data.fundName }} Fund
+				<br><span class="govuk-!-font-weight-bold">Round:</span> {{ data.fundRound }}</p>
+        	</div>
+      	</div>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper" id="main-content" role="main">
+
+      	{% set pastDayHtml %}
+
+			<h2 class="govuk-heading-l">All applications</h2>
+
+			{% include "/assess/includes/search_and_filter.html" %}
+
+			{{ govukTable({
+				head: [
+					{ text: "Reference" },
+					{ html: '<a href="#">Project name</a>' },
+					{ html: '<a href="#">Funding requested</a>' },
+					{ html: '<a href="#">Asset type</a>' },
+					{ html: '<a href="#">Location</a>' },
+					{ html: '<a href="#">Tags</a>' },
+					{ html: '<a href="#">Status</a>' },
+					{ html: '<a href="#">Assigned to</a>' },
+					{ html: '<a href="#">Date submitted</a>' }
+				],
+				rows: [
+					[
+						{ text: "IQPIJK" },
+						{ html: '<a href="/assess/fund/application/">Sneaker Politics</a>' },
+						{ text: "£0.00" },
+						{ text: "" },
+						{ text: "Not Available" },
+						{ text: "-" },
+						{ html: '<strong class="govuk-tag">Not Started</strong>' },
+						{ text: "-" },
+						{ text: "13/12/2024 at 17:28" }
+					],
+					[
+						{ text: "ZWNEHL" },
+						{ html: '<a href="/assess/fund/application/">E07000038</a>' },
+						{ text: "£0.00" },
+						{ text: "" },
+						{ text: "Not Available" },
+						{ text: "-" },
+						{ html: '<strong class="govuk-tag">Not Started</strong>' },
+						{ text: "-" },
+						{ text: "13/12/2024 at 17:28" }
+					]
+
+
+				]
+			}) }}
+
+		{% endset -%}
+
+
+		{% set pastWeekHtml %}
+
+			<h2 class="govuk-heading-l">Assigned to you</h2>
+			{% include "/assess/includes/search_and_filter.html" %}
+
+			<p class="govuk-body govuk-!-font-weight-bold">No matching results.</p>
+			<p class="govuk-body">Improve your results by:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>removing filters</li>
+				<li>double-checking your spelling</li>
+			</ul>
+
+		{% endset -%}
+
+		{% set pastMonthHtml %}
+
+			<h2 class="govuk-heading-l">Reporting to you</h2>
+			{% include "/assess/includes/search_and_filter.html" %}
+
+			<p class="govuk-body govuk-!-font-weight-bold">No matching results.</p>
+			<p class="govuk-body">Improve your results by:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>removing filters</li>
+				<li>double-checking your spelling</li>
+			</ul>
+
+		{% endset -%}
+
+
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "All applications",
+            id: "past-day",
+            panel: {
+              html: pastDayHtml
+            }
+          },
+          {
+            label: "Assigned to you (0)",
+            id: "past-week",
+            panel: {
+              html: pastWeekHtml
+            }
+          },
+          {
+            label: "Reporting to you (0)",
+            id: "past-month",
+            panel: {
+              html: pastMonthHtml
+            }
+          }
+
+        ]
+      }) }}
+
+
+
+
+    <!-- Switcher between current and suggested changes -->
+    {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+
+
+{% endif %}
+{% endblock %}

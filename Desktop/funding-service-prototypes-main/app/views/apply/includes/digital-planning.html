@@ -1,0 +1,53 @@
+{% if data['version'] == "suggested" %}
+
+    <h2 class="govuk-heading-m">Digital Planning Improvement Fund (Round 3)</h2>
+    <p class="govuk-body">You must have received an invitation to apply for this fund, which should include the <a href="https://www.localdigital.gov.uk/digital-planning/digital-planning-improvement-fund-2024/" class="govuk-link" target="_blank">fund’s prospectus (opens in new tab)</a>.</p>
+    <!-- <p class="govuk-body"><a href="https://www.localdigital.gov.uk/digital-planning/digital-planning-improvement-fund-2024/" class="govuk-link">Read the fund's prospectus</a> before you apply.</p> -->
+
+    <div class="govuk-inset-text govuk-!-margin-bottom-6">
+
+        <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Submission deadline</p>
+        <p class="govuk-body">31 January 2025 at 11:59am</p>
+        <p class="govuk-body">Submit your application with plenty of time to spare before the submission deadline as you may be asked to provide more information.</p>
+    </div>
+
+
+    {{ govukButton({
+        text: "Enter your email address",
+        href: "/apply/email-address?version=",
+        isStartButton: true,
+        classes: "govuk-!-margin-bottom-9"
+    }) }}
+
+    <h2 class="govuk-heading-m">Get help with your application</h2>
+    <p class="govuk-body">If you need help, contact us through our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/68" class="govuk-link" target="_blank">support desk (opens in new tab)</a>.</p>
+    <p class="govuk-body">Monday to Friday: 9am to 5pm (except public holidays)</p>
+    <div class="govuk-inset-text govuk-!-margin-bottom-7 govuk-!-padding-top-1 govuk-!-padding-bottom-1">
+        <p class="govuk-body">We only accept applications through this service. Do not send any applications or attachments to the support desk. </p>
+    </div>
+
+{% else %}
+
+    <p class="govuk-body">You must have received an invitation to apply, which should include the fund's prospectus. If you have not received the prospectus, contact digitalplanningteam@communities.gov.uk</p>
+    <p class="govuk-body"><a href="https://www.localdigital.gov.uk/digital-planning/digital-planning-improvement-fund-2024/" class="govuk-link">Read the fund's prospectus</a> before you apply.</p>
+
+
+    <p class="govuk-body"><strong>Submission deadline:</strong>31 January 2025 at 11:59am</p>
+    <p class="govuk-body govuk-!-margin-bottom-7">Submit your application with plenty of time to spare before the submission deadline as you may be asked to provide more information.</p>
+
+    {{ govukButton({
+        text: "Enter your email address",
+        href: "/apply/email-address",
+        isStartButton: true
+    }) }}
+
+
+    <h2 class="govuk-heading-m">Get help with your application</h2>
+    <p class="govuk-body">Contact us through our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/68" class="govuk-link">support desk</a> if you need help.</p>
+    <p class="govuk-body">Monday to Friday: 9am to 5pm (except public holidays)</p>
+    <div class="govuk-inset-text govuk-!-margin-bottom-7">
+        <p class="govuk-body">Do not send any applications or attachments through the support desk. We'll only accept applications through this service.</p>
+    </div>
+
+
+{% endif %}

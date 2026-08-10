@@ -1,0 +1,89 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHidden = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">GGIS reference number</dt>
+				<dd class="govuk-summary-list__value">
+					{% if data['grant-ggis'] == "Yes" %}
+						{{ data['grant-ggisNumber'] }}
+					{% else %}
+						Not known
+					{% endif %}
+				</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/ggis-number?change=yes">Change<span class="govuk-visually-hidden"> GGIS number</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant name</dt>
+				<dd class="govuk-summary-list__value">{{ data['grantName'] }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/name?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main purpose</dt>
+				<dd class="govuk-summary-list__value">{{ data['grant-description'] }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/description?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main contact</dt>
+				<dd class="govuk-summary-list__value">{{ data['grant-primaryContactName'] }}
+					<br>{{ data['grant-primaryContactEmail'] }}
+				</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/primary-contact-details?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+		</dl>
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+
+				{{ govukRadios({
+				name: "section5_1",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section"  },
+					{ value: "no", text: "No, I’ll come back to it later" }
+				]
+			}) }}
+
+
+
+				<form method="post" action="/funding/grant/details/">
+            		<input type="hidden" name="status" id="status" value="" />
+	  				{{ govukButton({
+                		text: "Save and return to grant details"
+            		}) }}
+				</form>
+
+			</div>
+		</div>
+
+    </div>
+</div>
+
+{% endblock %}

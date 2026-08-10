@@ -1,0 +1,52 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Do you need an application form?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-body">This is for competed grants where organisations will need to apply for funding.</p>
+
+        <form method="post" action="/funding/grant/add/opening-date">
+
+             {{ govukRadios({
+                classes: "govuk-radios--inline",
+                name: "grant-preAward",
+                fieldset: {
+                    legend: {
+                        text: pageHeading,
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                    }
+                },
+                items: [
+                    { value: "Yes", text: "Yes" },
+                    { value: "No~/funding/grant/add/description", text: "No" }
+                ]
+            }) }}
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

@@ -1,0 +1,137 @@
+
+
+
+
+
+
+{% extends "layouts/email.html" %}
+{% set serviceName = "" %}
+
+
+{% set title = 'Access Funding: Access your application for the ' +  data.fundName  + '' %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+
+    <div class="email-message">
+    	<table class="govuk-table email-message-meta">
+        	<tbody>
+				<tr>
+                	<th class="govuk-table__cell" scope="row">From</th>
+                	<td class="govuk-table__cell">Access Funding</td>
+              	</tr>
+            	<tr>
+              		<th class="govuk-table__cell" scope="row">To</th>
+              		<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.magicLinkEmail or "test@apply.mhclg.gov.uk"  }}</span></td>
+            	</tr>
+          		<tr class="email-message-meta">
+            		<th class="govuk-table__cell" scope="row">Subject</th>
+					{% if data['fundName'] == "Digital Planning Improvement" %}
+						<td class="govuk-table__cell">Access your application for the Digital Planning Improvement Fund</td>
+					{% else %}
+						<td class="govuk-table__cell">Access your application for the Digital Planning Improvement Fund</td>
+					{% endif %}
+
+          		</tr>
+        	</tbody>
+      	</table>
+      	<div class="email-message-body">
+
+
+		{% if data['version'] == "suggested" %}
+
+
+			<img src="/public/images/MHCLG_TEAL_MASTER_AW.png" width="150" alt="MHCLG logo">
+
+			<p class="govuk-!-margin-top-7">You requested a link to start or continue an application for { Fund Name}.</p>
+
+			<p><a href="/apply/start?signedIn=yes&version=">Start or continue your application</a></p>
+
+			<div class="govuk-inset-text">
+				<p>This link will work once and stop working after 24 hours.</p>
+			</div>
+
+			<h2 class="govuk-heading-s govuk-!-margin-bottom-3">If your link expires</h2>
+			<p>You can <a href="/apply/email-address?version=">request a new link</a> if the link has expired.</p>
+
+
+			<p>Kind regards,</p>
+			<p>The Funding Team</p>
+			<!-- <br>Ministry of Housing, Communities & Local Government</p> -->
+
+			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+			<p>Gofynnoch i ni am ddolen i’ch cais.</p>
+
+			<p><a href="#">Dechreuwch neu parhewch â'ch cais</a></p>
+
+			<div class="govuk-inset-text">
+				<p>Bydd y ddolen yn gweithio am 24 awr.</p>
+			</div>
+
+			<h2 class="govuk-heading-s govuk-!-margin-bottom-1">If you need help</h2>
+			<p>This is an automated message. Do not reply to this email.</p>
+			<p>Email us: digitalplanningteam@communities.gov.uk</p>
+
+		{% else %}
+
+			<p>You requested a link to start or continue an application:</p>
+
+			<p><a href="/apply/start?signedIn=yes&version=">https://authenticator.uat.access-funding.test.levellingup.gov.uk/service/magic-links/landing/UJvozpId?fund=DPIF&round=R3</a></p>
+
+			<p>The link will work once and stop working after 24 hours.</p>
+
+			<h2 class="govuk-heading-m">If your link expires</h2>
+			<p>You can request a new email:</p>
+			<p><a href="/apply/email-address?version=">https://authenticator.uat.access-funding.test.levellingup.gov.uk/service/magic-links/new?fund=DPIF&round=R3</a>.</p>
+
+			<p>Regards,
+			<br>Digital Planning Improvement Fund</p>
+
+			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+			<p>Gofynnoch i ni am ddolen i’ch cais:</p>
+
+			<p><a href="#">https://authenticator.uat.access-funding.test.levellingup.gov.uk/service/magic-links/landing/JyMRaXDB?fund=DPIF&round=R3</a></p>
+
+			<p>Bydd y ddolen yn gweithio am 24 awr.</p>
+
+			<p>This is an automated message. Do not reply to this email. If you need help, contact us: digitalplanningteam@communities.gov.uk.</p>
+
+
+		{% endif %}
+
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+      	{% else %}
+        	{{ macroSuggested.pageSuggested(url) }}
+      	{% endif %}
+
+
+
+      	</div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

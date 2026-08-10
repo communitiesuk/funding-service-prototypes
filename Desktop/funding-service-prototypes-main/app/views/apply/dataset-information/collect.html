@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Does your organisation collect any of these datasets?" %}
+	{% set pageSection = "Dataset information" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Does your organisation collect at least one of the datasets?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<p class="govuk-body">The datasets are:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Article 4 direction</li>
+			<li>Conservation areas</li>
+			<li>Listed buildings</li>
+			<li>Tree preservation orders</li>
+		</ul>
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/dataset-information/check-your-answers" >
+		{% else %}
+        <form method="post" action="/apply/dataset-information/issues-and-challenges" >
+		{% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+			{% if not data.section1_1 %}
+            <input type="hidden" id="section4_3" name="section4_3" value="Started" />
+            {% endif %}
+
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "4_3_datasetCollect",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "yes~/apply/dataset-information/which-datasets", text: "Yes", checked: checked("4_3_datasetCollect", "yes")  },
+					{ value: "no", text: "No", checked: checked("4_3_datasetCollect", "no") }
+				]
+			}) }}
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+		{% else %}
+
+		<p class="govuk-body govuk-hint">The 4 datasets are:</p>
+		<ul class="govuk-list govuk-list--bullet govuk-hint">
+			<li>Conservation areas</li>
+			<li>Article 4 direction</li>
+			<li>Listed buildings</li>
+			<li>Tree preservation orders</li>
+		</ul>
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/dataset-information/check-your-answers" >
+		{% else %}
+        <form method="post" action="/apply/dataset-information/issues-and-challenges" >
+		{% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+			{% if not data.section1_1 %}
+            <input type="hidden" id="section4_3" name="section4_3" value="Started" />
+            {% endif %}
+
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "4_3_datasetCollect",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "yes~/apply/dataset-information/which-datasets", text: "Yes", checked: checked("4_3_datasetCollect", "yes")  },
+					{ value: "no", text: "No", checked: checked("4_3_datasetCollect", "no") }
+				]
+			}) }}
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

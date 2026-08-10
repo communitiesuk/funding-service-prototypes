@@ -1,0 +1,206 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Who is your lead contact?" %}
+    {% set pageSection = "Organisation information" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Lead contact details" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+        {% if data['version'] == "suggested" %}
+        <div class="govuk-inset-text">
+        <p class="govuk-body">We will send them a copy of all the information in this application.</p>
+    </div>
+
+        {% if data['linkStatus'] == "change" %}
+            <form method="post" action="/apply/organisation/check-your-answers?linkStatus=" >
+        {% else %}
+            <form method="post" action="/apply/organisation/check-your-answers" >
+        {% endif %}
+
+            {{ govukInput({
+                label: {
+                    text: "First name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactFirstName",
+                name: "2_1_contactFirstName",
+                value: data['2_1_contactFirstName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Last name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactLastName",
+                name: "2_1_contactLastName",
+                value: data['2_1_contactLastName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Job title",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactJobTitle",
+                name: "2_1_contactJobTitle",
+                value: data['2_1_contactJobTitle'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Email address",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactEmail",
+                name: "2_1_contactEmail",
+                value: data['2_1_contactEmail'],
+                type: "email",
+                autocomplete: "email",
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Telephone number",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactPhone",
+                name: "2_1_contactPhone",
+                value: data['2_1_contactPhone'],
+                type: "tel",
+                autocomplete: "tel"
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+
+        </form>
+
+        {% else %}
+
+        <p class="govuk-body">The lead contact will receive all the information about this application.</p>
+
+        {% if data['linkStatus'] == "change" %}
+            <form method="post" action="/apply/organisation/check-your-answers?linkStatus=" >
+        {% else %}
+            <form method="post" action="/apply/organisation/check-your-answers" >
+        {% endif %}
+
+            {{ govukInput({
+                label: {
+                    text: "Lead contact first name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactFirstName",
+                name: "2_1_contactFirstName",
+                value: data['2_1_contactFirstName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Lead contact last name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactLastName",
+                name: "2_1_contactLastName",
+                value: data['2_1_contactLastName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Lead contact job title",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactJobTitle",
+                name: "2_1_contactJobTitle",
+                value: data['2_1_contactJobTitle'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Lead contact email address",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_contactEmail",
+                name: "2_1_contactEmail",
+                value: data['2_1_contactEmail'],
+                type: "email",
+                autocomplete: "email",
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Lead contact telephone number",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-one-third",
+                id: "2_1_contactPhone",
+                name: "2_1_contactPhone",
+                value: data['2_1_contactPhone'],
+                type: "tel",
+                autocomplete: "tel"
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+
+        </form>
+
+        {% endif %}
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

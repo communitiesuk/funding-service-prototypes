@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What we need to know" %}
+    {% set pageSection = "Future work" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Future work" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+
+        <p class="govuk-body govuk-!-margin-bottom-7">In this section, we’ll ask about which software improvements you are interested in working on in the future.</p>
+
+
+
+        <form method="post" action="/apply/future-work/software-improvements" >
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% else %}
+
+        <p class="govuk-body govuk-!-font-weight-bold">In this section, we'll ask about:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>which software improvements you are interested in working on in the future </li>
+
+        </ul>
+
+
+        <form method="post" action="/apply/future-work/software-improvements" >
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% endif %}
+
+
+
+    </div>
+</div>
+
+{% endblock %}

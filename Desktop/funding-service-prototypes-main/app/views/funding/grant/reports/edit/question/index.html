@@ -1,0 +1,169 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Edit question" %}
+{% if isUnassignedTask %}
+    {% set pageSection = "Task" %}
+{% else %}
+    {% set pageSection = "Task" %}
+{% endif %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {# Template-based breadcrumbs for edit question page #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Reports",
+            href: "/funding/grant/reports/"
+        }), breadcrumbItems) %}
+
+        {% if reportName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: reportName,
+                href: "/funding/grant/reports/sections?reportId=" + currentReportId
+            }), breadcrumbItems) %}
+        {% endif %}
+
+        {% set breadcrumbItems = (breadcrumbItems.push({
+            text: "Tasks",
+            href: "/funding/grant/reports/sections?reportId=" + currentReportId
+        }), breadcrumbItems) %}
+
+        {% if taskName %}
+            {% if isUnassignedTask %}
+                {% set questionsHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&reportId=" + currentReportId + "&unassigned=true" %}
+            {% else %}
+                {% set questionsHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&sectionId=" + currentSectionId + "&reportId=" + currentReportId %}
+            {% endif %}
+
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: taskName,
+                href: questionsHref
+            }), breadcrumbItems) %}
+        {% endif %}
+
+        {% if currentQuestionName %}
+            {% set breadcrumbItems = (breadcrumbItems.push({
+                text: "Edit " + currentQuestionName
+            }), breadcrumbItems) %}
+        {% endif %}
+
+        {{ govukBreadcrumbs({
+            items: breadcrumbItems,
+            classes: "govuk-!-margin-bottom-6"
+        }) }}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+                {% if currentQuestionType %}
+                    {# Map question type values to display names #}
+                    {% set questionTypeDisplay = currentQuestionType %}
+                    {% if currentQuestionType == "text" %}
+                        {% set questionTypeDisplay = "Text" %}
+                    {% elif currentQuestionType == "yesno" %}
+                        {% set questionTypeDisplay = "Yes or No" %}
+                        {% set questionTypeDisplay = "Date input" %}
+                    {% elif currentQuestionType == "selection" %}
+                        {% set questionTypeDisplay = "Selection from a list of options" %}
+                    {% elif currentQuestionType == "number" %}
+                        {% set questionTypeDisplay = "Number" %}
+                    {% elif currentQuestionType == "email" %}
+                        {% set questionTypeDisplay = "Email address" %}
+                    {% elif currentQuestionType == "phone" %}
+                        {% set questionTypeDisplay = "Phone number" %}
+                    {% elif currentQuestionType == "address" %}
+                        {% set questionTypeDisplay = "Address" %}
+                    {% elif currentQuestionType == "file" %}
+                        {% set questionTypeDisplay = "File upload" %}
+                    {% endif %}
+
+                    <div class="govuk-inset-text">
+                        <p class="govuk-body">Question type: <strong>{{ questionTypeDisplay }}</strong></p>
+                    </div>
+                {% endif %}
+
+                <form method="post" action="/funding/grant/reports/edit/question/update">
+
+                    {# Hidden fields to maintain context #}
+                    <input type="hidden" name="questionId" value="{{ currentQuestionId }}">
+                    <input type="hidden" name="taskId" value="{{ currentTaskId }}">
+                    <input type="hidden" name="sectionId" value="{{ currentSectionId }}">
+                    <input type="hidden" name="reportId" value="{{ currentReportId }}">
+                    <input type="hidden" name="isUnassignedTask" value="{{ isUnassignedTask }}">
+                    <input type="hidden" name="questionType" value="{{ currentQuestionType }}">
+
+                    {# Core fields - used by all question types #}
+                    {% include "/funding/includes/question-types/core-fields.html" %}
+
+                    {# Question type specific configuration #}
+                    {% if currentQuestionType == "text" %}
+                        {% include "/funding/includes/question-types/text-config.html" %}
+                    {% elif currentQuestionType == "yesno" %}
+                        {% include "/funding/includes/question-types/yesno-config.html" %}
+                    {% elif currentQuestionType == "number" %}
+                        {% include "/funding/includes/question-types/number-config.html" %}
+                    {% elif currentQuestionType == "selection" %}
+                        {% include "/funding/includes/question-types/selection-config.html" %}
+                    {% elif currentQuestionType == "date" %}
+                        {% include "/funding/includes/question-types/date-config.html" %}
+                    {% elif currentQuestionType == "email" %}
+                        {% include "/funding/includes/question-types/email-config.html" %}
+                    {% elif currentQuestionType == "phone" %}
+                        {% include "/funding/includes/question-types/phone-config.html" %}
+                    {% elif currentQuestionType == "address" %}
+                        {% include "/funding/includes/question-types/address-config.html" %}
+                    {% elif currentQuestionType == "file" %}
+                        {% include "/funding/includes/question-types/file-config.html" %}
+                    {% endif %}
+
+                    <div class="govuk-button-group">
+                        {{ govukButton({
+                            text: "Save changes"
+                        }) }}
+
+                        {% if isUnassignedTask %}
+                            {% set cancelHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&reportId=" + currentReportId + "&unassigned=true" %}
+                        {% else %}
+                            {% set cancelHref = "/funding/grant/reports/questions?taskId=" + currentTaskId + "&sectionId=" + currentSectionId + "&reportId=" + currentReportId %}
+                        {% endif %}
+
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ cancelHref }}">Cancel</a>
+                    </div>
+
+                </form>
+
+                {# Question settings section #}
+                <div class="govuk-!-margin-top-7">
+                    <h2 class="govuk-heading-m">Question settings</h2>                                    
+                    
+                    {% if isUnassignedTask %}
+                        {% set deleteQuestionHref = "/funding/grant/reports/questions/?reportId=" + currentReportId + "&taskId=" + currentTaskId + "&unassigned=true&questionDeleteConfirm=true&deleteQuestionId=" + currentQuestionId + "&deleteQuestionName=" + currentQuestionName %}
+                    {% else %}
+                        {% set deleteQuestionHref = "/funding/grant/reports/questions/?reportId=" + currentReportId + "&sectionId=" + currentSectionId + "&taskId=" + currentTaskId + "&questionDeleteConfirm=true&deleteQuestionId=" + currentQuestionId + "&deleteQuestionName=" + currentQuestionName %}
+                    {% endif %}
+                    
+                    <ul class="govuk-list">
+                        <li><a href="{{ deleteQuestionHref }}" class="govuk-link govuk-link--no-visited-state govuk-link--destructive">Delete question</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

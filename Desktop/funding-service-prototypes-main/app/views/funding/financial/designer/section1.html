@@ -1,0 +1,263 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Backlog funding/expenditure" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-8">Backlog funding/expenditure</h1>
+  </div>
+  <div class="govuk-grid-column-one-quarter govuk-!-text-align-right">
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-top-2" data-module="govuk-button">
+      Preview section
+    </button>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <h2 class="govuk-heading-l">Questions</h2>
+
+    <table class="govuk-table govuk-!-margin-bottom-6">
+      <tbody class="govuk-table__body">
+        
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-width-one-half">
+            <a href="#" class="govuk-link">How much backlog funding did you receive in total during the 2023 to 2024 financial year?</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">What date did you start spending your backlog funding?</a>
+          </td>
+          <td class="govuk-table__cell">A date</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Have you spent all of your backlog funding?</a>
+          </td>
+          <td class="govuk-table__cell">Yes or no</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">What date did you spend all your backlog funding?</a>
+            <div class="govuk-!-margin-top-1">
+              <strong class="govuk-tag govuk-tag--pink" style="text-transform: none; letter-spacing: normal;">Conditional</strong>
+            </div>
+          </td>
+          <td class="govuk-table__cell">A date</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">How much backlog funding has been spent, as of 31 March 2025</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 6 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">How much backlog funding has been committed to spending, but not yet spent, as of 31 March 2025</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 7 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">What date do you expect to spend all your backlog funding?</a>
+          </td>
+          <td class="govuk-table__cell">A date</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 8 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">What barriers have you faced in spending the backlog funding?</a>
+          </td>
+          <td class="govuk-table__cell">Select one or more from a list (checkboxes)</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 9 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Tell us of any other barriers you have faced</a>
+            <div class="govuk-!-margin-top-1">
+              <strong class="govuk-tag govuk-tag--pink" style="text-transform: none; letter-spacing: normal;">Conditional</strong>
+            </div>
+          </td>
+          <td class="govuk-table__cell">Multiple lines of text</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 10: Group (test) -->
+        <tr class="govuk-table__row" style="background-color: #f3f2f1;">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link govuk-!-font-weight-bold">Capital and revenue spend</a>
+          </td>
+          <td class="govuk-table__cell">Table</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a>
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span>
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 11: Nested (test 121) -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            &mdash; <a href="#" class="govuk-link">Capital spend</a>
+          </td>
+          <td class="govuk-table__cell">Column</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+ 
+            <a href="#" class="govuk-link"></a>
+          </td>
+        </tr>
+
+        <!-- Row 12: Nested (test 123) -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            &mdash; <a href="#" class="govuk-link">Revenue spend</a>
+          </td>
+          <td class="govuk-table__cell">Column</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link"></a>
+            
+          </td>
+        </tr>
+               <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            &mdash; <a href="#" class="govuk-link">January</a>
+          </td>
+          <td class="govuk-table__cell">Row</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link"></a>
+            
+          </td>
+        </tr>
+               <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            &mdash; <a href="#" class="govuk-link">February</a>
+          </td>
+          <td class="govuk-table__cell">Row</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link"></a>
+            
+          </td>
+        </tr>
+
+        <!-- Row 13: Group (fsadfds) -->
+        <tr class="govuk-table__row" style="background-color: #f3f2f1;">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link govuk-!-font-weight-bold">Forecast central starts</a>
+          </td>
+          <td class="govuk-table__cell">Question group</td>
+             <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 14: Nested (cheese) -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            &mdash; <a href="#" class="govuk-link">cheese</a>
+          </td>
+          <td class="govuk-table__cell">Whole number</td>
+          <td class="govuk-table__cell govuk-!-text-align-right" style="white-space: nowrap;">
+            <!-- No move actions for this one per screenshot -->
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <form method="post" action="table_name">
+      <div class="govuk-button-group govuk-!-margin-bottom-8">
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Add another question
+        </button>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Add a question group
+        </button>
+        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Add a table
+        </button>
+      </div>
+    </form>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-8">Manage section</h2>
+    <ul class="govuk-list">
+      <li class="govuk-!-margin-bottom-3">
+        <a href="#" class="govuk-link">Change section name</a>
+      </li>
+      <li>
+        <a href="#" class="govuk-link">Delete section</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+{% endblock %}

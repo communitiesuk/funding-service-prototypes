@@ -1,0 +1,98 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set serviceName %}
+  Funding Service Prototype
+{% endset %}
+
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Preload data" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+    	<p class="govuk-body govuk-!-margin-bottom-7">MHCLG users should select single sign on (SSO).</p>
+
+		{% if data['fundingService'] == "deliver" %}
+
+			<form method="post" action="/sign-in/?signedIn=no" >
+
+			{{ govukRadios({
+				name: "authentication",
+				fieldset: {
+					legend: {
+						text: "Which type of user authentication?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "SSO", text: "Single sign on (SSO)", checked: checked("authentication", "SSO")  },
+					{ value: "Magic link", text: "Magic link", checked: checked("authentication", "Magic link")  }
+				]
+			}) }}
+
+			{{ govukButton({
+                text: "Preload choices and continue"
+            }) }}
+
+			</form>
+
+		{% else %}
+
+			<form method="post" action="/apply/" >
+				<input type="hidden" name="fundingService" id="fundingService" value="apply" />
+
+				{{ govukRadios({
+					name: "fundName",
+					fieldset: {
+						legend: {
+							text: "Which fund do you want to use?",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					items: [
+						{ value: "Digital Planning Improvement", text: "Digital Planning Improvement", checked: checked("fundName", "Digital Planning Improvement")  },
+						{ value: "High Street Rental Auctions", text: "High Street Rental Auctions", checked: checked("fundName", "High Street Rental Auctions")  },
+						{ value: "Community Ownership Fund", text: "Community Ownership", checked: checked("fundName", "Community Ownership Fund")  }
+					]
+				}) }}
+
+				{{ govukCheckboxes({
+					name: "applicationComplete",
+					fieldset: {
+						legend: {
+							text: "Set application as complete",
+							isPageHeading: false,
+							classes: "govuk-fieldset__legend--m"
+						}
+					},
+					hint: {
+						text: "This will mark an applications tasks as all complete"
+					},
+					items: [
+						{ value: "Yes", text: "Yes", checked: checked("fundName", "Yes")  }
+					]
+				}) }}
+
+				{{ govukButton({
+					text: "Preload choices and continue"
+				}) }}
+			</form>
+
+		{% endif %}
+
+	</div>
+</div>
+
+{% endblock %}

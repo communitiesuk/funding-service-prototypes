@@ -1,0 +1,39 @@
+{% extends "layouts/nonav.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageHeading = "Send your report" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}      
+		
+            
+
+            </ul>
+
+			<p class="govuk-body">You can now send your report to be reviewed and signed off by:</p>		
+
+			<ul class="govuk-list govuk-list--bullet">
+                <li>Kate Harries - Section 151 Officer</li>
+                <li>Brian Coult - Chief Finance Officer</li></ul>
+
+			<p class="govuk-body">You'll receive an email when your report has been signed off.</p>	
+
+
+        	{{ govukButton({
+            	text: "Send report",
+				href: "/report/confirmation"
+          	}) }}            
+			
+
+
+  	</div>  
+</div>
+
+{% endblock %}

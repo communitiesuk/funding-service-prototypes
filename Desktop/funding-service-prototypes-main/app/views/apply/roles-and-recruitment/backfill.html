@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Do you need to backfill any roles in your organisation?" %}
+	{% set pageSection = "Roles and recruitment" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Will you need to backfill any roles in your organisation?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers" >
+		{% else %}
+			<form method="post" action="/apply/roles-and-recruitment/project-lead" >
+		{% endif %}
+
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "3_2_teamBackfill",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "yes~/apply/roles-and-recruitment/estimated-cost", text: "Yes", checked: checked("3_2_teamBackfill", "yes")  },
+					{ value: "no", text: "No", checked: checked("3_2_teamBackfill", "no") }
+				]
+			}) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+
+		{% if data['version'] == "suggested" %}
+			{{ macroCurrent.pageCurrent(url) }}
+		{% else %}
+			{{ macroSuggested.pageSuggested(url) }}
+		{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "allocation_form" %}
+{% set pageHeading = "Preview report" %}
+{% set pageSection = "Validation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      Use this preview to review the structure and questions included in the application form.
+    </p>
+
+    <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button" onclick="window.print();">
+      Print to PDF
+    </button>
+
+    <div class="govuk-summary-card govuk-!-margin-bottom-6">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">1. People</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Full name
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Role
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Contact number
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card govuk-!-margin-bottom-6">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">2. Confirm participation</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Would you like to receive the funding for Safer social housing fund?
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card govuk-!-margin-bottom-6">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">3. Funding activities</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              How much funding does your organisation need?
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              What activities do you plan to deliver using the funding?
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card govuk-!-margin-bottom-6">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">4. Declarations</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Can you confirm that you're willing to accept and sign a Memorandum of Understanding by 31 May 2026?
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus? 
+            </dt>
+            <dd class="govuk-summary-list__actions">
+              <strong class="govuk-tag govuk-tag--grey">
+                Conditional
+              </strong>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-three-quarters">
+              Do you commit to provide safer social housing by 30 April 2029?
+            </dt>
+            <dd class="govuk-summary-list__actions"></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <form action="" method="post" novalidate>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Start first section
+        </button> 
+      </form>
+      <form action="allocation_form" method="post" novalidate>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Back to form
+        </button> 
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

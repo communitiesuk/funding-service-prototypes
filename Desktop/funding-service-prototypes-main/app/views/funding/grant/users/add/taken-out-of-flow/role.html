@@ -1,0 +1,59 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantUsers' %}
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What role will they have?" %}
+{% set pageSection = "Add grant team member" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+
+	    <div class="govuk-grid-column-two-thirds">
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+            <form method="post" action="/funding/grant/users/add/check-your-answers" >
+
+                {{ govukRadios({
+                    name: "addUser-role",
+                    id: "addUser-role",
+                    fieldset: {
+                      legend: {
+                        text: "What role will they have?",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                      }
+                    },
+                    items: [
+                      { value: "reporter", text: "Reporter", checked: checked("addUser-role", "reporter") },
+                      { value: "sign-off", text: "Sign-off", checked: checked("addUser-role", "sign-off") },
+                      { value: "viewer", text: "Viewer", checked: checked("addUser-role", "viewer") }
+                    ]
+
+                  }) }}
+
+
+
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

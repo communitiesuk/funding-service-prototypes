@@ -1,0 +1,159 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+
+		  <!-- {{ govukSummaryList({
+			classes: "govuk-!-margin-bottom-9",
+			rows: [
+				{ key: { text: "Grant name" }, value: { text: data.grantName }, actions: { items: [ { href: "/grant/profile/name",  text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "Directorate group" }, value: { text: data.grantDirectorate }, actions: { items: [  { href: "/grant/profile/directorate", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "Main objectives" }, value: { text: data.grantDescription }, actions: { items: [  { href: "/grant/profile/description", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "GGIS reference number" }, value: { text: data.grantGGISreference }, actions: { items: [  { href: "/grant/profile/ggid-reference", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "Senior Officer Responsible (SOR)" }, value: { text: data.grantSORName }, actions: { items: [  { href: "/grant/profile/senior-officer", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "SOR’s email address" }, value: { text: data.grantSOREmail }, actions: { items: [  { href: "/grant/profile/senior-officer-email", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "Funding type" }, value: { text: data.grantFundingType }, actions: { items: [  { href: "/grant/profile/allocation-method", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "International (non-UK) grant" }, value: { text: data.grantInternational }, actions: { items: [  { href: "/grant/profile/non-uk-fund", text: "Change", visuallyHiddenText: "name" } ] } },
+				{ key: { text: "Welsh translation" }, value: { text: data.grantWelsh }, actions: { items: [  { href: "/grant/profile/welsh", text: "Change", visuallyHiddenText: "name" } ] } }
+			]
+		}) }} -->
+
+
+      <!-- <div class="govuk-inset-text">
+			<p class="govuk-!-font-size-24"><span >Report due by {{ data.fundDate}}</span></p>
+		</div> -->
+
+
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant name</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantName }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/name?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Directorate group</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantDirectorate }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/directorate?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main objectives</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantDescription }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/description?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">GGIS reference number</dt>
+				<dd class="govuk-summary-list__value">
+					{% if data['grantTrackerKnown'] == "Yes" %}
+						{{ data.grantGGISreference }}
+					{% else %}
+						Not known
+					{% endif %}
+				</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/ggid-reference?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Senior Officer Responsible (SOR)</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantSORName }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/senior-officer?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">SOR’s email address</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantSOREmail }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/senior-officer-email?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Funding type</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantFundingType }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/allocation-method?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+
+			{% if data['grantFundingType'] != "Allocative" %}
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Opening date for applications</dt>
+				<dd class="govuk-summary-list__value">
+					{{ data['grantDateOpen-month'] | toMonth }} {{ data['grantDateOpen-year'] }}
+
+
+
+				</dd>
+				<!-- <dd class="govuk-summary-list__value">{{ data.grantDateOpen-month | toMonth }} {{ data.grantDateOpen-year }}</dd> -->
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/date-open?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Closing date for applications</dt>
+				<dd class="govuk-summary-list__value">{{ data['grantDateClose-month'] | toMonth }} {{ data['grantDateClose-year'] }}</dd>
+					<!-- <dd class="govuk-summary-list__value">{{ data.grantDateClose-month | toMonth }}{{ data.grantDateClose-year }} -->
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/date-closed?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+			{% endif %}
+
+
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">International (non-UK) grant</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantInternational }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/non-uk-fund?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Welsh translation</dt>
+				<dd class="govuk-summary-list__value">{{ data.grantWelsh }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/grant/profile/welsh?change=yes">Change<span class="govuk-visually-hidden"> the name of the grant</span></a></dd>
+			</div>
+		</dl>
+
+
+
+
+
+
+
+      <!-- <h2 class="govuk-heading-m">
+        Now send your grant profile
+      </h2> -->
+
+      <p class="govuk-body">
+        Save and submit your grant details to let us know you have completed them. You can edit and update your grant details at any time by going to 'Grant profile' in your account.
+      </p>
+
+      <form action="/grant/profile/confirmation" method="post" novalidate>
+        <input type="hidden" name="reportStatus" id="reportStatus" value="Sent" />
+
+        {{ govukButton({
+          text: "Save and submit grant details"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

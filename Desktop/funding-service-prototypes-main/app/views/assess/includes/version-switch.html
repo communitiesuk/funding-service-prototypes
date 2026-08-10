@@ -1,0 +1,5 @@
+{% if data['version'] == "suggested" %}
+{{ macroCurrent.pageCurrent(url) }}
+{% else %}
+{{ macroSuggested.pageSuggested(url) }}
+{% endif %}

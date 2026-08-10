@@ -1,0 +1,76 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+
+{% block pageTitle %}Select with search demo – GOV.UK Prototype Kit{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Select with search</h1>
+
+    <p class="govuk-body">
+      A <code>&lt;select&gt;</code> progressively enhanced with Choices.js, lifted from
+      funding-service. Without JavaScript it falls back to a standard GOV.UK select.
+    </p>
+
+    <form action="#" method="post" novalidate>
+
+      {{ selectWithSearch({
+        id: "organisation",
+        name: "organisation",
+        label: { text: "Select an organisation", classes: "govuk-label--m" },
+        hint: { text: "Start typing to search the list" },
+        items: [
+          { value: "", text: "" },
+          { value: "birmingham", text: "Birmingham City Council" },
+          { value: "bristol", text: "Bristol City Council" },
+          { value: "cornwall", text: "Cornwall Council" },
+          { value: "edinburgh", text: "City of Edinburgh Council" },
+          { value: "glasgow", text: "Glasgow City Council" },
+          { value: "leeds", text: "Leeds City Council" },
+          { value: "manchester", text: "Manchester City Council" },
+          { value: "newcastle", text: "Newcastle City Council" },
+          { value: "sheffield", text: "Sheffield City Council" }
+        ]
+      }) }}
+
+      {{ selectWithSearch({
+        id: "funds",
+        name: "funds",
+        multiple: true,
+        label: { text: "Which funds have you applied to?", classes: "govuk-label--m" },
+        hint: { text: "Select all that apply" },
+        items: [
+          { value: "", text: "" },
+          { value: "cof", text: "Community Ownership Fund" },
+          { value: "hsra", text: "High Street Rental Auctions" },
+          { value: "dpif", text: "Digital Planning Improvement Fund" },
+          { value: "luf", text: "Levelling Up Fund" },
+          { value: "spf", text: "UK Shared Prosperity Fund" }
+        ]
+      }) }}
+
+      {{ selectWithSearch({
+        id: "region",
+        name: "region",
+        label: { text: "Select a region", classes: "govuk-label--m" },
+        hint: { text: "Options can include hint text" },
+        items: [
+          { value: "", text: "" },
+          { value: "north-east", text: "North East", attributes: { "data-hint": "Includes Newcastle, Sunderland and Durham" } },
+          { value: "north-west", text: "North West", attributes: { "data-hint": "Includes Manchester, Liverpool and Preston" } },
+          { value: "yorkshire", text: "Yorkshire and the Humber", attributes: { "data-hint": "Includes Leeds, Sheffield and Hull" } },
+          { value: "west-midlands", text: "West Midlands", attributes: { "data-hint": "Includes Birmingham, Coventry and Wolverhampton" } },
+          { value: "london", text: "London" }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

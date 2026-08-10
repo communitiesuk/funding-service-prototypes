@@ -1,0 +1,167 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Fund:" %}
+{% set pageSection = "" %}
+
+{% set pagePreviouslabel = "Your skills and experience" %}
+{% set pagePreviouslink = "/assess/fund/application/skills-and-experience/" %}
+{% set pageNextlabel = "Engaging the ODP community" %}
+{% set pageNextlink = "/assess/fund/application/engaging-digital-planning/" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+	{% if data['version'] == "suggested" %}
+
+
+    {% else %}
+
+<div class="govuk-width-container">
+	{{ govukBackLink({
+		text: "Back to assessment landing",
+		href: "javascript:history.go(-1)"
+	}) }}
+
+	<div class="govuk-!-display-inline-block float-right govuk-!-margin-top-3 nag">
+		<a href="/assess/help">Get help</a>  <a href="#">Log out</a>
+	</div>
+</div>
+
+<div class="x-govuk-masthead">
+	<div class="govuk-width-container">
+
+
+      	<div class="govuk-grid-row">
+        	<div class="govuk-grid-column-two-thirds-from-desktop">
+          		<h1 class="x-govuk-masthead__title">{{ pageHeading }} <span class="govuk-!-font-weight-regular">{{ data.fundName }} Fund</span></h1>
+          		<p class="x-govuk-masthead__description govuk-!-font-size-36"><span class="govuk-!-font-weight-bold">Project reference:</span> ZWNEHL</p>
+          		<p class="x-govuk-masthead__description"><span class="govuk-!-font-weight-bold">Project name:</span> Sneaker Politics
+				<br>
+
+                {% if data[''] == "" %}
+                <strong class="govuk-tag govuk-tag-white overSizeWhite">NOT STARTED</strong>
+                {% else %}
+                <span class="govuk-!-font-weight-bold">Total funding requested:</span> £0.00</p>
+                {% endif %}
+        	</div>
+      	</div>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper" id="main-content" role="main">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+
+                <h2 class="govuk-heading-l">Roles and recruitment</h2>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible section_break_blue">
+                <ul class="govuk-list">
+                    <li>Roles and recruitment</li>
+                </ul>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <ul class="govuk-list">
+                  <li><a href="/assess/fund/application/roles-and-recruitment/score">Score the subcriteria</a></li>
+                </ul>
+            </div>
+
+            <div class="govuk-grid-column-two-thirds">
+
+                <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__title-wrapper">
+                        <h2 class="govuk-summary-card__title">
+                          Applicant's response
+                        </h2>
+                      </div>
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                          <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Do you have a team in place ready to deliver the project?</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_team'] | capitalize }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% if data['3_2_team'] == "no" %}
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">How will you make sure you have a team in place ready to deliver the project?</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_teamHow'] }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% elif data['3_2_team'] == "yes" %}
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Tell us about the shape of the project team</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_teamShape'] }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% endif %}
+                        <!-- // -->
+                        <!-- Group -->
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Will you need to backfill any roles in your organisation?</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_teamBackfill'] | capitalize }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% if data['3_2_teamBackfill'] == "yes" %}
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">What is the estimated cost of backfilling roles?</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_estimatedCost'] | currency(trailingZeros=false) }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% endif %}
+                        <!-- // -->
+                        <!-- Group -->
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Do you know who the project lead will be?</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_projectLead'] | capitalize }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% if data['3_2_projectLead'] == "yes" %}
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Project lead first name</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_projectLeadFirstName'] }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Project lead last name</dt>
+                              <dd class="govuk-summary-list__value">{{ data['3_2_projectLeadLastName'] }}</dd>
+                              <dd class="govuk-summary-list__actions"></dd>
+                        </div>
+                        {% endif %}
+                        </dl>
+                    </div>
+                </div>
+
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Comments</h2>
+                <p><a href="#" class="govuk-link govuk-!-font-size-16">Add a comment</a></p>
+                <p>Summarise any thoughts you have on the assessment.</p>
+
+                <p>No comments have been left yet.</p>
+
+
+                {{ macroPagePagination.pagePagination( pagePreviouslabel, pagePreviouslink, pageNextlabel, pageNextlink) }}
+
+
+            </div>
+
+        </div>
+
+
+    <!-- Switcher between current and suggested changes -->
+    {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+
+
+{% endif %}
+{% endblock %}

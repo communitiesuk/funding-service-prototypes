@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Do you have a team in place ready to deliver the project?" %}
+	{% set pageSection = "Roles and recruitment" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Do you have a team in place ready to deliver the project?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/team-in-place" >
+		{% else %}
+			<form method="post" action="/apply/roles-and-recruitment/team-in-place" >
+		{% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+            {% if not data.section3_2 %}
+            <input type="hidden" id="section3_2" name="section3_2" value="Started" />
+            {% endif %}
+
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "3_2_team",
+				fieldset: {
+					legend: {
+						text: "Do you have a team in place ready to deliver the project?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+				{ value: "yes~/apply/roles-and-recruitment/tell-us-about-the-team", text: "Yes", checked: checked("3_2_team", "yes")  },
+				{ value: "no", text: "No", checked: checked("3_2_team", "no") }
+				]
+			}) }}
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+
+		{% if data['version'] == "suggested" %}
+		{{ macroCurrent.pageCurrent(url) }}
+	{% else %}
+		{{ macroSuggested.pageSuggested(url) }}
+	{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

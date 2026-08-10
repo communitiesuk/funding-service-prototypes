@@ -1,0 +1,72 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Does the grant have an EU fund name?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+      <p class="govuk-body">This is the indirect EU fund that the funding comes from.</p>
+
+      <form class="form" action="/grant/profile/tracker-id" method="post">
+
+
+        {% set emailHtml %}
+{{ govukInput({
+  id: "grantEUFundName",
+  name: "grantEUFundName",
+  type: "number",
+  autocomplete: "number",
+  spellcheck: false,
+  classes: "govuk-!-width-two-thirds",
+  label: {
+    text: "What is the EU fund name?"
+  }
+}) }}
+{% endset -%}
+
+
+
+        {{ govukRadios({
+          name: "grantEUFund",
+          id: "grantEUFund",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Yes", text: "Yes", conditional: { html: emailHtml }, checked: checked("grantEUFund", "Yes") },
+            { value: "No", text: "No", checked: checked("grantEUFund", "No") }
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

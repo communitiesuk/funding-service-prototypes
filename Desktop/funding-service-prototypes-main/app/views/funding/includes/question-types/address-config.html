@@ -1,0 +1,32 @@
+{# Address question type configuration #}
+
+<details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            Advanced formatting options
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+        {{ govukRadios({
+            name: "addressType",
+            fieldset: {
+                legend: {
+                    text: "Address type",
+                    classes: "govuk-fieldset__legend--s"
+                }
+            },
+            items: [
+                { value: "uk", text: "UK addresses only", hint: {
+                    text: "Standard UK address format with postcode lookup"
+                } },
+                { value: "international", text: "International addresses", hint: {
+                    text: "Allow addresses from any country"
+                } },
+                { value: "manual", text: "Manual entry only", hint: {
+                    text: "No postcode lookup, users enter full address manually"
+                } }
+            ],
+            value: questionData.addressType if questionData else data.addressType
+        }) }}
+    </div>
+</details>

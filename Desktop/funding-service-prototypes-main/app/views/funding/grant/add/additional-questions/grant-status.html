@@ -1,0 +1,56 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What’s the grant’s status?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+      <form class="form" action="/grant/profile/check-your-answers" method="post">
+
+        {{ govukRadios({
+          name: "grantStatus",
+          id: "grantStatus",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Approved", text: "Approved", hint: { text: "Completed the appropriate governance structures and has received final approval to go live." }, checked: checked("grantStatus", "Approved") },
+            { value: "Closed", text: "Closed", hint: { text: "Completed all payments and post award assurance" }, checked: checked("grantStatus", "Closed") },
+            { value: "Design and Development", text: "Design and Development", hint: { text: "Currently being developed and has not yet received approval to go live.", checked: checked("grantStatus", "Design and Development") } },
+
+            { value: "In payment", text: "In payment", hint: { text: "Has started making payments" }, checked: checked("grantStatus", "In payment") },
+
+            { value: "Withdrawn", text: "Withdrawn", hint: { text: "Has not been approved to begin payment and is no longer expected to proceed." }, checked: checked("grantStatus", "Withdrawn") }
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% if data['change'] == "yes" %}
+	{% set showBackLink = false %}
+{% endif %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Who is the main contact for this grant?" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p>This is the person that teams at MHCLG can contact if they have any questions about the grant.</p>
+
+        <form method="post" action="/funding/grant/details/?notification=&change=">
+
+             {{ govukInput({
+                label: {
+                    text: "Full name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                type: "text",
+                id: "grant-primaryContactName",
+                name: "grant-primaryContactName",
+                value: data['grant-primaryContactName']
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Email address",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                type: "Email",
+                hint: {
+                    text: "Use the shared email address for the grant team"
+                },
+                id: "grant-primaryContactEmail",
+                name: "grant-primaryContactEmail",
+                value: data['grant-primaryContactEmail']
+            }) }}
+
+            <div class="govuk-button-group">
+				{{ govukButton({
+					text: "Update main contact"
+				}) }}
+				<a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/details/?notification=&change=">Cancel</a>				 
+			</div>
+            
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

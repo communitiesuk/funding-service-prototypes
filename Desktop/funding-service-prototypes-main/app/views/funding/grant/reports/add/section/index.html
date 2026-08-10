@@ -1,0 +1,46 @@
+{% extends "layouts/grantManagement.html" %}
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+{% set backLinkHref = "/funding/grant/reports/" %}
+{% set showBackApplicationsLink = false %}
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the name of this section?" %}
+{% set pageSection = '' + data['reportName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        
+            
+        <p class="govuk-body">You’ll be able to group tasks under this section.</p>
+        
+        <form method="post" action="/funding/grant/reports/add/section/another">
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "sectionName",
+                name: "sectionName",
+                attributes: {
+                    "spellcheck": "false"
+                }
+            }) }}
+            
+            <div class="govuk-button-group">
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+                <a class="govuk-link" href="/funding/grant/reports/">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

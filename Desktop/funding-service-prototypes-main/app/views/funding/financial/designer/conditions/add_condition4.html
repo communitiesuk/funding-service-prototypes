@@ -1,0 +1,220 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Add a condition" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Add a condition</h1>
+
+    <h2 class="govuk-heading-m">Condition</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-8">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-third">
+          The question
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Why did you overspend?
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Depends on
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Capital allocation from CDEL and RDEL allocation data set
+        </dd>
+      </div>
+
+    </dl>
+
+
+    <form method="post" action="select_data2" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              What does the value need to be?
+            </h2>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email"
+                data-aria-controls="conditional-contact">
+              <label class="govuk-label govuk-radios__label" for="contact">
+                Greater than
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="contact-by-email">
+                  Minimum value
+                </label>
+                <input class="govuk-input govuk-!-width-one-quarter" id="contact-by-email" name="contactByEmail"
+                  type="email" spellcheck="false" autocomplete="email">
+                <form method="post" action="" novalidate>
+                  <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+                    data-module="govuk-button">
+                    Reference data
+                  </button>
+                </form>
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                  <div class="govuk-checkboxes__item">
+                    <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+                    <label class="govuk-label govuk-checkboxes__label" for="waste">
+                      An answer of exactly the minimum value is allowed
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="phone"
+                data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">
+                Less than
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="contact-by-phone">
+      Maximum value
+    </label>
+
+    <div style="display: flex; gap: 5px">
+      <input class="govuk-input govuk-!-width-one-quarter"
+             id="contact-by-phone"
+             name="contactByPhone"
+             type="number"
+             spellcheck="false">
+
+      <form method="post" action="select_data2" novalidate>
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+                data-module="govuk-button">
+          Reference data
+        </button>
+      </form>
+    </div>
+
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input"
+               id="waste-2"
+               name="wasteLessThan"
+               type="checkbox"
+               value="carcasses">
+
+        <label class="govuk-label govuk-checkboxes__label" for="waste-2">
+          An answer of exactly the maximum value is allowed
+        </label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="govuk-radios__item">
+  <input class="govuk-radios__input" id="contact-3" name="contact" type="radio" value="text"
+    data-aria-controls="conditional-contact-3">
+  <label class="govuk-label govuk-radios__label" for="contact-3">
+    Between
+  </label>
+</div>
+
+
+<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="contact-by-text">
+      Minimum value
+    </label>
+
+    <div style="display: flex; gap: 5px">
+      <input class="govuk-input govuk-!-width-one-quarter"
+             id="contact-by-text"
+             name="contactByText"
+             type="number"
+             spellcheck="false"
+
+      <form method="post" action="" novalidate>
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+                data-module="govuk-button">
+          Reference data
+        </button>
+      </form>
+    </div>
+
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input"
+               id="waste-3"
+               name="wasteBetween"
+               type="checkbox"
+               value="carcasses">
+
+        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+          An answer of exactly the minimum value is allowed
+        </label>
+      </div>
+    </div>
+
+  </div>
+    <div class="govuk-form-group">
+    <label class="govuk-label" for="contact-by-text">
+      Maximum value
+    </label>
+
+    <div style="display: flex; gap: 5px">
+      <input class="govuk-input govuk-!-width-one-quarter"
+             id="contact-by-text"
+             name="contactByText"
+             type="number"
+             spellcheck="false"
+
+      <form method="post" action="" novalidate>
+        <button class="govuk-button govuk-button--secondary govuk-!-margin-bottom-6"
+                data-module="govuk-button">
+          Reference data
+        </button>
+      </form>
+    </div>
+
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input"
+               id="waste-3"
+               name="wasteBetween"
+               type="checkbox"
+               value="carcasses">
+
+        <label class="govuk-label govuk-checkboxes__label" for="waste-3">
+          An answer of exactly the maximum value is allowed
+        </label>
+      </div>
+    </div>
+
+  </div>
+   </fieldset>
+</div>
+
+<button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+</div>
+</div>
+{% endblock %}

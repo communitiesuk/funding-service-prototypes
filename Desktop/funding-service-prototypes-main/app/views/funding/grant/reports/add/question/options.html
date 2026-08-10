@@ -1,0 +1,100 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+{% if data.isUnassignedTask %}
+    {% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/add/question/?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% endif %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Configure your question" %}
+{% set pageSection = '' + data['taskName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data.questionType %}
+            {# Map question type values to display names #}
+            {% set questionTypeDisplay = data.questionType %}
+            {% if data.questionType == "text" %}
+                {% set questionTypeDisplay = "Text" %}
+            {% elif data.questionType == "yesno" %}
+                {% set questionTypeDisplay = "Yes or No" %}
+            {% elif data.questionType == "date" %}
+                {% set questionTypeDisplay = "Date input" %}
+            {% elif data.questionType == "selection" %}
+                {% set questionTypeDisplay = "Selection from a list of options" %}
+            {% elif data.questionType == "number" %}
+                {% set questionTypeDisplay = "Number" %}
+            {% elif data.questionType == "email" %}
+                {% set questionTypeDisplay = "Email address" %}
+            {% elif data.questionType == "phone" %}
+                {% set questionTypeDisplay = "Phone number" %}
+            {% elif data.questionType == "address" %}
+                {% set questionTypeDisplay = "Address" %}
+            {% elif data.questionType == "file" %}
+                {% set questionTypeDisplay = "File upload" %}
+            {% elif data.questionType == "addanother" %}
+                {% set questionTypeDisplay = "Add another" %}
+            {% endif %}
+
+            <div class="govuk-inset-text">
+                <p class="govuk-body">Question type: <strong>{{ questionTypeDisplay }}</strong></p>
+            </div>
+        {% endif %}
+
+        <form method="post" action="/funding/grant/reports/add/question/another" >
+
+            {# Core fields - used by all question types #}
+            {% include "/funding/includes/question-types/core-fields.html" %}
+
+            {# Question type specific configuration #}
+            {% if data.questionType == "text" %}
+                {% include "/funding/includes/question-types/text-config.html" %}
+            {% elif data.questionType == "yesno" %}
+                {% include "/funding/includes/question-types/yesno-config.html" %}
+            {% elif data.questionType == "number" %}
+                {% include "/funding/includes/question-types/number-config.html" %}
+            {% elif data.questionType == "selection" %}
+                {% include "/funding/includes/question-types/selection-config.html" %}
+            {% elif data.questionType == "date" %}
+                {% include "/funding/includes/question-types/date-config.html" %}
+            {% elif data.questionType == "email" %}
+                {% include "/funding/includes/question-types/email-config.html" %}
+            {% elif data.questionType == "phone" %}
+                {% include "/funding/includes/question-types/phone-config.html" %}
+            {% elif data.questionType == "address" %}
+                {% include "/funding/includes/question-types/address-config.html" %}
+            {% elif data.questionType == "file" %}
+                {% include "/funding/includes/question-types/file-config.html" %}
+            {% elif data.questionType == "addanother" %}
+                {% include "/funding/includes/question-types/add-another-config.html" %}
+            {% endif %}
+
+            <div class="govuk-button-group govuk-!-margin-top-7">
+                {{ govukButton({
+                    text: "Add question"
+                }) }}
+                {% if data.isUnassignedTask %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&reportId={{ data.currentReportId }}&unassigned=true">Cancel</a>
+                {% else %}
+                    <a class="govuk-link" href="/funding/grant/reports/questions?taskId={{ data.currentTaskId }}&sectionId={{ data.currentSectionId }}&reportId={{ data.currentReportId }}">Cancel</a>
+                {% endif %}
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Which tier is the grant?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+      <p class="govuk-body">[Insert question content here - see the for examples]</p>
+
+      <form class="form" action="/grant/profile/check-your-answers" method="post">
+
+        {{ govukRadios({
+          name: "grantTier",
+          id: "grantTier",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Corporate", text: "Corporate", checked: checked("grantTier", "Corporate") },
+            { value: "Safer and Greener Buildings", text: "Safer and Greener Buildings", checked: checked("grantTier", "Safer and Greener Buildings") },
+            { value: "Local Government and Resilience", text: "Local Government and Resilience", checked: checked("grantTier", "Local Government and Resilience") },
+            { value: "Regeneration", text: "Regeneration", checked: checked("grantTier", "Regeneration") },
+            { value: "Levelling Up", text: "Levelling Up", checked: checked("grantTier", "Levelling Up") },
+            { value: "Union and Elections", text: "Union and Elections", checked: checked("grantTier", "Union and Elections") }
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+<div class="govuk-form-group govuk-!-display-inline-block">
+
+    {{ govukSelect({
+        id: "sort",
+        name: "sort",
+        label: {
+        text: "Filter by assessment status"
+        },
+        classes: "govuk-!-display-inline-block govuk-input--width-20",
+        items: [
+            { value: "all", text: "All", selected: true },
+            { value: "competitiveFund", text: "Active assessments" },
+            { value: "allocativeFund", text: "Live applications" },
+            { value: "allocativeFund", text: "Closed assessments" }
+        ]
+    }) }}
+</div>
+
+
+
+
+

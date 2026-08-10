@@ -1,0 +1,56 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What’s the grant’s purppose?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+    <p class="govuk-body">Provisional purpose the grant has been created for.</p>
+
+      <form class="form" action="/grant/profile/check-your-answers" method="post">
+
+        {{ govukRadios({
+          name: "grantPurpose",
+          id: "grantPurpose",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "BAU", text: "BAU", checked: checked("grantPurpose", "BAU") },
+            { value: "Covid-19", text: "Covid-19", checked: checked("grantPurpose", "Covid-19") },
+            { value: "EU Readiness", text: "EU Readiness", checked: checked("grantPurpose", "EU Readiness") },
+            { value: "EU Successor", text: "EU Successor", checked: checked("grantPurpose", "EU Successor") },
+            { value: "Manifesto commitement", text: "Manifesto commitement", checked: checked("grantPurpose", "Manifesto commitement") }
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

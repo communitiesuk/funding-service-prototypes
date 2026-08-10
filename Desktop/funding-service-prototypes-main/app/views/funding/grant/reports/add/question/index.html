@@ -1,0 +1,78 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+{% if data.isUnassignedTask %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&reportId=" + data.currentReportId + "&unassigned=true" %}
+{% else %}
+    {% set backLinkHref = "/funding/grant/reports/questions?taskId=" + data.currentTaskId + "&sectionId=" + data.currentSectionId + "&reportId=" + data.currentReportId %}
+{% endif %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What type of question do you need?" %}
+{% set pageSection = '' + data['taskName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/reports/add/question/options" >
+
+            {{ govukRadios({
+                name: "questionType",
+                fieldset: {
+                    legend: { text: pageHeading, isPageHeading: false, classes: "govuk-fieldset__legend govuk-visually-hidden" }
+                },
+                items: [
+                    { value: "text", text: "Text", hint: {
+                        text: "Free text responses of a single line or longer text with a word limit"
+                    } },
+                    { value: "yesno", text: "Yes or No", hint: {
+                        text: "Simple yes/no choice with inline radio buttons"
+                    } },
+                    { value: "selection", text: "Selection from a list of options", hint: {
+                        text: "Radio buttons for one option only or checkboxes for multiple choice"
+                    } },
+                    { value: "number", text: "Number", hint: {
+                        text: "Numeric input with validation, and optional prefix and suffix"
+                    } },
+                    { value: "date", text: "Date input", hint: {
+                        text: "Date input consisting of 3 fields - day, month and year"
+                    } },
+                    { value: "email", text: "Email address", hint: {
+                        text: "Email input with validation"
+                    } },
+                    { value: "phone", text: "Phone number", hint: {
+                        text: "Phone number input with validation"
+                    } },
+                    { value: "address", text: "Address", hint: {
+                        text: "Full address input fields"
+                    } },
+                    { value: "file", text: "File upload", hint: {
+                        text: "Allow users to upload documents"
+                    } },
+                    { value: "addanother", text: "Add another", hint: {
+                        text: "Allow users to add multiple entries by repeating the previous questions in this group"
+                    } }
+                ],
+                value: data.questionType
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

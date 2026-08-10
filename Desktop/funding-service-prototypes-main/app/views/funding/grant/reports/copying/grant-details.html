@@ -1,0 +1,112 @@
+{% extends "layouts/deliver-nav-updated.html" %}
+
+{% set navID = 'grantDetails' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Authority Housing Fund</span>
+<h1 class="govuk-heading-l">Grant details</h1>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant status</dt>
+				<dd class="govuk-summary-list__value"><strong class="govuk-tag govuk-tag--green">Live</strong></dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">GGIS reference number</dt>
+				<dd class="govuk-summary-list__value">G2-SCH-2026-04-17567</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant name</dt>
+				<dd class="govuk-summary-list__value">Local Authority Housing Fund</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant code</dt>
+				<dd class="govuk-summary-list__value">LAHFR4</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main purpose</dt>
+				<dd class="govuk-summary-list__value">To gather information about the resettlement element of the Local Housing Authority Fund (LAHF) round 4. Questions will cover delivery progress, properties obtained/occupancy, property ownership, rent and tenancy.</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main contact</dt>
+				<dd class="govuk-summary-list__value">{{ data['grant-primaryContactName'] or "First name Last name" }}
+					<br>{{ data['grant-primaryContactEmail'] or "firstname.lastname@communities.gov.uk" }}
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Privacy policy</dt>
+				<dd class="govuk-summary-list__value"><a href="">Review the grant's privacy policy (opens in a new tab)</a></dd>
+			</div>
+		</dl>
+
+
+
+		<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Recipients</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Grant recipient</th>
+      <th scope="col" class="govuk-table__header">Users</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Amber Valley Borough Council</th>
+      <td class="govuk-table__cell"><h3 class="govuk-heading-s" style="margin-bottom: 0;">Can edit and submit reports:</h3>
+		<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+		<h3 class="govuk-heading-s" style="margin-bottom: 0;">Certifiers:</h3>
+				<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+	  </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Ashford Borough Council</th>
+      <td class="govuk-table__cell"><h3 class="govuk-heading-s" style="margin-bottom: 0;">Can edit and submit reports:</h3>
+		<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+		<h3 class="govuk-heading-s" style="margin-bottom: 0;">Certifiers:</h3>
+				<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+	  </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Barnet London Borough</th>
+      <td class="govuk-table__cell"><h3 class="govuk-heading-s" style="margin-bottom: 0;">Can edit and submit reports:</h3>
+		<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+		<h3 class="govuk-heading-s" style="margin-bottom: 0;">Certifiers:</h3	>
+				<ul class="govuk-list govuk-!-margin-bottom-0">
+			<li>First name Last name (Email address)</li>
+			<li>First name Last name (Email address)</li>	
+		</ul>
+	  </td>
+    </tr>
+  </tbody>
+</table>
+	</div>
+</div>
+
+{% endblock %}

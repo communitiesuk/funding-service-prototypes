@@ -1,0 +1,78 @@
+<table class="govuk-table govuk-!-margin-bottom-9">
+    <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Applications</caption>
+    <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Reference</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Last edited</th>
+            <th scope="col" class="govuk-table__header"></th>
+        </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data.1_1_applicationName or "Sole Heaven"  }}</td>
+            <td class="govuk-table__cell">DPIF-R3-FMWFZS</td>
+            <td class="govuk-table__cell">
+
+                {% if data.applicationStatus %}
+                    Submitted
+                {% else %}
+                <strong class="govuk-tag">
+                    {% if (
+                        (data['section1_1'] == "yes") and
+                        ( data['section2_1'] == "yes") and
+                        ( data['section3_1'] == "yes") and
+                        ( data['section3_2'] == "yes") and
+                        ( data['section4_1'] == "yes") and
+                        ( data['section4_2'] == "yes") and
+                        ( data['section4_3'] == "yes") and
+                        ( data['section5_1'] == "yes") and
+                        ( data['section6_1'] == "yes")) %}
+                        Ready To Submit
+                    {% else %}
+                        In Progress
+                    {% endif %}
+                </strong>
+                {% endif %}
+              </td>
+            <td class="govuk-table__cell">29 January 2025</td>
+
+            <td class="govuk-table__cell">
+                {% if data.applicationStatus %}
+
+                {% else %}
+                <a class="govuk-link" href="/apply/task-list">Continue application</a>
+                {% endif %}
+            </td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data.1_1_applicationName or "Sneaker Politics"  }}</td>
+            <td class="govuk-table__cell">DPIF-R3-FMWFZS</td>
+            <td class="govuk-table__cell">
+
+                {% if data.applicationStatus %}
+                    Submitted
+                {% else %}
+
+                    Submitted
+
+                {% endif %}
+              </td>
+            <td class="govuk-table__cell">29 January 2025</td>
+
+            <td class="govuk-table__cell">
+                {% if data.applicationStatus %}
+
+                {% else %}
+                <a class="govuk-link" href="/apply/task-list">View application</a>
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+<!-- <p class="govuk-body govuk-link"><a href="/apply/applications/">View applications from all rounds/windows</a></p> -->
+

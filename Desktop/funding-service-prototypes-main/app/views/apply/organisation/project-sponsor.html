@@ -1,0 +1,177 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Who is your project sponsor?" %}
+    {% set pageSection = "Organisation information" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Project sponsor details" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+
+        <p class="govuk-body">This is the person sponsoring your application.</p>
+
+        {% if data['linkStatus'] == "change" %}
+            <form method="post" action="/apply/organisation/check-your-answers?linkStatus=" >
+        {% else %}
+            <form method="post" action="/apply/organisation/section-151" >
+        {% endif %}
+
+            {{ govukInput({
+                label: {
+                    text: "First name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorFirstName",
+                name: "2_1_sponsorFirstName",
+                value: data['2_1_sponsorFirstName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Last name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorLastName",
+                name: "2_1_sponsorLastName",
+                value: data['2_1_sponsorLastName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Email address",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorEmail",
+                name: "2_1_sponsorEmail",
+                value: data['2_1_sponsorEmail'],
+                type: "email",
+                autocomplete: "email",
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Telephone number",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorPhone",
+                name: "2_1_sponsorPhone",
+                value: data['2_1_sponsorPhone'],
+                type: "tel",
+                autocomplete: "tel"
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+
+        {% else %}
+
+        <p class="govuk-body">The project sponsor is the person sponsoring your application. They are usually a 'head of' or higher.</p>
+
+        {% if data['linkStatus'] == "change" %}
+            <form method="post" action="/apply/organisation/check-your-answers?linkStatus=" >
+        {% else %}
+            <form method="post" action="/apply/organisation/section-151" >
+        {% endif %}
+
+            {{ govukInput({
+                label: {
+                    text: "Project sponsor first name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorFirstName",
+                name: "2_1_sponsorFirstName",
+                value: data['2_1_sponsorFirstName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Project sponsor last name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorLastName",
+                name: "2_1_sponsorLastName",
+                value: data['2_1_sponsorLastName'],
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Project sponsor email address",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "2_1_sponsorEmail",
+                name: "2_1_sponsorEmail",
+                value: data['2_1_sponsorEmail'],
+                type: "email",
+                autocomplete: "email",
+                spellcheck: "false"
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Project sponsor telephone number",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-one-third",
+                id: "2_1_sponsorPhone",
+                name: "2_1_sponsorPhone",
+                value: data['2_1_sponsorPhone'],
+                type: "tel",
+                autocomplete: "tel"
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+        {% endif %}
+
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+      	{% else %}
+        	{{ macroSuggested.pageSuggested(url) }}
+      	{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

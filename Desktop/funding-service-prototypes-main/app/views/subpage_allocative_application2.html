@@ -1,0 +1,79 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Completing a form (May 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						In development
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Grant recipient
+				</dd>
+			</div>
+		</dl>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journeys</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+			<p class="govuk-body">This has gone through multiple iterations based on internal and external feedback - including 1 round of user testing</p>
+		</p>
+		
+		<p class="govuk-body">
+			<a href="allocative/access/email" class="govuk-link">Completing and submitting a new form (pre-award)</a>
+		</p>
+		<p class="govuk-body">
+			<a href="allocative/change/email" class="govuk-link">Making changes to a previous submission (pre-award and monitoring)</a>
+		</p>
+	
+
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1773419150408/ddcdf7d76d271c503ede036df369a8420af1d1ed"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}

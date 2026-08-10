@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Enter your email addresss" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Email address" %}
+{% endif %}
+
+{% set pageSection = "" %}
+
+{% set url = "/apply/email-address" %}
+
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+
+            <p class="govuk-body">We will send a link to this email address to start a new application, or continue any applications you already have in progress.</p>
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">Continuing an application</h2>
+            <p class="govuk-body">You must use the same email address you started that application with.</p>
+            <div class="govuk-inset-text">
+                <p class="govuk-body">The link will work once and stop working after 24 hours.</p>
+            </div>
+
+
+            <form method="post" action="/apply/email-sent?version=" >
+
+                {{ govukInput({
+                    label: {
+                        text: pageHeading,
+                        classes: "govuk-label govuk-visually-hidden",
+                        isPageHeading: false
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "magicLinkEmail",
+                    name: "magicLinkEmail",
+                    type: "email"
+                }) }}
+
+                {{ govukButton({
+                    text: "Send email"
+                }) }}
+
+            </form>
+
+        {% else %}
+
+            <p class="govuk-hint">We'll email you a link to start a new application, or continue any applications you have in progress.</p>
+            <p class="govuk-hint">The link will work once and stop working after 24 hours.</p>
+            <p class="govuk-hint">If you want to return to an application, you must use the email you started the application with.</p>
+
+            <form method="post" action="/apply/email-sent" >
+
+                {{ govukInput({
+                    label: {
+                        text: pageHeading,
+                        classes: "govuk-label govuk-visually-hidden",
+                        isPageHeading: false
+                    },
+                    classes: "govuk-!-width-two-thirds",
+                    id: "magicLinkEmail",
+                    name: "magicLinkEmail",
+                    type: "email"
+                }) }}
+
+                {{ govukButton({
+                    text: "Continue"
+                }) }}
+
+            </form>
+
+
+        {% endif %}
+
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+
+    </div>
+</div>
+
+{% endblock %}

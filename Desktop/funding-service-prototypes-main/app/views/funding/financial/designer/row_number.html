@@ -1,0 +1,36 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the name of the question group?" %}
+{% set pageSection = "Finance data testing grant" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="row_name" novalidate>
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <span class="govuk-caption-l">Finance data testing grant</span>
+          <label class="govuk-label govuk-label--l" for="question-group-name">
+           How many rows do you want to add?
+          </label>
+        </h1>
+ 
+        <input class="govuk-input govuk-input--width-10" id="question-group-name" name="questionGroupName" type="text" aria-describedby="question-group-name-hint">
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

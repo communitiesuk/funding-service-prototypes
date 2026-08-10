@@ -1,0 +1,66 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Project forecast spend April to June 2026" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Project forecast spend April to June 2026</h1>
+
+    <p class="govuk-body govuk-!-font-size-24 govuk-!-margin-bottom-6">
+      Your forecast spend for April to June 2026 was £15,000.
+    </p>
+
+    <form method="post" action="cya_errors1" novalidate>
+      
+      <!-- Field 1: Green spaces -->
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-green-spaces">
+          Forecast spend on green spaces
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="spend-green-spaces" name="spend-green-spaces" type="text" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- Field 2: Community spaces -->
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-community-spaces">
+          Forecast spend on community spaces
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="spend-community-spaces" name="spend-community-spaces" type="text" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- Field 3: Sports centres -->
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-sports-centres">
+          Forecast spend on sports centres
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10" id="spend-sports-centres" name="spend-sports-centres" type="text" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "layouts/deliver-nav.html" %}
+{% set navID = 'reports' %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "reports-missing-data" },
+{ text: "Mid-year monitoring", href: "sections" },
+{ text: "Add reference data" }
+]
+}) }}
+
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+<div class="govuk-inset-text">
+  You have previously entered data for this preview.
+  <a class="govuk-link" href="add-reference-data?clear=true">Reset this data</a>
+</div>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Add reference data to preview Mid-year monitoring report</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-4">
+      To preview this form, you'll need to provide test data for the form to reference. </p>
+<form method="post" action="preview-q1">
+
+
+    <h2 class="govuk-heading-m">Capital allocation</h2>
+    <div class="govuk-form-group">
+      <label class="govuk-label for=" cost">
+        What is the capital allocation?
+      </label>
+      <p class="govuk-hint">
+        (Question 1) must be greater than capital allocation in (data set) to show the question group (question group
+        name 1) </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input 
+        class="govuk-input govuk-input--width-10" 
+        id="capital-allocation" 
+        name="capitalAllocation" 
+        type="text" spellcheck="false"
+          value="{{ data['capitalAllocation'] }}"
+        >
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m">Revenue allocation</h2>
+ <div class="govuk-form-group">
+      <label class="govuk-label for=" cost">
+        What is the revenue allocation?
+      </label>
+      <p class="govuk-hint">
+        (Question 2) must be less than capital allocation in (data set) to show the question group (question group name)  </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input 
+        class="govuk-input govuk-input--width-10" 
+        id="revenue-allocation" 
+        name="revenueAllocation" 
+        type="text" 
+        spellcheck="false"
+                  value="{{ data['revenueAllocation'] }}"
+
+        >
+      </div>
+    </div>
+
+
+    <h2 class="govuk-heading-m">Funded staff (FTE)</h2>
+ <div class="govuk-form-group">
+  <label class="govuk-label" for="one-quarter">
+    What is the funded (FTE)?
+  </label>
+  <input 
+  class="govuk-input govuk-!-width-one-quarter" 
+  id="fte" 
+  name="fte" 
+  type="text" 
+  value="{{ data['fte'] }}"
+  >
+</div>
+
+    <button class="govuk-button govuk-button--primary" data-module="govuk-button">
+      Continue to preview
+    </button>
+
+   
+</form>
+
+
+  </div>
+
+
+
+</div>
+{% endblock %}

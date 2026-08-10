@@ -1,0 +1,106 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+    {% set pageHeading = "Dashboard" %}
+    {% set pageSection = "" %}
+{% else %}
+    {% set pageSize = "xl" %}
+    {% set pageHeading = "Funding service dashboard" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <!-- Filter and search inputs -->
+		{% include "/assess/includes/search_and_filter_small.html" %}
+
+	</div>
+
+    <div class="govuk-grid-column-full">
+        <h2 class="govuk-heading-l">All funds (3), sorted A-Z</h2>
+        <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+            <div class="govuk-accordion__section">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button" id="accordion-default-heading-1">Digital Planning Improvement Fund (2)</span></h2>
+                </div>
+                <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-third">
+                            {% include "/assess/includes/fundSummaryCard.html" %}
+                        </div>
+                        <div class="govuk-grid-column-one-third">
+                            {% include "/assess/includes/fundSummaryCardComplete.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="govuk-accordion__section">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button" id="accordion-default-heading-2">Green Belt Review Funding</span></h2>
+                </div>
+                <div id="accordion-default-content-2" class="govuk-accordion__section-content">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-third">
+                            {% include "/assess/includes/fundSummaryCard.html" %}
+                        </div>
+                        <div class="govuk-grid-column-one-third">
+                            {% include "/assess/includes/fundSummaryCard.html" %}
+                        </div>
+                        <div class="govuk-grid-column-one-third">
+                            {% include "/assess/includes/fundSummaryCard.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+                <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button" id="accordion-default-heading-2">Local Plans Delivery Fund</span></h2>
+            </div>
+            <div id="accordion-default-content-2" class="govuk-accordion__section-content">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-third">
+                        {% include "/assess/includes/fundSummaryCard.html" %}
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                        {% include "/assess/includes/fundSummaryCard.html" %}
+                    </div>
+                    <div class="govuk-grid-column-one-third">
+                        {% include "/assess/includes/fundSummaryCard.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <p class="govuk-body">Information last updated: [12 March 2025 at 11:59]
+        <br>Refresh page for most up-to-date information.</p>
+
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+
+    </div>
+</div>
+
+{% endblock %}

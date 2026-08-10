@@ -1,0 +1,46 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Give a description for this task?" %}
+<!-- {% set pageSection = '' + data['addReport-Name'] + '' %} -->
+ {% set pageSection = 'Data Information' %}
+ {% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/reports/tasks?taskSetup=yes" >
+
+            {{ govukTextarea({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "taskDescription",
+                name: "taskDescription",
+                value: data['taskDescription']
+            }) }}
+
+            {{ govukButton({
+                text: "Continue and add task"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

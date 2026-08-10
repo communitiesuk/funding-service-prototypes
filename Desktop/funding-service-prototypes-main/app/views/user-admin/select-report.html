@@ -1,0 +1,50 @@
+{% extends "layouts/deliver-nav-updated.html" %}
+
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+
+{% set navID = 'reports' %}
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+    <form method="post" action="name-report">
+
+    <span class="govuk-caption-l">Local Authority Housing Fund</span>
+    {{ selectWithSearch({
+      id: "report",
+      name: "report",
+      label: {
+        text: "Which report do you want to copy?",
+        classes: "govuk-label--l",
+        isPageHeading: true
+      },
+      hint: { text: "Search by report or grant name" },
+      items: [
+        { value: "", text: "" },
+        { value: "local-authority-housing-fun-round-4", text: "Round 4", attributes: { "data-hint": "Local Authority Housing Fund" } },
+        { value: "common-ground-resilience-fund-jan-jun-2026", text: "1 January to 30 June 2026", attributes: { "data-hint": "Common Ground Resilience Fund" } },
+        { value: "common-ground-resilience-fund-jul-dec-2025", text: "1 July to 31 December 2025", attributes: { "data-hint": "Common Ground Resilience Fund" } },
+        { value: "common-ground-resilience-fund-baseline-2025", text: "Baseline report 2025", attributes: { "data-hint": "Common Ground Resilience Fund" } }
+      ]
+    }) }}
+ <div class="govuk-button-group">
+  <button type="submit" class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="reports">Cancel</a>
+</div>
+    </form>
+    </div>
+</div>
+{% endblock %}

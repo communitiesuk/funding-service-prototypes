@@ -1,0 +1,32 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantApplications' %}
+{% set showBackLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Applications" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <div class="govuk-grid-row">
+	        <div class="govuk-grid-column-two-thirds">
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

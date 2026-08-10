@@ -1,0 +1,49 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Issue affecting the report</h1>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    The file structure will have an impact on the report
+  </strong>
+</div>
+
+<p class="govuk-body">The following sections will be affected</p>
+<div class="govuk-inset-text">
+ Financial data
+</div>
+<div class="govuk-inset-text">
+  Forecasts
+</div>
+
+<p class="govuk-body">You can go back and change the upload, or continue and adjust the sections</p>
+
+<br>
+  <form method="post" action="upload">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Upload file
+</button>
+</form>
+
+  	</div>
+
+</div>
+
+
+{% endblock %}
+

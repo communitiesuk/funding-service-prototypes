@@ -1,0 +1,301 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "Organisation information" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+
+		{% if data['version'] == "suggested" %}
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds">
+
+				{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Organisation</h2>
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_organisationName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/name?linkStatus=change">Change<span class="govuk-visually-hidden"> name of the organisation</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Project sponsor</h2>
+		<dl class="govuk-summary-list govuk-!-margin-bottom-7">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorFirstName'] }} {{ data['2_1_sponsorLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> the project sponsor’s name</span></a>
+			  	</dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorEmail'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> the project sponsor’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorPhone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> the project sponsor’s telephone number</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Section 151 officer</h2>
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151FirstName'] }} {{ data['2_1_section151LastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> the section 151 officer’s name</span></a>
+			  	</dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151Email'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> the section 151 officer’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151Phone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> the section 151 officer’s telephone number</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Lead contact</h2>
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactFirstName'] }} {{ data['2_1_contactLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> the lead contact’s name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Job title</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactJobTitle'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> the lead contact’s job title</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactEmail'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> the lead contact’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactPhone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> the lead contact’s telephone number</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				name: "section2_1",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section", checked: checked("section2_1", "yes")  },
+					{ value: "no", text: "No, I’ll come back to it later", checked: checked("section2_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+
+		{% else %}
+
+		<div class="govuk-grid-row">
+			<div class="govuk-grid-column-full">
+
+				{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+        <h2 class="govuk-heading-m">Organisation information</h2>
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Organisation name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_organisationName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/name?linkStatus=change">Change<span class="govuk-visually-hidden"> organisation name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project sponsor first name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorFirstName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> project sponsor’s first name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project sponsor last name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> project sponsor’s last name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project sponsor email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorEmail'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> project sponsor’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project sponsor telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_sponsorPhone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/project-sponsor?linkStatus=change">Change<span class="govuk-visually-hidden"> project sponsor’s telephone number</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Section 151 officer first name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151FirstName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> section 151 officer’s first name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Section 151 officer last name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151LastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> section 151 officer’s last name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Section 151 officer email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151Email'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> section 151 officer’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Section 151 officer telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_section151Phone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/section-151?linkStatus=change">Change<span class="govuk-visually-hidden"> section 151 officer’s telephone number</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Lead contact first name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactFirstName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> lead contact’s first name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Lead contact last name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> lead contact’s last name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Lead contact’s job title</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactJobTitle'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> lead contact’s job title</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Lead contact email address</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactEmail'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> lead contact’s email address</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Lead contact telephone number</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['2_1_contactPhone'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/organisation/lead-contact?linkStatus=change">Change<span class="govuk-visually-hidden"> lead contact’s telephone number</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "section2_1",
+				fieldset: {
+					legend: {
+						text: "Do you want to mark this section as complete?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--l"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes", checked: checked("section2_1", "yes")  },
+					{ value: "no", text: "No", checked: checked("section2_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+			{{ macroCurrent.pageCurrent(url) }}
+		{% else %}
+			{{ macroSuggested.pageSuggested(url) }}
+		{% endif %}
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layouts/deliver-nav.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageHeading = "Assessment type" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="report" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="assessment-type-hint">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              {{ pageHeading }}
+            </h1>
+          </legend>
+          
+          <div id="assessment-type-hint" class="govuk-hint">
+            Select the type of assessment for this report.
+          </div>
+          
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="assessment-type-1" name="assessmentType" type="radio" value="Change request" checked>
+              <label class="govuk-label govuk-radios__label" for="assessment-type-1">
+                Change requests
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="assessment-type-2" name="assessmentType" type="radio" value="Approve or reject">
+              <label class="govuk-label govuk-radios__label" for="assessment-type-2">
+                Approve or reject
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="assessment-type-3" name="assessmentType" type="radio" value="Both change request and approve or reject">
+              <label class="govuk-label govuk-radios__label" for="assessment-type-3">
+                Both
+              </label>
+            </div>
+
+          </div>
+
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

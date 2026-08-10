@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% set serviceName %} Report a smokey vehicle {% endset%}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+<!-- Title dependent on the FUND NAME -->
+{% if data['fundName'] == "High Street Rental Auctions" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to cover the cost of delivering a High Street Rental Auction" %}
+    {% set pageSection = "High Street Rental Auctions fund Refurbishment project" %}
+{% elif data['fundName'] == "Community Ownership Fund" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to save an asset in your community" %}
+    {% set pageSection = 'Community Ownership ' + data.fundRound  + ' ' %}
+{% elif data['fundName'] == "Digital Planning Improvement" %}
+
+    <!-- Suggested -->
+    {% if data['version'] == "suggested" %}
+        {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding" %}
+        {% set pageSection = '' %}
+    {% else %}
+        {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to begin your digital planning improvement journey" %}
+        {% set pageSection = 'Digital Planning Improvement Fund ' + data.fundRound  + ' ' %}
+    {% endif %}
+
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = 'Start or continue an application for ' + data.fundName  + ' ' %}
+    {% set pageSection = "Fund name and round information" %}
+{% endif %}
+<!-- // -->
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <!-- Dynamic content dependent on which FUND you are applying for -->
+        {% if data['fundName'] == "High Street Rental Auctions" %}
+            <!-- Include file for content -->
+            {% include "/apply/includes/high-street-rental-auctions.html" %}
+        {% elif data['fundName'] == "Community Ownership Fund" %}
+            <!-- Include file for content -->
+            {% include "/apply/includes/community-ownership.html" %}
+        {% elif data['fundName'] == "Digital Planning Improvement" %}
+            <!-- Include file for content -->
+            {% include "/apply/includes/digital-planning.html" %}
+        {% endif %}
+        <!-- // -->
+
+
+
+
+
+
+        {% if data['version'] == "suggested" %}
+            <p class="govuk-!-margin-top-9"><a class="govuk-body-s govuk-footer__link" href="/apply/?version=" >Current view</a></p>
+        {% else %}
+            <p class="govuk-!-margin-top-9"><a class="govuk-body-s govuk-footer__link" href="/apply/?version=suggested" >Suggested changes</a></p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

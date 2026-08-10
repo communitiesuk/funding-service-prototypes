@@ -1,0 +1,81 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "How should the question group be displayed?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form id="displayRoutingForm" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">Finance data testing grant</span>
+            <h1 class="govuk-fieldset__heading">
+              How should the question group be displayed?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="display-type-1" name="displayType" type="radio" value="one-per-page">
+              <label class="govuk-label govuk-radios__label" for="display-type-1">
+                One question per page
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <!-- Set to checked to match the provided screenshot -->
+              <input class="govuk-radios__input" id="display-type-2" name="displayType" type="radio" value="all-on-page" aria-describedby="display-type-2-hint">
+              <label class="govuk-label govuk-radios__label" for="display-type-2">
+                All questions on the same page
+              </label>
+              <div id="display-type-2-hint" class="govuk-hint govuk-radios__hint">
+                The question group name will be the page title
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Update question group display
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('displayRoutingForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent standard form submission
+      
+      // Find the selected radio button
+      const selectedOption = document.querySelector('input[name="displayType"]:checked');
+      
+      if (selectedOption) {
+        // Route based on the value of the selected radio button
+        if (selectedOption.value === 'one-per-page') {
+          window.location.href = 'question_group';
+        } else if (selectedOption.value === 'all-on-page') {
+          window.location.href = 'question_group2';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

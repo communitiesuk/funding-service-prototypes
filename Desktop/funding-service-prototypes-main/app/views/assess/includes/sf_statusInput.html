@@ -1,0 +1,22 @@
+<div class="govuk-form-group govuk-!-display-inline-block">
+{{ govukSelect({
+    id: "sort",
+    name: "sort",
+    label: {
+    text: "Filter by status"
+    },
+    classes: "govuk-!-display-inline-block govuk-input--width-20",
+    items: [
+        { value: "all", text: "All", selected: true },
+        { value: "Not started", text: "Not started" },
+        { value: "In progress", text: "In progress" },
+        { value: "Assessment complete", text: "Assessment complete" },
+        { value: "QA complete", text: "QA complete" },
+        { value: "Flagged", text: "Flagged" },
+        { value: "Stopped", text: "Stopped" },
+        { value: "Mulltiple flags to resolve", text: "Mulltiple flags to resolve" },
+        { value: "Change requested", text: "Change requested" },
+        { value: "Change received", text: "Change received" }
+    ]
+}) }}
+</div>

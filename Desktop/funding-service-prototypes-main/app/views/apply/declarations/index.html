@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Remove this page" %}
+    {% set pageSection = "Declarations" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Declarations" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+
+        <form method="post" action="/apply/declarations/confirmations" >
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% else %}
+        <p class="govuk-body govuk-!-font-weight-bold">In this section, we'll ask about:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>confirm you have signed the Local Digital Declaration and agree to follow the 5 principles</li>
+            <li>confirm your section 151 officer consents to the funds being carried over and spent in the next financial year (March 2025 to April 2026) and beyond, if deemed necessary in project budget planning</li>
+            <li>confirm you agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely</li>
+            <li>confirm the information you have provided is accurate</li>
+        </ul>
+
+
+        <form method="post" action="/apply/declarations/confirmations" >
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% endif %}
+
+		{% if data['version'] == "suggested" %}
+		{{ macroCurrent.pageCurrent(url) }}
+	  {% else %}
+		{{ macroSuggested.pageSuggested(url) }}
+	  {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

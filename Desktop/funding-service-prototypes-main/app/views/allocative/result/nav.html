@@ -1,0 +1,194 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Submission details" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<!-- Custom CSS for the sticky navigation -->
+<style>
+  @media (min-width: 40.0625em) {
+    .app-sticky-nav {
+      position: sticky;
+      /* Adjust top value based on your header height to prevent overlapping */
+      top: 20px; 
+    }
+  }
+
+  /* Styling for the active state in the side nav */
+  .app-subnav__link--active {
+    font-weight: bold;
+    border-left: 4px solid #1d70b8; /* Standard GOV.UK blue */
+    padding-left: 10px;
+    margin-left: -14px;
+    text-decoration: none;
+  }
+
+  /* Styling for 2nd level nested list */
+  .app-subnav__nested-list {
+    padding-left: 14px;
+    border-left: 1px solid #b1b4b6;
+    margin-left: 0;
+    margin-top: 10px;
+    list-style-type: none;
+  }
+
+  .app-subnav__nested-link {
+    font-size: 16px;
+    color: #505a5f;
+  }
+  
+  .app-subnav__nested-link:hover {
+    color: #1d70b8;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  
+  <!-- Left Column: The Sticky Navigation -->
+  <div class="govuk-grid-column-one-quarter">
+    <nav class="app-sticky-nav" aria-label="Sections">
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Contents</h2>
+      <ul class="govuk-list govuk-!-font-size-16">
+        
+        <li class="govuk-!-margin-bottom-2">
+          <a class="govuk-link govuk-link--no-underline app-subnav__link--active" href="#section-1">
+            Section 1: People
+          </a>
+        </li>
+        
+        <li class="govuk-!-margin-bottom-4 govuk-!-margin-top-4">
+          <a class="govuk-link govuk-link--no-underline" href="#section-2">
+            Section 2: Delivery plan
+          </a>
+          <!-- Level 2 Sub-navigation -->
+          <ul class="app-subnav__nested-list">
+            <li class="govuk-!-margin-bottom-2">
+              <a class="govuk-link govuk-link--no-underline app-subnav__nested-link" href="#section-2-milestones">
+                Milestones
+              </a>
+            </li>
+            <li class="govuk-!-margin-bottom-2">
+              <a class="govuk-link govuk-link--no-underline app-subnav__nested-link" href="#section-2-risks">
+                Risks and issues
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="govuk-!-margin-bottom-4">
+          <a class="govuk-link govuk-link--no-underline" href="#section-3">
+            Section 3: Funding activities
+          </a>
+          <!-- Level 2 Sub-navigation -->
+          <ul class="app-subnav__nested-list">
+            <li class="govuk-!-margin-bottom-2">
+              <a class="govuk-link govuk-link--no-underline app-subnav__nested-link" href="#section-3-capital">
+                Capital requests
+              </a>
+            </li>
+            <li class="govuk-!-margin-bottom-2">
+              <a class="govuk-link govuk-link--no-underline app-subnav__nested-link" href="#section-3-revenue">
+                Revenue requests
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="govuk-!-margin-bottom-2">
+          <a class="govuk-link govuk-link--no-underline" href="#section-4">
+            Section 4: Declarations
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Right Column: The Main Scrolling Content -->
+  <div class="govuk-grid-column-three-quarters">
+    
+    <!-- Section 1 -->
+    <section id="section-1" class="govuk-!-margin-bottom-9">
+      <h2 class="govuk-heading-l">Section 1: People</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Full name</dt>
+          <dd class="govuk-summary-list__value">Sarah Philips</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Role</dt>
+          <dd class="govuk-summary-list__value">Project Manager</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Section 2 -->
+    <section id="section-2" class="govuk-!-margin-bottom-9">
+      <h2 class="govuk-heading-l">Section 2: Delivery plan</h2>
+      
+      <!-- Sub-section 2.1 -->
+      <h3 id="section-2-milestones" class="govuk-heading-m govuk-!-margin-top-6">Milestones</h3>
+      <p class="govuk-body">
+        (Imagine a very long list of milestones answers here...)
+      </p>
+      <div style="height: 200px; background-color: #f3f2f1; border: 1px dashed #b1b4b6; margin-bottom: 20px;"></div>
+      
+      <!-- Sub-section 2.2 -->
+      <h3 id="section-2-risks" class="govuk-heading-m govuk-!-margin-top-8">Risks and issues</h3>
+      <p class="govuk-body">
+        (Imagine a very long list of risks answers here...)
+      </p>
+      <div style="height: 200px; background-color: #f3f2f1; border: 1px dashed #b1b4b6;"></div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="section-3" class="govuk-!-margin-bottom-9">
+      <h2 class="govuk-heading-l">Section 3: Funding activities</h2>
+      
+      <!-- Sub-section 3.1 -->
+      <h3 id="section-3-capital" class="govuk-heading-m govuk-!-margin-top-6">Capital requests</h3>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Capital requested</dt>
+          <dd class="govuk-summary-list__value">£1,000,000</dd>
+        </div>
+      </dl>
+      <div style="height: 150px; background-color: #f3f2f1; border: 1px dashed #b1b4b6; margin-top: 20px;"></div>
+
+      <!-- Sub-section 3.2 -->
+      <h3 id="section-3-revenue" class="govuk-heading-m govuk-!-margin-top-8">Revenue requests</h3>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Revenue requested</dt>
+          <dd class="govuk-summary-list__value">£250,000</dd>
+        </div>
+      </dl>
+      <div style="height: 150px; background-color: #f3f2f1; border: 1px dashed #b1b4b6; margin-top: 20px;"></div>
+    </section>
+
+    <!-- Section 4 -->
+    <section id="section-4" class="govuk-!-margin-bottom-9">
+      <h2 class="govuk-heading-l">Section 4: Declarations</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Confirmed MoU?</dt>
+          <dd class="govuk-summary-list__value">Yes</dd>
+        </div>
+      </dl>
+      <div style="height: 200px; background-color: #f3f2f1; border: 1px dashed #b1b4b6; margin-top: 20px;"></div>
+    </section>
+
+  </div>
+</div>
+{% endblock %}

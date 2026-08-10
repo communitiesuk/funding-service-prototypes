@@ -1,0 +1,31 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "You need to have a GGIS reference number before you can add this grant" %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">You’ll need to complete the <a href="https://forms.office.com.mcas.ms/pages/responsepage.aspx?id=EGg0v32c3kOociSi7zmVqBUKhC0CqZtGmIj1YcYa53xUNTFRWkRXQ1ZJUEJMOTg1UllGWEpCNDQ4NSQlQCN0PWcu&route=shorturl" target="_blank">Pipeline Grants Scheme Form (opens in new tab)</a> and the Finance Process and Data team will issue your grant with a reference number.</p>
+
+        
+        <p class="govuk-body">Contact the team at ggis@communities.gov.uk if you’ve lost your GGIS reference number.</p>
+
+
+        <p class="govuk-body"><a href="/funding/grants" class="govuk-link govuk-link--no-visited-state">Back to grants</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

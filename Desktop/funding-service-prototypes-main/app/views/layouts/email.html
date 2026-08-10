@@ -1,0 +1,25 @@
+{#
+    For guidance on how to use layouts see:
+    https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+    #}
+
+    {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+    {% import "macros/page-title.njk" as macroPageTitle %}
+    {% import "macros/page-header.njk" as macroPageHeader %}
+    {% import "macros/suggested-page.njk" as macroSuggested %}
+    {% import "macros/current-page.njk" as macroCurrent %}
+
+
+    {% block beforeContent %}
+
+    {% if showPhaseBanner != false %}
+    {{ govukPhaseBanner({
+        tag: { text: "Prototype" },
+        html: "This is a prototype. It is not a real service."
+    }) }}
+    {% endif %}
+
+
+
+    {% endblock %}

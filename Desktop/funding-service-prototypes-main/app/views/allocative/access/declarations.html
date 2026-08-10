@@ -1,0 +1,55 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Declarations" %}
+{% set pageSection = "Declarations" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
+
+<span class="govuk-caption-xl">Declarations</span>
+    <h1 class="govuk-heading-l">
+      Can you confirm that you’re willing to accept and sign a Memorandum of Understanding by 31 May 2026?
+    </h1>
+
+    <form action="declarations2" method="post" novalidate>
+      
+  
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+    
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="mou-yes" name="mou" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="mou-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="mou-no" name="mou" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="mou-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+   
+
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "Future work" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Software improvements you are interested in working on in the future?</dt>
+			  	<dd class="govuk-summary-list__value">
+					<ul class="govuk-list govuk-list--bullet">
+					{% for item in data.futureWorkSoftware %}
+					<li>{{ item }}</li>
+                	{% endfor %}
+					</ul>
+				</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/future-work/software-improvements?linkStatus=change">Change<span class="govuk-visually-hidden"> HWhich software improvements are you interested in working on in the future</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			{{ govukRadios({
+				name: "section5_1",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section", checked: checked("section5_1", "yes")  },
+					{ value: "no", text: "No, I’ll come back to it later", checked: checked("section5_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+			text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% else %}
+
+        <h2 class="govuk-heading-m">Future work</h2>
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Which software improvements are you interested in working on in the future?</dt>
+			  	<dd class="govuk-summary-list__value">
+					<ul class="govuk-list govuk-list--bullet">
+					{% for item in data.futureWorkSoftware %}
+					<li>{{ item }}</li>
+                	{% endfor %}
+					</ul>
+				</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/future-work/software-improvements?linkStatus=change">Change<span class="govuk-visually-hidden"> HWhich software improvements are you interested in working on in the future</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "section5_1",
+				fieldset: {
+					legend: {
+						text: "Do you want to mark this section as complete?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--l"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes", checked: checked("section5_1", "yes")  },
+					{ value: "no", text: "No", checked: checked("section5_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+			text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

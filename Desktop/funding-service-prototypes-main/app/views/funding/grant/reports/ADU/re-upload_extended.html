@@ -1,0 +1,81 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Report name</span>
+<h1 class="govuk-heading-l">Re-upload new data set</h1>
+
+<p class="govuk-body">If you need to replace an existing data set being referenced in the form.</p>
+
+
+
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Data set name
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value="Uploaded file name">
+</div>
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+  <label class="govuk-label" for="event-name">
+    Type of data
+  </label>
+
+    <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact" checked="checked">
+        <label class="govuk-label govuk-radios__label" for="contact">
+         Grant recipient level
+        </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of grant recipient level data
+        </div>
+      </div>
+
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1">
+        <label class="govuk-label govuk-radios__label" for="contact">
+          Other
+        </label>
+         <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+          Explanation of other types
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="file-upload-1">
+    Upload a file
+  </label>
+  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+</div>
+
+  <br>
+  <form method="post" action="map_reupload">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Continue and map columns
+</button>
+</form>
+</div>
+</div>
+
+  	</div>
+
+</div>
+
+{% endblock %}
+

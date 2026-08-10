@@ -1,0 +1,162 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+
+
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+{% import "macros/suggested-page.njk" as macroSuggested %}
+{% import "macros/current-page.njk" as macroCurrent %}
+{% import "macros/page-pagination.njk" as macroPagePagination %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% set navigationEnd %}
+  <li class="govuk-service-navigation__item" style="margin-left: auto;">
+    <a class="govuk-service-navigation__link" href="/funding/grants">See all grants</a>
+  </li>
+{% endset %}
+
+<!-- Overides the max width only in assess -->
+{% block stylesheets %}
+	{{ super() }}
+  	<link href="/public/css/assessOveride-new.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+
+    <!-- Header -->
+	<header class="govuk-header" data-module="govuk-header">
+		<div class="mhclg-header" data-one-login-header-nav>
+			<div class="mhclg-header__container govuk-width-container">
+				<div class="govuk-header__logo">
+					<a href="/" class="govuk-header__link govuk-header__link--homepage mhclg-header__link--homepage">
+						<img src="/public/images/MHCLG_WHITE_LANDSCP_AW.png" height="30px">
+
+					</a>
+			  	</div>
+				{% if data['signedIn'] == "yes" %}
+				<nav class="mhclg-header__nav">
+					<ul class="mhclg-header__nav__list">
+			  			<!-- <li class="mhclg-header__nav__list-item">
+							<a class="mhclg-header__nav__link" href="/signed-out/?signedIn=no">Developer</a>
+			  			</li> -->
+						<li class="mhclg-header__nav__list-item">
+							<a class="mhclg-header__nav__link" href="/signed-out/?signedIn=no">Sign out</a>
+			  			</li>
+
+					</ul>
+		  		</nav>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+
+	<!-- Looks to see if signed in -->
+	{% if data['signedIn'] == "yes" %}
+		<!-- Looks to see if its FSD ADmin -->
+		{% if data['authentication'] == "SSO"  %}
+
+			{% if data['navID'] == "addGrant" %}
+				<!-- Not sure what is going here possibly delete -->
+			{% else %}
+				<!-- Service Name and Navigation -->
+				{{ govukServiceNavigation({
+					serviceName: "Deliver grant funding",
+					serviceUrl: "/funding/grants?signedIn=yes",
+					navigation: [
+						
+						{ href: "/funding/grant/details/?notification=", text: "Grant details", active: navID == "grantDetails" },
+						{ href: "/funding/grant/applications/?notification=", text: "Applications", active: navID == "grantApplications" },
+						{ href: "/funding/grant/reports/?notification=", text: "Reports", active: navID == "grantReports" },
+						{ href: "/funding/grant/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
+					],
+					slots: { navigationEnd: navigationEnd }
+				}) }}
+			{% endif %}
+		<!-- User not FSD Admin -->
+		{% else %}		
+
+			{{ govukServiceNavigation({
+				serviceName: "Access grant funding",
+				serviceUrl: "/funding/grants?signedIn=yes",
+				navigation: [
+					
+					{ href: "/funding/grant/details/?notification=", text: "Grant details", active: navID == "grantDetails" },
+					{ href: "/funding/grant/applications/?notification=", text: "Applications", active: navID == "grantApplications" },
+					{ href: "/funding/grant/reports/?notification=", text: "Reports", active: navID == "grantReports" },
+					{ href: "/funding/grant/users/?notification=", text: "Grant team", active: navID == "grantUsers" }
+				]
+			}) }}
+
+		{% endif %}
+	
+	<!-- Not signed in -->
+	{% else %}		
+		{% if data['authentication'] == "SSO"  %}
+			<!-- Service Name and Navigation -->
+			{{ govukServiceNavigation({
+				serviceName: "Deliver grant funding",
+				serviceUrl: "#"
+			}) }}
+		{% else %}
+			<!-- Service Name and Navigation -->
+			{{ govukServiceNavigation({
+				serviceName: "Access grant funding",
+				serviceUrl: "#"
+			}) }}
+		{% endif %}
+	{% endif %}
+
+{% endblock %}
+<!-- // header -->
+
+{% block beforeContent %}
+    <!-- Phasebanner -->
+    {{ govukPhaseBanner({
+        tag: { text: "Prototype" },
+        html: 'This is a prototype. It is not a real service.'
+    }) }}
+
+	<!-- Breadcrumb for report -->
+	<!-- {{ govukBreadcrumbs({
+  		items: [    		
+    		{ text: data.reportName, href: "/funding/grant/reports/" },			
+    		{ text: "Sections", href: "/funding/grant/reports/sections" },
+			{ text: "Tasks", href: "/funding/grant/reports/tasks" }
+  		]
+	}) }} -->
+	<!-- // breadcrumb report -->
+
+    <!-- Back link -->
+    {% if showBackLink != false %}
+		{{ govukBackLink({
+    		text: "Back",
+    		href: "javascript:history.go(-1)"
+		}) }}
+    {% endif %}
+	<!-- // backlink -->
+
+{% endblock %}
+<!-- // beforeContent -->
+
+<!-- Main contetn -->
+{% block content %}
+{% endblock %}
+
+
+{% block footer %}
+
+	{{ govukFooter({
+		meta: {
+			items: [
+				{ href: "/manage-prototype/clear-data", text: "Clear data" },
+				{ href: "/manage-prototype", text: "Manage prototype" },
+				{ href: "#", text: "Show hidden text", attributes: {"data-module": "prototype-reveal-hidden"} },
+				{ href: "#", text: "Hide phase banner", attributes: {"data-module": "prototype-toggle-phase-banner"} }
+			],
+			html: 'Built by the <a href="#" class="govuk-footer__link">Ministry of Housing, Communites & Local Government Funding Service</a>'
+		}
+	}) }}
+
+{% endblock %}

@@ -1,0 +1,45 @@
+
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the name of this monitoring report?" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+        
+        <form method="post" action="/funding/grant/reports/?setupReport=yes">
+        
+            {{ govukInput({
+                label: {
+                    text: "Enter the monitoring report name",
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "reportName",
+                name: "reportName"
+            }) }}
+            
+            {{ govukButton({
+                text: "Continue and set up report"
+            }) }}
+        </form>
+
+    </div>
+</div>
+{% endblock %}

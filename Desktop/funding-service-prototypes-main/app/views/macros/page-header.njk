@@ -1,0 +1,32 @@
+{% macro pageHeader (
+    nested = "",
+    heading = "",    
+    section = "",    
+    hiddentext = "",
+    size = "",
+    data = {}
+) %}
+
+    {% if nested %}
+
+        <h1 class="govuk-heading-{{ size }}">
+            {% if section %}
+            <span class="govuk-caption-{{ size }}">{% if not hiddentext %}<span class="govuk-visually-hidden">This section is </span>{% endif %}
+            {{ section }}
+            </span>
+            {% endif %}
+            {{ heading }}
+        </h1>
+
+    {% else %}
+
+        {% if section %}
+        <span class="govuk-caption-{{ size }}">      
+            {% if not hiddentext %}<span class="govuk-visually-hidden">This section is </span>{% endif %}            
+            {{ section }}        
+        </span>
+        {% endif %}
+        <h1 class="govuk-heading-{{ size }}">{{ heading }}</h1>
+    {% endif %}
+    
+{% endmacro %}

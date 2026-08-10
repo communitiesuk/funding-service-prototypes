@@ -1,0 +1,91 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Create an account" %}
+{% set pageSection = "Create an account" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="domain" method="post" novalidate>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{ pageSection }}</span>
+            <h1 class="govuk-fieldset__heading">
+              What is your organisation type?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <!-- Option 1 -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="org-type-1" name="orgType" type="radio" value="Company" data-aria-controls="conditional-org-type-1">
+              <label class="govuk-label govuk-radios__label" for="org-type-1">
+                Company
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-1">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="charitable-inc-number">
+                  Enter your Companies House reference number
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="charitable-inc-number" name="charitableIncNumber" type="text" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="org-type-2" name="orgType" type="radio" value="Charity" data-aria-controls="conditional-org-type-2">
+              <label class="govuk-label govuk-radios__label" for="org-type-2">
+                Charity
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-2">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="fca-number">
+                  Enter your Charity Commission number
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="fca-number" name="fcaNumber" type="text" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- Option 3 -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="org-type-3" name="orgType" type="radio" value="Local authority" data-aria-controls="conditional-org-type-3">
+              <label class="govuk-label govuk-radios__label" for="org-type-3">
+                Local authority
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-3">
+            </div>
+
+            <!-- Option 4 -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="org-type-4" name="orgType" type="radio" value="Other" data-aria-controls="conditional-org-type-4">
+              <label class="govuk-label govuk-radios__label" for="org-type-4">
+                Other
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-org-type-4">
+            </div>
+
+
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,324 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Upload new data set" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#houses-january">The total spend is above the granted fund</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <span class="govuk-caption-l">Report name</span>
+    <h1 class="govuk-heading-l">Table 1 (accommodation)</h1>
+
+    <p class="govuk-body">Provide the latest data on spend. Your total fund for this area was <span class="govuk-body govuk-!-font-weight-bold">£100,000</span></p>
+
+
+    <h3 class="govuk-heading-s">Column 1 (houses)</h3>
+    <!-- Row 1: January -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="houses-january">
+        Row 1 data (January)
+      </label>
+      <p id="houses-january-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="houses-january" name="houses-january" type="text" spellcheck="false" data-column="houses" value="10000" aria-describedby="houses-january-error">
+      </div>
+    </div>
+
+    <!-- Row 2: February -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="houses-february">
+        Row 2 data (February)
+      </label>
+      <p id="houses-february-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="houses-february" name="houses-february" type="text" spellcheck="false" data-column="houses" value="10000" aria-describedby="houses-february-error">
+      </div>
+    </div>
+
+    <!-- Row 3: March -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="houses-march">
+        Row 3 data (March)
+      </label>
+      <p id="houses-march-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="houses-march" name="houses-march" type="text" spellcheck="false" data-column="houses" value="10000" aria-describedby="houses-march-error">
+      </div>
+    </div>
+
+    <!-- Row 4: April -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="houses-april">
+        Row 4 data (April)
+      </label>
+      <p id="houses-april-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="houses-april" name="houses-april" type="text" spellcheck="false" data-column="houses" value="10000" aria-describedby="houses-april-error">
+      </div>
+    </div>
+
+    <!-- Row 5: May -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="houses-may">
+        Row 5 data (May)
+      </label>
+      <p id="houses-may-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="houses-may" name="houses-may" type="text" spellcheck="false" data-column="houses" value="10000" aria-describedby="houses-may-error">
+      </div>
+    </div>
+
+    <div class="govuk-inset-text" id="inset-houses" style="display: none;">
+      Total for the above rows is £<span id="total-houses" class="govuk-!-font-weight-bold">0</span>
+    </div>
+
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-8">Column 2 (flats)</h3>
+    <!-- Row 1: January -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="flats-january">
+        Row 1 data (January)
+      </label>
+      <p id="flats-january-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="flats-january" name="flats-january" type="text" spellcheck="false" data-column="flats" value="10000" aria-describedby="flats-january-error">
+      </div>
+    </div>
+
+    <!-- Row 2: February -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="flats-february">
+        Row 2 data (February)
+      </label>
+      <p id="flats-february-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="flats-february" name="flats-february" type="text" spellcheck="false" data-column="flats" value="10000" aria-describedby="flats-february-error">
+      </div>
+    </div>
+
+    <!-- Row 3: March -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="flats-march">
+        Row 3 data (March)
+      </label>
+      <p id="flats-march-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="flats-march" name="flats-march" type="text" spellcheck="false" data-column="flats" value="10000" aria-describedby="flats-march-error">
+      </div>
+    </div>
+
+    <!-- Row 4: April -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="flats-april">
+        Row 4 data (April)
+      </label>
+      <p id="flats-april-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="flats-april" name="flats-april" type="text" spellcheck="false" data-column="flats" value="10000" aria-describedby="flats-april-error">
+      </div>
+    </div>
+
+    <!-- Row 5: May -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="flats-may">
+        Row 5 data (May)
+      </label>
+      <p id="flats-may-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="flats-may" name="flats-may" type="text" spellcheck="false" data-column="flats" value="10000" aria-describedby="flats-may-error">
+      </div>
+    </div>
+
+    <div class="govuk-inset-text" id="inset-flats" style="display: none;">
+      Total for the above rows is £<span id="total-flats" class="govuk-!-font-weight-bold">0</span>
+    </div>
+
+
+    <h3 class="govuk-heading-s govuk-!-margin-top-8">Column 3 (buildings)</h3>
+    <!-- Row 1: January -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="buildings-january">
+        Row 1 data (January)
+      </label>
+      <p id="buildings-january-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="buildings-january" name="buildings-january" type="text" spellcheck="false" data-column="buildings" value="10000" aria-describedby="buildings-january-error">
+      </div>
+    </div>
+
+    <!-- Row 2: February -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="buildings-february">
+        Row 2 data (February)
+      </label>
+      <p id="buildings-february-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="buildings-february" name="buildings-february" type="text" spellcheck="false" data-column="buildings" value="10000" aria-describedby="buildings-february-error">
+      </div>
+    </div>
+
+    <!-- Row 3: March -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="buildings-march">
+        Row 3 data (March)
+      </label>
+      <p id="buildings-march-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="buildings-march" name="buildings-march" type="text" spellcheck="false" data-column="buildings" value="10000" aria-describedby="buildings-march-error">
+      </div>
+    </div>
+
+    <!-- Row 4: April -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="buildings-april">
+        Row 4 data (April)
+      </label>
+      <p id="buildings-april-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="buildings-april" name="buildings-april" type="text" spellcheck="false" data-column="buildings" value="10000" aria-describedby="buildings-april-error">
+      </div>
+    </div>
+
+    <!-- Row 5: May -->
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label" for="buildings-may">
+        Row 5 data (May)
+      </label>
+      <p id="buildings-may-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Value contributes to overspend
+      </p>
+      <div class="govuk-input__wrapper">
+        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+        <input class="govuk-input govuk-input--width-10 govuk-input--error" id="buildings-may" name="buildings-may" type="text" spellcheck="false" data-column="buildings" value="10000" aria-describedby="buildings-may-error">
+      </div>
+    </div>
+
+    <div class="govuk-inset-text" id="inset-buildings" style="display: none;">
+      Total for the above rows is £<span id="total-buildings" class="govuk-!-font-weight-bold">0</span>
+    </div>
+
+    <br>
+    <form method="post" action="columnb">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // We target all three specific column categories
+    const columns = ['houses', 'flats', 'buildings'];
+
+    columns.forEach(function(column) {
+      // Get all inputs belonging to this specific column
+      const inputs = document.querySelectorAll(`input[data-column="${column}"]`);
+      const insetText = document.getElementById(`inset-${column}`);
+      const totalSpan = document.getElementById(`total-${column}`);
+
+      inputs.forEach(function(input) {
+        input.addEventListener('input', function() {
+          let total = 0;
+          let hasValue = false;
+
+          // Loop through all inputs in this column to calculate the sum
+          inputs.forEach(function(colInput) {
+            // Remove commas if the user typed them and parse to float
+            const valueStr = colInput.value.replace(/,/g, '');
+            const numericValue = parseFloat(valueStr);
+
+            if (!isNaN(numericValue) && valueStr.trim() !== '') {
+              total += numericValue;
+              hasValue = true;
+            }
+          });
+
+          // Show the inset text if there is at least one valid value
+          if (hasValue) {
+            // Format to show commas (e.g. 1000 -> 1,000)
+            totalSpan.textContent = total.toLocaleString('en-GB', { 
+              minimumFractionDigits: 0, 
+              maximumFractionDigits: 2 
+            });
+            insetText.style.display = 'block';
+          } else {
+            // Hide it completely if all fields are empty
+            insetText.style.display = 'none';
+          }
+        });
+      });
+      
+      // Trigger the calculation automatically on page load so pre-filled values are tallied
+      if (inputs.length > 0) {
+        inputs[0].dispatchEvent(new Event('input'));
+      }
+    });
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantUsers' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Grant team" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <div class="govuk-grid-row">
+	        <div class="govuk-grid-column-two-thirds">
+                
+                <!-- Displays when a new user is added to the grant always above the H1 -->
+				{% if data.notification == "userAdded" %}
+					{% include "/includes/notifications/grantTeamMemberAdded.html" %}
+				{% endif %}                
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+                <!-- Displays when no grant team members have been added -->                
+                <p class="govuk-body">No grant team members have been added to this grant yet.</p>
+                
+                <form method="post" action="/funding/grant/users/add/" >
+					{{ govukButton({
+						text: "Add grant team member"
+					}) }}
+				</form>
+
+			</div>
+		</div>
+
+        
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-7">Not yet signed in </h2>
+        <p class="govuk-body">Grant team members who have been added but not signed in yet.</p>
+
+        {{ govukTable({
+            captionClasses: "govuk-table__caption--m",
+            classes: "govuk-!-margin-bottom-9",
+            head: [
+                { text: "Email" },
+                { text: "Role", classes: "govuk-!-width-one-quarter" }
+            ],
+            rows: [
+                [ { text: data['addUser-Email'] or "hugofurst@bbg.gov.uk" }, { text: "Grant team member"} ]
+            ]
+        }) }}
+
+
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-1 govuk-!-margin-top-7">Grant team members</h2>
+        
+        {{ govukTable({
+            captionClasses: "govuk-table__caption--m",
+            head: [ { text: "Name", classes: "govuk-!-width-one-quarter" }, { text: "Email" }, { text: "Role", classes: "govuk-!-width-one-quarter" } ],
+            rows: [
+                [ { html: 'Kate Harries' }, { text: "kate.harries@bbg.gov.uk" }, { text: "Grant team member"} ],
+                [ { html: 'Nima Patel' }, { text: "nima.patel@bbg.gov.uk" }, { html: "Grant team member"} ],
+                [ { html: 'Brian Coult' }, { text: "brian.coult@bbg.gov.uk" }, { html: "Grant team member"} ]
+
+            ]
+        }) }}
+
+        <!-- This should only show if the user is NOT a FSD admin -->
+        {% if ((not data['authentication'] == "SSO") or ( not data['authentication'] )) %}
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-heading-m govuk-!-margin-top-5">If you need to add other grant team members</h2>
+                    <p class="govuk-body">Contact us through our <a href="#" target="_blank">support desk (opens in new tab)</a>.</p>
+                    <p class="govuk-body">Monday to Friday, 9am to 5pm (except public holidays).</p>
+                </div>
+            </div>
+        {% endif %}
+
+
+	</div>
+</div>
+
+{% endblock %}

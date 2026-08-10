@@ -1,0 +1,54 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What’s the grant’s intervention theme?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+    <p class="govuk-body">Provisional purpose the grant has been created for.</p>
+
+      <form class="form" action="/grant/profile/check-your-answers" method="post">
+
+        {{ govukRadios({
+          name: "grantIntervention",
+          id: "grantIntervention",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "tbc", text: "tbc", checked: checked("grantIntervention", "tbc") },
+            { value: "tbc 2", text: "tbc 2", checked: checked("grantIntervention", "tbc 2") }
+
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

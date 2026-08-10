@@ -1,0 +1,34 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Get help" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p>Problems with the assessment tool?</p>
+        <p>If you need help using the assessment service or experience any technical problems, contact us through our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/70">support desk</a></p>
+        <p>For questions about the assessment process, or the fund itself, contact your lead assessor.</p>
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+{% endblock %}

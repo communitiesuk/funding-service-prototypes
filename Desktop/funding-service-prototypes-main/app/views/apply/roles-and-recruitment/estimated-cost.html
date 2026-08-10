@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What’s the estimated cost of backfilling these roles, in pounds?" %}
+    {% set pageSection = "Roles and recruitment" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What is the estimated cost of backfilling roles?" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+        {% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers?linkStatus=" >
+		{% else %}
+            <form method="post" action="/apply/roles-and-recruitment/project-lead" >
+		{% endif %}
+
+
+			{{ govukInput({
+                label: {
+                    text: "What is the estimated cost of backfilling roles?",
+                    classes: "govuk-label govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                prefix: {
+                    text: "£"
+                  },
+                classes: "govuk-!-width-one-third",
+                id: "3_2_estimatedCost",
+                name: "3_2_estimatedCost",
+                value: data['3_2_estimatedCost']
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+		{% if data['version'] == "suggested" %}
+			{{ macroCurrent.pageCurrent(url) }}
+		{% else %}
+			{{ macroSuggested.pageSuggested(url) }}
+		{% endif %}
+
+
+    </div>
+</div>
+
+{% endblock %}

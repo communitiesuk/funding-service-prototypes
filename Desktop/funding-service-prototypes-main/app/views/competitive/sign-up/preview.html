@@ -1,0 +1,92 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "allocation_form" %}
+{% set pageHeading = "All questions" %}
+{% set pageSection = "Application form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+      <form action="" method="post" novalidate>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Download as PDF
+        </button> 
+      </form>
+<br>
+    <h2 class="govuk-heading-m">Organisation details</h2>
+<ol class="govuk-list govuk-list--number">
+      <li>What is your organisation's address?</li>
+      <li>Who is the main contact?
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Full name</li>
+          <li>Role</li>
+          <li>Email address</li>
+        </ul> 
+      </ol>
+    </ul>
+
+    <h2 class="govuk-heading-m">Skills and experience</h2>
+<ol class="govuk-list govuk-list--number" start="3">
+      <li>What skills and capabilities does your organisation have to be able to deliver effectively? (200 words)</li>
+      <li>Are you applying with another organisation? (Yes or No)</li>
+      <li>Who is the decision maker? <strong class="govuk-tag govuk-tag--red">Shown if 'Yes' to 4</strong>
+      </li>
+    </ul>
+    </ol>
+
+    <h2 class="govuk-heading-m">Plans for the funding</h2>
+<ol class="govuk-list govuk-list--number" start="6">
+      <li>How much funding do you need?</li>
+      <li>What date do you expect to spend all the funding by?</li>
+      <li><strong>Project details</strong>
+   <p>Use this section to tell us about all the projects you would deliver using this funding. Add the details of each project one at a time.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Describe the project (100 words)</li>
+          <li>Tell us how this project aligns with the fund objectives (250 words)</li>
+          <li>When will you deliver this project?</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Risk and governance</h2>
+<ol class="govuk-list govuk-list--number" start="9">
+      <li><strong>Risk details</strong>
+   <p>Use this section to tell us about all the risks identified. Add the details of each risk one at a time.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>What is the name of the risk?</li>
+          <li>Tell us about the risk (200 words)</li>
+          <li>What mitigation measures will be in place for this risk? (200 words)</li>
+        </ul>
+      </li>
+      <li>What decision making structures are in place? (200 words)</li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Costs and value for money</h2>
+<ol class="govuk-list govuk-list--number" start="11">
+      <li><strong>Cost details</strong>
+      <p>Use this section to tell us about all the costs for the project. Add the details of each cost one at a time.</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Name of the cost</li>
+          <li>Cost amount</li>
+          <li>How has this cost amount been estimated? (100 words)</li>
+        </ul>
+      </li>
+      <li>What measures are you planning to use to evaluate the effectiveness of your projects? (200 words)</li>
+    </ol>
+
+      <form action="allocation_form" method="post" novalidate>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Back to form
+        </button> 
+      </form>
+
+  </div>
+</div>
+{% endblock %}

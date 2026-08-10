@@ -1,0 +1,93 @@
+{# Simplified Add another question type configuration #}
+
+<div class="govuk-inset-text">
+    <p class="govuk-body">This pattern allows users to add multiple entries by repeating the previous questions in this group. After completing the questions, users will see an "Add another" button to add more entries of the same type.</p>
+</div>
+
+<details class="govuk-details govuk-!-margin-top-5" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+            Advanced options
+        </span>
+    </summary>
+    <div class="govuk-details__text">
+
+        <div class="govuk-checkboxes govuk-checkboxes--small govuk-!-margin-bottom-5">
+            <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="addAnotherShowSummary" name="addAnotherShowSummary" type="checkbox" value="true"{% if (questionData.addAnotherShowSummary if questionData else data.addAnotherShowSummary) %} checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="addAnotherShowSummary">
+                    Show summary of added items
+                </label>
+                <div class="govuk-hint govuk-checkboxes__hint">
+                    Display a summary list of all added items before the "Add another" button
+                </div>
+            </div>
+        </div>
+
+        {{ govukInput({
+            label: {
+                text: "Custom button text (optional)",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Custom content for the button, leave blank to use default 'Add another'"
+            },
+            classes: "govuk-!-width-two-thirds",
+            id: "addAnotherButtonText",
+            name: "addAnotherButtonText",
+            attributes: {
+                "spellcheck": "false"
+            },
+            value: questionData.addAnotherButtonText if questionData else data.addAnotherButtonText
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Minimum number of entries",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Leave blank for no minimum."
+            },
+            classes: "govuk-input--width-5",
+            id: "addAnotherMinItems",
+            name: "addAnotherMinItems",
+            type: "number",
+            attributes: {
+                "min": "0",
+                "max": "20"
+            },
+            value: questionData.addAnotherMinItems if questionData else data.addAnotherMinItems
+        }) }}
+
+        {{ govukInput({
+            label: {
+                text: "Maximum number of entries",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Leave blank for no limit."
+            },
+            classes: "govuk-input--width-5",
+            id: "addAnotherMaxItems",
+            name: "addAnotherMaxItems",
+            type: "number",
+            attributes: {
+                "min": "1",
+                "max": "50"
+            },
+            value: questionData.addAnotherMaxItems if questionData else data.addAnotherMaxItems
+        }) }}
+    </div>
+</details>
+
+<!-- <div class="govuk-inset-text govuk-!-margin-top-6">
+    <h3 class="govuk-heading-s">Example preview</h3>
+    <p class="govuk-body">This question will:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Allow users to repeat the previous questions in this group</li>
+        <li>Show an "Add another" button after completion</li>
+        <li>Optionally show a summary of all entries (if enabled)</li>
+    </ul>
+    <p class="govuk-body govuk-!-margin-bottom-0">This pattern is ideal for collecting multiple instances of the same information, like team members, risks, or budget items.</p>
+</div> -->

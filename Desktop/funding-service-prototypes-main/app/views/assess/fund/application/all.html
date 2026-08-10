@@ -1,0 +1,445 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Fund:" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block main %}
+
+<div class="govuk-width-container">
+	{{ govukBackLink({
+		text: "Back to assessment landing",
+		href: "javascript:history.go(-1)"
+	}) }}
+
+	<div class="govuk-!-display-inline-block float-right govuk-!-margin-top-3 nag">
+		<a href="/assess/help">Get help</a>  <a href="#">Log out</a>
+	</div>
+</div>
+
+<div class="x-govuk-masthead">
+	<div class="govuk-width-container">
+
+
+      	<div class="govuk-grid-row">
+        	<div class="govuk-grid-column-two-thirds-from-desktop">
+          		<h1 class="x-govuk-masthead__title">{{ pageHeading }} <span class="govuk-!-font-weight-regular">{{ data.fundName }} Fund</span></h1>
+          		<p class="x-govuk-masthead__description govuk-!-font-size-36"><span class="govuk-!-font-weight-bold">Project reference:</span> ZWNEHL</p>
+          		<p class="x-govuk-masthead__description"><span class="govuk-!-font-weight-bold">Project name:</span> Sneaker Politics
+				<br>
+
+                <!-- {% if data[''] == "" %}
+                <strong class="govuk-tag govuk-tag-white overSizeWhite">NOT STARTED</strong>
+                {% else %}
+                <span class="govuk-!-font-weight-bold">Total funding requested:</span> £0.00</p>
+                {% endif %} -->
+        	</div>
+      	</div>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper" id="main-content" role="main">
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-full">
+
+                <h1 class="govuk-heading-l">Applicant's response</h1>
+                <h2 class="govuk-heading-m">Organisation information - Organisation name</h2>
+
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Organisation name</dt>
+                                <dd class="govuk-summary-list__value">{{ data['2_1_organisationName'] }}</dd>
+                                <dd class="govuk-summary-list__actions">
+
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <h2 class="govuk-heading-m">Organisation information - Future work</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <h4 class="govuk-heading-s">Which software improvements are you interested in working on in the future?</h4>
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Which software improvements are you interested in working on in the future?</dt>
+                                  <dd class="govuk-summary-list__value">
+                                    <ul class="govuk-list govuk-list--bullet">
+                                    {% for item in data.futureWorkSoftware %}
+                                    <li>{{ item }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Declarations - Declarations</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <h4 class="govuk-heading-s">Confirmation you have signed the Local Digital Declaration and agree to follow the 5 principles</h4>
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Confirmation you have signed the Local Digital Declaration and agree to follow the 5 principles</dt>
+                                  <dd class="govuk-summary-list__value">You have signed the Local Digital Declaration and agree to follow the 5 principles</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Confirmation your section 151 officer consents to the funds being carried over and spent in the next financial year (March 2025 to April 2026) and beyond if deemed necessary in project budget planning</dt>
+                                  <dd class="govuk-summary-list__value">Your section 151 officer consents to the funds being carried over and spent in the next financial year (March 2025 to April 2026) and beyond if deemed necessary in project budget planning</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Confirmation you agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely</dt>
+                                  <dd class="govuk-summary-list__value">You agree to let all outputs from this work be published under open licence with a view to any organisation accessing, using or adopting them freely</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Confirmation the information you have provided is accurate</dt>
+                                  <dd class="govuk-summary-list__value">The information you have provided is accurate</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - Lead contact details</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Lead contact first name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_contactFirstName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Lead contact last name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_contactLastName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Lead contact’s job title</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_contactJobTitle'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Lead contact email address</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_contactEmail'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Lead contact telephone number</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_contactPhone'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+
+                <h2 class="govuk-heading-m">Organisation information - Project sponsor details</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project sponsor first name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_sponsorFirstName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project sponsor last name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_sponsorLastName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project sponsor email address</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_sponsorEmail'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project sponsor telephone number</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_sponsorPhone'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - Section 151 office details</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer first name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_section151FirstName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer last name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_section151LastName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer email address</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_section151Email'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer telephone number</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_section151Phone'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - Your skills and experience</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Has your organisation delivered projects like this before?</dt>
+                                <dd class="govuk-summary-list__value">Yes</dd>
+                                <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Tell us about how your organisation has worked on similar previous projects</dt>
+                                <dd class="govuk-summary-list__value">We made it all up</dd>
+                                <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - roles and recruitment</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Do you have a team in place ready to deliver the project?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_team'] | capitalize }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% if data['3_2_team'] == "no" %}
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">How will you make sure you have a team in place ready to deliver the project?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_teamHow'] }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% elif data['3_2_team'] == "yes" %}
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Tell us about the shape of the project team</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_teamShape'] }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% endif %}
+                            <!-- // -->
+                            <!-- Group -->
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Will you need to backfill any roles in your organisation?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_teamBackfill'] | capitalize }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% if data['3_2_teamBackfill'] == "yes" %}
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">What is the estimated cost of backfilling roles?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_estimatedCost'] | currency(trailingZeros=false) }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% endif %}
+                            <!-- // -->
+                            <!-- Group -->
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Do you know who the project lead will be?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_projectLead'] | capitalize }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% if data['3_2_projectLead'] == "yes" %}
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project lead first name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_projectLeadFirstName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Project lead last name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['3_2_projectLeadLastName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions"></dd>
+                            </div>
+                            {% endif %}
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - Engaging the odp community</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Why do you want to be a part of the ODP (Open Digital Planning) community?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_1_whyOpenDigitalPlanning'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Organisation information - Engaging the organisation</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">How will you make sure team members engage with other parts of your organisation?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_2_engagement'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">How will you share the progress of the work across your organisation?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_2_shareProgress'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+                <h2 class="govuk-heading-m">Dataset information - Dataset information</h2>
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Does your organisation collect at least one of the datasets?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_3_datasetCollect'] | capitalize }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            {% if data['4_3_datasetCollect'] == "yes" %}
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Which datasets have you collected?</dt>
+                                <dd class="govuk-summary-list__value">
+                                    <ul class="govuk-list govuk-list--bullet">
+                                    {% for item in data.4_3_datasets %}
+                                    <li>{{ item }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Which format is your dataset in for conservation areas?</dt>
+                                <dd class="govuk-summary-list__value">
+                                    <ul class="govuk-list govuk-list--bullet">
+                                    {% for item in data.4_3_format %}
+                                    <li>{{ item }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                </dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">How long do you think it will take your organisation to publish all 4 datasets?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_3_publishTime'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            {% endif %}
+
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">What are the current known issues and challenges you have with data quality and publication?</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['4_3_datasetChallenges'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+{% endblock %}

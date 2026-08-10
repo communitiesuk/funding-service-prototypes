@@ -1,0 +1,159 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Uploading and referencing data sets (March to May 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						In development
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Form designer
+				</dd>
+			</div>
+		</dl>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journeys</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+		<p class="govuk-body">This functionality enables a form designer to upload data that we already hold in MHCLG, for example, the money we have awarded to a grant recipient.
+This saves the grant recipient having to enter information that we already hold and reduces the risk of error.
+		</p>
+		<p class="govuk-body">These journeys were tested with form designers briefly during design work in May 2026. We improved the process for entering financial data after this testing and identified other areas for potential future improvement and will
+			monitor these after release. </p>
+		</p>
+		<p class="govuk-body">In the prototype, the report is called 'Mid-year monitoring' and the data set is called
+			'Grant Allocation'.</p>
+
+					<h3 class="govuk-heading-s">Uploading and replacing data sets</h3>
+<p class="govuk-body">These journeys show the steps involved in uploading or replacing a data set without errors, as well as scenarios where data is missing from the CSV.
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets" class="govuk-link">Upload a first data set</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/view-data-set" class="govuk-link">Replace a data set</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets-missing-data" class="govuk-link">Upload a data set
+				that has missing data</a>
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/no-data-sets-missing-recipient" class="govuk-link">Upload a data
+				set
+				that has a missing recipient</a>
+		</p>
+
+			<h3 class="govuk-heading-s">Referencing an uploaded data set</h3>
+<p class="govuk-body">This journey shows the steps involved in creating a reference to an uploaded data set.
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/financial/designer/conditions/edit_question3" class="govuk-link">Reference an uploaded
+				data set
+			</a>
+		</p>
+
+		<h3 class="govuk-heading-s">Previewing a report that references a data set</h3>
+		<p class="govuk-body">These journeys show steps where a form designer can enter test data so that they can preview reports that reference an uploaded data set.
+		</p>
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/grants" class="govuk-link">Preview a report
+			</a>
+		</p>
+
+
+<p class="govuk-body">
+		<a href="/funding/grant/reports/data-sets/section-expenditure" class="govuk-link">Preview a section (of
+					a
+					report)
+				</a>
+			</p>
+			<p class="govuk-body">
+				<a href="/funding/grant/reports/data-sets/add-reference-data-step1" class="govuk-link">Add test data for
+					2 items referenced in a data set</a>, then return and <a href="/funding/grant/reports/data-sets/add-reference-data-step1" class="govuk-link">add
+					test data for a third item</a>
+					</p>
+
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/add-reference-data1" class="govuk-link">Adding reference data for
+				2 data sets
+			</a>
+		</p>
+				<h3 class="govuk-heading-s">Deleting a data set that is being referenced</h3>
+
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/data-sets/view-data-set-delete" class="govuk-link">Cannot delete a data set
+				(it is being referenced)
+			</a>
+		</p>
+
+					
+		<h2 class="govuk-heading-m govuk-!-margin-top-7">Next steps</h2>
+		<p class="govuk-body">To monitor after release:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>How does the 'Format data' page perform with real data sets? Would radios be more user-friendly and more
+				accessible than select components?</li>
+			<li>How many columns and how many rows do real data sets have? What is the impact on the 'View data set'
+				page?</li>
+			<li>How are data types and data formatting (prefixes, suffixes and decimals) used with real data? </li>
+			<li>On the 'Format data' page, how do form designers use the 'Example data' column?</li>
+			<li>On the 'View data set' page, consider adding the report status.</li>
+			<li>What is the overall experience like for form designers uploading CSVs like with real data sets? Would it
+				help to be able to set up the schema in the service before uploading CSV data?</li>
+			<li>What is the overall experience like for correcting data? Would it help to be able to correct individual
+				values in the service without having to replace CSV data?</li>
+			<li>Add functionality for the user to be able to change a data set name without having to delete or replace
+				a data set.</li>
+			<li>When replacing a data set, on the 'Confirm data' page, consider distinguishing between existing and new columns.</li>
+		</ul>
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1776853103960/485de9968a4fe3f409abe5b874e3c66dc139cdd7"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Data referencing Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}

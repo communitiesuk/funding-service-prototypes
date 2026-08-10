@@ -1,0 +1,39 @@
+{% extends "layouts/access-nav.html" %}
+
+{% set navID = "monitor" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Glasgow City Council" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Reports</h1>
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    
+    <p class="govuk-body">
+ View and complete monitoring reports if you have been successful for grant funding.
+    </p>
+
+    <p class="govuk-body">
+ No monitoring reports available to complete.
+    </p>
+
+
+
+
+
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What tier does this grant belong to?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">Select which tier this grant falls into, according to the Cabinet Office categorisation framework.</p>
+
+        {% if data['change'] == "yes" %}
+            <form method="post" action="/funding/grant/add/summary">
+				<input type="hidden" name="change" id="change" value="" />
+      	{% else %}
+          	<form method="post" action="/funding/grant/add/name">
+        {% endif %}
+
+				{{ govukRadios({
+					name: "grant-category",
+					id: "grant-category",
+					fieldset: {
+						legend: {
+							text: pageHeading,
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend govuk-visually-hidden"
+						}
+					},
+					items: [
+						{ value: "Bronze", text: "Bronze", checked: checked("grant-category", "Bronze") },
+						{ value: "Silver", text: "Silver", checked: checked("grant-category", "Silver") },
+						{ value: "Gold", text: "Gold", checked: checked("grant-category", "Gold") }
+					]
+				}) }}
+
+            	{{ govukButton({
+                	text: "Save and continue"
+            	}) }}
+        	</form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

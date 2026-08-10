@@ -1,0 +1,95 @@
+{% extends "layouts/preview.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Financial data monitoring report test" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <span class="govuk-caption-l">Expenditure</span>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Check your answers</h1>
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What was your actual capital spend before 1 April 2026?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £2,239,890.22
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="">
+                Change<span class="govuk-visually-hidden"> What was your actual capital spend before 1 April 2026?</span>
+              </a>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              What was your actual revenue spend before 1 April 2026?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              £1,900,090.89
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="">
+                Change<span class="govuk-visually-hidden"> What was your actual revenue spend before 1 April 2026?</span>
+              </a>
+            </div>
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Do you have any match funding?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              No
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="">
+                Change<span class="govuk-visually-hidden"> Do you have any match funding?</span>
+              </a>
+
+            </div>
+</dl>
+
+<form method="post" action="return-to-section-builder"> 
+    
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">Have you completed this section?</h2>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+          Yes, I've completed this section
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+          No, I'll come back to it later
+        </label>
+      </div>      
+    </div>
+  </fieldset>
+</div>
+<button class="govuk-button govuk-button--primary" data-module="govuk-button">
+Save and continue
+    </button>
+</form>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Application submitted" %}
+	{% set pageSection = "" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Application complete" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{% if data['version'] == "suggested" %}
+
+		{{ govukPanel({
+            titleText: pageHeading,
+            html: "Reference number<br><strong>DPIF-R3-IQPIJK</strong>",
+			classes: "govuk-!-margin-bottom-7"
+          }) }}
+
+		  <p class="govuk-body">We have sent a confirmation email including details of your application to <span class="govuk-!-font-weight-bold">{{ data.magicLinkEmail or "test.email@communities.gov.uk" }}</span>.</p>
+        <!-- <p class="govuk-body">We have sent a confirmation email and a copy of your answers to <span class="govuk-!-font-weight-bold">{{ data.magicLinkEmail or "test.email@communities.gov.uk" }}</span> and the lead contact.</p> -->
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+		    <p class="govuk-body">You do not need to do anything else at this time. </p>
+        <p>The assessors will start reviewing applications from [date].</p>
+        <!-- <p class="govuk-body">Your application to the {{ data.fundName }} Fund has been submitted.</p> -->
+        <p class="govuk-body">We’ll email you if the assessor needs additional information or has any questions about your application for {{ data.fundName }} Fund.</p>
+        <!-- <p class="govuk-body">We’ll email you if we need any additional information., or to let you know within X days/weeks if you have been successful with your application for the {{ data.fundName }} Fund.</p> -->
+
+        <!-- <p>We expect to contact you within X days/weeks to let you know if you have been successful.</p> -->
+
+
+
+		<ul class="govuk-list govuk-!-margin-top-7">
+			<li class="govuk-link"><a href="/apply/applications/">Go to your applications</a></li>
+			<li class="govuk-link"><a href="/apply/signed-out?signedIn=no">Sign out</a></li>
+		</ul>
+
+
+
+		{% else %}
+
+        {{ govukPanel({
+            titleText: pageHeading,
+            html: "Your reference number<br><strong>DPIF-R3-IQPIJK</strong>"
+          }) }}
+
+
+        <p>We have sent you a confirmation email and a copy of your answers to <span class="govuk-!-font-weight-bold">{{ data.magicLinkEmail or "test.email@communities.gov.uk" }}</span></p>
+
+        <h2 class="govuk-heading-m">What happens next</h2>
+        <p>Your application to the {{ data.fundName }} Fund has been submitted.</p>
+        <p>We'll email you to let you know whether you have been successful.</p>
+
+        <p class="govuk-link"><a href="/apply/applications">Return to your applications page</a>.</p>
+
+		{% endif %}
+
+        {% if data['version'] == "suggested" %}
+          {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+          {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

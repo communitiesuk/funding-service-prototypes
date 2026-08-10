@@ -1,0 +1,348 @@
+
+{% if data['version'] == "suggested" %}		
+
+<!-- <h2 class="govuk-heading-m">1. Before you start</h2> -->
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/application-name/" aria-describedby="name-your-details-status">Name your application</a>
+				</div>
+			  	<div class="govuk-task-list__status" id="name-your-details-status">
+					{% if data['section1_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section1_1'] == "no") or ( data['section1_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/organisation/" aria-describedby="organisation-information-status">Organisation information</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="organisation-information-status">
+					{% if data['section2_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section2_1'] == "no") or ( data['section2_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/skills-and-experience/" aria-describedby="your-skills-and-experience-status">Your skills and experience</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="your-skills-and-experience-status">
+
+					{% if data['section3_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_1'] == "no") or ( data['section3_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/roles-and-recruitment/" aria-describedby="roles-and-recruitment-status">Roles and recruitment</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="company-details-1-status">
+
+					{% if data['section3_2'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_2'] == "no") or ( data['section3_2'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/engaging-digital-planning/" aria-describedby="engaging-the-community-status">Engaging the ODP (Open Digital Planning) community</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="engaging-the-community-status">
+
+					{% if data['section4_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_1'] == "no") or ( data['section4_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/engaging-the-organisation/" aria-describedby="engaging-the-organisation-status">Engaging the organisation</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="engaging-the-organisation-status">
+
+					{% if data['section4_2'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_2'] == "no") or ( data['section4_2'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/dataset-information/" aria-describedby="dataset-information-status">Dataset information</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="dataset-information-status">
+
+					{% if data['section4_3'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_3'] == "no") or ( data['section4_3'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/future-work/" aria-describedby="future-work">Future work</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="future-work">
+
+					{% if data['section5_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section5_1'] == "no") or ( data['section5_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/declarations/" aria-describedby="declarations-status">Declarations</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="company-details-1-status">
+
+					{% if data['section6_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section6_1'] == "no") or ( data['section6_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+
+
+{% else %}
+
+
+
+
+<h2 class="govuk-heading-m">1. Before you start</h2>
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/application-name/" aria-describedby="name-your-details-status">1.1 Name your application</a>
+				</div>
+			  	<div class="govuk-task-list__status" id="name-your-details-status">
+					{% if data['section1_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section1_1'] == "no") or ( data['section1_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-m">2. About your organisation</h2>
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/organisation/" aria-describedby="organisation-information-status">2.1 Organisation information</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="organisation-information-status">
+					{% if data['section2_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section2_1'] == "no") or ( data['section2_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-m">3. Your skills and experience</h2>
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/skills-and-experience/" aria-describedby="your-skills-and-experience-status">3.1 Your skills and experience</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="your-skills-and-experience-status">
+
+					{% if data['section3_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_1'] == "no") or ( data['section3_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/roles-and-recruitment/" aria-describedby="roles-and-recruitment-status">3.2 Roles and recruitment</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="company-details-1-status">
+
+					{% if data['section3_2'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section3_2'] == "no") or ( data['section3_2'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+
+
+		  <h2 class="govuk-heading-m">4. About your project</h2>
+		  <ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/engaging-digital-planning/" aria-describedby="engaging-the-community-status">4.1 Engaging the ODP (Open Digital Planning) community</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="engaging-the-community-status">
+
+					{% if data['section4_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_1'] == "no") or ( data['section4_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/engaging-the-organisation/" aria-describedby="engaging-the-organisation-status">4.2 Engaging the organisation</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="engaging-the-organisation-status">
+
+					{% if data['section4_2'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_2'] == "no") or ( data['section4_2'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/dataset-information/" aria-describedby="dataset-information-status">4.3 Dataset information</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="dataset-information-status">
+
+					{% if data['section4_3'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section4_3'] == "no") or ( data['section4_3'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-m">5. Future work</h2>
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/future-work/" aria-describedby="future-work">5.1 Future work</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="future-work">
+
+					{% if data['section5_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section5_1'] == "no") or ( data['section5_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+		<h2 class="govuk-heading-m">6. Declarations</h2>
+		<ul class="govuk-task-list">
+			<li class="govuk-task-list__item govuk-task-list__item--with-link">
+				<div class="govuk-task-list__name-and-hint">
+					<a class="govuk-link govuk-task-list__link govuk-link--no-visited-state" href="/apply/declarations/" aria-describedby="declarations-status">6.1 Declarations</a>
+			  	</div>
+			  	<div class="govuk-task-list__status" id="company-details-1-status">
+
+					{% if data['section6_1'] == "yes" %}
+						Completed
+					{% else %}
+						{% if ((data['section6_1'] == "no") or ( data['section6_1'] == "Started" )) %}
+							<strong class="govuk-tag">In Progress</strong>
+						{% else %}
+							<strong class="govuk-tag govuk-tag--grey">Not Started</strong>
+						{% endif %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+
+{% endif %}

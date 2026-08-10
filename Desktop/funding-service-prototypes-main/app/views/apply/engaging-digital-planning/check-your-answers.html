@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "Engaging the Open Digital Planning community" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Why you want to be a part of the ODP community</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_1_whyOpenDigitalPlanning'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-digital-planning/part-of-open-digital-planning?linkStatus=change">Change<span class="govuk-visually-hidden"> Why do you want to be a part of the ODP (Open Digital Planning) community</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				name: "section4_1",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section", checked: checked("section4_1", "yes")  },
+					{ value: "no", text: "No, I’ll come back to it later", checked: checked("section4_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% else %}
+        <h2 class="govuk-heading-m">Engaging the ODP community</h2>
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Why do you want to be a part of the ODP (Open Digital Planning) community?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_1_whyOpenDigitalPlanning'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-digital-planning/part-of-open-digital-planning?linkStatus=change">Change<span class="govuk-visually-hidden"> Why do you want to be a part of the ODP (Open Digital Planning) community</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post" >
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "section4_1",
+				fieldset: {
+					legend: {
+						text: "Do you want to mark this section as complete?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--l"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes", checked: checked("section4_1", "yes")  },
+					{ value: "no", text: "No", checked: checked("section4_1", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

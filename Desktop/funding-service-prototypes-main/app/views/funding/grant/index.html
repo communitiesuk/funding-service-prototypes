@@ -1,0 +1,37 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set showBackLink = false %}
+
+{% set navID = 'grantHome' %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Home" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        
+        {% if data.notification == "grantAdded" %}
+
+		    {% set html %}
+                <h3 class="govuk-notification-banner__heading">{{ data['grantName'] }} has been set up</h3>
+            {% endset %}
+
+            {{ govukNotificationBanner({
+                html: html,
+                type: "success"
+            }) }}
+
+		{% endif %}
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}                
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What we need to know" %}
+    {% set pageSection = "Engaging the organisation" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Engaging the organisation" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+        <p class="govuk-body">In this section, you’ll need to tell us how you will:</p>
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+            <li>make sure team members engage with other parts of your organisation</li>
+            <li>share the progress of the work across your organisation</li>
+        </ul>
+
+        <form method="post" action="/apply/engaging-the-organisation/team-engagement?linkStatus=" >
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% else %}
+        <p class="govuk-body govuk-!-font-weight-bold">In this section, we'll ask about:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>how you will make sure team members engage with other parts of your organisation</li>
+            <li>how you will share the progress of the work across your organisation</li>
+        </ul>
+
+        <form method="post" action="/apply/engaging-the-organisation/team-engagement?linkStatus=" >
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

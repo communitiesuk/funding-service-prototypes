@@ -1,0 +1,76 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">Glasgow City Council</span>
+            <h1 class="govuk-fieldset__heading">
+          Do these changes relate to specific sections?
+            </h1>
+          </legend>
+          
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <!-- Value swapped to target "changes" -->
+              <input class="govuk-radios__input" id="reopen-type-1" name="reopenType" type="radio" value="changes">
+              <label class="govuk-label govuk-radios__label" for="reopen-type-1">
+                Yes
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <!-- Value swapped to target "reopen2" -->
+              <input class="govuk-radios__input" id="reopen-type-2" name="reopenType" type="radio" value="changes_general">
+              <label class="govuk-label govuk-radios__label" for="reopen-type-2">
+                No
+              </label>
+            </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', function(event) {
+      const selectedOption = document.querySelector('input[name="reopenType"]:checked');
+      
+      if (selectedOption) {
+        // Update the form's action attribute to the chosen destination ("changes" or "reopen2")
+        form.action = selectedOption.value;
+      } else {
+        // Prevent form submission if no option is selected
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+{% endblock %}

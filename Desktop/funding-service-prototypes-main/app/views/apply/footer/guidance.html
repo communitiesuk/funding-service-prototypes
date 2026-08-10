@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+{% set serviceName = "Apply for funding" %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "How to use this service" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+    <p class="govuk-body">Find out how to apply for a grant using this service. You’ll need to use the grant prospectus to help you answer the questions in the application.</p>
+<!--
+    <ul class="govuk-list">
+        <li><a class="govuk-link" href="#">Completing and submitting your application</a></li>
+        <li><a class="govuk-link" href="#">Uploading a document</a></li>
+        <li><a class="govuk-link" href="#">Getting a copy of your answers</a></li>
+        <li><a class="govuk-link" href="#">Contact us</a></li>
+    </ul> -->
+
+    <h2 class="govuk-heading-m">Completing and submitting your application</h2>
+    <p class="govuk-body">The application form is split into sections based on how it will be assessed.</p>
+    <p class="govuk-body">You do not have to complete it in order or all at once.</p>
+
+    <h3 class="govuk-heading-s">Saving progress and making changes</h3>
+    <p class="govuk-body">Your answers will not save as you type, so make sure you select ‘Save and continue’ to save any content you’ve added to a text box.</p>
+    <p class="govuk-body">If you want to save an answer you’ve given in text box but aren’t ready to answer other questions on the page, you can simply enter some placeholder text in the other boxes and select ‘Save and continue’. You can come back and add or edit answers later.</p>
+    <p class="govuk-body">Some people like to type their answers in Word first and then copy and paste them into the text boxes.</p>
+    <p class="govuk-body">If you need to edit any sections, you can do this at any time even after you’ve marked a section as ‘Complete’.</p>
+
+    <h3 class="govuk-heading-s">Submitting your application</h3>
+    <p class="govuk-body">Once you’ve marked all sections as ‘Complete’ you’ll be given the option to submit your application.</p>
+    <p class="govuk-body">Make sure you’re happy with all your responses before submitting as you won’t be able to edit or change anything after you’ve submitted your application.</p>
+
+    <h2 class="govuk-heading-m">Uploading a document</h2>
+    <p class="govuk-body">You may need to upload a document as part of your application form. Your document should be no larger than 30MB and be in an accepted file format (jpg, jpeg, png, pdf, txt, doc, docx, odt, csv, xls, xlsx, ods).</p>
+    <p class="govuk-body">If you need to reduce the file size, you can read guidance on this depending on your file format.</p>
+
+    <p>The following links open in a new tab.</p>
+    <ul class="govuk-list">
+        <li><a class="govuk-link" href="https://support.microsoft.com/en-gb/office/reduce-the-file-size-of-your-word-documents-6c5a1186-6353-453d-bb22-e9322c2cfbab" target="_blank">Reduce the file size of your Word documents - Microsoft Support</a></li>
+        <li><a class="govuk-link" href="https://support.microsoft.com/en-gb/office/reduce-the-file-size-of-your-excel-spreadsheets-c4f69e3a-8eea-4e9d-8ded-0ac301192bf9" target="_blank">Reduce the file size of your Excel spreadsheets - Microsoft Support</a></li>
+        <li><a class="govuk-link" href="https://www.adobe.com/uk/acrobat/online/compress-pdf.html" target="_blank">Compress PDF Online for Adobe | Reduce PDF file size</a></li>
+        <li><a class="govuk-link" href="https://support.microsoft.com/en-gb/office/compress-a-picture-4598c336-688b-4ade-a582-ef966a978ffd" target="_blank">Compress a picture - Microsoft Support</a></li>
+    </ul>
+
+
+
+    <h2 class="govuk-heading-m">Getting a copy of your answers</h2>
+    <p class="govuk-body">Once you’ve submitted your application, we will email you a link to a page where you can download a copy of your answers. This will exclude any uploaded files but will still show the names of any uploaded files.</p>
+    <p class="govuk-body">The email will come from ‘Access funding’ and will be sent as soon as you’ve submitted your application. If you cannot find the email for any reason, do not forget to check your junk or spam folder.</p>
+
+
+    <h2 class="govuk-heading-m">Contact us</h2>
+    <p class="govuk-body">If you need help using this service, <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/68">contact us through our support desk</a>.</p>
+    <p class="govuk-body">Monday to Friday: 9am to 5pm (except public holidays).</p>
+    <p class="govuk-body">Do not send any applications or attachments through the support desk. We'll only accept applications through this service.</p>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

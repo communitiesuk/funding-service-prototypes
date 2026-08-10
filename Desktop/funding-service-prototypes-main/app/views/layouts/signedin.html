@@ -1,0 +1,122 @@
+    {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+    {% import "macros/page-title.njk" as macroPageTitle %}
+    {% import "macros/page-header.njk" as macroPageHeader %}
+    {% import "macros/status.njk" as macroSectionStatus %}
+
+    {% block header %}
+
+      {{ govukHeader({
+        homepageUrl: "#",
+        serviceName: "Apply for funding to begin your digital planning improvement journey",
+        serviceUrl: "#",
+        navigation: [
+          { href: "#", text: "View all applications" },
+          { href: "#", text: "Sign out" }
+        ]
+      }) }}
+
+    {% endblock %}
+
+
+
+    {% block beforeContent %}
+
+        <!-- Phasebanner -->
+        {% if showPhaseBanner != false %}
+            {{ govukPhaseBanner({
+                tag: { text: "Prototype" },
+                html: "This is a prototype. It is not a real service."
+            }) }}
+        {% endif %}
+
+        <!-- Primary Nav -->
+        {% if showNav == true %}
+
+            {% if data['nav'] == "users" %}
+            {{ xGovukSecondaryNavigation({
+                visuallyHiddenTitle: "Secondary menu",
+                items: [
+                    { text: "Users", href: "/users/?nav=users", current: true },
+                    { text: "Fund reports", href: "/funds/dashboard?nav=pro" }
+                ]
+            }) }}
+
+            {% else %}
+
+            {{ xGovukSecondaryNavigation({
+                visuallyHiddenTitle: "Secondary menu",
+                items: [
+                    { text: "Users", href: "/users/?nav=users" },
+                    { text: "Fund reports", href: "/funds/dashboard?nav=pro", current: true }
+                ]
+            }) }}
+
+            {% endif %}
+
+
+        {% endif %}
+
+        <!-- Back Link -->
+        {% if showBackLink == true %}
+            {{ govukBackLink({
+                text: "Back",
+                href: "javascript:history.go(-1)"
+            }) }}
+        {% endif %}
+
+        {% if showBackApplicationsLink != false %}
+            {{ govukBackLink({
+                text: "Back to your applications",
+                href: "/apply/applications"
+            }) }}
+        {% endif %}
+
+    <!--
+            {% if showBread == true %}
+            {{ govukBreadcrumbs({
+              items: [
+                { text: "Programme and projects", href: "/funds/dashboard?nav=pro" },
+                { text: "Project name", href: "/funds/reports" }
+
+              ]
+            }) }}
+            {% endif %} -->
+
+    <!--
+             {{ xGovukPrimaryNavigation({
+                visuallyHiddenTitle: "Navigation",
+                  items: [
+                    { text: "Pathfinders", href: "/programmes", current: true },
+                    { text: "Levelling up Fund", href: "#" }
+                ]
+            }) }} -->
+
+
+
+
+
+
+    {% endblock %}
+
+
+    {% block footer %}
+        {{ govukFooter({
+          meta: {
+            html: '
+              <ul class="govuk-footer__inline-list">
+                  <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/help" rel="noreferrer noopener" target="_blank">Help</a></li>
+                  <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/privacy-notice" rel="noreferrer noopener" target="_blank">Privacy notice</a></li>
+                  <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/terms-and-conditions" rel="noreferrer noopener" target="_blank">Terms and conditions</a></li>
+                  <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/cookies" rel="noreferrer noopener" target="_blank">Cookies</a></li>
+                  <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/accessibility" rel="noreferrer noopener" target="_blank">Accessibility</a></li>
+              </ul>
+              <p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="#" data-module="prototype-reveal-hidden">Show hidden text</a></p>',
+
+
+            items: [
+
+            ]
+          }
+        }) }}
+      {% endblock %}

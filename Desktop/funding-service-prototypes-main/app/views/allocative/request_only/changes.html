@@ -1,0 +1,132 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+
+    <form action="submission-new2_request#timeline" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <span class="govuk-caption-l">Glasgow City Council</span>
+            <h1 class="govuk-fieldset__heading">
+              Changes needed to Validation submission
+            </h1>
+          </legend>
+
+                <div class="govuk-form-group">
+<p class="govuk-body">We will send an email with the change request to:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Susan Smith (susan.smith@glasgow.gov.uk)</li>
+  <li>Bryan Johnson (bryan.johnson@glasgow.gov.uk)</li>
+</ul>
+</div>
+
+<label class="govuk-label govuk-label--m" for="passport-number">
+             Which sections need to be changed? (optional)
+            </label>
+          
+ <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-people" name="sectionsToChange" type="checkbox" value="people" data-aria-controls="conditional-people">
+              <label class="govuk-label govuk-checkboxes__label" for="section-people">
+                People
+              </label>
+            </div>
+            
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-delivery-plan" name="sectionsToChange" type="checkbox" value="delivery-plan" data-aria-controls="conditional-delivery-plan">
+              <label class="govuk-label govuk-checkboxes__label" for="section-delivery-plan">
+                Confirm participation
+              </label>
+            </div>
+            
+    
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-funding" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-funding">
+              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+                Funding activities
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-declarations" name="sectionsToChange" type="checkbox" value="declarations">
+              <label class="govuk-label govuk-checkboxes__label" for="section-declarations">
+                Declarations
+              </label>
+            </div>
+            
+
+           
+        </fieldset>
+     
+
+ </div>
+
+
+<label class="govuk-label govuk-!-font-weight-bold" for="passport-number">
+             What changes are needed to this Validation submission?
+            </label>
+
+ <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+   <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+    You can enter up to 200 characters
+  </div>
+</div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and request changes
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Exclusive Checkbox Logic for "No specific section"
+    const noneCheckbox = document.getElementById('section-none');
+    const otherCheckboxes = document.querySelectorAll('input[name="sectionsToChange"]:not(#section-none)');
+
+    if (noneCheckbox && otherCheckboxes.length > 0) {
+      // When "None" is checked, uncheck all others
+      noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+        }
+      });
+
+      // When any other checkbox is checked, uncheck "None"
+      otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            noneCheckbox.checked = false;
+          }
+        });
+      });
+    }
+
+  });
+</script>
+{% endblock %}
