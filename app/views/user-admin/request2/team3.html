@@ -73,17 +73,6 @@
         </tr>
 
 
-        <!-- Dynamically Added User from add_user page -->
-        {% if data['fullName'] %}
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">{{ data['fullName'] }}</td>
-          <td class="govuk-table__cell">{{ data['emailAddress'] }}</td>
-          <td class="govuk-table__cell">Can edit and submit</td>
-          <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> {{ data['fullName'] }}</span></a>
-          </td>
-        </tr>
-        {% endif %}
         
       </tbody>
     </table>
