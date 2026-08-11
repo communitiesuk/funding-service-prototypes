@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <th class="govuk-table__cell" scope="row">To</th>
-              <td class="govuk-table__cell"><span class='placeholder-no-brackets'>mmata@hastings.gov.uk</span></td>
+              <td class="govuk-table__cell"><span class='placeholder-no-brackets'> {{ data['fullName'] or "mmata@hastings.gov.uk" }}</span></td>
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
@@ -37,9 +37,9 @@
         
         <div class="email-message-body">
 
-          <p>Hi Magdalena,</p>
+          <p>Hello,</p>
       
-          <p>We could not add {{ data['fullName'] if data['fullName'] else 'Lukas Garner'}} ({{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}) to Hastings Borough Council's Safer social housing fund because the email address used to request access does not exist:</p>
+          <p>We could not add {{ data['fullName'] or 'Lukas Garner'}} to Hastings Borough Council's Safer social housing fund because the email address used to request access does not exist:</p>
           
           <div class="govuk-inset-text">
 {{ data['emailAddress'].split(' ')[0] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}</div>

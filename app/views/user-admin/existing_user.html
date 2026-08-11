@@ -1,6 +1,6 @@
 {% extends "layouts/access.html" %}
 
-{% set showBackLink = true %}
+{% set showBackLink = false %}
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "This team member already has access" %}
@@ -16,11 +16,11 @@
     </h1>
 
     <div class="govuk-inset-text">
-      sboyle@hastings.gov.uk
+      {{ data['emailAddress'] or "sboyle@hastings.gov.uk" }} 
     </div>
 
     <p class="govuk-body">
-      Shayne Boyle already has access to this grant.
+       {{ data['fullName'] or "Shayne Boyle" }} already has access to this grant.
     </p>
 
     <form action="add_user" method="post" novalidate>
