@@ -23,8 +23,8 @@
         <h3 class="govuk-notification-banner__heading">
           Access request rejected
         </h3>
-        <p class="govuk-body">
-          You rejected an access request from {{ data['fullName'] }} ({{ data['emailAddress'] }}) to join Castle Housing Limited's Safer social housing fund.
+         <p class="govuk-body">
+          You rejected an access request from {{ data['fullName'] or "Lukas Garner" }} ({{ data['emailAddress'] or "lgarner@castlehousing.com"}}) to join Castle Housing Limited's Safer social housing fund.
         </p>
       </div>
     </div>
