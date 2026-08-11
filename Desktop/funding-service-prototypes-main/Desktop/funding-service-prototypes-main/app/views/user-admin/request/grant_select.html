@@ -1,0 +1,54 @@
+{% extends "layouts/grantNoSignin.html" %}
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Which grant are you requesting access to?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="cya" method="post" novalidate>
+      
+      {{ selectWithSearch({
+        id: "grant-select",
+        name: "grantSelect",
+        label: {
+          text: "Which grant are you requesting access to?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+items: [
+          { value: "", text: "Select a grant" },
+          { value: "Borderlands Inclusive Growth Deal", text: "Borderlands Inclusive Growth Deal" },
+          { value: "Common Ground Award", text: "Common Ground Award" },
+          { value: "Common Ground Resilience Fund", text: "Common Ground Resilience Fund" },
+          { value: "Common Ground Resilience Fund - Reactive", text: "Common Ground Resilience Fund - Reactive" },
+          { value: "Digital Planning Strategic Project", text: "Digital Planning Strategic Project" },
+          { value: "Disabled Facilities Grant", text: "Disabled Facilities Grant" },
+          { value: "Local Authority Housing Fund", text: "Local Authority Housing Fund" },
+          { value: "Local Regeneration Fund", text: "Local Regeneration Fund" },
+          { value: "Local Resilience Forum funding", text: "Local Resilience Forum funding" },
+          { value: "National Workforce Programme", text: "National Workforce Programme" },
+          { value: "Playgrounds fund", text: "Playgrounds fund" },
+          { value: "Pride in Place Impact Fund", text: "Pride in Place Impact Fund" },
+          { value: "Pride in Place: Neighbourhood board and boundary", text: "Pride in Place: Neighbourhood board and boundary" },
+          { value: "Pride in Place Programme", text: "Pride in Place Programme" },
+          { value: "Safer social housing fund", text: "Safer social housing fund" },
+          { value: "Social Housing Innovation Fund", text: "Social Housing Innovation Fund" },
+          { value: "Grant not listed", text: "Grant not listed" }
+        ]
+      }) }}
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

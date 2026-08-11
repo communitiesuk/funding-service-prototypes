@@ -1,0 +1,37 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "You are not eligible to apply" %}
+{% set pageSection = "Eligibility" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      You're not eligible to apply for the Safer social housing fund.
+      </p>
+    
+      <p class="govuk-body">
+      This is because you answered <span class="govuk-body govuk-!-font-weight-bold"> 'No' </span> for 'Are the properties you manage located in England?'.
+    </p>
+
+    <p class="govuk-body">
+      You can review the eligibility criteria in the <a href="#" class="govuk-link">grant's prospectus (opens in new tab)</a>.
+    </p>
+
+    <form action="/" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Exit
+      </button>
+    </form>
+   
+  </div>
+</div>
+{% endblock %}

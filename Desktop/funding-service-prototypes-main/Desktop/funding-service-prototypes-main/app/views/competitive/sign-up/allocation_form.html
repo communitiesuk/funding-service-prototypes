@@ -1,0 +1,116 @@
+{% extends "layouts/access.html" %}
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Validation form" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs govuk-!-margin-bottom-7">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item" aria-current="page">
+      Application
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Application</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-2">
+      <strong>Submission deadline:</strong> 28 June 2026
+    </p>
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      <strong>Report status:</strong>   <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+    </p>
+
+    <h2 class="govuk-heading-l">Sections</h2>
+
+    <table class="govuk-table govuk-!-margin-bottom-9">
+      <tbody class="govuk-table__body" style="border-top: 1px solid #b1b4b6;">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="" class="govuk-link">Organisation details</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="#" class="govuk-link"> Skills and experience</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="#" class="govuk-link">Plans for the funding</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="#" class="govuk-link">Risk and governance</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+
+              <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <a href="#" class="govuk-link">Costs and value for money</a>
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+            <strong class="govuk-tag govuk-tag--grey">Not started</strong>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+       <p class="govuk-body">
+      You can <a href="preview" class="govuk-link">view and print all the questions.</a>
+    </p>
+
+
+    <h2 class="govuk-heading-m">Submit your form to your certifier</h2>
+    
+    <p class="govuk-body">
+     You can submit the form for sign off once it's complete.
+    </p>
+
+    <p class="govuk-body">
+      We'll send the form to Jane Doe. View who has access to the report and their permissions on the <a href="#" class="govuk-link">Team page.</a>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes while your form is awaiting sign off.
+    </p>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" disabled aria-disabled="true">
+        Submit form to certifier
+      </button>
+
+
+  </div>
+
+
+
+</div>
+{% endblock %}

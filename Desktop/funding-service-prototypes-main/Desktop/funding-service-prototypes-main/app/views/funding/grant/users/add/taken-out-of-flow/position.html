@@ -1,0 +1,43 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantUsers' %}
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What’s their position in the grant?" %}
+{% set pageSection = "Add grant team member" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/users/add/role" >
+
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "addUser-position",
+                name: "addUser-position",
+                value: data['addUser-position']
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

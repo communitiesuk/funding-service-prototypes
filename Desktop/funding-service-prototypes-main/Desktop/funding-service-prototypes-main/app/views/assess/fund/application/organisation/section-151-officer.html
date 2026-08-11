@@ -1,0 +1,134 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Fund:" %}
+{% set pageSection = "" %}
+
+{% set pageNextlabel = "Declarations" %}
+{% set pageNextlink = "/assess/fund/application/declarations/" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block main %}
+
+<div class="govuk-width-container">
+	{{ govukBackLink({
+		text: "Back to assessment landing",
+		href: "javascript:history.go(-1)"
+	}) }}
+
+	<div class="govuk-!-display-inline-block float-right govuk-!-margin-top-3 nag">
+		<a href="/assess/help">Get help</a>  <a href="#">Log out</a>
+	</div>
+</div>
+
+<div class="x-govuk-masthead">
+	<div class="govuk-width-container">
+
+
+      	<div class="govuk-grid-row">
+        	<div class="govuk-grid-column-two-thirds-from-desktop">
+          		<h1 class="x-govuk-masthead__title">{{ pageHeading }} <span class="govuk-!-font-weight-regular">{{ data.fundName }} Fund</span></h1>
+          		<p class="x-govuk-masthead__description govuk-!-font-size-36"><span class="govuk-!-font-weight-bold">Project reference:</span> ZWNEHL</p>
+          		<p class="x-govuk-masthead__description"><span class="govuk-!-font-weight-bold">Project name:</span> Sneaker Politics
+				<br>
+
+                {% if data[''] == "" %}
+                <strong class="govuk-tag govuk-tag-white overSizeWhite">NOT STARTED</strong>
+                {% else %}
+                <span class="govuk-!-font-weight-bold">Total funding requested:</span> £0.00</p>
+                {% endif %}
+        	</div>
+      	</div>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper" id="main-content" role="main">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+
+                <h2 class="govuk-heading-l">Organisation information</h2>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible section_break_blue">
+                <ul class="govuk-list">
+                    <li><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/organisation/">Organisation name</a></li>
+                    <li><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/organisation/lead-contact">Lead contact details</a></li>
+                    <li><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/organisation/project-sponsor">Project sponsor details</a></li>
+                    <li>Section 151 officer details</li>
+                    <li><a class="govuk-link govuk-link--no-visited-state" href="/assess/fund/application/organisation/future-work">Future work</a></li>
+                </ul>
+            </div>
+
+            <div class="govuk-grid-column-two-thirds">
+
+                <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+                <div class="govuk-summary-card template-answer">
+                    <div class="govuk-summary-card__title-wrapper">
+                        <h2 class="govuk-summary-card__title">
+                          Applicant's response
+                        </h2>
+                      </div>
+                    <div class="govuk-summary-card__content">
+                        <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer first name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_section151FirstName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer last name</dt>
+                                  <dd class="govuk-summary-list__value">{{ data['2_1_section151LastName'] }}</dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer email address</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_section151Email'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">Section 151 officer telephone number</dt>
+                                  <dd class="govuk-summary-list__value"><a href="#">{{ data['2_1_section151Phone'] }}</a></dd>
+                                  <dd class="govuk-summary-list__actions">
+
+                                  </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Comments</h2>
+                <p><a href="#" class="govuk-link govuk-!-font-size-16">Add a comment</a></p>
+                <p>Summarise any thoughts you have on the assessment.</p>
+
+                <p>No comments have been left yet.</p>
+
+                {{ macroPagePagination.pagePagination( pagePreviouslabel, pagePreviouslink, pageNextlabel, pageNextlink) }}
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+{% endblock %}

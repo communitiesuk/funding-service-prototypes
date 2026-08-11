@@ -1,0 +1,48 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What date will applications close?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/add/description">
+
+            {{ govukDateInput({
+                id: "grant-closingDate",
+                namePrefix: "grant-closingDate",
+                fieldset: {
+                    legend: {
+                        text: pageHeading,
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend govuk-visually-hidden"
+                    }
+                },
+                hint: {
+                  text: "For example, 27 7 2025"
+                }
+            }) }}
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

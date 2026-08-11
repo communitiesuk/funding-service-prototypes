@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "How will you make sure team members engage with other parts of your organisation?" %}
+	{% set pageSection = "Engaging the organisation" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "How will you make sure team members engage with other parts of your organisation?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<p class="govuk-body">We expect you to regularly engage with:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>planning departments</li>
+			<li>transformation departments</li>
+			<li>data departments</li>
+			<li>GIS (geographical information system) teams</li>
+			<li>senior leadership</li>
+			<li>information technology teams</li>
+		</ul>
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/engaging-the-organisation/check-your-answers" >
+		{% else %}
+		<form method="post" action="/apply/engaging-the-organisation/share-progress" >
+		{% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+			{% if not data.section4_2 %}
+            <input type="hidden" id="section4_2" name="section4_2" value="Started" />
+            {% endif %}
+
+			{{ govukCharacterCount({
+				name: "4_2_engagement",
+				id: "4_2_engagement",
+				maxwords: 250,
+				value: data['4_2_engagement']  ,
+				label: {
+					text: pageHeading,
+				  	classes: "govuk-label--l govuk-visually-hidden",
+				  	isPageHeading: false
+				}
+			}) }}
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+        </form>
+
+		{% else %}
+		<p class="govuk-body govuk-hint">We expect you to regularly engage with:</p>
+		<ul class="govuk-list govuk-list--bullet govuk-hint">
+			<li>planning departments</li>
+			<li>transformation departments</li>
+			<li>data departments</li>
+			<li>GIS (geographical information system) teams</li>
+			<li>senior leadership</li>
+			<li>information technology teams</li>
+		</ul>
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/engaging-the-organisation/check-your-answers" >
+		{% else %}
+		<form method="post" action="/apply/engaging-the-organisation/share-progress" >
+		{% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+			{% if not data.section4_2 %}
+            <input type="hidden" id="section4_2" name="section4_2" value="Started" />
+            {% endif %}
+
+			{{ govukCharacterCount({
+				name: "4_2_engagement",
+				id: "4_2_engagement",
+				maxwords: 250,
+				value: data['4_2_engagement']  ,
+				label: {
+					text: pageHeading,
+				  	classes: "govuk-label--l govuk-visually-hidden",
+				  	isPageHeading: false
+				}
+			}) }}
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+        </form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

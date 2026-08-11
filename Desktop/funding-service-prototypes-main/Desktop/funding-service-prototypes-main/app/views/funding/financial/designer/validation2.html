@@ -1,0 +1,142 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Add guidance" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+      <span class="govuk-caption-l">Houses column</span>
+      Add table validation
+    </h1>
+
+    <p class="govuk-body">Use autocalculation if you need to:</p>
+    
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Block users from progressing further if the numbers do not add up</li>
+      <li>Create a custom message for grant recipients</li>
+    </ul>
+<br>      
+
+
+      <!-- Markdown Editor Tabs -->
+      <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+          Contents
+        </h2>
+        <ul class="govuk-tabs__list">
+          <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+            <a class="govuk-tabs__tab" href="#write-guidance">
+              Write validation
+            </a>
+          </li>
+   
+        </ul>
+        
+        <!-- Write Guidance Panel -->
+        <div class="govuk-tabs__panel" id="write-guidance" style="border: 1px solid #b1b4b6; border-top: none; padding-top: 20px;">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-4">Add autocalculation formula</h2>
+          
+          <p class="govuk-body govuk-!-margin-bottom-4">
+            Use Markdown to use create formula for your autocalculation.
+          </p>
+
+          <!-- Markdown Toolbar -->
+          <div class="govuk-!-margin-bottom-2" style="display: flex; gap: 4px;">
+            <button type="button" aria-label="Heading 2" style="background-color: white; border: 1px solid #0b0c0c; padding: 4px 8px; font-weight: 700; font-size: 16px; font-family: 'GDS Transport', arial, sans-serif; color: #0b0c0c; cursor: pointer;">
+              H2
+            </button>
+            <button type="button" aria-label="Link" style="background-color: white; border: 1px solid #0b0c0c; padding: 4px 8px; color: #0b0c0c; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </button>
+            <button type="button" aria-label="Bullet list" style="background-color: white; border: 1px solid #0b0c0c; padding: 4px 8px; color: #0b0c0c; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" style="vertical-align: middle;">
+                <circle cx="5" cy="5" r="2" fill="#0b0c0c" />
+                <path d="M10 4h12v2H10z" fill="#0b0c0c" />
+                <circle cx="5" cy="12" r="2" fill="#0b0c0c" />
+                <path d="M10 11h12v2H10z" fill="#0b0c0c" />
+                <circle cx="5" cy="19" r="2" fill="#0b0c0c" />
+                <path d="M10 18h12v2H10z" fill="#0b0c0c" />
+              </svg>
+            </button>
+            <button type="button" aria-label="Numbered list" style="background-color: white; border: 1px solid #0b0c0c; padding: 4px 8px; color: #0b0c0c; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" style="vertical-align: middle;">
+                <text x="2" y="7" font-size="8" font-family="sans-serif" font-weight="bold" fill="#0b0c0c">1</text>
+                <path d="M10 3h12v2H10z" fill="#0b0c0c" />
+                <text x="2" y="15" font-size="8" font-family="sans-serif" font-weight="bold" fill="#0b0c0c">2</text>
+                <path d="M10 11h12v2H10z" fill="#0b0c0c" />
+                <text x="2" y="23" font-size="8" font-family="sans-serif" font-weight="bold" fill="#0b0c0c">3</text>
+                <path d="M10 19h12v2H10z" fill="#0b0c0c" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Textarea container -->
+          
+          <div style="position: relative;">
+            <textarea class="govuk-textarea" id="guidance-content" name="guidanceContent" rows="12" style="padding-bottom: 45px; margin-bottom: 0; border: 2px solid #0b0c0c;">Reference data formula/expression for the validation</textarea>
+            <form method="post" action="edit_column_autocalc" novalidate>
+            <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="position: absolute; bottom: 12px; right: 12px; padding: 4px 10px; ">
+              Reference data
+            </button>
+             </form>
+          </div>
+       
+
+          <!-- Formatting help -->
+          <details class="govuk-details govuk-!-margin-top-6 govuk-!-margin-bottom-2" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Formatting help
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              Use Markdown to format your text. You can add links, headings, and lists to make your guidance easier to read.
+            </div>
+          </details>
+        </div>
+
+        <!-- Preview Guidance Panel -->
+        <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="preview-guidance" style="border: 1px solid #b1b4b6; border-top: none; padding-top: 20px;">
+          <h2 class="govuk-heading-m">Preview guidance</h2>
+          <p class="govuk-body">Your guidance preview will appear here.</p>
+        </div>
+      </div>
+
+  <div class="govuk-form-group">
+  <h3 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--s" for="more-detail">
+      Message
+    </label>
+  </h3>
+  <div id="more-detail-hint" class="govuk-hint">
+    Shown to the user if the answer is not valid
+  </div>
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+</div>
+<br>
+
+
+      <!-- Actions -->
+          <form method="post" action="edit_table_valid4" novalidate>
+      <div class="govuk-button-group govuk-!-margin-top-6">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save autocalculation
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

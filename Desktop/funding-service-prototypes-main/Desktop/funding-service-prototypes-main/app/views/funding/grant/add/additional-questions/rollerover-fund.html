@@ -1,0 +1,71 @@
+{% extends "layouts/deliver.html" %}
+
+{% set pageHeading = "Is this a new grant?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}  
+      
+
+      
+      
+      <form class="form" action="/grant/profile/check-your-answers" method="post">
+
+        
+
+        {{ govukRadios({    
+          classes: "govuk-radios--inline",               
+          name: "ggisNewGrant",
+          id: "ggisNewGrant",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Yes", text: "Yes", checked: checked("ggisNewGrant", "Yes") },
+            { value: "No", text: "No", checked: checked("ggisNewGrant", "No") }                        
+          ]
+        }) }}
+
+
+
+        <!-- {{ govukRadios({                   
+          name: "grantTier",
+          id: "grantTier",
+          fieldset: {
+            legend: {
+            text: "Select an option to update your RIBA reporting stage",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend govuk-visually-hidden"
+            }
+          },
+          items: [
+            { value: "Brand new grant", text: "Brand new grant", checked: checked("grantTier", "Brand new grant") },
+            { value: "New grant but similar objectives to an existing grant", text: "New grant but similar objectives to an existing grant", checked: checked("grantTier", "New grant but similar objectives to an existing grant") },
+            { value: "Continuation of a multi-year grant", text: "Continuation of a multi-year grant", checked: checked("grantTier", "Continuation of a multi-year grant") },
+            { value: "Extension to existing grant", text: "Extension to existing grant", checked: checked("grantTier", "Extension to existing grant") }
+            
+          ]
+        }) }} -->
+
+
+        
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

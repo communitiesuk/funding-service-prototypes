@@ -1,0 +1,45 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = " What activities do you plan to deliver using the funding?" %}
+{% set pageSection = "Funding activities" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
+<span class="govuk-caption-xl">Funding activities</span>
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+    </h1>
+
+    <form action="project_cya" method="post" novalidate>
+      
+
+
+      <div class="govuk-form-group">
+     
+  <p class="govuk-body">Include:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>what the activities are</li>
+    <li>how the activities align with the programme objectives</li>
+      <li>how you will deliver the activities</li>
+</ul>
+        <textarea class="govuk-textarea" id="activities" name="activities" rows="5" aria-describedby="activities-hint"></textarea>
+      </div>
+
+      
+
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Upload your delivery plan" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+    	<p class="govuk-body">Your delivery plan should include a fully detailed breakdown of your provision offer.</p>
+		<p class="govuk-body">You should highlight any activities you propose to carry out across the entire project (not just for the households in your bid) and associated costs outside of core costs. For example, matching across the scheme.</p>
+		<p class="govuk-body govuk-!-margin-bottom-7">Your delivery plan will be assessed if you score over 50% across all of the word-limited answers. The maximum weighting will be 15% for the full submitted delivery plan when this is assessed.</p>
+
+
+
+		<form method="post" action="/apply/email-address" >
+
+			{% if data['version'] == "suggested" %}
+
+			<!-- {{ govukFileUpload({
+				id: "file-upload-1",
+				name: "fileUpload1",
+				label: {
+				  text: "Upload file",
+				  classes: "govuk-label--s"
+				},
+				hint: {
+					text: "Format must be pdf, jpg, png, docx, csv, odf or xlsx. The selected file must be smaller than 30MB."
+				}
+			  }) }} -->
+
+			  {{ govukFileUpload({
+				id: "file-upload-1",
+				name: "fileUpload1",
+				label: {
+				  text: "Upload file",
+				  classes: "govuk-label--s"
+				},
+				hint: {
+					text: "Format must be pdf, jpg, png, docx, csv, odf or xlsx. The selected file must be smaller than 30MB."
+				},
+				javascript: true
+			  }) }}
+
+			{% else %}
+
+			{{ govukFileUpload({
+				id: "file-upload-1",
+				name: "fileUpload1",
+				label: {
+				  text: "Upload file",
+				  classes: "govuk-visually-hidden"
+				}
+
+			  }) }}
+
+			{% endif %}
+
+
+			{{ govukButton({
+                text: "Save and continue"
+            }) }}
+		</form>
+
+
+		{% if data['version'] == "suggested" %}
+		{{ macroCurrent.pageCurrent(url) }}
+	{% else %}
+		{{ macroSuggested.pageSuggested(url) }}
+	{% endif %}
+  </div>
+</div>
+
+{% endblock %}

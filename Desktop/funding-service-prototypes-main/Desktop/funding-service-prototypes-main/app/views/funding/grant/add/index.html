@@ -1,0 +1,36 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Tell us about the grant" %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">You’ll need to enter information including:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Government Grants Information System (GGIS) number</li>
+			<li>grant contact details</li>
+		</ul>
+
+      	<form method="post" action="/funding/grant/add/ggis-number" >
+			{{ govukButton({
+        		text: "Continue",
+				classes: "govuk-!-margin-top-5"
+      		}) }}
+		</form>
+
+  	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the funding type?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+
+        {% if data['change'] == "yes" %}
+            <form method="post" action="/funding/grant/add/summary">
+				<input type="hidden" name="change" id="change" value="" />
+      	{% else %}
+		  	<form method="post" action="/funding/grant/add/monitoring">
+      	{% endif %}
+
+			{{ govukRadios({
+				name: "grant-type",
+				id: "grant-type",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "Competed", text: "Competed", checked: checked("grant-type", "Competed") },
+					{ value: "Un-competed", text: "Un-competed", checked: checked("grant-type", "Un-competed") },
+					{ value: "Formula based", text: "Formula based", checked: checked("grant-type", "Formula based") },
+					{ value: "Criteria based", text: "Criteria based", checked: checked("grant-type", "Criteria based") },
+					{ value: "Mixed", text: "Mixed", checked: checked("grant-type", "Mixed") },
+					{ value: "Expression of interest", text: "Expression of interest", checked: checked("grant-type", "Expression of interest") }
+				]
+			}) }}
+
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

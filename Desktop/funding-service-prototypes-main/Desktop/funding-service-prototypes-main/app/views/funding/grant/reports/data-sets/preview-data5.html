@@ -1,0 +1,145 @@
+{% extends "layouts/deliver-nav.html" %}
+{% set navID = 'reports' %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageHeading = "Upload new data set" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Mid-year monitoring</span>
+    <h1 class="govuk-heading-l">Preview grant allocation data set before uploading</h1>
+
+    <p class="govuk-body">Preview the data set with the formatting you have applied.
+    </p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Column data types and formatting
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+   <dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Capital allocation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      British pounds, 0 decimal places, prefix: £
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Revenue allocation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Whole number, suffix: kg
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Revenue allocation
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Decimal, 2 decimal places
+    </dd>
+  </div>
+</dl>
+  </div>
+</details>
+
+  </div>
+</div>
+  <div class="govuk-grid-column-full-width">
+
+
+
+
+     <h2 class="govuk-heading-m">Data columns</h2>
+
+    <div class="moj-scrollable-pane" role="region" tabindex="0" aria-label="Scrollable table">
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Organisation ID</th>
+            <th scope="col" class="govuk-table__header">Grant recipient</th>
+            <th scope="col" class="govuk-table__header">Capital allocation</th>
+            <th scope="col" class="govuk-table__header">Revenue allocation</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              N09000002
+            </td>
+            <td class="govuk-table__cell">
+              Armagh City, Banbridge and Craigavon Borough Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              E08000025
+            </td>
+            <td class="govuk-table__cell">
+              Birmingham City Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              E06000030
+            </td>
+            <td class="govuk-table__cell">
+              Swindon Borough Council
+            </td>
+            <td class="govuk-table__cell">
+              £4,500,000.00
+            </td>
+            <td class="govuk-table__cell">
+              £1,250,000.00
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+    <form method="post" action="missing-data">
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Upload data set
+        </button>
+        <a class="govuk-link" href="no-data-sets-missing-data">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

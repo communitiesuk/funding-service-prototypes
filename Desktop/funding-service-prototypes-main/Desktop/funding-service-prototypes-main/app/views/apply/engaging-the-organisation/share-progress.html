@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "How will you share the progress of the work across your organisation?" %}
+	{% set pageSection = "Engaging the organisation" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "How will you share the progress of the work across your organisation?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/engaging-the-organisation/check-your-answers" >
+		{% else %}
+		<form method="post" action="/apply/engaging-the-organisation/check-your-answers" >
+		{% endif %}
+
+			{{ govukCharacterCount({
+				name: "4_2_shareProgress",
+				id: "4_2_shareProgress",
+				maxwords: 250,
+				value: data['4_2_shareProgress']  ,
+				label: {
+				  	text: pageHeading,
+				  	classes: "govuk-label--l govuk-visually-hidden",
+				  	isPageHeading: false
+				}
+			}) }}
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+        </form>
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

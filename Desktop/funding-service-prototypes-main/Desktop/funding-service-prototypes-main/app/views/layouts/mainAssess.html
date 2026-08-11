@@ -1,0 +1,84 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+{% import "macros/suggested-page.njk" as macroSuggested %}
+{% import "macros/current-page.njk" as macroCurrent %}
+{% import "macros/page-pagination.njk" as macroPagePagination %}
+
+<!-- Overides the max width only in assess -->
+{% block stylesheets %}
+	{{ super() }}
+  	<link href="/public/css/assessOveride.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+
+{% block header %}
+
+	{% if data['signedIn'] == "yes" %}
+
+    	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+            serviceName: "Assess grant applications",
+          	serviceUrl: "/?signedIn=no"
+        }) }}
+
+    {% elif data['signedIn'] == "no" %}
+
+      	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+        	serviceName: "Assess grant applications",
+        	serviceUrl: "/?signedIn=no"
+      	}) }}
+
+    {% endif %}
+
+{% endblock %}
+
+
+{% block beforeContent %}
+
+	<!-- Phasebanner -->
+	{% if showPhaseBanner == true %}
+		{{ govukPhaseBanner({
+			tag: { text: "Prototype" },
+			html: "This is a prototype. It is not a real service."
+		}) }}
+	{% endif %}
+
+    <!-- Back Link -->
+	<!-- <div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+	{% if showBackLink == true %}
+		{{ govukBackLink({
+			text: "Back",
+			href: "javascript:history.go(-1)"
+		}) }}
+	{% else %}
+	{% endif %}
+		</div>
+		<div class="govuk-grid-column-one-third govuk-!-text-align-right">
+    {% if data['signedIn'] == "yes" %}
+		{{ govukServiceNavigation({
+			navigation: [
+				{ href: "/assess/help", text: "Get help" },
+				{ href: "#", text: "Log out", active: true }
+			]
+		}) }}
+    {% endif %}
+</div>
+	</div> -->
+
+
+{% endblock %}
+
+
+{% block footer %}
+    {{ govukFooter({
+        meta: {
+            html: '
+            	<p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Show hidden text</a></p>',
+            items: [ ]
+        }
+    }) }}
+{% endblock %}

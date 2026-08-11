@@ -1,0 +1,239 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = true %}
+
+
+{% if data['fundName'] == "High Street Rental Auctions" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to cover the cost of delivering a High Street Rental Auction" %}
+    {% set pageSection = "High Street Rental Auctions fund Refurbishment project" %}
+{% elif data['fundName'] == "Community Ownership Fund" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Application for funding to save an asset in your community" %}
+    {% set pageSection = 'Community Ownership Fund ' + data.fundRound + '' %}
+{% elif data['fundName'] == "Digital Planning Improvement" %}
+
+	{% if data['version'] == "suggested" %}
+    	{% set pageSize = "xl" %}
+{% set pageHeading = "Application for funding" %}
+    	{% set pageSection = 'Digital Planning Improvement Fund ' + data.fundRound + '' %}
+	{% else %}
+		{% set pageSize = "xl" %}
+{% set pageHeading = "Application for funding to begin your digital planning improvement journey" %}
+		{% set pageSection = 'Digital Planning Improvement Fund ' + data.fundRound + '' %}
+	{% endif %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for {fund details}" %}
+    {% set pageSection = "Fund name and round information" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+			<!-- Fund date and reference -->
+			<div class="govuk-inset-text govuk-!-margin-bottom-6">
+				<p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Submission deadline</p>
+				<p class="govuk-body">{{ data.fundDeadlineDate | govukDateTime }}</p>
+				<p class="govuk-body">Submit your application with plenty of time to spare before the submission deadline as you may be asked to provide more information.</p>
+				<p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">Application reference</p>
+				<p class="govuk-obody">DPIF-R3-IQPIJK</p>
+			</div>
+			<p class="govuk-body govuk-!-margin-bottom-7">Find out <a href="/apply/footer/guidance?version=" target="_blank" class="govuk-link govuk-link--no-visited-state">how to apply for a grant using this service (opens in new tab)</a>.</p>
+
+
+
+			<!-- Various task lists dependent on fund and its requirements -->
+			{% if data['fundName'] == "High Street Rental Auctions" %}
+				{% include "/apply/includes/taskHSRA.html" %}
+			{% elif data['fundName'] == "Community Ownership Fund" %}
+			{% include "/apply/includes/tlist-communityFund.html" %}
+			{% elif data['fundName'] == "Digital Planning Improvement" %}
+				{% include "/apply/includes/tlist-digitalPlanning.html" %}
+			{% else %}
+				<p class="govuk-body">You have not set which fund you are dealing with.</p>
+			{% endif %}
+			<!-- // -->
+
+
+			{% if data['applicationComplete'] == "Yes" %}
+
+				<h2 class="govuk-heading-m govuk-!-margin-top-7">You can now submit your application</h2>
+				<!-- <p class="govuk-body">You can submit your application when you are ready.</p> -->
+				<p>You can still edit any of the completed sections before submitting your application.</p>
+				<p class="govuk-body">Once your application has been submitted, you cannot change your answers.</p>
+				<p>If the assessor needs additional information or has any questions about your application we will email you.</p>
+
+				<form method="post" action="/apply/submit-application?applicationStatus=submitted" >
+
+					<input type="hidden" id="applicationStatus" name="applicationStatus" value="submitted" />
+
+					{{ govukButton({
+						text: "Submit your application"
+					}) }}
+
+				</form>
+
+
+
+			{% else %}
+
+				<!-- Application status -->
+				{% if (
+					(data['section1_1'] == "yes") and
+					( data['section2_1'] == "yes") and
+					( data['section3_1'] == "yes") and
+					( data['section3_2'] == "yes") and
+					( data['section4_1'] == "yes") and
+					( data['section4_2'] == "yes") and
+					( data['section4_3'] == "yes") and
+					( data['section5_1'] == "yes") and
+					( data['section6_1'] == "yes")) %}
+
+
+					<h2 class="govuk-heading-m govuk-!-margin-top-7">You can now submit your application</h2>
+					<!-- <p class="govuk-body">You can submit your application when you are ready.</p> -->
+					<p>You can still edit any of the completed sections before submitting your application.</p>
+					<p class="govuk-body">Once your application has been submitted, you cannot change your answers.</p>
+
+					<form method="post" action="/apply/submit-application?applicationStatus=submitted" >
+
+						<input type="hidden" id="applicationStatus" name="applicationStatus" value="submitted" />
+
+						{{ govukButton({
+							text: "Submit your application"
+						}) }}
+
+					</form>
+
+
+				{% endif %}
+				<!-- // -->
+			{% endif %}
+
+		{% else %}
+
+
+
+
+				<!-- Help with application -->
+				{% include "/apply/includes/help-with-application.html" %}
+
+				<!-- Fund date and reference -->
+				<p class="govuk-body govuk-!-margin-bottom-2"><strong>Submission deadline:</strong> {{ data.fundDeadlineDate | govukDateTime }}</p>
+				<p class="govuk-body">Submit your application with plenty of time to spare before the submission deadline as you may be asked to provide more information.</p>
+				<p class="govuk-body govuk-!-margin-bottom-2"><span><strong>Reference:</strong> DPIF-R3-IQPIJK</span></p>
+
+
+				{% if data['applicationComplete'] == "Yes" %}
+
+				<div class="govuk-inset-text blue govuk-!-margin-bottom-8">
+					<h2 class="govuk-heading-m">You can now submit your application</h2>
+
+					<p>You can still edit any of the completed sections before submitting your application.</p>
+					<p class="govuk-body">Once your application has been submitted, you cannot change your answers.</p>
+					<p>If the assessor needs additional information or has any questions about your application we will email you.</p>
+
+					<form method="post" action="/apply/submit-application?applicationStatus=submitted" >
+
+						<input type="hidden" id="applicationStatus" name="applicationStatus" value="submitted" />
+
+						{{ govukButton({
+							text: "Submit your application"
+						}) }}
+
+					</form>
+				</div>
+
+
+
+
+				{% else %}
+
+					<!-- Application status -->
+					{% if (
+						(data['section1_1'] == "yes") and
+						( data['section2_1'] == "yes") and
+						( data['section3_1'] == "yes") and
+						( data['section3_2'] == "yes") and
+						( data['section4_1'] == "yes") and
+						( data['section4_2'] == "yes") and
+						( data['section4_3'] == "yes") and
+						( data['section5_1'] == "yes") and
+						( data['section6_1'] == "yes")) %}
+
+							<div class="govuk-inset-text govuk-!-padding-bottom-7 govuk-!-margin-bottom-8">
+								<h2 class="govuk-heading-m">You can now submit your application</h2>
+
+								<p>You can still edit any of the completed sections before submitting your application.</p>
+								<p class="govuk-body">Once your application has been submitted, you cannot change your answers.</p>
+
+								<form method="post" action="/apply/submit-application?applicationStatus=submitted" >
+
+									<input type="hidden" id="applicationStatus" name="applicationStatus" value="submitted" />
+
+									{{ govukButton({
+										text: "Submit your application"
+									}) }}
+
+								</form>
+							</div>
+
+					{% else %}
+
+						<p class="govuk-body"><span><strong>Status:</strong></span> {{ govukTag({ text: "Not Started", classes: "govuk-tag--grey"  }) }}</p>
+
+						{% if (
+							(data['section1_1'] == "yes") or
+							( data['section2_1'] == "yes") or
+							( data['section3_1'] == "yes") or
+							( data['section3_2'] == "yes") or
+							( data['section4_1'] == "yes") or
+							( data['section4_2'] == "yes") or
+							( data['section4_3'] == "yes") or
+							( data['section5_1'] == "yes") or
+							( data['section6_1'] == "yes")) %}
+							<p class="govuk-body">You have completed X out of {{ data.tlistSections }} sections.</p>
+						{% else %}
+							<p class="govuk-body">None of the sections have been completed.</p>
+						{% endif %}
+
+					{% endif %}
+					<!-- // -->
+				{% endif %}
+
+				<!-- Various task lists dependent on fund and its requirements -->
+				{% if data['fundName'] == "High Street Rental Auctions" %}
+					{% include "/apply/includes/taskHSRA.html" %}
+				{% elif data['fundName'] == "Community Ownership Fund" %}
+				{% include "/apply/includes/tlist-communityFund.html" %}
+				{% elif data['fundName'] == "Digital Planning Improvement" %}
+					{% include "/apply/includes/tlist-digitalPlanning.html" %}
+				{% else %}
+					<p class="govuk-body">You have not set which fund you are dealing with.</p>
+				{% endif %}
+				<!-- // -->
+
+		{% endif %}
+
+
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}

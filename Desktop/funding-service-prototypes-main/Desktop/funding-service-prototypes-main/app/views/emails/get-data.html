@@ -1,0 +1,50 @@
+{% extends "layouts/email.html" %}
+{% set serviceName = "" %}
+
+{% set title = 'Monitoring and evaluation data' %}
+
+{% block pageTitle %}
+  {{title}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+
+    	<div class="email-message">
+    		<table class="govuk-table email-message-meta">
+        		<tbody>
+					<tr>
+                		<th class="govuk-table__cell" scope="row">From</th>
+                		<td class="govuk-table__cell">Report Funding Progress</td>
+              		</tr>                    
+            		<tr>
+              			<th class="govuk-table__cell" scope="row">To</th>
+              			<td class="govuk-table__cell"><span class='placeholder-no-brackets'>{{ data.section151Email}}</span></td>
+            		</tr>          
+          			<tr class="email-message-meta">
+            			<th class="govuk-table__cell" scope="row">Subject</th>
+            			<td class="govuk-table__cell">{{ title }}</td>
+          			</tr>
+        		</tbody>
+      		</table>
+      	<div class="email-message-body">                  
+        	<p>Your monitoring and evaluation spreadsheet is ready to be downloaded.</p>
+    		<p><a href="#">Download your spreadsheet (MS Excel Spreadsheet, {size} KB)</a></p>
+    		<p>This link will stop working after [x-time-period].</p>
+    		<p>If your link has expired, you can make a new download request by going to: <a href="#">https://rb.gy/service/download-data</a>.</p>
+      	</div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+

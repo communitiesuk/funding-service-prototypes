@@ -1,0 +1,134 @@
+
+
+.search-button {
+    margin-bottom: 0;
+    margin-left: 8px;
+    vertical-align: baseline;
+}
+
+.search-input {
+    /* width: 16em; */
+}
+
+
+
+.nag a {
+    margin-left: 14px;
+}
+
+/* .govuk-service-navigation__container {
+
+    float: right;
+} */
+
+.float-right {
+    float: right;
+}
+
+.lead-dashboard-stat {
+    min-width: 100px;
+    max-width: 100px;
+    padding: 20px;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+
+
+.lead-dashboard-stat p:first-of-type {
+    font-size: 3em;
+    line-height: 1.31579;
+}
+
+.lead-dashboard-stat p {
+    font-weight: 600;
+    font-size: 0.7em;
+    color: #1d70b8;
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+
+.fright {
+    float: right;
+}
+
+.section_break_blue {
+    border-bottom: 4px solid #1d70b8;
+    margin: 20px 0;
+}
+
+.theme-blue {
+    border-top: 4px solid #1d70b8;
+    padding-top: 20px;
+}
+
+.theme-grey {
+    border-top: 4px solid #b1b4b6;
+    padding-top: 20px
+}
+
+.govuk-tag--white {
+    background-color: white;
+}
+
+
+
+
+.overSize {
+    max-width: 500px;
+    background-color: #1d70b8;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.overSizeGrey {
+    max-width: 500px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.overSizeWhite {
+    max-width: 500px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.prototype-visually-revealed {
+    background: #ff00dd33;
+    opacity: 80%;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px; /* Adjust spacing between buttons as needed */
+  align-items: center;
+}
+
+.govuk-highlight {
+  background-color: #fff7bf;
+  padding: 2px 4px;
+}
+
+.govuk-highlight-strong {
+  background-color: #ffdd00;
+  padding: 2px 4px;
+}
+
+.app-aligned-header-tag {
+    align-items: anchor-center;
+    gap: .5em;
+    display: flex;
+}
+
+.app-aligned-header-tag-high {
+    align-items: baseline;
+    gap: .5em;
+    display: flex;
+}

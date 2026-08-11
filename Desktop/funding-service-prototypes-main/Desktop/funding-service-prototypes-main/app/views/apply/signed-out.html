@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "You have been signed out" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+    	<p>Your session has been closed.</p>
+		<p class="govuk-body govuk-!-margin-bottom-7">To re-access your account, please click below to request a new link.</p>
+
+		<form method="post" action="/apply/email-address" >
+			{{ govukButton({
+                text: "Request a new link"
+            }) }}
+		</form>
+
+  </div>
+</div>
+
+{% endblock %}

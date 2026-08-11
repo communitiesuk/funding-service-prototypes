@@ -1,0 +1,62 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Form submitted" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Form submitted to certifier
+      </h1>
+      <div class="govuk-panel__body">
+        Form<br>
+        <strong>Validation form for Safer social housing fund</strong><br><br>
+        Your reference number<br>
+        <strong>BAIP-LT9D6YX</strong>
+      </div>
+    </div>
+
+    <p class="govuk-body">
+      We have sent a confirmation email to you and anyone else who has access to this form.
+    </p>
+
+    <p class="govuk-body">
+      You can <a href="#" class="govuk-link">download the form as a PDF</a>.
+    </p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+   Jane Doe will need to review and sign off and submit the form by 20 July 2026.
+    </p>
+
+
+    <p class="govuk-body">You will receive an email when your form is signed off and submitted to the Ministry of Housing, Communities and Local Government. </p>
+    
+    <p class="govuk-body">If a certifier needs to decline sign off, you will receive an email with their reason for declining. </p>
+
+        <p class="govuk-body">You cannot make changes while awaiting sign off, or once the report has been signed off and submitted. If you need to make a change before the form is signed off, the certifier should decline sign off. </p>
+
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">Tell us what you think of this service (opens in new tab)</a>
+    </p>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="dashboard_allocated" class="govuk-link">Return to form</a>
+    </p>
+
+        <p class="govuk-body-xs">
+      <a href="email_confirm" class="govuk-link">(view confirmation email)</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

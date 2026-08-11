@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "What’s the name of the project lead?" %}
+    {% set pageSection = "Roles and recruitment" %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Who will be the project lead?" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+        {% if data['version'] == "suggested" %}
+
+        {% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers?linkStatus=" >
+		{% else %}
+            <form method="post" action="/apply/roles-and-recruitment/check-your-answers" >
+		{% endif %}
+
+			{{ govukInput({
+                label: {
+                    text: "First name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "3_2_projectLeadFirstName",
+                name: "3_2_projectLeadFirstName",
+                value: data['3_2_projectLeadFirstName']
+            }) }}
+
+			{{ govukInput({
+                label: {
+                    text: "Last name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "3_2_projectLeadLastName",
+                name: "3_2_projectLeadLastName",
+                value: data['3_2_projectLeadLastName']
+            }) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+
+
+
+        {% else %}
+
+        {% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers?linkStatus=" >
+		{% else %}
+            <form method="post" action="/apply/roles-and-recruitment/check-your-answers" >
+		{% endif %}
+
+
+			{{ govukInput({
+                label: {
+                    text: "Project lead first name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "3_2_projectLeadFirstName",
+                name: "3_2_projectLeadFirstName",
+                value: data['3_2_projectLeadFirstName']
+            }) }}
+
+			{{ govukInput({
+                label: {
+                    text: "Project lead last name",
+                    classes: "govuk-label--s",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "3_2_projectLeadLastName",
+                name: "3_2_projectLeadLastName",
+                value: data['3_2_projectLeadLastName']
+            }) }}
+
+
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+        {% endif %}
+
+
+		{% if data['version'] == "suggested" %}
+			{{ macroCurrent.pageCurrent(url) }}
+		{% else %}
+			{{ macroSuggested.pageSuggested(url) }}
+		{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

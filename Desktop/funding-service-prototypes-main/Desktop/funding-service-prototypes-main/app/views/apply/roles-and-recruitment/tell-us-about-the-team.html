@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Tell us about the team" %}
+	{% set pageSection = "Roles and recruitment" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Tell us about the shape of the project team" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<p class="govuk-body">This should include information about:</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>how many people are in the team</li>
+			<li>the roles in the team</li>
+			<li>if you have a GIS (geographic information system) officer to support the project or if you plan to recruit one</li>
+        </ul>
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers" >
+		{% else %}
+			<form method="post" action="/apply/roles-and-recruitment/backfill" >
+		{% endif %}
+
+			{{ govukCharacterCount({
+				name: "3_2_teamShape",
+				id: "3_2_teamShape",
+				maxwords: 250,
+				value: data['3_2_teamShape']  ,
+				label: {
+				  text: pageHeading,
+				  classes: "govuk-label govuk-visually-hidden",
+				  isPageHeading: false
+				}
+			}) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+
+		{% else %}
+
+		<p class="govuk-body govuk-hint">Tell us about:</p>
+		<ul class="govuk-list govuk-list--bullet govuk-hint">
+			<li>how many people are in the team</li>
+			<li>the roles in the team</li>
+			<li>whether you have a GIS (geographic information system) officer to support the project or if you plan to recruit one</li>
+        </ul>
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/roles-and-recruitment/check-your-answers" >
+		{% else %}
+			<form method="post" action="/apply/roles-and-recruitment/backfill" >
+		{% endif %}
+
+			{{ govukCharacterCount({
+				name: "3_2_teamShape",
+				id: "3_2_teamShape",
+				maxwords: 250,
+				value: data['3_2_teamShape']  ,
+				label: {
+				  text: pageHeading,
+				  classes: "govuk-label--l govuk-visually-hidden",
+				  isPageHeading: false
+				}
+			}) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+		{% endif %}
+
+
+		{% if data['version'] == "suggested" %}
+		{{ macroCurrent.pageCurrent(url) }}
+	{% else %}
+		{{ macroSuggested.pageSuggested(url) }}
+	{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

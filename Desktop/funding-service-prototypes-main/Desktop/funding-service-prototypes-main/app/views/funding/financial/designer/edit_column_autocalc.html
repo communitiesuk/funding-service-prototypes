@@ -1,0 +1,163 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Edit question" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">Edit column</h1>
+
+      <!-- Question Type (Read Only) -->
+  
+
+      <!-- Question Text -->
+
+
+      <!-- Question Name -->
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="question-name">
+          Column name
+        </label>
+        <div id="question-name-hint" class="govuk-hint">
+          A short name for this column that will be used for reference in monitoring reports (use lower-case text)
+        </div>
+        <input class="govuk-input" id="question-name" name="questionName" type="text" value="Houses" aria-describedby="question-name-hint">
+      </div>
+
+
+
+      <!-- Type of Number -->
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="type-of-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <h2 class="govuk-fieldset__heading">
+              Type of number
+            </h2>
+          </legend>
+          <div id="type-of-number-hint" class="govuk-hint">
+            The answer will be validated and you can change this later.
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="type-whole" name="typeOfNumber" type="radio" value="whole" checked>
+              <label class="govuk-label govuk-radios__label" for="type-whole">
+                Whole number
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="type-decimal" name="typeOfNumber" type="radio" value="decimal">
+              <label class="govuk-label govuk-radios__label" for="type-decimal">
+                Decimal number
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Advanced formatting options -->
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Advanced formatting options
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+<div class="govuk-form-group">
+  <label class="govuk-label" for="width-5">
+    Prefix (otional)
+  </label>
+  <input class="govuk-input govuk-input--width-5" id="width-5" name="width5" type="text">
+</div>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="width-5">
+    Suffix (optional)
+  </label>
+  <input class="govuk-input govuk-input--width-5" id="width-5" name="width5" type="text">
+</div>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="sort">
+    Input width
+  </label>
+  <select class="govuk-select" id="sort" name="sort">
+    <option value="published">Hundreds</option>
+    <option value="updated" selected>Thousands</option>
+    <option value="views">Millions</option>
+    <option value="comments">Billions</option>
+  </select>
+</div>
+  </div>
+</details>
+
+
+      <!-- Conditions -->
+      <h2 class="govuk-heading-m">Conditions</h2>
+      <p class="govuk-body">
+        Add conditions to only show this column if the grant recipient has answered one of the other questions in a particular way.
+      </p>
+      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+        Add condition
+      </button>
+
+      <!-- Validations -->
+      <h2 class="govuk-heading-m">Validations</h2>
+      <p class="govuk-body">
+        Add validations to show an error message to the user if the answer does not meet the requirements. For example, you can add a validation to stop users entering a number over a certain amount.
+      </p>
+      <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8">
+        Add validation
+      </button>
+
+     <!-- Autocalc -->
+
+      
+    <h2 class="govuk-heading-m">Autocalculations</h2>
+    <p class="govuk-body">
+      Add autocalculations to calculate new values based on data input from the grant recipient
+    </p>
+     
+    <table class="govuk-table govuk-!-margin-bottom-6">
+      <tbody class="govuk-table__body">
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-!-width-one-half">
+            <a href="edit_column" class="govuk-link">Calculation 1</a>
+          </td>
+          <td class="govuk-table__cell">"=Houses x 100 / Forecast"</td>
+
+        </tr>
+        
+  
+
+      </tbody>
+    </table>
+
+  <form method="post" action="autocalc">
+      <!-- Save Button -->
+      <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-8" data-module="govuk-button">
+        Add calculation
+      </button>
+  </form>
+
+      <br>
+  <form method="post" action="autocalc">
+      <!-- Save Button -->
+      <button type="submit" class="govuk-button govuk-!-margin-bottom-8" data-module="govuk-button">
+        Save
+      </button>
+  </form>
+  
+    <!-- Manage Question -->
+    <h2 class="govuk-heading-m">Manage column</h2>
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">Delete this column</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

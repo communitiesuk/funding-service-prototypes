@@ -1,0 +1,58 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Is this a UK-wide grant?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-body">The grant is provided to organisations throughout the whole of the United Kingdom.</p>
+
+      	{% if data['change'] == "yes" %}
+        	<form method="post" action="/funding/grant/add/summary">
+				<input type="hidden" name="change" id="change" value="" />
+      	{% else %}
+          	<form method="post" action="/funding/grant/add/welsh">
+        {% endif %}
+
+        		{{ govukRadios({
+          			classes: "govuk-radios--inline",
+          			name: "grant-ukWide",
+          			id: "grant-ukWide",
+          			fieldset: {
+            			legend: {
+            				text: pageHeading,
+            				isPageHeading: false,
+            				classes: "govuk-fieldset__legend govuk-visually-hidden"
+            			}
+          			},
+          			items: [
+            			{ value: "Yes", text: "Yes", checked: checked("grant-ukWide", "Yes") },
+            			{ value: "No~/funding/grant/add/summary", text: "No", checked: checked("grant-ukWide", "No") }
+          			]
+        		}) }}
+
+
+				{{ govukButton({
+                	text: "Save and continue"
+            	}) }}
+
+			</form>
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- *bc* -->

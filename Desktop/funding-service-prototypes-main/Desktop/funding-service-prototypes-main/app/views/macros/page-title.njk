@@ -1,0 +1,9 @@
+{#
+    {{ macroPageTitle.pageTitle(pageHeading, pageSection) }}
+#}
+{% macro pageTitle (
+    pageHeading = "",
+    pageSection = ""
+) %}
+    {% if pageHeading %}{{ pageHeading }} - {% endif %}{% if pageSection %}{{ pageSection }} - {% endif %}Reporting funding progress - GOV.UK
+{% endmacro %}

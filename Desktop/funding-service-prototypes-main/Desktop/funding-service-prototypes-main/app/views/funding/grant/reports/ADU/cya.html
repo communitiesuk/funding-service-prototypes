@@ -1,0 +1,27 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+
+
+  <form method="post" action="kind">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Save question
+</button>
+</form>
+  	</div>
+
+</div>
+
+{% endblock %}
+

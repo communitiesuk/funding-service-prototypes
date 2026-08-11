@@ -1,0 +1,145 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+{% import "macros/suggested-page.njk" as macroSuggested %}
+{% import "macros/current-page.njk" as macroCurrent %}
+
+
+{% set serviceName %}
+  {% if data['fundName'] == "Digital Planning Improvement" %}
+	  Apply for funding to begin your digital planning improvement journey
+  {% elif data['fundName'] == "High Street Rental Auctions" %}
+	  Apply for funding
+  {% elif data['fundName'] == "Community Ownership" %}
+	  Application for funding to save an asset in your community
+  {% endif %}
+{% endset %}
+
+
+
+
+
+
+{% block header %}
+
+	{% if data['signedIn'] == "yes" %}
+
+    	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+          	serviceName: serviceName,
+          	serviceUrl: "/?signedIn=no",
+          	navigation: [
+            	{ href: "/apply/applications/all", text: "View all applications" },
+            	{ href: "/apply/signed-out?signedIn=no", text: "Sign out" }
+          	]
+        }) }}
+
+    {% elif data['signedIn'] == "no" %}
+
+    	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+        	serviceName: brian,
+        	serviceUrl: "/?signedIn=no"
+      	}) }}
+
+    {% endif %}
+
+{% endblock %}
+
+
+    {% block beforeContent %}
+
+        <!-- Phasebanner -->
+        {% if showPhaseBanner != false %}
+            {{ govukPhaseBanner({
+                tag: { text: "Prototype" },
+                html: "This is a prototype. It is not a real service."
+            }) }}
+        {% endif %}
+
+        <!-- Primary Nav -->
+        {% if showNav == true %}
+
+            {% if data['nav'] == "users" %}
+            {{ xGovukSecondaryNavigation({
+                visuallyHiddenTitle: "Secondary menu",
+                items: [
+                    { text: "Users", href: "/users/?nav=users", current: true },
+                    { text: "Fund reports", href: "/funds/dashboard?nav=pro" }
+                ]
+            }) }}
+
+            {% else %}
+
+            {{ xGovukSecondaryNavigation({
+                visuallyHiddenTitle: "Secondary menu",
+                items: [
+                    { text: "Users", href: "/users/?nav=users" },
+                    { text: "Fund reports", href: "/funds/dashboard?nav=pro", current: true }
+                ]
+            }) }}
+
+            {% endif %}
+
+
+        {% endif %}
+
+        <!-- Back Link -->
+        {% if showBackLink == true %}
+            {{ govukBackLink({
+                text: "Back",
+                href: "javascript:history.go(-1)"
+            }) }}
+        {% endif %}
+
+
+        
+     
+        
+
+    {% endblock %}
+
+
+    {% block footer %}
+
+        {% if showGuidance != false %}
+
+        {{ govukFooter({
+            meta: {
+              html: '
+                <ul class="govuk-footer__inline-list">
+
+                    <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/apply/footer/guidance" rel="noreferrer noopener" target="_blank">How to use this service</a></li>
+
+                    <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/privacy-notice" rel="noreferrer noopener" target="_blank">Privacy</a></li>
+                    <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/cookies" rel="noreferrer noopener" target="_blank">Cookies</a></li>
+                    <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/accessibility" rel="noreferrer noopener" target="_blank">Accessibility Statement</a></li>
+                    <li class="govuk-footer__inline-list-item"><a class="govuk-footer__link" href="/footer/" rel="noreferrer noopener" target="_blank">Contact us</a></li>
+                </ul>
+                <p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="#" data-module="prototype-reveal-hidden">Show hidden text</a> | <a class="govuk-body-s govuk-footer__link" href="#" data-module="prototype-toggle-phase-banner">Hide phase banner</a></p>',
+
+
+              items: [
+
+              ]
+            }
+          }) }}
+
+        {% else %}
+
+        {{ govukFooter({
+          meta: {
+            html: '
+
+              <p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="#" data-module="prototype-reveal-hidden">Show hidden text</a> | <a class="govuk-body-s govuk-footer__link" href="#" data-module="prototype-toggle-phase-banner">Hide phase banner</a></p>',
+
+
+            items: [
+
+            ]
+          }
+        }) }}
+
+        {% endif %}
+      {% endblock %}

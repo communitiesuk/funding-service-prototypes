@@ -1,0 +1,131 @@
+{% extends "layouts/deliver-nav-updated.html" %}
+
+{% set navID = 'reports' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+
+{% block breadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+{ text: "Reports", href: "#" },
+{ text: "Round 5" }
+]
+}) }}
+
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <!-- Left Main Column -->
+  <div class="govuk-grid-column-three-quarters">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Round 5</h1>
+
+    <p class="govuk-body govuk-!-margin-bottom-4">
+      <strong>Submission period:</strong> Not set
+    </p>
+
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      <strong>Report status:</strong> <strong class="govuk-tag govuk-tag--yellow">Draft</strong>
+    </p>
+
+    <h2 class="govuk-heading-l">Sections</h2>
+
+    <table class="govuk-table govuk-!-margin-bottom-6">
+      <tbody class="govuk-table__body">
+        
+        <!-- Row 1 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Contact details</a>
+          </td>
+          <td class="govuk-table__cell">3 questions</td>
+          <td class="govuk-table__cell govuk-!-text-align-right">
+            <a href="#" class="govuk-link hide-move">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Expenditure</a>
+          </td>
+          <td class="govuk-table__cell">3 questions</td>
+          <td class="govuk-table__cell govuk-!-text-align-right">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">|</span> 
+            <a href="#" class="govuk-link">Move down</a>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Project details</a>
+          </td>
+          <td class="govuk-table__cell">4 questions</td>
+          <td class="govuk-table__cell govuk-!-text-align-right">
+            <a href="#" class="govuk-link">Move up</a> 
+            <span class="govuk-!-margin-left-1 govuk-!-margin-right-1" style="color: #b1b4b6;">
+              
+              |</span> 
+            <a href="#" class="govuk-link hide-move">Move down</a>
+          
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add another section
+    </button>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">Manage collection</h2>
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">Configure multiple submissions</a>
+    </p>
+
+  </div>
+
+  <!-- Right Sidebar Column -->
+  <div class="govuk-grid-column-one-quarter">
+    
+    <!-- Standard GOV.UK top border for related sidebars -->
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="border-top: 2px solid #005a9c;">
+    
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-4">Actions</h2>
+   <form method="post" action="#"> 
+    <button class="govuk-button govuk-button--secondary govuk-!-width-full govuk-!-margin-bottom-4" data-module="govuk-button">
+      Preview report
+    </button>
+   </form>
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          3 previewers
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list">
+          <li>Previewer 1</li>
+          <li>Previewer 2</li>
+          <li>Previewer 3</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+
+</div>
+{% endblock %}

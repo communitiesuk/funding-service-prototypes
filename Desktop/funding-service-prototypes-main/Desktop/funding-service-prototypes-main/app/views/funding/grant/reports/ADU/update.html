@@ -1,0 +1,158 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Why are you declining sign off?" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Regeneration Fund</span>
+<h1 class="govuk-heading-l">Arbitrary reference data update</h1>
+
+<p class="govuk-body">Some explanation here of what kind things to upload.</p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      File details
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          User
+        </dt>
+        <dd class="govuk-summary-list__value">
+          tom@communities.gov.uk
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Timestamp
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2026-02-09 14:35:21.45829
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Source file
+        </dt>
+        <dd class="govuk-summary-list__value">
+          financial-returns-Q4-2025.xlsx
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Event type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          DATA_UPLOAD_ROW_INSERT
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+</details>
+
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Grant recipient
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value=" Birmingham City Council">
+</div>
+    <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Capital allocation
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value="4500000.00">
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+  <label class="govuk-label" for="event-name">
+    Type of data for capital allocation
+  </label> 
+
+    <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact1" name="contact1" type="radio" value="email" data-aria-controls="conditional-contact" >
+        <label class="govuk-label govuk-radios__label" for="contact1">
+        Suffix
+        </label>
+      </div>
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact1" name="contact1" type="radio" value="email" data-aria-controls="conditional-contact-1" checked="checked">
+        <label class="govuk-label govuk-radios__label" for="contact1">
+          Prefix
+        </label>
+      </div>
+
+
+
+    </div>
+  </fieldset>
+</div>
+
+   <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+    Revenue allocation
+  </label>
+  <input class="govuk-input" id="event-name" name="eventName" type="text" value="1250000.00">
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+  <label class="govuk-label" for="event-name">
+    Type of data for revenue allocation
+  </label> 
+
+    <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact">
+        <label class="govuk-label govuk-radios__label" for="contact">
+        Suffix
+        </label>
+      </div>
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="email" data-aria-controls="conditional-contact-1" checked="checked">
+        <label class="govuk-label govuk-radios__label" for="contact">
+          Prefix
+        </label>
+      </div>
+
+
+
+    </div>
+  </fieldset>
+</div>
+
+
+  <br>
+  <form method="post" action="map">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+Update details
+</button>
+</form>
+</div>
+</div>
+
+  	</div>
+
+</div>
+
+{% endblock %}
+

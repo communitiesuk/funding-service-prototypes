@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = 'What format is your ' + data.4_3_datasets + ' dataset?' %}
+	{% set pageSection = "Dataset information" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = 'Which format is your dataset in for ' + data.4_3_datasets + '?' %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/dataset-information/how-long-to-publish" >
+		{% else %}
+		<form method="post" action="/apply/dataset-information/how-long-to-publish" >
+		{% endif %}
+
+			{{ govukCheckboxes({
+				name: "4_3_format",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--l govuk-visually-hidden"
+				  	}
+				},
+				hint: {
+				  	text: "Select all that apply"
+				},
+				items: [
+				  	{ value: "Paper or PDF copy", text: "Paper or PDF copy", checked: checked("4_3_format", "Paper or PDF copy") },
+				  	{ value: "Spreadsheet (for example, an Excel file)", text: "Spreadsheet (for example, an Excel file)", checked: checked("4_3_format", "Spreadsheet (for example, an Excel file)") },
+				  	{ value: "Database on a third party software", text: "Database on a third party software", checked: checked("4_3_format", "Database on a third party software") },
+				  	{ value: "GIS (geographical information system)", text: "GIS (geographical information system)", checked: checked("4_3_format", "GIS (geographical information system)") }
+				]
+			}) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+
+        </form>
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

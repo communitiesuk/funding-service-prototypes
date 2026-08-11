@@ -1,0 +1,116 @@
+{% extends "layouts/deliver-nav.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = "Tom's test grant" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-width">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+      <strong>Grant status:</strong> <strong class="govuk-tag govuk-tag--yellow">Draft</strong>
+    </p>
+
+    <p class="govuk-body">
+      Reports cannot be published until the grant is live.
+    </p>
+
+    <div class="govuk-summary-card govuk-!-margin-top-6">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Testing</h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">
+              Change name<span class="govuk-visually-hidden"> for Testing</span>
+            </a>
+          </li>
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">
+              Delete<span class="govuk-visually-hidden"> Testing</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <strong class="govuk-tag govuk-tag--yellow">Draft</strong>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Form
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">Add sections</a> to create your report<br>
+              <span class="govuk-body-s govuk-!-display-block govuk-!-margin-top-1">Sections are groups of questions with a common theme</span>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Reporting period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Not set
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Submission period
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Not set
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Submissions
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-body govuk-!-margin-bottom-2"><a href="#" class="govuk-link">0 live submissions</a></p>
+              <p class="govuk-body govuk-!-margin-bottom-0"><a href="#" class="govuk-link">0 test submissions</a></p>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Created by
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Tomasz.Kolecki@communities.gov.uk
+            </dd>
+          </div>
+
+          <!-- New row added as requested -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Assessment
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="assessment" class="govuk-link"> {{ data['assessmentType'] or "Change request only"  }}</a>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

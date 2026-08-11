@@ -1,0 +1,59 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Declarations" %}
+{% set pageSection = "Declarations" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="#" class="govuk-back-link govuk-!-margin-bottom-7">Back</a>
+
+<span class="govuk-caption-xl">Declarations</span>
+    <h1 class="govuk-heading-l">
+      Do you agree to participate in monitoring and evaluation conducted by MHCLG, as described in section 'Roles and responsibilities' of the prospectus?
+    </h1>
+
+<div class="govuk-inset-text">
+<a href="">View the prospectus</a>
+</div>
+
+    <form action="declarations_cya2" method="post" novalidate>
+      
+  
+
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="monitoring-hint">
+ 
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="monitoring-yes" name="monitoringChanged" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="monitoring-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="monitoring-no" name="monitoringChanged" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="monitoring-no">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

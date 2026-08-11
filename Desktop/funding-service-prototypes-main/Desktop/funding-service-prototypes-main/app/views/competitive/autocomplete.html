@@ -1,0 +1,86 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <form action="#" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-weight-bold" for="allocation-picker">
+          Select an organisation to allocate funding
+        </label>
+        <div id="allocation-picker-hint" class="govuk-hint">
+          Start typing to find an organisation
+        </div>
+        
+        <select class="govuk-select" id="allocation-picker" name="organisation">
+          <!-- CRITICAL: This first option must have absolutely no text inside it -->
+          <option value=""></option>
+          <option value="belfast">Belfast City Council</option>
+          <option value="birmingham">Birmingham City Council</option>
+          <option value="brighton">Brighton & Hove City Council</option>
+          <option value="bristol">Bristol City Council</option>
+          <option value="cardiff">Cardiff Council</option>
+          <option value="cornwall">Cornwall Council</option>
+          <option value="coventry">Coventry City Council</option>
+          <option value="edinburgh">City of Edinburgh Council</option>
+          <option value="glasgow">Glasgow City Council</option>
+          <option value="leeds">Leeds City Council</option>
+          <option value="leicester">Leicester City Council</option>
+          <option value="liverpool">Liverpool City Council</option>
+          <option value="manchester">Manchester City Council</option>
+          <option value="newcastle">Newcastle City Council</option>
+          <option value="north-yorkshire">North Yorkshire Council</option>
+          <option value="nottingham">Nottingham City Council</option>
+          <option value="plymouth">Plymouth City Council</option>
+          <option value="sheffield">Sheffield City Council</option>
+          <option value="sunderland">Sunderland City Council</option>
+          <option value="wolverhampton">Wolverhampton City Council</option>
+        </select>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script src="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const selectElement = document.querySelector('#allocation-picker');
+      
+      if (selectElement) {
+        accessibleAutocomplete.enhanceSelectElement({
+          selectElement: selectElement,
+          showAllValues: true,       // Adds the dropdown arrow
+          autoselect: false,         // Stops it from forcefully highlighting the top option
+          defaultValue: ''           // Forces the component to accept a blank input when cleared
+        });
+      }
+    });
+  </script>
+{% endblock %}

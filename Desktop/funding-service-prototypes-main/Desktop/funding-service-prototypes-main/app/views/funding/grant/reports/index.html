@@ -1,0 +1,203 @@
+{% extends "layouts/reports.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+
+
+
+        {# Template-based breadcrumbs for reports page #}
+        {% set breadcrumbItems = [] %}
+        {% set breadcrumbItems = (breadcrumbItems.push({ text: "Reports" }), breadcrumbItems) %}
+
+        {# Reports page only shows breadcrumbs if there are multiple levels (which there aren't) #}
+        {# So breadcrumbs won't show on reports page - this is correct #}
+
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {# Show delete confirmation banner if deleteConfirm parameter is present #}
+                {% if deleteConfirm %}
+                    {% set deleteReportName = deleteReportName or 'this report' %}
+                    {% set html %}
+                        <p class="govuk-notification-banner__heading">
+                            Are you sure you want to delete the report “{{ deleteReportName }}”?
+                        </p>
+                        <div class="govuk-button-group">
+                            {{ govukButton({
+                                text: "Yes, delete this report",
+                                href: "/funding/grant/reports/delete/" + deleteReportId + "?confirm=yes",
+                                classes: "govuk-button--secondary"
+                            }) }}
+                            <a class="govuk-notification-banner__link govuk-!-margin-left-4" href="/funding/grant/reports/?cancel=true">Cancel</a>
+                        </div>
+                    {% endset %}
+                    {{ govukNotificationBanner({
+                        html: html,
+                        type: "warning",
+                        titleText: "Important"
+                    }) }}
+                {% endif %}
+
+        
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+                {% if not data.reports or data.reports.length == 0 %}
+                    <p class="govuk-body">There are no monitoring reports for {{ data.grantName or "NAME of GRANT" }}.</p>
+                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
+
+                    <form method="post" action="/funding/grant/reports/add/">
+                        {{ govukButton({
+                            text: "Add a monitoring report",
+                            classes: "govuk-!-margin-top-5"
+                        }) }}
+                    </form>
+                {% else %}
+                    <!-- <p class="govuk-body"><a href="#">See an example of a monitoring report form (opens in new tab)</a> and a description of the component parts of a form.</p> -->
+                {% endif %}
+            </div>
+        </div>
+
+        {% if data.reports and data.reports.length > 0 %}
+
+            {% for report in data.reports %}
+                {% if report.sections %}
+                    {% set sectionCount = report.sections.length %}
+                {% else %}
+                    {% set sectionCount = 0 %}
+                {% endif %}
+
+                {% if report.unassignedTasks %}
+                    {% set unassignedTaskCount = report.unassignedTasks.length %}
+                {% else %}
+                    {% set unassignedTaskCount = 0 %}
+                {% endif %}
+
+                {# Format dates for display - convert DD/MM/YYYY to "5 August 2025" format #}
+                {% set createdDateFormatted = report.createdDate %}
+                {% set lastUpdatedFormatted = report.lastUpdated %}
+
+                {% if report.createdDate and report.createdDate.includes('/') %}
+                    {% set dateParts = report.createdDate.split('/') %}
+                    {% if dateParts.length == 3 %}
+                        {% set day = dateParts[0] | int %}
+                        {% set monthNum = dateParts[1] | int %}
+                        {% set year = dateParts[2] %}
+                        {% set months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+                        {% set createdDateFormatted = day + ' ' + months[monthNum] + ' ' + year %}
+                    {% endif %}
+                {% endif %}
+
+                {% if report.lastUpdated and report.lastUpdated.includes('/') %}
+                    {% set dateParts = report.lastUpdated.split('/') %}
+                    {% if dateParts.length == 3 %}
+                        {% set day = dateParts[0] | int %}
+                        {% set monthNum = dateParts[1] | int %}
+                        {% set year = dateParts[2] %}
+                        {% set months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+                        {% set lastUpdatedFormatted = day + ' ' + months[monthNum] + ' ' + year %}
+                    {% endif %}
+                {% endif %}
+                {% if report.sections %}
+                    {% set sectionCount = report.sections.length %}
+                {% else %}
+                    {% set sectionCount = 0 %}
+                {% endif %}
+
+                {% if report.unassignedTasks %}
+                    {% set unassignedTaskCount = report.unassignedTasks.length %}
+                {% else %}
+                    {% set unassignedTaskCount = 0 %}
+                {% endif %}
+
+                {% if sectionCount == 0 and unassignedTaskCount == 0 %}
+                    {# No sections or tasks yet - show task option only #}
+                    {% set sectionsText = '<a href="/funding/grant/reports/add/task/?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Add tasks</a> to create your report <br>Tasks are groups of questions with a common theme' %}
+                    {% set sectionsRow = {
+                        key: { text: "Report" },
+                        value: { html: sectionsText }
+                    } %}
+
+                {% elif sectionCount == 0 and unassignedTaskCount > 0 %}
+                    {# Only unassigned tasks exist - show manage link #}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
+                    {% set sectionsRow = {
+                        key: { text: "Report" },
+                        value: { html: sectionsText }
+                    } %}
+
+                {% elif sectionCount > 0 %}
+                    {# Sections exist - show normal manage sections link #}
+                    {% set sectionsText = '<a href="/funding/grant/reports/sections?reportId=' + report.id + '" class="govuk-link govuk-link--no-visited-state">Manage</a>' %}
+
+                    {% set sectionsRow = {
+                        key: { text: "Form" },
+                        value: { html: sectionsText }
+                    } %}
+                {% endif %}
+
+                {{ govukSummaryList({
+                    card: {
+                        title: { text: report.reportName or "Form name" },
+                        classes: "govuk-!-margin-top-7 govuk-!-margin-bottom-7",
+                        actions: {
+                            items: [
+                                {
+                                    href: "/funding/grant/reports/edit/?reportId=" + report.id,
+                                    classes: "govuk-link govuk-link--no-visited-state",
+                                    text: "Change name",
+                                    visuallyHiddenText: "of report"
+                                },
+                                {
+                                    href: "/funding/grant/reports/?deleteConfirm=true&deleteReportId=" + report.id + "&deleteReportName=" + report.reportName,
+                                    classes: "govuk-link govuk-link--no-visited-state govuk-link--destructive",
+                                    text: "Delete",
+                                    visuallyHiddenText: "report"
+                                }
+                            ]
+                        }
+                    },
+                    rows: [
+                        sectionsRow,
+                        {
+                            key: { text: "Created by" },
+                            value: { text: report.createdBy + "@communities.gov.uk on " + createdDateFormatted }
+                        },
+                        {
+                            key: { text: "Last updated" },
+                            value: { text: report.updatedBy + "@communities.gov.uk on " + lastUpdatedFormatted }
+                        }
+                    ]
+                }) }}
+
+            {% endfor %}
+
+            {# Show "Add another monitoring report" button below all reports when reports exist #}
+            <form method="post" action="/funding/grant/reports/add/">
+                {{ govukButton({
+                    text: "Add another monitoring report",
+                    classes: "govuk-button--secondary"
+                }) }}
+            </form>
+
+        {% endif %}
+
+        {% if data['liveReports'] == "yes" %}
+            {% include "/includes/reports/live.html" %}
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

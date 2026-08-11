@@ -1,0 +1,58 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = false %}
+
+{% if data['reportStatus'] == "Declined" %}
+	{% set pageHeading = "Report declined" %}
+{% else %}
+	{% set pageHeading = "Report signed off and submitted" %}
+{% endif %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+
+		<div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-7">
+			<h1 class="govuk-panel__title">{{pageHeading}}</h1>
+			<div class="govuk-panel__body">
+				Report<br><strong> 1 October 2024 to 31 December 2024 for Safer social housing fund </strong>
+			</div>
+			<div class="govuk-panel__body">
+				Your reference number<br><strong> HDJ2123F </strong>
+			</div>
+		  </div>
+
+	<!-- <p class="govuk-body">We have sent you and ((submittor_name)) a confirmation email.</p> -->
+	 <p class="govuk-body">We have sent you and Clarice Stollen a confirmation email.</p>
+	<p class="govuk-body">You can <a href="#" class="govuk-link">download the report as a PDF</a>.</p>
+			<h2 class="govuk-heading-m">What happens next</h2>
+		
+			<!-- <p class="govuk-body">Your ((reporting_period)) report for ((grant_name)) has been submitted to ((government_department)).   </p> -->
+			<p class="govuk-body">Your 1 October 2024 to 31 December 2024 report for Safer social housing fund has been submitted to the Ministry of Housing, Communities and Local Government.   </p>
+			<p class="govuk-body"><a href="#" class="govuk-link">Tell us what you think of this service</a> (takes 30 seconds)</p>
+			<br>
+			<p class="govuk-body"><a href="#" class="govuk-link">Back to reports</a></p>	
+
+
+<br>
+<p class="govuk-body-s govuk-footer__link govuk-!-margin-top-9"><a href="/emails/sign-off/report-signed-off">Continue to sent email</a></p>
+
+		<!-- {% if data['reportStatus'] == "Declined" %} -->
+
+			
+
+		<!-- {% else %} -->
+
+		
+		<!-- {% endif %} -->
+
+
+
+  	</div>
+</div>
+
+{% endblock %}

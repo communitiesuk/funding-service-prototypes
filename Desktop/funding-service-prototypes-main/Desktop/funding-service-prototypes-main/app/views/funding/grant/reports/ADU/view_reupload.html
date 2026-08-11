@@ -1,0 +1,225 @@
+{% extends "layouts/reports.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Reports" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Success
+    </h2>
+  </div>
+  <!-- <div class="govuk-notification-banner__content">
+    <h3 class="govuk-notification-banner__heading">
+      File uploaded
+    </h3>
+    <p class="govuk-body">You can view it in the table below</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full"> -->
+  <div class="govuk-notification-banner__content">
+    <h3 class="govuk-notification-banner__heading">
+      Outputs data set reuploaded
+    </h3>
+    <p class="govuk-body">You can now reference Outputs data in the 1 April 2026 to 30 June 2026 grant form.</p>
+  </div>
+</div>
+
+<span class="govuk-caption-l">1 April 2026 to 30 June 2026</span>
+<h1 class="govuk-heading-l">Outputs data set</h1>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Metadata Section (System Context) -->
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  
+
+   <!-- <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+            Platform data
+            
+        </dd>
+      </div> -->
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Data level
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Grant recipient
+        </dd>
+      </div>
+          
+          
+   <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded by 
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Tom Owen
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date and time uploaded
+        </dt>
+        <dd class="govuk-summary-list__value">
+          23 Feb 2026, 2:15pm
+        </dd>
+      </div>
+
+<!-- <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Reupload details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          by Tom Owen on 2026-02-10
+        </dd>
+      </div> -->
+
+
+                <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Source file
+        </dt>
+        <dd class="govuk-summary-list__value">
+            PSSHF_Q1_26_outputs_data_v2.csv
+            <br> <a href="" class="govuk-link">Download data set (CSV &ndash; 10MB)<span class="govuk-visually-hidden"> grant recipient</span></a>
+        </dd>
+      </div>
+        </dd>
+        
+
+  
+ <br><br>
+
+<div style="display: flex; gap: 15px; align-items: center;">
+  
+  <form method="post" action="re-upload">
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button" 
+            style="white-space: nowrap; width: auto;">
+      Reupload data set
+    </button>
+  </form>
+
+  <form method="post" action="delete">
+    <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button" 
+            style="white-space: nowrap; width: auto;">
+      Delete data set </button>
+  </form>
+  
+</div>
+
+    </dl>
+
+  </div>
+
+</div>
+
+
+    <!-- Data Table (Extracted Content) -->
+    <h2 class="govuk-heading-m">Data</h2>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"><a href="">Row</a></th>
+          <th scope="col" class="govuk-table__header"><a href="">Grant recipient</a></th>
+            <th scope="col" class="govuk-table__header"><a href="">Capital allocation</a></th>
+              <th scope="col" class="govuk-table__header"><a href="">Revenue allocation</a>
+          
+
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">1</td>
+          <td class="govuk-table__cell">
+          Birmingham City Council
+          </td>
+               <td class="govuk-table__cell">
+          £4,500,000.00
+          </td>
+           <td class="govuk-table__cell">
+          £1,250,000.00
+          </td>
+              
+     
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">2</td>
+          <td class="govuk-table__cell">
+          Kirklees City Council
+          </td>
+               <td class="govuk-table__cell">
+          £4,500,000.00
+          </td>
+           <td class="govuk-table__cell">
+          £1,250,000.00
+          </td>
+              
+     
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">3</td>
+          <td class="govuk-table__cell">
+          Swindon City Council
+          </td>
+           <td class="govuk-table__cell">
+          £4,500,000.00
+          </td>
+           <td class="govuk-table__cell">
+          £1,250,000.00
+          </td>
+              
+   
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">4</td>
+          <td class="govuk-table__cell">
+          York City Council
+          </td>
+               <td class="govuk-table__cell">
+          £4,500,000.00
+          </td>
+           <td class="govuk-table__cell">
+          £1,250,000.00
+          </td>
+         
+    
+        </tr>
+
+      </tbody>
+    </table>
+
+
+
+
+</div>
+
+
+
+    </div>
+</div>
+{% endblock %}

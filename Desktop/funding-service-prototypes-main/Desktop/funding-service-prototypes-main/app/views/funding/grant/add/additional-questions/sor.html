@@ -1,0 +1,65 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Who is the Senior Officer Responsible (SOR) for this grant?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-body">All government grants require a named Senior Officer Responsible (SOR) who is responsible and accountable for the succesful delivery of the grant.</p>
+
+        <form method="post" action="/funding/grant/add/description">
+
+
+            {{ govukInput({
+                label: {
+                    text: "Full name",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "grant-sroName",
+                name: "grant-sroName",
+                type: "text",
+                value: data['grant-sroName']
+            }) }}
+
+            {{ govukInput({
+                label: {
+                    text: "Email address",
+                    classes: "govuk-label",
+                    isPageHeading: false
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "grant-sroEmail",
+                name: "grant-sroEmail",
+                type: "email",
+                value: data['grant-sroEmail']
+            }) }}
+
+
+
+
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- *bc* -->

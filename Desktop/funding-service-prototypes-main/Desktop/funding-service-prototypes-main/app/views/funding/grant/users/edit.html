@@ -1,0 +1,116 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Users" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <div class="govuk-grid-row">
+	        <div class="govuk-grid-column-two-thirds">
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+            </div>
+            <div class="govuk-grid-column-one-third">
+                {% include "/funding/includes/switch_grants.html" %}
+              </div>
+        </div>
+
+
+        <div class="govuk-grid-row">
+	        <div class="govuk-grid-column-two-thirds">
+
+
+                {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Kate Harries"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              text: "kate.harries@localgov.co.uk"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Permissions"
+            },
+            value: {
+              html: '<p class="govuk-body">Sign-off</p>'
+            },
+            actions: {
+
+            }
+          },
+           {
+        key: {
+          text: "Role"
+        },
+        value: {
+          text: "Section 151 Officer"
+        },
+        actions: {
+
+        }
+      }
+        ]
+      }) }}
+
+
+
+
+
+      <p class="govuk-body"><a class="govuk-link" href="#">Remove this user</a></p>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!--
+{ text: "Assess applications", href: "#" },
+                { text: "Recipients", href: "#" },
+                { text: "Payments", href: "#" },
+                { text: "Reports", href: "#" } -->

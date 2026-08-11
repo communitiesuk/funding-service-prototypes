@@ -1,0 +1,42 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Apply for the Safer social housing fund" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      {{ pageHeading }}
+    </h1>
+
+    <p class="govuk-body"> 
+The Safer social housing fund is a scheme designed to test different ways of improving social housing safety and infrastructure in England. Read full details in the<a href=""> grant's prospectus (opens in new tab)</a>.
+
+
+    <p class="govuk-body"> 
+      To apply for this grant, you must meet the eligibility criteria.
+    </p>
+
+    <p class="govuk-body">
+      If you’re eligible, you’ll be able to access the application form by either:
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+      <li>signing in with an existing account (if your organisation is already set up)</li>
+      <li>creating a new account by adding your organisation details</li>
+    </ul>
+    <p class="govuk-body"><strong>Deadline for applications</strong>: 11:59pm on 30 August 2026</p>
+
+ <form action="email" method="post" novalidate>
+  <button type="submit" class="govuk-button" data-module="govuk-button">
+  Start now
+</button>
+</form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Project forecast spend April to June 2026" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <p class="govuk-body" style="color: #d4351c; font-weight: bold;">
+            Total forecast spend for green spaces, community spaces and sports centres must be the same as total forecast spend for April to June 2026 (£15,000).
+          </p>
+          
+          <p class="govuk-body govuk-!-margin-bottom-1" style="color: #d4351c; font-weight: bold;">
+            On this page:
+          </p>
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#spend-green-spaces">Check forecast spend on green spaces answer (£4,500)</a>
+            </li>
+            <li>
+              <a href="#spend-community-spaces">Check forecast spend on community spaces answer (£4,500)</a>
+            </li>
+            <li>
+              <a href="#spend-sports-centres">Check forecast spend on sports centres answer (£7,000)</a>
+            </li>
+          </ul>
+
+          <p class="govuk-body govuk-!-margin-bottom-1 govuk-!-margin-top-4" style="color: #d4351c; font-weight: bold;">
+            On a different page:
+          </p>
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="quarter_forecast_spend">Check forecast spend April to June 2026 answer (£15,000)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Project forecast spend April to June 2026</h1>
+
+    <p class="govuk-body govuk-!-font-size-24 govuk-!-margin-bottom-6">
+      Your forecast spend for April to June 2026 was £15,000.
+    </p>
+
+    <form method="post" action="cya" novalidate>
+      
+      <!-- Field 1: Green spaces -->
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-green-spaces">
+          Forecast spend on green spaces
+        </label>
+        <p id="spend-green-spaces-error" class="govuk-error-message" style="text-decoration: underline;">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on green spaces
+        </p>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" id="spend-green-spaces" name="spend-green-spaces" type="text" spellcheck="false" value="4500" aria-describedby="spend-green-spaces-error">
+        </div>
+      </div>
+
+      <!-- Field 2: Community spaces -->
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-community-spaces">
+          Forecast spend on community spaces
+        </label>
+        <p id="spend-community-spaces-error" class="govuk-error-message" style="text-decoration: underline;">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on community spaces
+        </p>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" id="spend-community-spaces" name="spend-community-spaces" type="text" spellcheck="false" value="4500" aria-describedby="spend-community-spaces-error">
+        </div>
+      </div>
+
+      <!-- Field 3: Sports centres -->
+      <div class="govuk-form-group govuk-form-group--error">
+        <label class="govuk-label govuk-!-font-size-24" for="spend-sports-centres">
+          Forecast spend on sports centres
+        </label>
+        <p id="spend-sports-centres-error" class="govuk-error-message" style="text-decoration: underline;">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend on sports centres
+        </p>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-10 govuk-input--error" id="spend-sports-centres" name="spend-sports-centres" type="text" spellcheck="false" value="7000" aria-describedby="spend-sports-centres-error">
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

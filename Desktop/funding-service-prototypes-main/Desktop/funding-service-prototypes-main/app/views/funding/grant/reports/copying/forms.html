@@ -1,0 +1,107 @@
+{% extends "layouts/deliver-nav-forms.html" %}
+
+{% set navID = 'pre-award' %}
+{% set showBackLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Pre-award" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-l">Local Authority Housing Fund</span>
+<h1 class="govuk-heading-l">Forms</h1>
+
+<p class="govuk-body govuk-!-font-weight-bold">Grant status:    <strong class="govuk-tag govuk-tag--green">
+       Live
+        </strong> </p>
+
+       <div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+Application form    </h2>
+  
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--green">
+            Open
+          </strong>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Form
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#" class="govuk-link">3 sections</a>
+        </dd>
+      </div>
+
+                  <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded data sets
+        </dt>
+        <dd class="govuk-summary-list__value">
+                <ul class="govuk-list govuk-!-margin-bottom-0">
+            <li><a class="govuk-link" href="#">1 data set</a></li>
+          </ul>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submission period
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Monday 8 June 2026 to Monday 22 June 2026
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submissions
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul class="govuk-list govuk-!-margin-bottom-0">
+            <li><a class="govuk-link" href="#">49 live submissions</a></li>
+            <li><a class="govuk-link" href="#">11 test submission</a></li>
+          </ul>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Created by
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Form.Designer@communities.gov.uk
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+</div> 
+
+    <form method="post" action="create-report">
+
+<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  Create another form
+</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

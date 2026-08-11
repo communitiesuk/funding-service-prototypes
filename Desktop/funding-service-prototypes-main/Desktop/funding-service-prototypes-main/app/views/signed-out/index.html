@@ -1,0 +1,32 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "You have signed out" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">If you need to sign in again, you can <a href="/sign-in/?signedIn=no" class="govuk-link govuk-link--no-visited-state">
+            {% if data['authentication'] == "SSO" %}
+                request a new code
+            {% else %}
+                request a new link
+            {% endif %}
+        </a>.</p>
+
+    </div>
+</div>
+
+{% endblock %}

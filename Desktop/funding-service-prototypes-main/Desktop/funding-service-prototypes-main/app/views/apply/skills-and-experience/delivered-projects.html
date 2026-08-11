@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Have you delivered projects like this before?" %}
+	{% set pageSection = "Your skills and experience" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Has your organisation delivered projects like this before?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+
+		{% if data['version'] == "suggested" %}
+
+		{% if data['linkStatus'] == "change" %}
+		<form method="post" action="/apply/skills-and-experience/check-your-answers" >
+	{% else %}
+		<form method="post" action="/apply/skills-and-experience/check-your-answers" >
+	{% endif %}
+
+		<!-- Session information to say section started - but not completed -->
+		{% if not data.section3_1 %}
+		<input type="hidden" id="section3_1" name="section3_1" value="Started" />
+		{% endif %}
+
+		{{ govukRadios({
+			classes: "govuk-radios--inline",
+			name: "3_1_deliveredProjects",
+			fieldset: {
+				legend: {
+					text: pageHeading,
+					isPageHeading: false,
+					classes: "govuk-fieldset__legend govuk-visually-hidden"
+				}
+			},
+			items: [
+				{ value: "yes~/apply/skills-and-experience/tell-us-how", text: "Yes", checked: checked("3_1_deliveredProjects", "yes")  },
+				{ value: "no", text: "No", checked: checked("3_1_deliveredProjects", "no") }
+			]
+		}) }}
+
+		{{ govukButton({
+			text: "Continue"
+		}) }}
+	</form>
+
+
+		{% else %}
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/skills-and-experience/check-your-answers" >
+        {% else %}
+			<form method="post" action="/apply/skills-and-experience/check-your-answers" >
+        {% endif %}
+
+			<!-- Session information to say section started - but not completed -->
+            {% if not data.section3_1 %}
+            <input type="hidden" id="section3_1" name="section3_1" value="Started" />
+            {% endif %}
+
+            {{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "3_1_deliveredProjects",
+				fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "yes~/apply/skills-and-experience/tell-us-how", text: "Yes", checked: checked("3_1_deliveredProjects", "yes")  },
+					{ value: "no", text: "No", checked: checked("3_1_deliveredProjects", "no") }
+				]
+			}) }}
+
+            {{ govukButton({
+                text: "Continue"
+            }) }}
+        </form>
+
+		{% endif %}
+
+
+		{% if data['version'] == "suggested" %}
+		{{ macroCurrent.pageCurrent(url) }}
+	  {% else %}
+		{{ macroSuggested.pageSuggested(url) }}
+	  {% endif %}
+
+
+
+    </div>
+</div>
+
+{% endblock %}

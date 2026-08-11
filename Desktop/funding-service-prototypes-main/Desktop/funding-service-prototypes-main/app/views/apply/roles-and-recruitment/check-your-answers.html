@@ -1,0 +1,235 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "Roles and recruitment" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Team in place</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_team'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/team?linkStatus=change">Change<span class="govuk-visually-hidden"> if you have a team in place ready to deliver the project</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_team'] == "no" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you make sure you have a team in place ready to deliver the project?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamHow'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/team-in-place?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you make sure you have a team in place ready to deliver the project</span></a>
+			  	</dd>
+			</div>
+			{% elif data['3_2_team'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">About the team</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamShape'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/tell-us-about-the-team?linkStatus=change">Change<span class="govuk-visually-hidden"> Tell us about the shape of the project team</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Do you need to backfill any roles?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamBackfill'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/backfill?linkStatus=change">Change<span class="govuk-visually-hidden"> Will you need to backfill any roles in your organisation</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_teamBackfill'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Estimated cost of backfilling roles?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_estimatedCost'] | currency(trailingZeros=false) }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/estimated-cost?linkStatus=change">Change<span class="govuk-visually-hidden"> What is the estimated cost of backfilling roles</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Do you know who the project lead will be?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_projectLead'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/project-lead?linkStatus=change">Change<span class="govuk-visually-hidden"> Do you know who the project lead will be</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_projectLead'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project lead name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_projectLeadFirstName'] }} {{ data['3_2_projectLeadLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/project-lead-details?linkStatus=change">Change<span class="govuk-visually-hidden"> Project lead first name</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+		</dl>
+
+		<form action="/apply/task-list" method="post">
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+
+			{{ govukRadios({
+				name: "section3_2",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section", checked: checked("section3_2", "yes")  },
+					{ value: "no", text: "No, I’ll come back to it later", checked: checked("section3_2", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+
+		{% else %}
+
+        <h2 class="govuk-heading-m">Roles and recruitment</h2>
+		<dl class="govuk-summary-list">
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Do you have a team in place ready to deliver the project?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_team'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/team?linkStatus=change">Change<span class="govuk-visually-hidden"> if you have a team in place ready to deliver the project</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_team'] == "no" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you make sure you have a team in place ready to deliver the project?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamHow'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/team-in-place?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you make sure you have a team in place ready to deliver the project</span></a>
+			  	</dd>
+			</div>
+			{% elif data['3_2_team'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Tell us about the shape of the project team</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamShape'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/tell-us-about-the-team?linkStatus=change">Change<span class="govuk-visually-hidden"> Tell us about the shape of the project team</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Will you need to backfill any roles in your organisation?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_teamBackfill'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/backfill?linkStatus=change">Change<span class="govuk-visually-hidden"> Will you need to backfill any roles in your organisation</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_teamBackfill'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">What is the estimated cost of backfilling roles?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_estimatedCost'] | currency(trailingZeros=false) }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/estimated-cost?linkStatus=change">Change<span class="govuk-visually-hidden"> What is the estimated cost of backfilling roles</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+			<!-- Group -->
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Do you know who the project lead will be?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_projectLead'] | capitalize }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/project-lead?linkStatus=change">Change<span class="govuk-visually-hidden"> Do you know who the project lead will be</span></a>
+			  	</dd>
+			</div>
+			{% if data['3_2_projectLead'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project lead first name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_projectLeadFirstName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/project-lead-details?linkStatus=change">Change<span class="govuk-visually-hidden"> Project lead first name</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Project lead last name</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['3_2_projectLeadLastName'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/roles-and-recruitment/project-lead-details?linkStatus=change">Change<span class="govuk-visually-hidden"> Project lead last name</span></a>
+			  	</dd>
+			</div>
+			{% endif %}
+			<!-- // -->
+		</dl>
+
+		<form action="/apply/task-list" method="post">
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "section3_2",
+				fieldset: {
+					legend: {
+						text: "Do you want to mark this section as complete?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--l"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes", checked: checked("section3_2", "yes")  },
+					{ value: "no", text: "No", checked: checked("section3_2", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+			{{ macroCurrent.pageCurrent(url) }}
+		{% else %}
+			{{ macroSuggested.pageSuggested(url) }}
+		{% endif %}
+
+    </div>
+  </div>
+{% endblock %}

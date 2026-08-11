@@ -1,0 +1,83 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+    {% set pageSize = "xl" %}
+    {% set pageHeading = "Assess grant applications" %}
+    {% set pageSection = "" %}
+{% else %}
+    {% set pageSize = "xl" %}
+    {% set pageHeading = "Assessment tool" %}
+    {% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['version'] == "suggested" %}
+
+        <p>Sign in so you can:</p>
+        <ul class="govuk-list govuk-list govuk-list--bullet">
+            <li>assess and evaluate grant applications</li>
+            <li>comment on specific applicant’s responses</li>
+            <li>monitor the assessment progress of a grant</li>
+        </ul>
+
+        <form method="post" action="/assess/dashboard?signedIn=yes&version=" >
+            {{ govukButton({
+                text: "Sign in",
+                classes: "govuk-!-margin-top-5",
+                isStartButton: true
+            }) }}
+        </form>
+
+
+        <h2 class="govuk-heading-m">Get help</h2>
+        <p class="govuk-body">If you are having issues logging in, contact <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/68" target="_blank">The Funding Service support team through our support desk (Opens in new tab)</a>.</p>
+
+
+
+
+
+
+        {% else %}
+        <p>The Funding Service assessment tool has been designed to help evaluate fund applications, to facilitate fund decision-making.</p>
+        <p>Here you can:</p>
+        <ul class="govuk-list govuk-list govuk-list--bullet">
+            <li>assess applications end to end</li>
+            <li>comment on specific applicant responses</li>
+            <li>monitor the assessment progress of a fund</li>
+        </ul>
+
+        <form method="post" action="/assess/dashboard?signedIn=yes" >
+            {{ govukButton({
+                text: "Sign in",
+                isStartButton: true
+            }) }}
+        </form>
+
+        <h2 class="govuk-heading-l">Get help</h2>
+        <p class="govuk-body">If you are having issues logging in, contact the FSD support team through our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/group/68">support desk</a>.</p>
+
+        {% endif %}
+
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+{% endblock %}

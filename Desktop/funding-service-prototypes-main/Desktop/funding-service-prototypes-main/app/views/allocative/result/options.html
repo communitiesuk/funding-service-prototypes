@@ -1,0 +1,227 @@
+{% extends "layouts/deliver-grant" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Review submission" %}
+{% set pageSection = "Glasgow City Council" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+
+  <!-- Main Content Area -->
+  <div class="govuk-grid-column-three-quarters">
+    
+    <!-- Breadcrumbs -->
+    <div class="govuk-breadcrumbs govuk-!-margin-bottom-4">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Forms</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Submissions</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">
+          Glasgow City Council
+        </li>
+      </ol>
+    </div>
+
+    <!-- Header & Caption -->
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">
+      {{ pageHeading }}
+    
+    </h1>
+
+
+    <!-- Validate allocation -->
+
+    <p class="govuk-body govuk-!-margin-bottom-6">
+      Review the submission and either approve, request changes, or reject it.
+    </p>
+
+    <form id="validationRoutingForm" novalidate>
+      <div class="govuk-form-group govuk-!-margin-bottom-6">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-visually-hidden">
+            Validate allocation options
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+
+      <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-2" name="validationAction" type="radio" value="request-changes" data-aria-controls="conditional-validation-action-2">
+              <label class="govuk-label govuk-radios__label" for="validation-action-2">
+                Request changes
+              </label>
+              <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+            This will send an email to the organisation with the details of the changes needed
+        </div>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-2">
+                 <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+    <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+                  Which sections need to be changed?
+                </label>
+          </legend>
+          
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-people" name="sectionsToChange" type="checkbox" value="people" data-aria-controls="conditional-people">
+              <label class="govuk-label govuk-checkboxes__label" for="section-people">
+                People
+              </label>
+            </div>
+            
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-delivery-plan" name="sectionsToChange" type="checkbox" value="delivery-plan" data-aria-controls="conditional-delivery-plan">
+              <label class="govuk-label govuk-checkboxes__label" for="section-delivery-plan">
+                Confirm participation
+              </label>
+            </div>
+            
+    
+            
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-funding" name="sectionsToChange" type="checkbox" value="funding" data-aria-controls="conditional-funding">
+              <label class="govuk-label govuk-checkboxes__label" for="section-funding">
+                Funding activities
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-declarations" name="sectionsToChange" type="checkbox" value="declarations">
+              <label class="govuk-label govuk-checkboxes__label" for="section-declarations">
+                Declarations
+              </label>
+            </div>
+            
+            <div class="govuk-checkboxes__divider">or</div>
+
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="section-none" name="sectionsToChange" type="checkbox" value="none" data-behaviour="exclusive">
+              <label class="govuk-label govuk-checkboxes__label" for="section-none">
+                No specific section
+              </label>
+            </div>
+            
+          </div>
+        </fieldset>
+     
+<br>
+
+      <div class="govuk-form-group">
+  <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+   Tell Glasgow City Council about the changes needed
+  </label>
+ 
+  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5"></textarea>
+</div>
+ </div>
+
+            
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-1" name="validationAction" type="radio" value="validate" >
+              <label class="govuk-label govuk-radios__label" for="validation-action-1">
+                Mark as approved
+              </label>
+              <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             This is for internal records only and we won't email the organisation about the decision
+        </div>
+            </div>
+          
+            
+    
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="validation-action-3" name="validationAction" type="radio" value="decline" data-aria-controls="conditional-validation-action-3">
+              <label class="govuk-label govuk-radios__label" for="validation-action-3">
+               Mark as rejected
+              </label>
+               <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+             This is for internal records only and we won't email the organisation about the decision
+        </div>
+             
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-validation-action-3">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-!-font-weight-bold" for="decline-reason">
+                  Why are you marking this submission as rejected?
+                </label>
+               
+                <textarea class="govuk-textarea" id="decline-reason" name="declineReason" rows="5"></textarea>
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+<div class="govuk-button-group">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Confirm
+      </button>
+    </form>
+    <p class="govuk-body">
+   <a href="submission-new" class="govuk-link">Cancel</a>
+</p>
+</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Exclusive Checkbox Logic for "No specific section"
+    const noneCheckbox = document.getElementById('section-none');
+    const otherCheckboxes = document.querySelectorAll('input[name="sectionsToChange"]:not(#section-none)');
+
+    if (noneCheckbox && otherCheckboxes.length > 0) {
+      // When "None" is checked, uncheck all others
+      noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          otherCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+          });
+        }
+      });
+
+      // When any other checkbox is checked, uncheck "None"
+      otherCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          if (this.checked) {
+            noneCheckbox.checked = false;
+          }
+        });
+      });
+    }
+
+    // 2. Form Routing Logic
+    const form = document.getElementById('validationRoutingForm');
+    
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const selectedOption = document.querySelector('input[name="validationAction"]:checked');
+      
+      if (selectedOption) {
+        if (selectedOption.value === 'validate') {
+          window.location.href = 'submission-new_approve#timeline';
+        } else if (selectedOption.value === 'request-changes') {
+          window.location.href = 'submission-new_request#timeline';
+        } else if (selectedOption.value === 'decline') {
+          window.location.href = 'submission-new_declined#timeline';
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

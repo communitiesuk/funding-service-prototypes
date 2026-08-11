@@ -1,0 +1,41 @@
+{% extends "/layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showGuidance = false %}
+
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+
+{% block pageTitle %}Session Data - Prototype{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">Session data</h1>
+        <p>Current data been stored within the prototype.</p>
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th class="govuk-table__header" scope="col">Name</th>
+                    <th class="govuk-table__header" scope="col">Data held in session</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+                 {% for key, item in data %}
+                    <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="row">{{ key }}</th>
+                        <td class="govuk-table__cell">{{ item }}</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

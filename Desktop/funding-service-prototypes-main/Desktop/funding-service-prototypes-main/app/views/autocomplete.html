@@ -1,0 +1,67 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Allocations" %}
+{% set pageSection = "Allocation form" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-xl">{{ pageSection }}</span>
+    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
+
+    <form action="#" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-!-font-weight-bold" for="allocation-picker">
+          Select an organisation to allocate funding
+        </label>
+        <div id="allocation-picker-hint" class="govuk-hint">
+          Start typing to find an organisation
+        </div>
+        
+        <select class="govuk-select" id="allocation-picker" name="organisation">
+          <option value="" selected disabled>Select an option</option>
+          <option value="birmingham">Birmingham City Council</option>
+          <option value="edinburgh">City of Edinburgh Council</option>
+          <option value="glasgow">Glasgow City Council</option>
+          <option value="manchester">Manchester City Council</option>
+        </select>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-4" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script src="https://unpkg.com/accessible-autocomplete@3.0.0/dist/accessible-autocomplete.min.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const selectElement = document.querySelector('#allocation-picker');
+      
+      if (selectElement) {
+        accessibleAutocomplete.enhanceSelectElement({
+          selectElement: selectElement,
+          showAllValues: true
+        });
+      }
+    });
+  </script>
+{% endblock %}

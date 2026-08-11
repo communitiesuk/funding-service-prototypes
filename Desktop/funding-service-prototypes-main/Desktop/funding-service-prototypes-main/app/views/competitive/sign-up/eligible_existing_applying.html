@@ -1,0 +1,52 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Your organisation is already applying" %}
+{% set pageSection = "Safer social housing fund" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">{{ pageSection }}</span>
+    <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
+
+    <p class="govuk-body">
+    Based on your email, we think you're trying to apply on behalf of <strong>Housing Charity Together</strong>.
+    </p>
+
+ 
+    <p class="govuk-body">
+   An application form has already been started by someone in this organisation. 
+    </p>
+
+
+<!--     <form action="dashboard" method="post" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+       Continue
+      </button>
+    </form>
+    <br> -->
+
+<h2 class="govuk-heading-m"> Continue your application</h2>
+
+    <p class="govuk-body">
+      Someone in your organisation can add you through the Team page in Access grant funding, or you can <a href="">request access</a>.
+    </p>
+
+<h2 class="govuk-heading-m"> Get help</h2>
+
+    <p class="govuk-body">
+      If you're not trying to apply on behalf of Housing Charity Together or you're having problems, contact our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/user/login?destination=portal%2F5%2Fgroup%2F1344%3FgroupId%3D1344" target="_blank" >support desk (opens in new tab)</a>.
+    </p>
+
+    <p class="govuk-body">
+      Monday to Friday 9am to 5pm (except public holidays)</p>
+
+
+  </div>
+</div>
+{% endblock %}

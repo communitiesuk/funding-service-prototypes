@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your email" %}
+{% else %}
+  {% set pageSize = "xl" %}
+{% set pageHeading = "Email sent" %}
+{% endif %}
+
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+			<p class="govuk-body">We have sent an email to <span class="govuk-!-font-weight-bold">{{ data['magicLinkEmail'] or "test@apply.mhclg.gov.uk"  }}</span></p>
+			<!-- <p>Use the link in the email to start a new application, or continue any applications you already have in progress.</p> -->
+			<div class="govuk-inset-text">
+                <p class="govuk-body">The link will work once and stop working after 24 hours.</p>
+            </div>
+
+			<h2 class="govuk-heading-s govuk-!-margin-bottom-1">If you do not receive the email</h2>
+			<p>The email may take a few minutes to arrive.</p>
+			<p>Check your spam or junk folders – if it still has not arrived, you can <a href="/apply/email-address" class="govuk-link govuk-link--no-visited-state">request a new link</a> or provide another email address.</p>
+
+
+		{% else %}
+			<p>We have sent an email to <span class="govuk-!-font-weight-bold">{{ data['magicLinkEmail'] or "test@apply.mhclg.gov.uk"  }}</span></p>
+
+			<h2 class="govuk-heading-m">What happens next</h2>
+			<p>Use the link to confirm your email address and start a new application, or continue any applications you have in progress.</p>
+			<p>The link will work once and stop working after 24 hours.</p>
+
+
+			<details class="govuk-details">
+				<summary class="govuk-details__summary">
+				<span class="govuk-details__summary-text">
+					If you do not receive an email
+				</span>
+				</summary>
+				<div class="govuk-details__text">
+					<p>The email may take a few minutes to arrive.</p>
+					<p>Check your spam or junk folders – if it still has not arrived, you can <a href="/apply/email-address">request a new link</a>.</p>
+				</div>
+			</details>
+		{% endif %}
+
+
+
+
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+      	{% else %}
+        	{{ macroSuggested.pageSuggested(url) }}
+      	{% endif %}
+		  <p class="govuk-body-s govuk-footer__link"><a href="/apply/email">Continue to sent email</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

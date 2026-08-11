@@ -1,0 +1,39 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+{% import "macros/suggested-page.njk" as macroSuggested %}
+{% import "macros/current-page.njk" as macroCurrent %}
+{% import "macros/page-pagination.njk" as macroPagePagination %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+<!-- Overides the max width only in assess -->
+{% block stylesheets %}
+	{{ super() }}
+  	<link href="/public/css/assessOveride-new.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+
+    {{ govukHeader({
+        classes: "govuk-header--full-width-border"
+    }) }}
+
+    {{ govukServiceNavigation({
+        serviceName: "Assess grant applications",
+        serviceUrl: "#"        
+    }) }}
+
+{% endblock %}
+
+{% block footer %}
+    {{ govukFooter({
+        meta: {
+            html: '
+            	<p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Show hidden text</a></p>',
+            items: [ ]
+        }
+    }) }}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Will you need any application information to be translated into Welsh?" %}
+{% set pageSection = "Set up the grant" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-body">For example, your grant prospectus or application form.</p>
+
+        {% if data['change'] == "yes" %}
+            <form method="post" action="/funding/grant/add/summary">
+                <input type="hidden" name="change" id="change" value="" />
+        {% else %}
+            <form method="post" action="/funding/grant/add/summary">
+        {% endif %}
+
+            	{{ govukRadios({
+                	classes: "govuk-radios--inline",
+                	name: "grant-welsh",
+                	id: "grant-welsh",
+                	fieldset: {
+                  		legend: {
+                  			text: "Select an option to update your RIBA reporting stage",
+                  			isPageHeading: true,
+                  			classes: "govuk-fieldset__legend govuk-visually-hidden"
+                  		}
+                	},
+                	items: [
+                  		{ value: "Yes", text: "Yes", checked: checked("grant-welsh", "Yes") },
+                  		{ value: "No", text: "No", checked: checked("grant-welsh", "No") }
+                	]
+              	}) }}
+
+
+            	{{ govukButton({
+                	text: "Save and continue"
+            	}) }}
+
+        	</form>
+
+    </div>
+</div>
+
+{% endblock %}
+<!-- *bc* -->

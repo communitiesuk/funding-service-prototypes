@@ -1,0 +1,45 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantUsers' %}
+{% set showBackLink = true %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What’s their email address?" %}
+{% set pageSection = "Add grant team member" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <form method="post" action="/funding/grant/users/?notification=userAdded" >
+
+            {{ govukInput({
+                label: {
+                    text: pageHeading,
+                    classes: "govuk-visually-hidden",
+                    isPageHeading: false
+                },
+                hint: {
+                    text: "This needs to be the user’s personal 'communities.gov.uk' email address, not a shared email address."
+                },
+                classes: "govuk-!-width-two-thirds",
+                id: "addUser-Email",
+                name: "addUser-Email",
+                value: data['addUser-Email'],
+                type: "Email"
+            }) }}
+
+            {% include "/includes/buttonAddGrantTeamMember.html" %}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "Engaging the organisation" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Check your answers" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you make sure team members engage with other parts of your organisation?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_2_engagement'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-the-organisation/team-engagement?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you make sure team members engage with other parts of your organisation</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you share the progress of the work across your organisation?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_2_shareProgress'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-the-organisation/share-progress?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you share the progress of the work across your organisation</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post">
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				name: "section4_2",
+				fieldset: {
+					legend: {
+						text: "Have you completed this section?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes, I’ve completed this section", checked: checked("section4_2", "yes")  },
+					{ value: "no", text: "No, I’ll come back to it later", checked: checked("section4_2", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+
+		{% else %}
+
+        <h2 class="govuk-heading-m">Engaging the organisation</h2>
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you make sure team members engage with other parts of your organisation?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_2_engagement'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-the-organisation/team-engagement?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you make sure team members engage with other parts of your organisation</span></a>
+			  	</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How will you share the progress of the work across your organisation?</dt>
+			  	<dd class="govuk-summary-list__value">{{ data['4_2_shareProgress'] }}</dd>
+			  	<dd class="govuk-summary-list__actions">
+					<a class="govuk-link" href="/apply/engaging-the-organisation/share-progress?linkStatus=change">Change<span class="govuk-visually-hidden"> How will you share the progress of the work across your organisation</span></a>
+			  	</dd>
+			</div>
+		</dl>
+
+		<form action="/apply/task-list" method="post">
+
+			<!-- Remove the change link status -->
+			{% include "/apply/includes/linkStatus.html" %}
+
+			<!-- Session information to inform although section is finished is it completed -->
+			{{ govukRadios({
+				classes: "govuk-radios--inline",
+				name: "section4_2",
+				fieldset: {
+					legend: {
+						text: "Do you want to mark this section as complete?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--l"
+					}
+				},
+				items: [
+					{ value: "yes", text: "Yes", checked: checked("section4_2", "yes")  },
+					{ value: "no", text: "No", checked: checked("section4_2", "no") }
+				]
+			}) }}
+
+			{{ govukButton({
+				text: "Save and continue"
+			}) }}
+
+		</form>
+
+		{% endif %}
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+    </div>
+  </div>
+{% endblock %}

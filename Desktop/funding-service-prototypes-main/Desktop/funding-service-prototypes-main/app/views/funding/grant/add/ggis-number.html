@@ -1,0 +1,82 @@
+{% extends "layouts/deliver.html" %}
+
+{% if data['change'] == "yes" %}
+{% set showBackLink = false %}
+{% endif %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Do you have a Government Grants Information System (GGIS) reference number?" %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">You’ll need to provide your GGIS reference number before you can create forms or assess grant applications.</p>
+
+        {% if data['change'] == "yes" %}
+         <form method="post" action="/funding/grant/add/summary?notification=&change=">			
+      	{% else %}
+        <form method="post" action="/funding/grant/add/name">
+        {% endif %}
+
+			{% set yesGGISHtml %}
+				{{ govukInput({
+					id: "grant-ggisNumber",
+					name: "grant-ggisNumber",
+					value: data['grant-ggisNumber'],
+					spellcheck: false,
+					classes: "govuk-!-width-two-thirds",
+					label: {
+						text: "Enter your GGIS reference number"
+					},
+					hint: {
+						text: "For example, G2-SCH-2025-05-12346"
+					}
+				}) }}
+			{% endset -%}
+
+			{% set noGGISHtml %}
+				<p class="govuk-body">You can still add this grant, but will need to add a GGIS number before creating forms.</p>
+			{% endset -%}
+
+			{{ govukRadios({
+				name: "grant-ggis",
+				id: "grant-ggis",
+				fieldset: {
+					legend: {
+						text: "Do you have a GGIS number?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend govuk-visually-hidden"
+					}
+				},
+				items: [
+					{ value: "Yes", text: "Yes", conditional: { html: yesGGISHtml }, checked: checked("grant-ggis", "Yes") },
+					{ value: "No~/funding/grant/add/cannot-continue", text: "No", checked: checked("grant-ggis", "No") }
+				]
+			}) }}
+
+            {% if data['change'] == "yes" %}                
+				<div class="govuk-button-group">
+					{{ govukButton({
+    					text: "Update GGIS reference number"
+					}) }}
+					<a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/add/summary?notification=&change=">Cancel</a>				 
+				</div>
+            {% else %}
+                {% include "/includes/buttonSaveContinue.html" %}
+            {% endif %}			
+			
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

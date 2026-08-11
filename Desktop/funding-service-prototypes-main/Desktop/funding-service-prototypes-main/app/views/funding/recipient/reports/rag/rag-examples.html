@@ -1,0 +1,111 @@
+{% extends "/layouts/main.html" %}
+{% set showBackLink = false %}
+
+{% set pageHeading = "RAG rating examples" %}
+{% set pageSection = "RAG ratings" %}
+
+{% block pageTitle %}Session Data - Prototype{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{{ macroPageHeader.pageHeader(pageHeading,pageSection) }}   
+      
+      	<p class="govuk-body">To help you choose a rating, we’ve provided some examples of what you might include when RAG (red, amber, green) rating your projects.</p>
+      	<p class="govuk-body">The examples do not cover every scenario and are simply to help you decide how to rate a project. </p>
+
+      	<h3 class="govuk-heading-l">Spend risk</h3>
+      	<h3 class="govuk-heading-m">Green</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>No rising costs</li>
+        	<li>No slippage</li>
+        	<li>Less than 30% expenditure profiled in final year</li>
+        	<li>No use of financial flexibility</li>
+      	</ul>
+
+      	<h3 class="govuk-heading-m">Amber/Green</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>Project progressing but with minor issues</li>
+        	<li>Issues are within control and there is a mitigation plan in place</li>
+        	<li>The appropriate RIBA stage has minor slippage but there is mitigation plan in place</li>
+        	<li>There is no additional support required</li>
+      	</ul>
+
+      	<h3 class="govuk-heading-m">Amber</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>Cost increases of 10% to 20% which are manageable</li>
+        	<li>A funding gap exists - a source has been identified but not secured</li>
+        	<li>Less than 30% expenditure profiled in final year</li>
+        	<li>There is slippage of 20% to 30% between financial years</li>
+        	<li>40% to 50% of expenditure is profiled in the final year</li>
+        	<li>The use of flexibility is required but below the threshold</li>
+      	</ul>
+
+      	<h3 class="govuk-heading-m">Amber/Red</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>The project has stalled for any reason</li>
+        	<li>Value engineering is required or in progress due to significant increases or over-runs</li>
+        	<li>Significant additional match funding is required for delivery</li>
+        	<li>Potential match funding source has been identified but not secured</li>
+      	</ul>
+
+      	<h3 class="govuk-heading-m">Red</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>Major cost increases over 30% which is unmanageable and there is no plan to resolve the problem</li>
+        	<li>Major slippage over 40% between financial years</li>
+        	<li>Over 60% of expenditure is profiled in the final year</li>
+        	<li>Major movement of funding planned</li>
+        	<li>Major additional match funding is required to facilitate delivery</li>
+        	<li>Match funding source not identified</li>
+        	<li>Call in required</li>
+      	</ul>
+
+      	<h2 class="govuk-heading-l">Delivery risk</h2>
+      	<h3 class="govuk-heading-m">Green</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>Planning is in place</li>
+        	<li>Main contract procurement process is complete</li>
+        	<li>Delivery milestones on target</li>
+        	<li>Appropriate RIBA stage on track</li>
+        	<li>Project completed</li>
+      	</ul>
+
+      	<h3 class="govuk-heading-m">Amber/Green</h3>
+      	<ul class="govuk-list govuk-list--bullet">
+        	<li>Project progressing but with minor issues</li>
+          	<li>Issues are within control and there is a mitigation plan in place</li>
+          	<li>The appropriate RIBA stage has minor slippage but there is mitigation plan in place</li>
+          	<li>There is no additional support required</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">Amber</h3>
+        <ul class="govuk-list govuk-list--bullet">
+        	<li>The project is progressing but delayed</li>
+          	<li>The issues identified are within control but there is no plan in place to deal with the issue</li>
+          	<li>Value engineering is required or in progress</li>
+          	<li>Appropriate RIBA stage has slipped considerably</li>
+          	<li>Additional support is required</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">Amber/Red</h3>
+        <ul class="govuk-list govuk-list--bullet">
+        	<li>The project has stalled</li>
+          	<li>Value engineering is required or in progress and likely to result in a new planning application and delayed delivery timelines</li>
+          	<li>Major RIBA stage slippage</li>
+          	<li>Major additional support required</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">Red</h3>
+        <ul class="govuk-list govuk-list--bullet">
+        	<li>Project stalled</li>
+          	<li>Issues out of control</li>
+          	<li>Major support required</li>
+          	<li>Major RIBA stage slippage</li>
+          	<li>No plan in place</li>
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

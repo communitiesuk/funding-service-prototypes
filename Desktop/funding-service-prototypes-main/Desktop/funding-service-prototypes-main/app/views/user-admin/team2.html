@@ -1,0 +1,129 @@
+{% extends "layouts/access2.html" %}
+{% set navID = 'grantUsers' %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Team" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+
+
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          Team member added
+        </h3>
+        <p class="govuk-body">
+          {{ data['fullName'] if data['fullName'] else 'Lukas Garner'}} ({{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}) can now edit and submit for Hastings Borough Council's Safer social housing fund. We have emailed them a link to Access grant funding.
+        </p>
+      </div>
+    </div>
+
+
+    <h1 class="govuk-heading-l">Team</h1>
+
+    <form action="add_user" method="post" novalidate>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Add team member
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table govuk-!-margin-bottom-8">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Email address</th>
+          <th scope="col" class="govuk-table__header">Permissions</th>
+          <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Action</span></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <!-- Existing Hardcoded Users -->
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Magdalena Mata</td>
+          <td class="govuk-table__cell">mmata@hastings.gov.uk</td>
+          <td class="govuk-table__cell">Can edit and submit</td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> Magdalena Mata</span></a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Suzana Brzezicki</td>
+          <td class="govuk-table__cell">sbrzezicki@hastings.gov.uk</td>
+          <td class="govuk-table__cell">Can edit and submit</td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> Suzana Brzezicki</span></a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Shayne Boyle</td>
+          <td class="govuk-table__cell">sboyle@hastings.gov.uk</td>
+          <td class="govuk-table__cell">Can edit and submit</td>
+          <td class="govuk-table__cell">
+            <a href="user_remove2" class="govuk-link">Remove<span class="govuk-visually-hidden"> Shayne Boyle</span></a>
+          </td>
+        </tr>
+
+        <!-- Dynamically Added User from add_user page -->
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ data['fullName'] if data['fullName'] else 'Lukas Garner' }}</td>
+          <td class="govuk-table__cell">{{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}</td>
+          <td class="govuk-table__cell">Can edit and submit</td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Remove<span class="govuk-visually-hidden"> {{ data['fullName'] }}</span></a>
+          </td>
+        </tr>
+ 
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-m">Certifier access</h2>
+    
+    <p class="govuk-body">
+      To add or remove a certifier, contact our <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">support desk (opens in new tab)</a>.
+    </p>
+    
+    <p class="govuk-body">
+      Monday to Friday, 9am to 5pm (except public holidays).
+    </p>
+
+
+    <br><br>
+    <p class="govuk-body-xs">
+      <a href="email-added" class="govuk-link" target="_blank" rel="noreferrer noopener">(View confirmation email)</a>
+    </p>
+        <p class="govuk-body-xs">
+      <a href="email-problem1" class="govuk-link" target="_blank" rel="noreferrer noopener">(View email problem 1)</a>
+    </p>
+     <p class="govuk-body-xs">
+      <a href="email-problem2" class="govuk-link" target="_blank" rel="noreferrer noopener">(View email problem 2)</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+
+

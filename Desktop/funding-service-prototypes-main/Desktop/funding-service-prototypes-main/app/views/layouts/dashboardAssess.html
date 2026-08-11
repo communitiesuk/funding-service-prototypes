@@ -1,0 +1,105 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% import "macros/page-title.njk" as macroPageTitle %}
+{% import "macros/page-header.njk" as macroPageHeader %}
+
+<!-- Overides the max width only in assess -->
+{% block stylesheets %}
+	{{ super() }}
+  	<link href="/public/css/assessOveride.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+
+{% block header %}
+
+	{% if data['signedIn'] == "yes" %}
+
+    	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+            serviceName: "Assess grant applications",
+          	serviceUrl: "/?signedIn=no"
+        }) }}
+
+    {% elif data['signedIn'] == "no" %}
+
+      	{{ govukHeader({
+        	homepageUrl: "/?signedIn=no",
+        	serviceName: "Assess grant applications",
+        	serviceUrl: "/?signedIn=no"
+      	}) }}
+
+    {% endif %}
+
+{% endblock %}
+
+
+
+{% block beforeContent %}
+
+	<!-- Phasebanner -->
+	{% if showPhaseBanner != true %}
+		{{ govukPhaseBanner({
+			tag: { text: "Prototype" },
+			html: "This is a prototype. It is not a real service."
+		}) }}
+	{% endif %}
+
+
+    <!-- Back Link -->
+	<!-- <div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+	{% if showBackLink == true %}
+		{{ govukBackLink({
+			text: "Back",
+			href: "javascript:history.go(-1)"
+		}) }}
+	{% else %}
+	{% endif %}
+		</div>
+		<div class="govuk-grid-column-one-third govuk-!-text-align-right">
+    {% if data['signedIn'] == "yes" %}
+		{{ govukServiceNavigation({
+			navigation: [
+				{ href: "/assess/help", text: "Get helper" },
+				{ href: "#", text: "Log out", active: true }
+			]
+		}) }}
+    {% endif %} -->
+
+</div>
+	</div>
+
+
+	<div class="x-govuk-masthead x-govuk-masthead--large">
+		<div class="govuk-width-container">
+		  <div class="govuk-grid-row">
+			<div class="govuk-grid-column-two-thirds-from-desktop">
+			  <h1 class="x-govuk-masthead__title">
+				Design your service using GOV.UK styles, components and patterns
+			  </h1>
+			  <p class="x-govuk-masthead__description">
+				Use this design system to make your service consistent with GOV.UK. Learn from the research and experience of other service teams and avoid repeating work that’s already been done.
+			  </p>
+			  <a href="#" role="button" draggable="false" class="govuk-button govuk-button--inverse govuk-button--start" data-module="govuk-button">
+				Get started
+				<svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+				  <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+				</svg>
+			  </a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+{% endblock %}
+
+
+{% block footer %}
+    {{ govukFooter({
+        meta: {
+            html: '
+            	<p><a class="govuk-body-s govuk-footer__link" href="/manage-prototype/clear-data" >Clear data</a> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Manage prototype</a></p> | <a class="govuk-body-s govuk-footer__link" href="/manage-prototype" >Show hidden text</a></p>',
+            items: [ ]
+        }
+    }) }}
+{% endblock %}

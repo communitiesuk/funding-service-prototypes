@@ -1,0 +1,61 @@
+{% extends "layouts/access2.html" %}
+{% set navID = 'grantUsers' %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Add team member details" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-l">Add team member details</h1>
+    
+    <p class="govuk-body">
+      This team member will be able to edit and submit reports and forms for Safer social housing fund.
+    </p>
+    
+    <p class="govuk-body govuk-!-margin-bottom-7">
+      To add a certifier, contact our <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">support desk (opens in new tab)</a>.
+    </p>
+
+    <form action="team2" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="full-name">
+          Full name
+        </label>
+        <input class="govuk-input govuk-input--width-20" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
+      </div>
+      
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="email-address">
+          Email address
+        </label>
+        <input class="govuk-input govuk-input--width-20" id="email-address" name="emailAddress" type="email" spellcheck="false" autocomplete="email">
+      </div>
+
+      <div class="govuk-button-group govuk-!-margin-top-6">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and add member
+        </button>
+        <a class="govuk-link" href="team">Cancel</a>
+      </div>
+
+    </form>
+
+
+    <br><br>
+    <p class="govuk-body-xs">
+      <a href="existing_user" class="govuk-link" target="_blank" rel="noreferrer noopener">(View member already has access)</a>
+    </p>
+        <p class="govuk-body-xs">
+      <a href="other_domain" class="govuk-link" target="_blank" rel="noreferrer noopener">(View other domain)</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

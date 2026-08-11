@@ -1,0 +1,149 @@
+{% if data['version'] == "suggested" %}
+    {% extends "layouts/assess-newNew.html" %}
+{% else %}
+    {% extends "layouts/mainAssess.html" %}
+{% endif %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Fund:" %}
+{% set pageSection = "" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block main %}
+
+<div class="govuk-width-container">
+	{{ govukBackLink({
+		text: "Back to assessment landing",
+		href: "javascript:history.go(-1)"
+	}) }}
+
+	<div class="govuk-!-display-inline-block float-right govuk-!-margin-top-3 nag">
+		<a href="/assess/help">Get help</a>  <a href="#">Log out</a>
+	</div>
+</div>
+
+<div class="x-govuk-masthead">
+	<div class="govuk-width-container">
+
+
+      	<div class="govuk-grid-row">
+        	<div class="govuk-grid-column-two-thirds-from-desktop">
+          		<h1 class="x-govuk-masthead__title">{{ pageHeading }} <span class="govuk-!-font-weight-regular">{{ data.fundName }} Fund</span></h1>
+          		<p class="x-govuk-masthead__description govuk-!-font-size-36"><span class="govuk-!-font-weight-bold">Project reference:</span> ZWNEHL</p>
+          		<p class="x-govuk-masthead__description"><span class="govuk-!-font-weight-bold">Project name:</span> Sneaker Politics
+				<br>
+
+                {% if data[''] == "" %}
+                <strong class="govuk-tag govuk-tag-white overSizeWhite">NOT STARTED</strong>
+                {% else %}
+                <span class="govuk-!-font-weight-bold">Total funding requested:</span> £0.00</p>
+                {% endif %}
+        	</div>
+      	</div>
+    </div>
+</div>
+
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper" id="main-content" role="main">
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+
+                <h2 class="govuk-heading-l">Score dataset information</h2>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible section_break_blue">
+                <ul class="govuk-list">
+                    <li>Dataset information</li>
+                </ul>
+                <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                <ul class="govuk-list">
+                  <li><a href="/assess/fund/application/dataset-information/score">Score the subcriteria</a></li>
+                </ul>
+            </div>
+
+            <div class="govuk-grid-column-two-thirds">
+
+                <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+
+
+                <p>Score this sub criteria against the <a href="#">assessment criteria</a>.</p>
+                <p>You can use the comments about this subcriteria from other assessors to inform your score.</p>
+
+                <form method="post" action="" >
+
+                {{ govukRadios({
+                  name: "whereDoYouLive",
+                  fieldset: {
+                    legend: {
+                      text: "You can rescore at any point.",
+                      isPageHeading: true,
+                      classes: "govuk-fieldset__legend"
+                    }
+                  },
+                  items: [
+                    { value: "5", html: '<span class="govuk-!-font-weight-bold">5</span> Strong' },
+                    { value: "4", html: '<span class="govuk-!-font-weight-bold">4</span> Good' },
+                    { value: "3", html: '<span class="govuk-!-font-weight-bold">3</span> Satisfactory' },
+                    { value: "2", html: '<span class="govuk-!-font-weight-bold">2</span> Partial' },
+                    { value: "1", html: '<span class="govuk-!-font-weight-bold">1</span> Poor' }
+                  ]
+                }) }}
+
+				{{ govukTextarea({
+					name: "moreDetail",
+					id: "more-detail",
+					label: {
+					  text: "Add rationale for this score",
+					  classes: "govuk-label--m",
+					  isPageHeading: true
+					},
+					hint: {
+					  html: 'Explain why you think this score is justified based on the <a href="#">assessment criteria</a>.'
+					}
+				  }) }}
+
+				  {{ govukButton({
+					text: "Save score"
+				  }) }}
+
+                </form>
+
+                <h2 class="govuk-heading-l govuk-!-margin-top-7"">Comments about this subcriteria</h2>
+                <p>Read comments from others who reviewed this section</p>
+
+				<h3 class="govuk-heading-m">Dataset information</h3>
+                <p>There are currently no comments for this section.</p>
+
+
+
+
+
+                {{ govukPagination({
+                  previous: {
+                      labelText: "Engaging the organisation",
+                      href: "/assess/fund/application/engaing-the-organisation/"
+                    },
+                  next: {
+                    labelText: "Back to assessment task list",
+                    href: "/assess/fund/application/"
+                  }
+                }) }}
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Switcher between current and suggested changes -->
+        {% include "/assess/includes/version-switch.html" %}
+
+    </div>
+</div>
+
+{% endblock %}

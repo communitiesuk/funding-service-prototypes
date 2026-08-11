@@ -1,0 +1,92 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set showBackLink = false %}
+
+{% set navID = 'grantDetails' %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Grant details" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        
+
+                {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+				{% set completedStatus = { text: "Completed" } %}
+      			{% set incompleteStatus = {
+        			tag: { text: "Incomplete", classes: "govuk-tag--blue" }
+      			} %}
+
+				<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">GGIS reference number</dt>
+				<dd class="govuk-summary-list__value">					
+					{{ data['grant-ggisNumber'] or "G2-SCH-2025-05-12346" }}					
+				</dd>		
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/ggis-number?change=yes">Change<span class="govuk-visually-hidden"> GGIS reference number</span></a></dd>		
+			</div>			
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Grant name</dt>
+				<dd class="govuk-summary-list__value">{{ data['grantName'] or "Evergreen futures grant" }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/name?change=yes">Change<span class="govuk-visually-hidden"> grant name</span></a></dd>
+			</div>			
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main purpose</dt>
+				<dd class="govuk-summary-list__value">{{ data['grant-description'] or "The Evergreen Futures Grant is a competitive funding opportunity designed to support early‐stage community projects that advance sustainable urban living. "  }}</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/description?change=yes">Change<span class="govuk-visually-hidden"> main purpose</span></a></dd>
+			</div>
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Main contact</dt>
+				<dd class="govuk-summary-list__value">{{ data['grant-primaryContactName'] or "Hugo Furst" }}
+					<br>{{ data['grant-primaryContactEmail'] or "hugo.furst@communities.gov.uk" }}
+				</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/funding/grant/details/setup/primary-contact-details?change=yes">Change<span class="govuk-visually-hidden"> main contact</span></a></dd>
+			</div>
+		</dl>
+
+
+				<!-- To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" -->
+
+				<!-- <h2 class="govuk-heading-m">[ Heading for first set of tasks ]</h2>
+      			{{ govukTaskList({
+        			idPrefix: "first-section",
+        			items: [
+          				{ title: { text: "Set up the grant" }, href: "/funding/grant/details/setup/summary", status: completedStatus },
+          				{ title: { text: "Name of second task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of third task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of fifth task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of sixth task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of seventh task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of eighth task" }, href: "#", status: incompleteStatus }
+        			]
+      			}) }}
+
+				<h2 class="govuk-heading-m">[ Heading for second set of tasks ]</h2>
+      			{{ govukTaskList({
+        			idPrefix: "first-section",
+        			items: [
+          				{ title: { text: "Name of first task" }, href: "#", status: incompleteStatus },
+						{ title: { text: "Name of second task" }, href: "#", status: incompleteStatus },
+          				{ title: { text: "Name of third task" }, href: "#", status: incompleteStatus }
+
+        			]
+      			}) }} -->
+
+
+    </div>
+</div>
+
+{% endblock %}

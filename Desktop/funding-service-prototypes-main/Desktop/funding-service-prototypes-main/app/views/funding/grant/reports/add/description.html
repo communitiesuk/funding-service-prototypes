@@ -1,0 +1,77 @@
+{% extends "layouts/grantManagement.html" %}
+
+{% set navID = 'grantReports' %}
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the main purpose of this form?" %}
+{% set pageSection = '' + data['grantName'] + '' %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <div class="govuk-grid-row">
+	        <div class="govuk-grid-column-two-thirds">
+
+                {{ macroPageHeader.pageHeader(pageHeading,pageSection,pageSize) }}
+
+                <p class="govuk-body">Provide a brief description of the main purpose of the report form.</p>
+
+                <form method="post" action="/funding/grant/reports/" >
+
+
+
+
+
+        <input type="hidden" name="formReport" id="formReport" value="yes" />
+
+        	{{ govukCharacterCount({
+            	name: "grant-description",
+            	id: "grant-description",
+            	value: data['grant-description'],
+            	maxwords: 200,
+            	rows: 6,
+            	hint: {
+              		text: "Do not include personal information."
+            	},
+            	label: {
+              		text: pageHeading,
+              		classes: "govuk-label govuk-visually-hidden",
+              		isPageHeading: false
+            	}
+          	}) }}
+
+
+
+
+                {{ govukButton({
+                    text: "Confirm and set up report"
+                }) }}
+
+            </form>
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!--
+{ text: "Assess applications", href: "#" },
+                { text: "Recipients", href: "#" },
+                { text: "Payments", href: "#" },
+                { text: "Reports", href: "#" } -->

@@ -1,0 +1,149 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Check your answers before sending your data" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-l">Financial data</h1>
+    
+    <table class="govuk-table govuk-!-margin-bottom-9">
+      <caption class="govuk-table__caption govuk-table__caption--m">Spend on houses, flats and buildings</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Month</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Houses <br></th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">
+            % 2025<br>
+          
+          </th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Flats <br> </th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">
+            % 2025<br>
+        
+          </th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Buildings<br> </th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">
+            % 2025<br>
+           
+          </th>
+    
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        
+        <!-- January -->
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">January</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£31m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <!-- Hidden text added for screen readers -->
+       2%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£31m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       1%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£31m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       9%
+          </td>
+  
+
+        </tr>
+
+        <!-- February -->
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">February</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£42m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       4%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£43m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       5%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£44m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       5%
+          </td>
+   
+        </tr>
+
+        <!-- March -->
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">March</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£23m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       5%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£24m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       3%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£25m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       4%
+          </td>
+    
+        </tr>
+
+        <!-- April -->
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">April</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£51m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       10%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£52m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       1%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£53m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       5%
+          </td>
+
+        </tr>
+
+        <!-- May -->
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">May</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£43m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       1%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£44m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       21%
+          </td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£45m</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+       8%
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+      
+
+      
+    <form action="confirmation" method="post" novalidate class="govuk-!-margin-top-6">
+      <input type="hidden" name="answers-checked" value="true">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+    
+  </div>
+</div>
+
+{% endblock %}

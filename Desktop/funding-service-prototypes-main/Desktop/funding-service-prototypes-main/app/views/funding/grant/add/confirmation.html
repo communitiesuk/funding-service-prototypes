@@ -1,0 +1,38 @@
+{% extends "layouts/deliver.html" %}
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = '' + data['grantName'] + ' added' %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        <p class="govuk-body">You can now:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>update or add more information about the grant</li>
+            <li>create forms</li>
+        </ul>
+        <!-- <p class="govuk-body">We have sent you an email to confirm that ((grant_name)) has been added.</p>	 -->
+
+        <form method="post" action="/funding/grant/">
+            {{ govukButton({
+                text: "Continue to grant home",
+                classes: "govuk-!-margin-top-5"
+            }) }}
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

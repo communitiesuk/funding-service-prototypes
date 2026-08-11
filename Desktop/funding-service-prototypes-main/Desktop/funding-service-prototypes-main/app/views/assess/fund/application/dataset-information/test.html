@@ -1,0 +1,292 @@
+
+    {% extends "layouts/assess-newNew.html" %}
+
+
+{% set showBackLink = false %}
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Fund:" %}
+{% set pageSection = "" %}
+
+{% set pagePreviouslabel = "Engaging the organisation" %}
+{% set pagePreviouslink = "/assess/fund/application/engaging-the-organisation/" %}
+{% set pageNextlabel = "Back to assessment task list" %}
+{% set pageNextlink = "/assess/fund/application/" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block beforeContent %}
+
+{% if data['version'] == "suggested" %}
+        {{ super() }}
+    {% else %}
+        {{ super() }}
+        {{ xGovukMasthead({
+            title: {
+              text: "Design your service using GOV.UK styles, components and patterns"
+            },
+            description: {
+              text: "Use this design system to make your service consistent with GOV.UK. Learn from the research and experience of other service teams and avoid repeating work that’s already been done."
+            },
+            startButton: {
+              href: "#"
+            }
+          }) }}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+
+	{% if data['version'] == "suggested" %}
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+
+
+			<span class="govuk-caption-xl">Dataset information</span>
+			<h1 class="govuk-heading-xl">Review and score this section</h1>
+
+		</div>
+		<div class="govuk-grid-column-two-thirds">
+
+
+            <!-- <p>You can use the comments about this subcriteria from other assessors to inform your score.</p> -->
+			 <p class="govuk-body govuk-!-margin-bottom-7">Use any comments left by other assessors to help you decide your score.</p>
+
+			<div class="govuk-summary-card govuk-!-margin-bottom-9">
+				<div class="govuk-summary-card__title-wrapper">
+					<h2 class="govuk-summary-card__title">Applicants responses</h2>
+					<ul class="govuk-summary-card__actions">
+						<!-- <li class="govuk-summary-card__action">
+							<a class="govuk-link" href="/assess/fund/application/dataset-information/score">Score responses<span class="govuk-visually-hidden"> from this applicant</span></a>
+						</li> -->
+					</ul>
+				</div>
+				<div class="govuk-summary-card__content">
+					<dl class="govuk-summary-list">
+					<div class="govuk-summary-list__row">
+						<dt class="govuk-summary-list__key expand">Does your organisation collect at least one of the datasets?</dt>
+						<dd class="govuk-summary-list__value">{{ data['4_3_datasetCollect'] | capitalize }}</dd>
+						<dd class="govuk-summary-list__actions"></dd>
+					</div>
+					{% if data['4_3_datasetCollect'] == "yes" %}
+					<div class="govuk-summary-list__row">
+						<dt class="govuk-summary-list__key">Which datasets have you collected?</dt>
+						<dd class="govuk-summary-list__value">
+							<ul class="govuk-list govuk-list--bullet">
+							{% for item in data.4_3_datasets %}
+							<li>{{ item }}</li>
+							{% endfor %}
+							</ul>
+						</dd>
+						<dd class="govuk-summary-list__actions"></dd>
+					</div>
+					<div class="govuk-summary-list__row">
+						<dt class="govuk-summary-list__key">Which format is your dataset in for conservation areas?</dt>
+						<dd class="govuk-summary-list__value">
+							<ul class="govuk-list govuk-list--bullet">
+							{% for item in data.4_3_format %}
+							<li>{{ item }}</li>
+							{% endfor %}
+							</ul>
+						</dd>
+						<dd class="govuk-summary-list__actions"></dd>
+					</div>
+					<div class="govuk-summary-list__row">
+						<dt class="govuk-summary-list__key">How long do you think it will take your organisation to publish all 4 datasets?</dt>
+						<dd class="govuk-summary-list__value">{{ data['4_3_publishTime'] }}</dd>
+						<dd class="govuk-summary-list__actions"></dd>
+					</div>
+					{% endif %}
+					<div class="govuk-summary-list__row">
+						<dt class="govuk-summary-list__key">What are the current known issues and challenges you have with data quality and publication?</dt>
+						<dd class="govuk-summary-list__value">{{ data['4_3_datasetChallenges'] }}</dd>
+						<dd class="govuk-summary-list__actions"></dd>
+					</div>
+					</dl>
+				</div>
+			</div>
+
+
+				<!-- <h2 class="govuk-heading-m govuk-!-margin-top-9">Score these responses</h2> -->
+
+
+                <form method="post" action="" >
+
+                {{ govukRadios({
+                  name: "whereDoYouLive",
+                  fieldset: {
+                    legend: {
+                      text: "Give these responses a score and explain why",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--m"
+                    }
+                  },
+				  hint: {
+					html: 'Use these <a href="#">assessment criteria</a> to help you justify your score.'
+				  },
+                  items: [
+                    { value: "5", text: 'Strong (5)' },
+                    { value: "4", text: 'Good (4)' },
+                    { value: "3", text: 'Satisfactory (3)' },
+                    { value: "2", text: 'Partial (2)' },
+                    { value: "1", text: 'Poor (1)' }
+                  ]
+                }) }}
+
+				{{ govukTextarea({
+					name: "moreDetail",
+					id: "more-detail",
+					label: {
+					  text: "Why have you given this score?",
+					  classes: "govuk-label",
+					  isPageHeading: true
+					},
+					hint: {
+						text: "Content saying what to include perhaps."
+					  }
+
+				  }) }}
+
+				  {{ govukButton({
+					text: "Submit score and continue to next section",
+					classes: "govuk-!-margin-bottom-9"
+				  }) }}
+
+                </form>
+
+
+
+			{{ macroPagePagination.pagePagination( pagePreviouslabel, pagePreviouslink, pageNextlabel, pageNextlink) }}
+
+			<!-- hint: {
+				html: 'Explain why you think this score is justified based on the <a href="#">assessment criteria</a>.'
+				html: 'Use these Score this sub criteria against the <a href="#">assessment criteria</a>. Explain why you think this score is justified based on the <a href="#">assessment criteria</a> '
+			  } -->
+
+		<!-- Switcher between current and suggested changes -->
+		{% include "/assess/includes/version-switch.html" %}
+
+		</div>
+
+		<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Comments</h2>
+		<!-- <p class="govuk-body">Summarise any thoughts you have on the assessment.</p> -->
+		<!-- <p class="govuk-body">No comments have been left yet.</p> -->
+		<p class="govuk-body">There are no comments to show for this section.</p>
+		<p class="govuk-body"><a href="#" class="govuk-link">Add a comment</a></p>
+
+
+
+
+
+	{% else %}
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-one-third">
+
+	<h2 class="govuk-heading-l">Dataset information</h2>
+	<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible section_break_blue">
+	<ul class="govuk-list">
+		<li>Dataset information</li>
+	</ul>
+	<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+	<ul class="govuk-list">
+	<li><a href="/assess/fund/application/dataset-information/score">Score the subcriteria</a></li>
+	</ul>
+</div>
+
+<div class="govuk-grid-column-two-thirds">
+
+	<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+	<div class="govuk-summary-card template-answer">
+		<div class="govuk-summary-card__title-wrapper">
+			<h2 class="govuk-summary-card__title">
+			Applicant's response
+			</h2>
+		</div>
+		<div class="govuk-summary-card__content">
+			<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Does your organisation collect at least one of the datasets?</dt>
+				<dd class="govuk-summary-list__value">{{ data['4_3_datasetCollect'] | capitalize }}</dd>
+				<dd class="govuk-summary-list__actions">
+
+				</dd>
+			</div>
+			{% if data['4_3_datasetCollect'] == "yes" %}
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Which datasets have you collected?</dt>
+				<dd class="govuk-summary-list__value">
+					<ul class="govuk-list govuk-list--bullet">
+					{% for item in data.4_3_datasets %}
+					<li>{{ item }}</li>
+					{% endfor %}
+					</ul>
+				</dd>
+				<dd class="govuk-summary-list__actions">
+
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">Which format is your dataset in for conservation areas?</dt>
+				<dd class="govuk-summary-list__value">
+					<ul class="govuk-list govuk-list--bullet">
+					{% for item in data.4_3_format %}
+					<li>{{ item }}</li>
+					{% endfor %}
+					</ul>
+				</dd>
+				<dd class="govuk-summary-list__actions">
+
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">How long do you think it will take your organisation to publish all 4 datasets?</dt>
+				<dd class="govuk-summary-list__value">{{ data['4_3_publishTime'] }}</dd>
+				<dd class="govuk-summary-list__actions">
+
+				</dd>
+			</div>
+			{% endif %}
+
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">What are the current known issues and challenges you have with data quality and publication?</dt>
+				<dd class="govuk-summary-list__value">{{ data['4_3_datasetChallenges'] }}</dd>
+				<dd class="govuk-summary-list__actions">
+
+				</dd>
+			</div>
+			</dl>
+		</div>
+	</div>
+
+	<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Comments</h2>
+	<p><a href="#" class="govuk-link govuk-!-font-size-16">Add a comment</a></p>
+	<p>Summarise any thoughts you have on the assessment.</p>
+
+	<p>No comments have been left yet.</p>
+
+	{{ macroPagePagination.pagePagination( pagePreviouslabel, pagePreviouslink, pageNextlabel, pageNextlink) }}
+
+</div>
+
+</div>
+
+
+
+
+<!-- Switcher between current and suggested changes -->
+{% include "/assess/includes/version-switch.html" %}
+
+
+	{% endif %}
+
+	</div>
+</div>
+{% endblock %}
+
+
+

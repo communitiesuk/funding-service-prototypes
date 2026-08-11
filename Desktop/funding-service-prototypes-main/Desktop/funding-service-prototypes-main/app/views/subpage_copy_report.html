@@ -1,0 +1,100 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Copying a report or form (July 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						In development
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Form designer
+				</dd>
+			</div>
+		</dl>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journey</h2>
+		<!--
+		<p>The prototype illustrates: </p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>adding a condition (without a calculation)</li>
+			<li>referencing data in a data set that has been uploaded</li>
+			<li>selecting a column from the data set</li>
+			<li>defining the condition (greater than, less than or between)</li>
+			<li>saving the condition</li>
+		</ul>
+	-->
+		<p class="govuk-body">
+			<a href="/funding/grant/reports/copying/grants" class="govuk-link">Copy an existing report</a>
+		</p>
+		<p class="govuk-body">The driver for this functionality is that grant teams send out identical (or near identical) forms to grant recipients to fill out. Form designers currently have to rebuild each form from scratch, which is time consuming and open to error. This functionality will enable them to quickly copy an existing form.</p>
+		</p>
+		<p class="govuk-body">This journey has been tested with two form designers. </p>
+		</p>
+		<p class="govuk-body">To see the journey in the prototype, select the active grant 'Local Authority Housing Fund', go to the 'Reports' page and click the 'Create another report' button.</p>
+		
+		<h2 class="govuk-heading-m">Design decisions</h2>
+		<p class="govuk-body">Design decisions we made during the development of this feature:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>The functionality allows a form designer to copy a whole form or report (not parts of a form or report).</li>
+			<li>In the search list, show all draft and active grants and reports.</li>
+			<li>In the search list, show this grant's reports at the top of the initial search list. Order other entries by grant and then date report created (with most recent at the top).</li>
+			<li>Reverse the order for displaying reports. Order reports by creation date ('created on'). Add the newest report to the top of the page. Display the oldest report at the bottom.</li>
+			<li>Do not play back report settings that are copied to the form designer when they create a copy of the report.</li>
+
+		</ul>
+
+		<h2 class="govuk-heading-m">Next steps</h2>
+		<p class="govuk-body">To monitor after release:</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Consider making it possible for a form designer to copy sections, question groups and questions.</li>
+			<li>When searching for a form or report to copy, monitor whether designers need a way to pre-filter by grant.</li>
+			<li>Monitor how the search list performs over time and with real forms and reports.</li>
+			<li>On the Pre-award and Reports pages, the 'Change name' and 'Delete' link that shows for draft reports will soon be updated as part of other work. Instead, a 'Manage form' or 'Manage report' option will show for forms and reports in all statuses.</li>
+			<li>On the Pre-award and Reports pages, consider refining the order of reports into Draft, Open and Closed sections, with more granular ordering within these (by 'Created on' date for drafts and by 'Go live' date for open and closed reports).</li>
+		</ul>
+		
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1782729418837/93ac3a14528526548c4e208a1f7ff77fe500892e"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Copying a report or form Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% from "macros/select-with-search.njk" import selectWithSearch %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Which local authority are you requesting access for?" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="grant_select" method="post" novalidate>
+      
+      {{ selectWithSearch({
+        id: "local-authority",
+        name: "localAuthority",
+        label: {
+          text: "Which local authority are you requesting access for?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        items: [
+          { value: "", text: "Select a local authority" },
+          { value: "Aberdeen City Council", text: "Aberdeen City Council" },
+          { value: "Birmingham City Council", text: "Birmingham City Council" },
+          { value: "Bristol City Council", text: "Bristol City Council" },
+          { value: "Camden Council", text: "Camden Council" },
+          { value: "Cardiff Council", text: "Cardiff Council" },
+          { value: "Cornwall Council", text: "Cornwall Council" },
+          { value: "City of Edinburgh Council", text: "City of Edinburgh Council" },
+          { value: "Glasgow City Council", text: "Glasgow City Council" },
+          { value: "Glasgow City Council", text: "Glasgow City Council" },
+          { value: "Hastings Borough Council", text: "Hastings Borough Council" },
+          { value: "Leicester City Council", text: "Leicester City Council" },
+          { value: "Liverpool City Council", text: "Liverpool City Council" },
+          { value: "Manchester City Council", text: "Manchester City Council" },
+          { value: "Millennium Council", text: "Millennium Council" },
+          { value: "Newcastle City Council", text: "Newcastle City Council" },
+          { value: "Nottingham City Council", text: "Nottingham City Council" },
+          { value: "Sheffield City Council", text: "Sheffield City Council" },
+          { value: "Southwark Council", text: "Southwark Council" },
+          { value: "Westminster City Council", text: "Westminster City Council" }
+        ]
+      }) }}
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{
+  "name": "Funding Service Prototypes",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "postCreateCommand": "npm install",
+  "postAttachCommand": "bash .devcontainer/start-prototype.sh",
+  "forwardPorts": [3014],
+  "portsAttributes": {
+    "3014": {
+      "label": "Prototype kit",
+      "onAutoForward": "openBrowserOnce"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ronnidc.nunjucks"
+      ]
+    }
+  }
+}

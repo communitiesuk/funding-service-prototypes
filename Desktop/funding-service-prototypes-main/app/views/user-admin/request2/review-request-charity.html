@@ -1,0 +1,84 @@
+{% extends "layouts/access_teams" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Review Lukas Garner's access request" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+           Review {{ data['fullName'] or "Lukas Garner" }}'s access request
+    </h1>
+
+    <p class="govuk-body">
+      Review this request to edit and submit for Dartford Almshouse Charity's {{ data['grantSelect'] or "Safer social housing fund" }}.
+    </p>
+
+    <div class="govuk-inset-text">
+      Full name: {{ data['fullName'] or "Lukas Garner" }}<br>
+      Email address:      {{ data['emailAddress'] or "lgarner@dartford.org" }}
+    </div>
+
+    <form id="review-request-form" action="#" method="post" novalidate>
+      
+      <div class="govuk-form-group govuk-!-margin-top-6">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Do you want {{ data['fullName'] or "Lukas Garner" }} to join your team?
+            </h2>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="join-team-yes" name="joinTeam" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="join-team-yes">
+                Yes, give them access to edit and submit
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="join-team-no" name="joinTeam" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="join-team-no">
+                No, reject request
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      <div class="govuk-button-group govuk-!-margin-top-6">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and continue
+        </button>
+        <a class="govuk-link" href="#">Cancel</a>
+      </div>
+      
+    </form>
+
+  </div>
+</div>
+
+<!-- Script to handle conditional routing based on radio selection -->
+<script>
+  document.getElementById('review-request-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop standard form submission
+    
+    const selectedRadio = document.querySelector('input[name="joinTeam"]:checked');
+    
+    if (selectedRadio) {
+      if (selectedRadio.value === 'yes') {
+        window.location.href = 'team2-charity';
+      } else if (selectedRadio.value === 'no') {
+        window.location.href = 'team3-charity';
+      }
+    }
+  });
+</script>
+{% endblock %}

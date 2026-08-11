@@ -1,0 +1,61 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackApplicationsLink = false %}
+
+{% if data['fundName'] == "High Street Rental Auctions" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to cover the cost of delivering a High Street Rental Auction" %}
+    {% set pageSection = "High Street Rental Auctions fund Refurbishment project" %}
+{% elif data['fundName'] == "Community Ownership Fund" %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for funding to save an asset in your community" %}
+    {% set pageSection = "Community Ownership Fund Round 4 Window 1" %}
+{% elif data['fundName'] == "Digital Planning Improvement" %}
+
+    {% if data['version'] == "suggested" %}
+        {% set pageSize = "xl" %}
+{% set pageHeading = "Digital Planning Improvement Fund" %}
+        {% set pageSection = 'Apply for funding' %}
+    {% else %}
+        {% set pageSize = "xl" %}
+{% set pageHeading = "Apply for funding to begin your digital planning improvement journey" %}
+        {% set pageSection = 'Digital Planning Improvement Fund ' + data.fundRound  + ' ' %}
+    {% endif %}
+{% else %}
+    {% set pageSize = "xl" %}
+{% set pageHeading = "Start or continue an application for {fund details}" %}
+    {% set pageSection = "Fund name and round information" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+        {% if data['fundName'] == "High Street Rental Auctions" %}
+            <!-- Start page content -->
+            {% include "/apply/includes/startContent/highStreetRental.html" %}
+        {% elif data['fundName'] == "Community Ownership Fund" %}
+            {% include "/apply/includes/startContent/communityOwnership.html" %}
+        {% elif data['fundName'] == "Digital Planning Improvement" %}
+            <!-- Start page content -->
+            {% include "/apply/includes/startContent/digitalPlanning.html" %}
+        {% else %}
+            <p><strong>Submission deadline:</strong> 26 January 2025 at 11:59am</p>
+        {% endif %}
+
+
+
+        {% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+      	{% else %}
+        	{{ macroSuggested.pageSuggested(url) }}
+      	{% endif %}
+    </div>
+</div>
+
+{% endblock %}

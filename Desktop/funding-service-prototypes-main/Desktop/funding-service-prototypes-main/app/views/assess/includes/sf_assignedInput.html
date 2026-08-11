@@ -1,0 +1,16 @@
+<div class="govuk-form-group govuk-!-display-inline-block">
+
+{{ govukSelect({
+    id: "sort",
+    name: "sort",
+    label: {
+    text: "Filter by assigned to"
+    },
+    classes: "govuk-input--width-20 govuk-!-display-inline-block",
+    items: [
+        { value: "all", text: "All", selected: true },
+        { value: "Not assigned", text: "Not assigned" }
+    ]
+}) }}
+
+</div>

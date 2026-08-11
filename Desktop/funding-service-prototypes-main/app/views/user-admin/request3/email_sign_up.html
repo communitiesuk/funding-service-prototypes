@@ -30,7 +30,7 @@
             </tr>
             <tr class="email-message-meta">
               <th class="govuk-table__cell" scope="row">Subject</th>
-              <td class="govuk-table__cell">Verify your email address</td>
+              <td class="govuk-table__cell">You do not have an account</td>
             </tr>
           </tbody>
         </table>
@@ -38,8 +38,11 @@
 
           <p>Hello,</p>
       
-          <p>You cannot sign in to Access grant funding because there is no account for your email ({{ data['email'] or "unknownuser@company.com"  }}).</p>
+          <p>You cannot sign in to Access grant funding because there is no account for your email:</p>
           
+            <div class="govuk-inset-text">
+            {{ data['email'] or "unknownuser@company.com"  }}
+          </div>
          
 
           <p>If someone in your organisation has access, they can add you or you can <a href="#">request access</a>.</p>

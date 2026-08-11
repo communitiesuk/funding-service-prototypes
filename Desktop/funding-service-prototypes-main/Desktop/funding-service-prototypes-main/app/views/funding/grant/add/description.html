@@ -1,0 +1,61 @@
+
+{% extends "layouts/deliver.html" %}
+
+{% if data['change'] == "yes" %}
+	{% set showBackLink = false %}
+{% endif %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "What is the main purpose of this grant?" %}
+{% set pageSection = "Set up the grant" %}
+{% set pageHiddentext = "yes" %}
+{% set pageNested = "yes" %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<p class="govuk-body">Provide a brief description of the main purpose of the grant. This information will be seen by potential grant recipients.</p>
+
+		{% if data['change'] == "yes" %}
+        <form method="post" action="/funding/grant/add/summary?notification=&change=">			
+      	{% else %}
+        <form method="post" action="/funding/grant/add/primary-contact-details">
+        {% endif %}
+
+        	{{ govukCharacterCount({
+            	name: "grant-description",
+            	id: "grant-description",
+            	value: data['grant-description'],
+            	maxwords: 200,
+            	rows: 6,            	
+            	label: {
+              		text: "Enter the main purpose of this grant",
+              		classes: "govuk-label govuk-visually-hidden",
+              		isPageHeading: false
+            	}
+          	}) }}
+
+            {% if data['change'] == "yes" %}
+			   <div class="govuk-button-group">
+					
+					{{ govukButton({
+    					text: "Update main purpose"
+					}) }}			
+					<a class="govuk-link govuk-link--no-visited-state" href="/funding/grant/add/summary?notification=&change=">Cancel</a>				 
+				</div>
+            {% else %}
+                {% include "/includes/buttonSaveContinue.html" %}
+            {% endif %}
+						
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

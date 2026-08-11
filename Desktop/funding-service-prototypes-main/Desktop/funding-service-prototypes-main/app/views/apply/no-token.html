@@ -1,0 +1,23 @@
+{% extends "layouts/main.html" %}
+
+{% set showBackApplicationsLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "You are not logged in" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+    	<p>To re-access your account, please use the link originally provided in the email sent you.</p>
+
+
+  </div>
+</div>
+
+{% endblock %}

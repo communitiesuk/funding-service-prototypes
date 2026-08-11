@@ -1,0 +1,10 @@
+{% macro sectionStatus (
+    section = "",
+    value = "",
+    data = {}
+) %}
+
+{% if not data.{{section}} %}
+    <input type="hidden" id="{{ section }}" name="{{ section }}" value="{{ value }}" />
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,158 @@
+{% extends "layouts/grantRecipient.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "l" %}
+{% set pageHeading = "Expenditure" %}
+{% set pageSection = "data.fundName" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Error Summary -->
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <p class="govuk-body" style="color: #d4351c; font-weight: bold;">
+            Total forecast spend for green spaces, community spaces and sports centres must be the same as total forecast spend for April to June 2026 (£15,000).
+          </p>
+          
+          <p class="govuk-body govuk-!-margin-bottom-1" style="color: #d4351c; font-weight: bold;">
+            In this section:
+          </p>
+          <ul class="govuk-list govuk-error-summary__list">
+       
+            <li>
+              <a href="quarter_forecast_spend_error">Check your answer for forecast spend April to June 2026 (£15,000)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<span class="govuk-caption-l">Expenditure</span>
+<h1 class="govuk-heading-l">Check your answers</h1>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      
+      <!-- Row 1: Q1 Forecast (Error state) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0; position: relative;">
+        <!-- Absolute positioned red line to prevent altering row width -->
+        <div style="position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; background-color: #d4351c;"></div>
+        
+        <p class="govuk-error-message" style="margin-left: 15px; margin-bottom: 10px; text-decoration: underline;" id="forecast-q1">
+          <span class="govuk-visually-hidden">Error:</span> Check your answer for forecast spend April to June 2026
+        </p>
+        
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 15px; box-sizing: border-box;">
+            Forecast spend<br>April to June 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £10,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="quarter_forecast_spend_error">
+              Change<span class="govuk-visually-hidden"> forecast spend April to June 2026</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 2: Q2 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            Forecast spend<br>July to September 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £17,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend July to September 2026</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 3: Q3 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            Forecast spend<br>October to December 2026
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £14,500
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend October to December 2026</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Row 4: Q4 Forecast (Normal) -->
+      <div class="govuk-summary-list__row" style="display: block; padding: 15px 0;">
+        <div style="display: flex; width: 100%;">
+          <dt class="govuk-summary-list__key" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            Forecast spend January<br>to March 2027
+          </dt>
+          <dd class="govuk-summary-list__value" style="width: 40%; padding: 0 20px 0 0; box-sizing: border-box;">
+            £20,000
+          </dd>
+          <dd class="govuk-summary-list__actions" style="width: 20%; padding: 0; box-sizing: border-box; text-align: right;">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> forecast spend January to March 2027</span>
+            </a>
+          </dd>
+        </div>
+      </div>
+
+
+
+ 
+
+  
+
+    </dl>
+
+    
+      {{ govukRadios({
+  name: "haveYouCompletedThisSection",
+  fieldset: {
+    legend: {
+      text: "Have you completed this task?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I’ve completed this task"
+    },
+    {
+      value: "no",
+      text: "No, I’ll come back to it later"
+    }
+  ]
+}) }}
+
+    <form method="post" action="next-step" novalidate>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

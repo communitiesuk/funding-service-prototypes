@@ -1,0 +1,14 @@
+<div class="govuk-!-margin-bottom-1">
+
+    <form method="post" action="" >
+        {% include "/assess/includes/sf_searchInput_small.html" %}
+        {% include "/assess/includes/sf_fundTypeInput_small.html" %}
+        {% include "/assess/includes/sf_assessmentStatusInput_small.html" %}
+
+        {{ govukButton({
+            text: "Search",
+            classes: "govuk-!-margin-top-6"
+        }) }}
+    </form>
+
+</div>

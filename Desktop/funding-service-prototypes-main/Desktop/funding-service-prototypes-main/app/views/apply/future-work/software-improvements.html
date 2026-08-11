@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% if data['version'] == "suggested" %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Which software improvements are you interested in working on in the future?" %}
+	{% set pageSection = "Future work" %}
+{% else %}
+	{% set pageSize = "xl" %}
+{% set pageHeading = "Which software improvements are you interested in working on in the future?" %}
+	{% set pageSection = "" %}
+{% endif %}
+
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+
+        {{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		{% if data['version'] == "suggested" %}
+
+		<p class="govuk-body">You may be invited to apply for additional funding to improve the planning software in your organisation, if your application is successful.</p>
+
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/future-work/check-your-answers?linkStatus=" >
+		{% else %}
+			<form method="post" action="/apply/future-work/check-your-answers" >
+		{% endif %}
+
+				<!-- Session information to say section started - but not completed -->
+				{% if not data.section5_1 %}
+				<input type="hidden" id="section5_1" name="section5_1" value="Started" />
+				{% endif %}
+
+				{{ govukCheckboxes({
+					name: "futureWorkSoftware",
+					fieldset: {
+						legend: {
+							text: pageHeading,
+							isPageHeading: true,
+							classes: "govuk-fieldset__legend govuk-visually-hidden"
+						}
+					},
+					hint: {
+						text: "Select all that apply"
+					},
+					items: [
+						{ value: "Adopting PlanX", text: "Adopting PlanX", checked: checked("futureWorkSoftware", "Adopting PlanX") },
+						{ value: "Adopting BOPS (Back Office Planning System)", text: "Adopting BOPS (Back Office Planning System)", checked: checked("futureWorkSoftware", "Adopting BOPS (Back Office Planning System)") },
+						{ value: "Working with an existing software provider", text: "Working with an existing software provider", checked: checked("futureWorkSoftware", "Working with an existing software provider") },
+						{ value: "Working with a new software provider", text: "Working with a new software provider", checked: checked("futureWorkSoftware", "Working with a new software provider") }
+					]
+				}) }}
+
+				{{ govukButton({
+					text: "Continue"
+				}) }}
+
+			</form>
+
+		{% else %}
+
+		<p class="govuk-hint">If you're successful, you may be invited to apply for additional funding to improve the planning software in your organisation.</p>
+
+		{% if data['linkStatus'] == "change" %}
+			<form method="post" action="/apply/future-work/check-your-answers?linkStatus=" >
+		{% else %}
+			<form method="post" action="/apply/future-work/check-your-answers" >
+		{% endif %}
+
+				<!-- Session information to say section started - but not completed -->
+				{% if not data.section5_1 %}
+				<input type="hidden" id="section5_1" name="section5_1" value="Started" />
+				{% endif %}
+
+				{{ govukCheckboxes({
+					name: "futureWorkSoftware",
+					fieldset: {
+					legend: {
+						text: pageHeading,
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--l govuk-visually-hidden"
+					}
+					},
+					hint: {
+					text: "Select all that apply"
+					},
+					items: [
+					{ value: "Adopting PlanX", text: "Adopting PlanX", checked: checked("futureWorkSoftware", "Adopting PlanX") },
+					{ value: "Adopting BOPS (Back Office Planning System)", text: "Adopting BOPS (Back Office Planning System)", checked: checked("futureWorkSoftware", "Adopting BOPS (Back Office Planning System)") },
+					{ value: "Working with an existing software provider", text: "Working with an existing software provider", checked: checked("futureWorkSoftware", "Working with an existing software provider") },
+					{ value: "Working with a new software provider", text: "Working with a new software provider", checked: checked("futureWorkSoftware", "Working with a new software provider") }
+					]
+				}) }}
+
+				{{ govukButton({
+					text: "Continue"
+				}) }}
+
+			</form>
+
+		{% endif %}
+
+
+		{% if data['version'] == "suggested" %}
+            {{ macroCurrent.pageCurrent(url) }}
+        {% else %}
+            {{ macroSuggested.pageSuggested(url) }}
+        {% endif %}
+
+
+    </div>
+</div>
+
+{% endblock %}
