@@ -1,4 +1,5 @@
-{% extends "layouts/access.html" %}
+{% extends "layouts/access2.html" %}
+{% set navID = 'grantUsers' %}
 
 {% set showBackLink = false %}
 
@@ -23,12 +24,12 @@
       Sharon Plumpton (splumpton@lewes-eastbourne.gov.uk)
     </div>
 
-    <form action="team2" method="post" novalidate>
+    <form action="" method="post" novalidate>
       <div class="govuk-button-group govuk-!-margin-top-6">
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Confirm and add team member
         </button>
-        <a class="govuk-link" href="team">Cancel</a>
+        <a class="govuk-link" href="add_user">Cancel</a>
       </div>
     </form>
 
