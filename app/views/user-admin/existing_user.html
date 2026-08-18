@@ -15,13 +15,13 @@
     <h1 class="govuk-heading-l">
       This team member already has access
     </h1>
-
+<!-- 
     <div class="govuk-inset-text">
       {{ data['emailAddress'] or "sboyle@hastings.gov.uk" }} 
-    </div>
+    </div> -->
 
     <p class="govuk-body">
-       {{ data['fullName'] or "Shayne Boyle" }} already has access to this grant.
+       {{ data['fullName'] or "Shayne Boyle" }} ({{ data['emailAddress'] or "sboyle@hastings.gov.uk" }}) already has access to this grant.
     </p>
 
     <form action="add_user" method="post" novalidate>
