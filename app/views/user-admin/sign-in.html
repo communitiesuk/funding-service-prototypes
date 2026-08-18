@@ -41,14 +41,6 @@
       A service for organisations to complete and submit forms for central government grants.
     </p>
 
-    <p class="govuk-body">
-      If you do not have access, you can <a href="" class="govuk-link">request access</a>.
-    </p>
-
-    <p class="govuk-body">
-      If you know someone with access, they can add you from the Team page in Access grant funding.
-    </p>
-
             <form method="post" action="email-sent" >
                 {{ govukInput({
                     label: {
@@ -63,13 +55,20 @@
                 }) }}
 
                 {{ govukButton({
-                    text: "Request sign in link"
+                    text: "Sign in with link"
                 }) }}
             </form>
 
         {% endif %}
 
+    <h3 class="govuk-heading-m">If you need access</h3>
+
+            <p class="govuk-body">
+      You can <a href="" class="govuk-link">request access</a> or ask someone you know to add you from the Team page.
+    </p>
+
     </div>
+
 </div>
 
 {% endblock %}
