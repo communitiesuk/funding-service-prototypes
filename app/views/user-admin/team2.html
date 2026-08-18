@@ -114,7 +114,6 @@
           <th scope="col" class="govuk-table__header">Name</th>
           <th scope="col" class="govuk-table__header">Email address</th>
           <th scope="col" class="govuk-table__header">Permissions</th>
-          <th scope="col" class="govuk-table__header">Action</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -126,9 +125,6 @@
           <td class="govuk-table__cell">{{ data['fullName'] if data['fullName'] else 'Lukas Garner' }}</td>
           <td class="govuk-table__cell">{{ data['emailAddress'] if data['emailAddress'] else 'lgarner@hastings.gov.uk' }}</td>
           <td class="govuk-table__cell">Can edit and submit</td>
-          <td class="govuk-table__cell">
-            <a href="" class="govuk-link">Remove<span class="govuk-visually-hidden"> {{ data['fullName'] }}</span></a>
-          </td>
         </tr>
  
         
