@@ -11,12 +11,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+
     <span class="govuk-caption-l">{{ pageSection }}</span>
     <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
 
     <p class="govuk-body">
      Based on your answers, you're eligible to apply for the Safer Social Housing Fund.
     </p>
+
+            <form id="org-form" action="#" method="post" novalidate>
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
@@ -27,21 +30,21 @@
     </legend>
     <div class="govuk-radios" data-module="govuk-radios">
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
-        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+        <input class="govuk-radios__input" id="orgLewes" name="orgName" type="radio" value="Lewes District Council">
+        <label class="govuk-label govuk-radios__label" for="orgLewes">
           Lewes District Council
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
-        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+        <input class="govuk-radios__input" id="orgEastbourne" name="orgName" type="radio" value="Eastbourne Borough Council">
+        <label class="govuk-label govuk-radios__label" for="orgEastbourne">
           Eastbourne Borough Council
         </label>
       </div>
       <div class="govuk-radios__divider">or</div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive-6" name="whereDoYouLive" type="radio" value="abroad">
-        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-6">
+        <input class="govuk-radios__input" id="orgOther" name="orgName" type="radio" value="Another organisation">
+        <label class="govuk-label govuk-radios__label" for="orgOther">
           Apply on behalf of another organisation
         </label>
       </div>
@@ -65,4 +68,22 @@
 
   </div>
 </div>
+<!-- Script to handle conditional routing based on radio selection -->
+<script>
+  document.getElementById('org-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop standard form submission
+    
+    const selectedRadio = document.querySelector('input[name="orgName"]:checked');
+    
+    if (selectedRadio) {
+      if (selectedRadio.value === 'Lewes District Council') {
+        window.location.href = 'eligible_existing_applying';
+      } else if (selectedRadio.value === 'Eastbourne Borough Council') {
+        window.location.href = 'eligible_existing_applying';
+      } else if (selectedRadio.value === 'Another organisation') {
+        window.location.href = 'name';
+      }
+    }
+  });
+</script>
 {% endblock %}
