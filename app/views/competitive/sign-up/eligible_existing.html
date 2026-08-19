@@ -4,7 +4,7 @@
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "You are eligible to apply" %}
-{% set pageSection = "Safer social housing fund" %}
+{% set pageSection = "Safer Social Housing Fund" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -15,28 +15,53 @@
     <h1 class="govuk-heading-l">{{ pageHeading }}</h1>
 
     <p class="govuk-body">
-     Based on your answers, you're eligible to apply for the Safer social housing fund
-    </p>
-  
-    <p class="govuk-body">
- Based on your email, we think you're applying on behalf of <strong>Housing Charity Together</strong>
+     Based on your answers, you're eligible to apply for the Safer Social Housing Fund.
     </p>
 
-
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Which organisation are you applying on behalf of?
+      </h1>
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+          Lewes District Council
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+          Eastbourne Borough Council
+        </label>
+      </div>
+      <div class="govuk-radios__divider">or</div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-6" name="whereDoYouLive" type="radio" value="abroad">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-6">
+          Apply on behalf of another organisation
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
     <form action="dashboard" method="post" novalidate>
       <button type="submit" class="govuk-button" data-module="govuk-button">
-       Continue and start application
+       Continue
       </button>
     </form>
     <br>
 
-    <h2 class="govuk-heading-m">If this organisation is incorrect </h2>
+    <h2 class="govuk-heading-m">Get help </h2>
 
     <p class="govuk-body">
-      If you're not applying on behalf of Housing Charity Together, contact our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/user/login?destination=portal%2F5%2Fgroup%2F1344%3FgroupId%3D1344" target="_blank" class="govuk-link">support desk (opens in new tab)</a> to continue your application. 
+      If you need help or have any questions, contact our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/user/login?destination=portal%2F5%2Fgroup%2F1344%3FgroupId%3D1344" target="_blank" class="govuk-link">support desk (opens in new tab)</a>. 
     </p>
     <p class="govuk-body">
-      Monday to Friday 9am to 5pm (except public holidays)</p>
+      Monday to Friday 9am to 5pm (except public holidays).</p>
 
   </div>
 </div>
