@@ -1,0 +1,107 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+{% set showGuidance = false %}
+{% set showBackApplicationsLink = false %}
+{% set showBackApplicationsOverview = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Applying for a competed grant (June to August 2026)" %}
+{% set pageSection = "Prototype" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-5">
+
+
+		{{ macroPageHeader.pageHeader(pageNested,pageHeading,pageSection,pageHiddentext,pageSize) }}
+
+		<!--Summary information-->
+
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					Status
+				</dt>
+				<dd class="govuk-summary-list__value">
+					<strong class="govuk-tag govuk-tag--yellow">
+						In development
+					</strong>
+				</dd>
+			</div>
+			<div class="govuk-summary-list__row">
+				<dt class="govuk-summary-list__key">
+					User
+				</dt>
+				<dd class="govuk-summary-list__value">
+					Applicant
+				</dd>
+			</div>
+		</dl>
+		<!--Links to journeys-->
+		<h2 class="govuk-heading-m">Journeys</h2>
+		
+			<p class="govuk-body">An applicant signs up on behalf of their organisation for a competed grant on Access grant funding. 
+				Competed grants are those where MHCLG do not invite specific organisations to apply so anyone in any organisation can apply.</p>
+		</p>
+
+						<h3 class="govuk-heading-s">All organisations</h3>
+<p class="govuk-body">
+			<a href="competitive/sign-up/grant" class="govuk-link">Check eligibility</a>
+		</p>
+		<p class="govuk-body">
+			In the example, the entry point is the Cabinet Office 'Find a grant' service. 
+			However, there could be other entry points, such as a colleague sharing a direct link to the grant details page.
+		</p>
+			<p class="govuk-body">
+Whether an organisation is new or existing, they have to check their eligibility for each grant. The eligibility questions are examples only and change for each grant.		</p>
+		
+				<h3 class="govuk-heading-s">New organisation</h3>
+
+		
+		<p class="govuk-body">
+			<a href="competitive/sign-up/name" class="govuk-link">Create an account</a>
+		</p>
+		<p class="govuk-body">
+After the eligibility check, the user has to enter their name and organisation details to create an account.</p>
+
+
+						<h3 class="govuk-heading-s">Existing organisation</h3>
+
+		<p class="govuk-body">
+			<a href="competitive/sign-up/eligible_existing" class="govuk-link">A new user in an existing organisation signs up</a>
+		</p>
+
+		<p class="govuk-body govuk-!-margin-top-5">
+			<a href="competitive/sign-up/eligible_existing_applying" class="govuk-link">The organisation is already applying</a>
+		</p>
+
+			<p class="govuk-body govuk-!-margin-top-5">
+			<a href="competitive/sign-up/dashboard" class="govuk-link">The organisation and user are set up but no-one has started an application</a>
+		</p>
+
+		<p class="govuk-body govuk-!-margin-top-5">
+			<a href="" class="govuk-link">The user is already set up but there's no application in progress yet</a>
+		</p>
+	
+			<p class="govuk-body govuk-!-margin-top-5">
+			<a href="" class="govuk-link">The user is not set up and no-one else has started an application</a>
+		</p>
+	
+
+	</div>
+
+
+	<div class="govuk-grid-column-one-third">
+		<h2 class="govuk-heading-m govuk-!-margin-bottom-1">Related links</h2>
+		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+		<p><a href="https://app.mural.co/t/mhclg2837/m/mhclg2837/1773419150408/ddcdf7d76d271c503ede036df369a8420af1d1ed"
+				class="govuk-link" rel="noreferrer noopener" target="_blank">Mural board (opens in new
+				tab)</a></p>
+
+	</div>
+</div>
+
+{% endblock %}
