@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Check your answers" %}
+{% set pageHeading = "Confirm your details are correct" %}
 {% set pageSection = "Create an account" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -72,21 +72,18 @@
       </div>
     </dl>
 
-
-
-  
-
-    <p class="govuk-body">
-By submitting these details you are confirming that they are correct.
-    </p>
-
     <form action="dashboard-confirmed" method="post" novalidate>
       <input type="hidden" name="answers-checked" value="true">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-       Create account 
+       Confirm and create account 
       </button>
     </form>
+    <p class="govuk-body">
+      If you're you're having problems, contact our <a href="https://mhclgdigital.atlassian.net/servicedesk/customer/portal/5/user/login?destination=portal%2F5%2Fgroup%2F1344%3FgroupId%3D1344" target="_blank" >support desk (opens in new tab)</a>.
+    </p>
 
+    <p class="govuk-body">
+      Monday to Friday 9am to 5pm (except public holidays).</p>
   </div>
 </div>
 {% endblock %}
