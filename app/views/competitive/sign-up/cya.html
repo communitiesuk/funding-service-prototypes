@@ -4,7 +4,7 @@
 
 {% set pageSize = "xl" %}
 {% set pageHeading = "Confirm your details are correct" %}
-{% set pageSection = "Create an account" %}
+{% set pageSection = "Create a new organisation" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
 {% block content %}
@@ -75,7 +75,7 @@
     <form action="dashboard-confirmed" method="post" novalidate>
       <input type="hidden" name="answers-checked" value="true">
       <button type="submit" class="govuk-button" data-module="govuk-button">
-       Confirm and create account 
+       Confirm and create organisation 
       </button>
     </form>
     <p class="govuk-body">
