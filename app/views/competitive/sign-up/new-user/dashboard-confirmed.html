@@ -1,0 +1,93 @@
+{% extends "layouts/access.html" %}
+
+{% set showBackLink = false %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Glasgow City Council" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+         Account created
+        </h3>
+        <p class="govuk-body">We've sent you a confirmation email. 
+
+You can now start applying for the Safer Social Housing Fund.</p>
+      </div>
+    </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-l">Forms</h1>
+
+
+
+    <h2 class="govuk-heading-m">Grant funding</h2>
+    
+    <p class="govuk-body">
+View and complete forms relating to grant funding. These may include forms to apply for, express interest for, or accept grant funding.
+    </p>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table govuk-!-margin-top-6">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Forms</th>
+          <th scope="col" class="govuk-table__header">Due date</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+          <th scope="col" class="govuk-table__header">Action</span></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+    
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Application</td>
+          <td class="govuk-table__cell">30 June 2026</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not started</strong></td>
+          <td class="govuk-table__cell"><a href="allocation_form" class="govuk-link">Start form</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+        <h2 class="govuk-heading-m">Monitoring reports</h2>
+    
+    <p class="govuk-body">
+ View and complete monitoring reports if you have been successful for grant funding.
+    </p>
+
+    <p class="govuk-body">
+There are no reports for this grant.
+    </p>
+
+
+
+
+   <p class="govuk-body-xs govuk-!-margin-top-9">
+      <a href="email-account-created-company" class="govuk-link" target="_blank" rel="noreferrer noopener">(Account created email)</a>
+    </p>
+
+
+
+  </div>
+</div>
+{% endblock %}

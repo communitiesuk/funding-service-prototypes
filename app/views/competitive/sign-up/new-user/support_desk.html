@@ -1,0 +1,28 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = "Contact our support desk" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Contact our support desk
+    </h1>
+
+    <p class="govuk-body">
+      To request access, contact our <a href="#" class="govuk-link" target="_blank" rel="noreferrer noopener">support desk (opens in new tab)</a>.
+    </p>
+
+    <p class="govuk-body">
+      If you know someone with access, they can add you to Access grant funding.
+    </p>
+
+  </div>
+</div>
+{% endblock %}

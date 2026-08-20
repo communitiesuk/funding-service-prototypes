@@ -1,0 +1,39 @@
+{% extends "layouts/grantNoSignin.html" %}
+
+{% set showBackLink = true %}
+
+{% set pageSize = "xl" %}
+{% set pageHeading = " Search Charity Commission House register" %}
+{% set pageSection = "" %}
+{% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="charity_results" method="post" novalidate>
+      
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="company-search">
+            Search Charity Commission register
+          </label>
+        </h1>
+        
+ <div id="company-search-hint" class="govuk-hint">
+          Search by charity name or Charity Commission number
+        </div>
+        
+        
+        <input class="govuk-input" id="company-search" name="charitySearch" type="text">
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Search
+      </button>
+      
+    </form>
+
+  </div>
+</div>
+{% endblock %}
