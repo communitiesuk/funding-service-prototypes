@@ -20,6 +20,34 @@
     <!-- Standard GOV.UK Check Your Answers component -->
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['emailAddress'] or "lgarner@dartford.org" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
+      </div>
+
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Organisation type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['emailAddress'] or "Charity" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> organisation type</span>
+          </a>
+        </dd>
+      </div>
+
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Organisation name
@@ -36,38 +64,23 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
+          Allow others to apply as Dartford Almshouse Charity
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['grantSelect'] or "Yes" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
           Full name
         </dt>
         <dd class="govuk-summary-list__value">
           {{ data['fullName'] or "Lukas Garner" }}
-        </dd>
-          <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Email address
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['emailAddress'] or "lgarner@dartford.org" }}
-        </dd>
-          <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Grant
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['grantSelect'] or "Safer social housing fund" }}
         </dd>
           <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">

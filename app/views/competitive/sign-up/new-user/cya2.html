@@ -20,35 +20,7 @@
     <!-- Standard GOV.UK Check Your Answers component -->
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Organisation name
-        </dt>
-        <dd class="govuk-summary-list__value">
-          CASTLE HOUSING LIMITED
-        </dd>
-          <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Full name
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['fullName'] or "Lukas Garner" }}
-        </dd>
-  <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
+            <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Email address
         </dt>
@@ -62,12 +34,26 @@
         </dd>
       </div>
 
-      <div class="govuk-summary-list__row">
+            <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Grant
+          Organisation type
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['grantSelect'] or "Safer social housing fund" }}
+          {{ data['emailAddress'] or "Registered company" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> organisation type</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Organisation name
+        </dt>
+        <dd class="govuk-summary-list__value">
+         CASTLE HOUSING LIMITED
         </dd>
           <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -76,6 +62,33 @@
         </dd>
       </div>
 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Allow others to apply as Castle Housing Limited
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['grantSelect'] or "Yes" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
+      </div>
+            <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Full name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['fullName'] or "Lukas Garner" }}
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
+      </div>
+      
     </dl>
 
     <form action="dashboard-confirmed" method="post" novalidate>

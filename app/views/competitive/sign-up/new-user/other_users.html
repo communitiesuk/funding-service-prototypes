@@ -3,7 +3,7 @@
 {% set showBackLink = true %}
 
 {% set pageSize = "xl" %}
-{% set pageHeading = "Allow others to apply as Neighbourhood Connect" %}
+{% set pageHeading = "" %}
 {% set pageSection = "Create an organisation" %}
 {% block pageTitle %}{{ macroPageTitle.pageTitle(pageHeading) }}{% endblock %}
 
@@ -18,28 +18,22 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">{{ pageSection }}</span>
-    <h1 class="govuk-heading-xl">{{ pageHeading }}</h1>
 
-    <p class="govuk-body">
-      Anyone with an @neighbourhoodconnect.co.uk email address can be automatically added to Neighbourhood Connect to apply for future grants.
-    </p>
+     <div class="govuk-form-group">
+  <h1 class="govuk-label-wrapper">
+    <label class="govuk-label govuk-label--l" for="event-name">
+      Do you want to allow team members to apply as Neighbourhood Connect?
+    </label>
+  </h1>
+  <div id="event-name-hint" class="govuk-hint">
+    Anyone with a @neighbourhoodconnect.co.uk email will be able to apply for future grants on behalf of Neighbourhood Connect
+  </div>
 
-    <p class="govuk-body">
-      This will happen automatically from the first time they sign in.
-    </p>
-
-    <p class="govuk-body">
-      If you choose not to allow this, they'll need to request access or be added manually.
-    </p>
 
     <form action="cya5" method="post" novalidate>
 
       <div class="govuk-form-group govuk-!-margin-top-6">
         <fieldset class="govuk-fieldset">
-          
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            Do you want to allow others to apply as Neighbourhood Connect automatically in future?
-          </legend>
           
           <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
             <div class="govuk-radios__item">

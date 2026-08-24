@@ -20,12 +20,12 @@
     <!-- Standard GOV.UK Check Your Answers component -->
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       
-      <div class="govuk-summary-list__row">
+            <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Organisation name
+          Email address
         </dt>
         <dd class="govuk-summary-list__value">
-         HASTINGS BOROUGH COUNCIL
+          {{ data['emailAddress'] or "lgarner@hastings.gov.uk" }}
         </dd>
           <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -35,39 +35,25 @@
       </div>
 
       <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Local authority
+        </dt>
+        <dd class="govuk-summary-list__value">
+         Hastings Borough Council
+        </dd>
+          <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> full name</span>
+          </a>
+        </dd>
+      </div>
+
+       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Full name
         </dt>
         <dd class="govuk-summary-list__value">
           {{ data['fullName'] or "Lukas Garner" }}
-        </dd>
-          <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Email address
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['emailAddress'] or "lgarner@hastingsgov.uk" }}
-        </dd>
-          <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> full name</span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Grant
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['grantSelect'] or "Safer social housing fund" }}
         </dd>
           <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
