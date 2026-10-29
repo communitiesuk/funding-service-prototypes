@@ -7,7 +7,7 @@ on:
 
 jobs:
   node-version-sync:
-    name: Devcontainer and Dockerfile use the same Node version
+    name: Devcontainer, Dockerfile, .nvmrc and package.json use the same Node version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,17 +15,21 @@ jobs:
         run: |
           dockerfile_version=$(sed -n -E 's/^FROM node:([0-9]+).*/\1/p' Dockerfile)
           devcontainer_version=$(sed -n -E 's/.*"image": *"mcr\.microsoft\.com\/devcontainers\/javascript-node:([0-9]+).*/\1/p' .devcontainer/devcontainer.json)
+          nvmrc_version=$(sed -n -E 's/^v?([0-9]+).*/\1/p' .nvmrc)
+          engines_version=$(jq -r '.engines.node // empty' package.json | sed -n -E 's/^[^0-9]*([0-9]+).*/\1/p')
 
           echo "Dockerfile:        node ${dockerfile_version:-<not found>}"
           echo "devcontainer.json: node ${devcontainer_version:-<not found>}"
+          echo ".nvmrc:            node ${nvmrc_version:-<not found>}"
+          echo "package.json:      node ${engines_version:-<not found>}"
 
-          if [ -z "$dockerfile_version" ] || [ -z "$devcontainer_version" ]; then
-            echo "::error::Could not extract a Node major version from the Dockerfile and/or .devcontainer/devcontainer.json — if the image lines changed shape, update this check to match"
+          if [ -z "$dockerfile_version" ] || [ -z "$devcontainer_version" ] || [ -z "$nvmrc_version" ] || [ -z "$engines_version" ]; then
+            echo "::error::Could not extract a Node major version from the Dockerfile, .devcontainer/devcontainer.json, .nvmrc and/or the engines field in package.json — if the lines changed shape, update this check to match"
             exit 1
           fi
 
-          if [ "$dockerfile_version" != "$devcontainer_version" ]; then
-            echo "::error::Node versions are out of sync: Dockerfile uses node ${dockerfile_version}, .devcontainer/devcontainer.json uses node ${devcontainer_version}. Update both to the same major version."
+          if [ "$dockerfile_version" != "$devcontainer_version" ] || [ "$dockerfile_version" != "$nvmrc_version" ] || [ "$dockerfile_version" != "$engines_version" ]; then
+            echo "::error::Node versions are out of sync: Dockerfile uses node ${dockerfile_version}, .devcontainer/devcontainer.json uses node ${devcontainer_version}, .nvmrc uses node ${nvmrc_version}, package.json engines uses node ${engines_version}. Update all four to the same major version."
             exit 1
           fi
 
