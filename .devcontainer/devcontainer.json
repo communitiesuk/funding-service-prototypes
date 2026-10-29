@@ -1,6 +1,6 @@
 {
   "name": "Funding Service Prototypes",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
   "postCreateCommand": "npm install",
   "postAttachCommand": "bash .devcontainer/start-prototype.sh",
   "forwardPorts": [3014],
