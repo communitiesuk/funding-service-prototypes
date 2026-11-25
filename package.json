@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "predev": "node scripts/check-node-version.js",
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
